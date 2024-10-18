@@ -1,15 +1,53 @@
 {
   "name": "timewise",
-  "private": true,
   "version": "0.0.0",
+  "description": "A versatile time management library, featuring utilities for duration, stopwatch, timer, etc.",
+  "keywords": [
+    "date",
+    "time",
+    "duration",
+    "stopwatch",
+    "timer"
+  ],
+  "homepage": "https://github.com/mahshidbahira/timewise",
+  "bugs": {
+    "url": "https://github.com/mahshidbahira/timewise/issues",
+    "email": "mahshidbahira.global@gmail.com"
+  },
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Mahshid Bahira",
+      "email": "mahshidbahira.global@gmail.com",
+      "url": "https://github.com/mahshidbahira"
+    },
+    {
+      "name": "Behzad B. Mokhtari",
+      "email": "bbmokhtari.global@gmail.com",
+      "url": "https://github.com/bbmokhtari"
+    }
+  ],
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/timewise.cjs",
+  "module": "./dist/timewise.js",
+  "types": "./dist/timewise.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/timewise.js",
+      "require": "./dist/timewise.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "tsc && vite build"
   },
   "devDependencies": {
+    "@types/node": "^22.7.6",
     "typescript": "^5.5.3",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-dts": "^4.2.4"
   }
 }

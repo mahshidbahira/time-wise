@@ -1,13 +1,13 @@
-# Timewise
+# TimeWise
 
 A versatile time management library, featuring utilities for duration, stopwatch, timer, etc.
 
 ## Installation
 
-Install timewise using npm:
+Install `time-wise` using npm:
 
 ```bash
-npm install --save timewise
+npm install --save time-wise
 ```
 
 ## Import
@@ -15,13 +15,13 @@ npm install --save timewise
 - ES Modules
 
   ```javascript
-  import { greet } from "timewise";
+  import { MILLISECONDS, SECONDS } from "time-wise";
   ```
 
 - CommonJs
 
   ```javascript
-  const { greet } = require("timewise");
+  const { MILLISECONDS, SECONDS } = require("time-wise");
   ```
 
 - IIFE/Browser
@@ -29,11 +29,11 @@ npm install --save timewise
   - Include the IIFE script in your browser:
 
     ```html
-    <script src="timewise.iife.js"></script>
+    <script src="time-wise.iife.js"></script>
     ```
 
   - Destructure the global object:
 
     ```javascript
-    const { greet } = Timewise;
+    const { MILLISECONDS, SECONDS } = TimeWise;
     ```

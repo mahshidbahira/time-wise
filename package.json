@@ -1,5 +1,5 @@
 {
-  "name": "timewise",
+  "name": "time-wise",
   "version": "0.0.0",
   "description": "A versatile time management library, featuring utilities for duration, stopwatch, timer, etc.",
   "keywords": [
@@ -9,9 +9,9 @@
     "stopwatch",
     "timer"
   ],
-  "homepage": "https://github.com/mahshidbahira/timewise",
+  "homepage": "https://github.com/mahshidbahira/time-wise",
   "bugs": {
-    "url": "https://github.com/mahshidbahira/timewise/issues",
+    "url": "https://github.com/mahshidbahira/time-wise/issues",
     "email": "mahshidbahira.global@gmail.com"
   },
   "license": "MIT",
@@ -31,13 +31,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/timewise.cjs",
-  "module": "./dist/timewise.js",
-  "types": "./dist/timewise.d.ts",
+  "main": "./dist/time-wise.cjs",
+  "module": "./dist/time-wise.js",
+  "types": "./dist/time-wise.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/timewise.js",
-      "require": "./dist/timewise.cjs"
+      "import": "./dist/time-wise.js",
+      "require": "./dist/time-wise.cjs"
     }
   },
   "scripts": {

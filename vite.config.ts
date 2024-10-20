@@ -8,8 +8,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "src/main.ts"),
-      name: "Timewise",
-      fileName: "timewise",
+      name: "TimeWise",
+      fileName: "time-wise",
       formats: ["es", "cjs", "iife", "umd", "system"],
     },
   },

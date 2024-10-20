@@ -1,5 +1,3 @@
-function greet(name?: string): string {
-  return `Hello, ${name ? name : "World"}!`;
-}
+import { MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS } from "./Units/Units";
 
-export { greet };
+export { MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS };

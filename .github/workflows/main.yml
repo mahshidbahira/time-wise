@@ -4,7 +4,7 @@ on:
     branches:
       - main
     tags:
-      - "[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+"
   pull_request:
 jobs:
   test:
@@ -59,4 +59,4 @@ jobs:
       - name: Run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-        run: npm run publish
+        run: npm publish

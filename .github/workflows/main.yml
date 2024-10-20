@@ -54,9 +54,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          registry-url: "https://registry.npmjs.org/"
+      - name: Authenticate to npm
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_ACCESS_TOKEN }}" > .npmrc
       - name: Install dependencies
         run: npm install
-      - name: Run publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-        run: npm publish
+      - name: Build package
+        run: npm run build
+      - name: Publish package
+        run: npm publish --access public

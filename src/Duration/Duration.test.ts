@@ -47,10 +47,37 @@ describe("Duration", () => {
 
   describe("add", () => {
     it("should return sum of durations", () => {
-      const duration1 = new Duration(1 * DAYS);
+      const duration1 = new Duration(6 * DAYS);
       const duration2 = new Duration(2 * DAYS);
 
-      expect(duration1.add(duration2)).toEqual(new Duration(3 * DAYS));
+      expect(duration1.add(duration2)).toEqual(new Duration(8 * DAYS));
+    });
+  });
+
+  describe("subtract", () => {
+    it("should return subtraction of durations", () => {
+      const duration1 = new Duration(6 * DAYS);
+      const duration2 = new Duration(2 * DAYS);
+
+      expect(duration1.subtract(duration2)).toEqual(new Duration(4 * DAYS));
+    });
+  });
+
+  describe("multiply", () => {
+    it("should return multiplication of durations", () => {
+      const duration = new Duration(6 * DAYS);
+      const factor = 2;
+
+      expect(duration.multiply(factor)).toEqual(new Duration(12 * DAYS));
+    });
+  });
+
+  describe("divide", () => {
+    it("should return division of durations", () => {
+      const duration = new Duration(6 * DAYS);
+      const divisor = 2;
+
+      expect(duration.divide(divisor)).toEqual(new Duration(3 * DAYS));
     });
   });
 });

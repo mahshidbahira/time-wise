@@ -26,6 +26,18 @@ class Duration {
   add(other: Duration): Duration {
     return new Duration(this.milliseconds + other.milliseconds);
   }
+
+  subtract(other: Duration): Duration {
+    return new Duration(this.milliseconds - other.milliseconds);
+  }
+
+  multiply(factor: number): Duration {
+    return new Duration(this.milliseconds * factor);
+  }
+
+  divide(divisor: number): Duration {
+    return new Duration(this.milliseconds / divisor);
+  }
 }
 
 export default Duration;

@@ -1,30 +1,26 @@
 import { SECONDS, MINUTES, HOURS, DAYS } from "../Units/Units";
 
 class Duration {
-  private _milliseconds: number;
-
-  get milliseconds(): number {
-    return this._milliseconds;
-  }
+  readonly milliseconds: number;
 
   get seconds(): number {
-    return this._milliseconds / SECONDS;
+    return this.milliseconds / SECONDS;
   }
 
   get minutes(): number {
-    return this._milliseconds / MINUTES;
+    return this.milliseconds / MINUTES;
   }
 
   get hours(): number {
-    return this._milliseconds / HOURS;
+    return this.milliseconds / HOURS;
   }
 
   get days(): number {
-    return this._milliseconds / DAYS;
+    return this.milliseconds / DAYS;
   }
 
   constructor(milliseconds: number) {
-    this._milliseconds = milliseconds;
+    this.milliseconds = milliseconds;
   }
 }
 

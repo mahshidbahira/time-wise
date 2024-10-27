@@ -44,4 +44,13 @@ describe("Duration", () => {
       expect(duration.days).toBe(1);
     });
   });
+
+  describe("add", () => {
+    it("should return sum of durations", () => {
+      const duration1 = new Duration(1 * DAYS);
+      const duration2 = new Duration(2 * DAYS);
+
+      expect(duration1.add(duration2)).toEqual(new Duration(3 * DAYS));
+    });
+  });
 });

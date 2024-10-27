@@ -22,6 +22,10 @@ class Duration {
   constructor(milliseconds: number) {
     this.milliseconds = milliseconds;
   }
+
+  add(other: Duration): Duration {
+    return new Duration(this.milliseconds + other.milliseconds);
+  }
 }
 
 export default Duration;

@@ -1,6 +1,9 @@
 import { SECONDS, MINUTES, HOURS, DAYS } from "../Units/Units";
 
 class Duration {
+  // ----------------------------------------------------------------
+  // instance
+
   readonly milliseconds: number;
 
   get seconds(): number {
@@ -21,10 +24,6 @@ class Duration {
 
   constructor(milliseconds: number) {
     this.milliseconds = milliseconds;
-  }
-
-  static compare(duration1: Duration, duration2: Duration): number {
-    return duration1.milliseconds - duration2.milliseconds;
   }
 
   equals(other: Duration): boolean {
@@ -61,6 +60,13 @@ class Duration {
 
   absolute(): Duration {
     return new Duration(Math.abs(this.milliseconds));
+  }
+
+  // ----------------------------------------------------------------
+  // static
+
+  static compare(duration1: Duration, duration2: Duration): number {
+    return duration1.milliseconds - duration2.milliseconds;
   }
 }
 

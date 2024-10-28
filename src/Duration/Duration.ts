@@ -23,8 +23,8 @@ class Duration {
     this.milliseconds = milliseconds;
   }
 
-  compare(other: Duration): number {
-    return this.milliseconds - other.milliseconds;
+  static compare(duration1: Duration, duration2: Duration): number {
+    return duration1.milliseconds - duration2.milliseconds;
   }
 
   equals(other: Duration): boolean {

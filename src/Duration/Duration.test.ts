@@ -45,26 +45,26 @@ describe("Duration", () => {
     });
   });
 
-  describe("compare", () => {
+  describe("static compare", () => {
     it("should return a positive number when the duration is longer than the other duration", () => {
       const duration1 = new Duration(6 * DAYS);
       const duration2 = new Duration(2 * DAYS);
 
-      expect(duration1.compare(duration2)).toBe(345_600_000);
+      expect(Duration.compare(duration1, duration2)).toBe(345_600_000);
     });
 
     it("should return zero when the duration is equal to the other duration", () => {
       const duration1 = new Duration(6 * DAYS);
       const duration2 = new Duration(6 * DAYS);
 
-      expect(duration1.compare(duration2)).toBe(0);
+      expect(Duration.compare(duration1, duration2)).toBe(0);
     });
 
     it("should return a negative number when the duration is shorter than the other duration", () => {
       const duration1 = new Duration(2 * DAYS);
       const duration2 = new Duration(6 * DAYS);
 
-      expect(duration1.compare(duration2)).toBe(-345_600_000);
+      expect(Duration.compare(duration1, duration2)).toBe(-345_600_000);
     });
   });
 

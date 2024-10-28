@@ -46,7 +46,7 @@ describe("Duration", () => {
   });
 
   describe("add", () => {
-    it("should return sum of durations", () => {
+    it("should return the addition of durations", () => {
       const duration1 = new Duration(6 * DAYS);
       const duration2 = new Duration(2 * DAYS);
 
@@ -55,7 +55,7 @@ describe("Duration", () => {
   });
 
   describe("subtract", () => {
-    it("should return subtraction of durations", () => {
+    it("should return the subtraction of durations", () => {
       const duration1 = new Duration(6 * DAYS);
       const duration2 = new Duration(2 * DAYS);
 
@@ -64,7 +64,7 @@ describe("Duration", () => {
   });
 
   describe("multiply", () => {
-    it("should return multiplication of durations", () => {
+    it("should return the multiplication of durations", () => {
       const duration = new Duration(6 * DAYS);
       const factor = 2;
 
@@ -73,11 +73,39 @@ describe("Duration", () => {
   });
 
   describe("divide", () => {
-    it("should return division of durations", () => {
+    it("should return the division of durations", () => {
       const duration = new Duration(6 * DAYS);
       const divisor = 2;
 
       expect(duration.divide(divisor)).toEqual(new Duration(3 * DAYS));
+    });
+  });
+
+  describe("negate", () => {
+    it("should return the negative duration of a positive duration", () => {
+      const duration = new Duration(6 * DAYS);
+
+      expect(duration.negate()).toEqual(new Duration(-6 * DAYS));
+    });
+
+    it("should return the positive duration of a negative duration", () => {
+      const duration = new Duration(-6 * DAYS);
+
+      expect(duration.negate()).toEqual(new Duration(6 * DAYS));
+    });
+  });
+
+  describe("absolute", () => {
+    it("should return the absolute of a negative duration", () => {
+      const duration = new Duration(-6 * DAYS);
+
+      expect(duration.absolute()).toEqual(new Duration(6 * DAYS));
+    });
+
+    it("should return the absolute of a positive duration", () => {
+      const duration = new Duration(6 * DAYS);
+
+      expect(duration.absolute()).toEqual(new Duration(6 * DAYS));
     });
   });
 });

@@ -38,6 +38,14 @@ class Duration {
   divide(divisor: number): Duration {
     return new Duration(this.milliseconds / divisor);
   }
+
+  negate(): Duration {
+    return new Duration(-this.milliseconds);
+  }
+
+  absolute(): Duration {
+    return new Duration(Math.abs(this.milliseconds));
+  }
 }
 
 export default Duration;

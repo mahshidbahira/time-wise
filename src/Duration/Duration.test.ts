@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import Duration from "./Duration";
-import { DAYS } from "../Units/Units";
+import { DAYS, HOURS, MINUTES, SECONDS, MILLISECONDS } from "../Units/Units";
 
 describe("Duration", () => {
   describe("constructor", () => {
@@ -42,6 +42,196 @@ describe("Duration", () => {
     it("should return the duration in days", () => {
       const duration = new Duration(1 * DAYS);
       expect(duration.days).toBe(1);
+    });
+  });
+
+  describe("toISOString", () => {
+    it("should return the ISO-8601 string of only days", () => {
+      const duration = new Duration(6 * DAYS);
+
+      expect(duration.toISOString()).toBe("P6D");
+    });
+
+    it("should return the ISO-8601 string of only hours", () => {
+      const duration = new Duration(12 * HOURS);
+
+      expect(duration.toISOString()).toBe("PT12H");
+    });
+
+    it("should return the ISO-8601 string of only minutes", () => {
+      const duration = new Duration(30 * MINUTES);
+
+      expect(duration.toISOString()).toBe("PT30M");
+    });
+
+    it("should return the ISO-8601 string of only seconds", () => {
+      const duration = new Duration(45 * SECONDS);
+
+      expect(duration.toISOString()).toBe("PT45S");
+    });
+
+    it("should return the ISO-8601 string of only milliseconds", () => {
+      const duration = new Duration(2 * MILLISECONDS);
+
+      expect(duration.toISOString()).toBe("PT0.002S");
+    });
+
+    it("should return the ISO-8601 string of days and hours", () => {
+      const duration = new Duration(6 * DAYS + 12 * HOURS);
+
+      expect(duration.toISOString()).toBe("P6DT12H");
+    });
+
+    it("should return the ISO-8601 string of days and minutes", () => {
+      const duration = new Duration(6 * DAYS + 30 * MINUTES);
+
+      expect(duration.toISOString()).toBe("P6DT30M");
+    });
+
+    it("should return the ISO-8601 string of days and seconds", () => {
+      const duration = new Duration(6 * DAYS + 45 * SECONDS);
+
+      expect(duration.toISOString()).toBe("P6DT45S");
+    });
+
+    it("should return the ISO-8601 string of days and milliseconds", () => {
+      const duration = new Duration(6 * DAYS + 2 * MILLISECONDS);
+
+      expect(duration.toISOString()).toBe("P6DT0.002S");
+    });
+
+    it("should return the ISO-8601 string of hours and minutes", () => {
+      const duration = new Duration(12 * HOURS + 30 * MINUTES);
+
+      expect(duration.toISOString()).toBe("PT12H30M");
+    });
+
+    it("should return the ISO-8601 string of hours and seconds", () => {
+      const duration = new Duration(12 * HOURS + 45 * SECONDS);
+
+      expect(duration.toISOString()).toBe("PT12H45S");
+    });
+
+    it("should return the ISO-8601 string of hours and milliseconds", () => {
+      const duration = new Duration(12 * HOURS + 2 * MILLISECONDS);
+
+      expect(duration.toISOString()).toBe("PT12H0.002S");
+    });
+
+    it("should return the ISO-8601 string of minutes and seconds", () => {
+      const duration = new Duration(30 * MINUTES + 45 * SECONDS);
+
+      expect(duration.toISOString()).toBe("PT30M45S");
+    });
+
+    it("should return the ISO-8601 string of minutes and milliseconds", () => {
+      const duration = new Duration(30 * MINUTES + 2 * MILLISECONDS);
+
+      expect(duration.toISOString()).toBe("PT30M0.002S");
+    });
+
+    it("should return the ISO-8601 string of seconds and milliseconds", () => {
+      const duration = new Duration(45 * SECONDS + 2 * MILLISECONDS);
+
+      expect(duration.toISOString()).toBe("PT45.002S");
+    });
+
+    it("should return the ISO-8601 string of days, hours and minutes", () => {
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 30 * MINUTES);
+
+      expect(duration.toISOString()).toBe("P6DT12H30M");
+    });
+
+    it("should return the ISO-8601 string of days, hours and seconds", () => {
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 45 * SECONDS);
+
+      expect(duration.toISOString()).toBe("P6DT12H45S");
+    });
+
+    it("should return the ISO-8601 string of days, hours and milliseconds", () => {
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 2 * MILLISECONDS);
+
+      expect(duration.toISOString()).toBe("P6DT12H0.002S");
+    });
+
+    it("should return the ISO-8601 string of days, minutes and seconds", () => {
+      const duration = new Duration(6 * DAYS + 30 * MINUTES + 45 * SECONDS);
+
+      expect(duration.toISOString()).toBe("P6DT30M45S");
+    });
+
+    it("should return the ISO-8601 string of days, minutes and milliseconds", () => {
+      const duration = new Duration(6 * DAYS + 30 * MINUTES + 2 * MILLISECONDS);
+
+      expect(duration.toISOString()).toBe("P6DT30M0.002S");
+    });
+
+    it("should return the ISO-8601 string of days, seconds and milliseconds", () => {
+      const duration = new Duration(6 * DAYS + 45 * SECONDS + 2 * MILLISECONDS);
+
+      expect(duration.toISOString()).toBe("P6DT45.002S");
+    });
+
+    it("should return the ISO-8601 string of hours, minutes and seconds", () => {
+      const duration = new Duration(12 * HOURS + 30 * MINUTES + 45 * SECONDS);
+
+      expect(duration.toISOString()).toBe("PT12H30M45S");
+    });
+
+    it("should return the ISO-8601 string of hours, minutes and milliseconds", () => {
+      const duration = new Duration(
+        12 * HOURS + 30 * MINUTES + 2 * MILLISECONDS
+      );
+
+      expect(duration.toISOString()).toBe("PT12H30M0.002S");
+    });
+
+    it("should return the ISO-8601 string of hours, seconds and milliseconds", () => {
+      const duration = new Duration(
+        12 * HOURS + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(duration.toISOString()).toBe("PT12H45.002S");
+    });
+
+    it("should return the ISO-8601 string of minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(duration.toISOString()).toBe("PT30M45.002S");
+    });
+
+    it("should return the ISO-8601 string of days, hours, minutes and seconds", () => {
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 45 * SECONDS
+      );
+
+      expect(duration.toISOString()).toBe("P6DT12H30M45S");
+    });
+
+    it("should return the ISO-8601 string of days, hours, minutes and milliseconds", () => {
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 2 * MILLISECONDS
+      );
+
+      expect(duration.toISOString()).toBe("P6DT12H30M0.002S");
+    });
+
+    it("should return the ISO-8601 string of hours, minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        12 * HOURS + 30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(duration.toISOString()).toBe("PT12H30M45.002S");
+    });
+
+    it("should return the ISO-8601 string of days, hours, minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(duration.toISOString()).toBe("P6DT12H30M45.002S");
     });
   });
 

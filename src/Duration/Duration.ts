@@ -26,6 +26,26 @@ class Duration {
     this.milliseconds = milliseconds;
   }
 
+  toISOString(): string {
+    const milliseconds = Math.floor(this.milliseconds) % 1000;
+    const seconds = Math.floor(this.seconds) % 60;
+    const minutes = Math.floor(this.minutes) % 60;
+    const hours = Math.floor(this.hours) % 24;
+    const days = Math.floor(this.days);
+
+    let isoStr = "P";
+    if (days) isoStr += `${days}D`;
+    if (hours || minutes || seconds || milliseconds) isoStr += "T";
+    if (hours) isoStr += `${hours}H`;
+    if (minutes) isoStr += `${minutes}M`;
+    if (seconds || milliseconds)
+      isoStr += `${seconds.toString().padStart(1, "0")}`;
+    if (milliseconds) isoStr += `.${milliseconds.toString().padStart(3, "0")}`;
+    if (seconds || milliseconds) isoStr += "S";
+
+    return isoStr;
+  }
+
   equals(other: Duration): boolean {
     return this.milliseconds === other.milliseconds;
   }

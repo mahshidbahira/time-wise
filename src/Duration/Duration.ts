@@ -23,6 +23,18 @@ class Duration {
     this.milliseconds = milliseconds;
   }
 
+  equals(other: Duration): boolean {
+    return this.milliseconds === other.milliseconds;
+  }
+
+  isLongerThan(other: Duration): boolean {
+    return this.milliseconds > other.milliseconds;
+  }
+
+  isShorterThan(other: Duration): boolean {
+    return this.milliseconds < other.milliseconds;
+  }
+
   add(other: Duration): Duration {
     return new Duration(this.milliseconds + other.milliseconds);
   }

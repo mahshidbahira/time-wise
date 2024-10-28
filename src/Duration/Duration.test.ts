@@ -45,6 +45,68 @@ describe("Duration", () => {
     });
   });
 
+  describe("equals", () => {
+    it("should return true for equal durations", () => {
+      const duration1 = new Duration(6 * DAYS);
+      const duration2 = new Duration(6 * DAYS);
+
+      expect(duration1.equals(duration2)).toBe(true);
+    });
+
+    it("should return false for unequal durations", () => {
+      const duration1 = new Duration(6 * DAYS);
+      const duration2 = new Duration(2 * DAYS);
+
+      expect(duration1.equals(duration2)).toBe(false);
+    });
+  });
+
+  describe("isLongerThan", () => {
+    it("should return true when the duration is longer than the other duration", () => {
+      const duration1 = new Duration(6 * DAYS);
+      const duration2 = new Duration(2 * DAYS);
+
+      expect(duration1.isLongerThan(duration2)).toBe(true);
+    });
+
+    it("should return false when the duration is equal to the other duration", () => {
+      const duration1 = new Duration(6 * DAYS);
+      const duration2 = new Duration(6 * DAYS);
+
+      expect(duration1.isLongerThan(duration2)).toBe(false);
+    });
+
+    it("should return false when the duration is shorter than the other duration", () => {
+      const duration1 = new Duration(2 * DAYS);
+      const duration2 = new Duration(6 * DAYS);
+
+      expect(duration1.isLongerThan(duration2)).toBe(false);
+    });
+  });
+
+  describe("isShorterThan", () => {
+    it("should return true when the duration is shorter than the other duration", () => {
+      const duration1 = new Duration(2 * DAYS);
+      const duration2 = new Duration(6 * DAYS);
+
+      expect(duration1.isShorterThan(duration2)).toBe(true);
+    });
+
+    it("should return false when the duration is equal to the other duration", () => {
+      const duration1 = new Duration(6 * DAYS);
+      const duration2 = new Duration(6 * DAYS);
+
+      expect(duration1.isShorterThan(duration2)).toBe(false);
+    });
+
+    it("should return false when the duration is longer than the other duration", () => {
+      const duration1 = new Duration(6 * DAYS);
+      const duration2 = new Duration(2 * DAYS);
+
+      expect(duration1.isShorterThan(duration2)).toBe(false);
+    });
+  });
+
   describe("add", () => {
     it("should return the addition of durations", () => {
       const duration1 = new Duration(6 * DAYS);

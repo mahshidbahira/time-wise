@@ -33,15 +33,20 @@ class Duration {
     const hours = Math.floor(this.hours) % 24;
     const days = Math.floor(this.days);
 
-    let isoStr = "P";
-    if (days) isoStr += `${days}D`;
-    if (hours || minutes || seconds || milliseconds) isoStr += "T";
-    if (hours) isoStr += `${hours}H`;
-    if (minutes) isoStr += `${minutes}M`;
-    if (seconds || milliseconds)
-      isoStr += `${seconds.toString().padStart(1, "0")}`;
-    if (milliseconds) isoStr += `.${milliseconds.toString().padStart(3, "0")}`;
-    if (seconds || milliseconds) isoStr += "S";
+    const millisecondsStr =
+      milliseconds !== 0 ? `${(milliseconds / 1000).toString().slice(1)}` : "";
+
+    const secondsStr =
+      seconds !== 0 || milliseconds !== 0
+        ? `${seconds.toString()}${millisecondsStr}S`
+        : "";
+
+    const minutesStr = minutes !== 0 ? `${minutes}M` : "";
+    const hoursStr = hours !== 0 ? `${hours}H` : "";
+    const daysStr = days !== 0 ? `${days}D` : "";
+
+    const tStr = hoursStr || minutesStr || secondsStr ? `T` : "";
+    const isoStr = `P${daysStr}${tStr}${hoursStr}${minutesStr}${secondsStr}`;
 
     return isoStr;
   }

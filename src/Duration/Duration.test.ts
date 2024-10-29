@@ -76,6 +76,12 @@ describe("Duration", () => {
       expect(duration.toISOString()).toBe("PT0.002S");
     });
 
+    it("should return the ISO-8601 string of only milliseconds", () => {
+      const duration = new Duration(500 * MILLISECONDS);
+
+      expect(duration.toISOString()).toBe("PT0.5S");
+    });
+
     it("should return the ISO-8601 string of days and hours", () => {
       const duration = new Duration(6 * DAYS + 12 * HOURS);
 

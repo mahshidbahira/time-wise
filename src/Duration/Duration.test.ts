@@ -52,6 +52,16 @@ describe("Duration", () => {
     });
   });
 
+  describe("toJSON", () => {
+    it("should return the JSON of duration", () => {
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(JSON.stringify(duration)).toBe(`"P6DT12H30M45.002S"`);
+    });
+  });
+
   describe("toISOString", () => {
     it("should return the ISO-8601 string of only days", () => {
       const duration = new Duration(6 * DAYS);

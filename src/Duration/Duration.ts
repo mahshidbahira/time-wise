@@ -30,6 +30,10 @@ class Duration {
     return this.milliseconds;
   }
 
+  toJSON(): string {
+    return this.toISOString();
+  }
+
   toISOString(): string {
     const milliseconds = Math.floor(this.milliseconds) % 1000;
     const seconds = Math.floor(this.seconds) % 60;

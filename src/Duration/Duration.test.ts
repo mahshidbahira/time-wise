@@ -52,6 +52,202 @@ describe("Duration", () => {
     });
   });
 
+  describe("toString", () => {
+    it("should return the string of only days", () => {
+      const duration = new Duration(6 * DAYS);
+
+      expect(duration.toString()).toBe("6 days 00:00:00");
+    });
+
+    it("should return the string of only hours", () => {
+      const duration = new Duration(12 * HOURS);
+
+      expect(duration.toString()).toBe("12:00:00");
+    });
+
+    it("should return the string of only minutes", () => {
+      const duration = new Duration(30 * MINUTES);
+
+      expect(duration.toString()).toBe("00:30:00");
+    });
+
+    it("should return the string of only seconds", () => {
+      const duration = new Duration(45 * SECONDS);
+
+      expect(duration.toString()).toBe("00:00:45");
+    });
+
+    it("should return the string of only milliseconds", () => {
+      const duration = new Duration(2 * MILLISECONDS);
+
+      expect(duration.toString()).toBe("00:00:00.002");
+    });
+
+    it("should return the string of only milliseconds", () => {
+      const duration = new Duration(500 * MILLISECONDS);
+
+      expect(duration.toString()).toBe("00:00:00.500");
+    });
+
+    it("should return the string of days and hours", () => {
+      const duration = new Duration(6 * DAYS + 12 * HOURS);
+
+      expect(duration.toString()).toBe("6 days 12:00:00");
+    });
+
+    it("should return the string of days and minutes", () => {
+      const duration = new Duration(6 * DAYS + 30 * MINUTES);
+
+      expect(duration.toString()).toBe("6 days 00:30:00");
+    });
+
+    it("should return the string of days and seconds", () => {
+      const duration = new Duration(6 * DAYS + 45 * SECONDS);
+
+      expect(duration.toString()).toBe("6 days 00:00:45");
+    });
+
+    it("should return the string of days and milliseconds", () => {
+      const duration = new Duration(6 * DAYS + 2 * MILLISECONDS);
+
+      expect(duration.toString()).toBe("6 days 00:00:00.002");
+    });
+
+    it("should return the string of hours and minutes", () => {
+      const duration = new Duration(12 * HOURS + 30 * MINUTES);
+
+      expect(duration.toString()).toBe("12:30:00");
+    });
+
+    it("should return the string of hours and seconds", () => {
+      const duration = new Duration(12 * HOURS + 45 * SECONDS);
+
+      expect(duration.toString()).toBe("12:00:45");
+    });
+
+    it("should return the string of hours and milliseconds", () => {
+      const duration = new Duration(12 * HOURS + 2 * MILLISECONDS);
+
+      expect(duration.toString()).toBe("12:00:00.002");
+    });
+
+    it("should return the string of minutes and seconds", () => {
+      const duration = new Duration(30 * MINUTES + 45 * SECONDS);
+
+      expect(duration.toString()).toBe("00:30:45");
+    });
+
+    it("should return the string of minutes and milliseconds", () => {
+      const duration = new Duration(30 * MINUTES + 2 * MILLISECONDS);
+
+      expect(duration.toString()).toBe("00:30:00.002");
+    });
+
+    it("should return the string of seconds and milliseconds", () => {
+      const duration = new Duration(45 * SECONDS + 2 * MILLISECONDS);
+
+      expect(duration.toString()).toBe("00:00:45.002");
+    });
+
+    it("should return the string of days, hours and minutes", () => {
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 30 * MINUTES);
+
+      expect(duration.toString()).toBe("6 days 12:30:00");
+    });
+
+    it("should return the string of days, hours and seconds", () => {
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 45 * SECONDS);
+
+      expect(duration.toString()).toBe("6 days 12:00:45");
+    });
+
+    it("should return the string of days, hours and milliseconds", () => {
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 2 * MILLISECONDS);
+
+      expect(duration.toString()).toBe("6 days 12:00:00.002");
+    });
+
+    it("should return the string of days, minutes and seconds", () => {
+      const duration = new Duration(6 * DAYS + 30 * MINUTES + 45 * SECONDS);
+
+      expect(duration.toString()).toBe("6 days 00:30:45");
+    });
+
+    it("should return the string of days, minutes and milliseconds", () => {
+      const duration = new Duration(6 * DAYS + 30 * MINUTES + 2 * MILLISECONDS);
+
+      expect(duration.toString()).toBe("6 days 00:30:00.002");
+    });
+
+    it("should return the string of days, seconds and milliseconds", () => {
+      const duration = new Duration(6 * DAYS + 45 * SECONDS + 2 * MILLISECONDS);
+
+      expect(duration.toString()).toBe("6 days 00:00:45.002");
+    });
+
+    it("should return the string of hours, minutes and seconds", () => {
+      const duration = new Duration(12 * HOURS + 30 * MINUTES + 45 * SECONDS);
+
+      expect(duration.toString()).toBe("12:30:45");
+    });
+
+    it("should return the string of hours, minutes and milliseconds", () => {
+      const duration = new Duration(
+        12 * HOURS + 30 * MINUTES + 2 * MILLISECONDS
+      );
+
+      expect(duration.toString()).toBe("12:30:00.002");
+    });
+
+    it("should return the string of hours, seconds and milliseconds", () => {
+      const duration = new Duration(
+        12 * HOURS + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(duration.toString()).toBe("12:00:45.002");
+    });
+
+    it("should return the string of minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(duration.toString()).toBe("00:30:45.002");
+    });
+
+    it("should return the string of days, hours, minutes and seconds", () => {
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 45 * SECONDS
+      );
+
+      expect(duration.toString()).toBe("6 days 12:30:45");
+    });
+
+    it("should return the string of days, hours, minutes and milliseconds", () => {
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 2 * MILLISECONDS
+      );
+
+      expect(duration.toString()).toBe("6 days 12:30:00.002");
+    });
+
+    it("should return the string of hours, minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        12 * HOURS + 30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(duration.toString()).toBe("12:30:45.002");
+    });
+
+    it("should return the string of days, hours, minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(duration.toString()).toBe("6 days 12:30:45.002");
+    });
+  });
+
   describe("toJSON", () => {
     it("should return the JSON of duration", () => {
       const duration = new Duration(

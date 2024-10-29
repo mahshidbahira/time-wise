@@ -30,6 +30,25 @@ class Duration {
     return this.milliseconds;
   }
 
+  toString(): string {
+    const milliseconds = Math.floor(this.milliseconds) % 1000;
+    const seconds = Math.floor(this.seconds) % 60;
+    const minutes = Math.floor(this.minutes) % 60;
+    const hours = Math.floor(this.hours) % 24;
+    const days = Math.floor(this.days);
+
+    const millisecondsStr =
+      milliseconds !== 0 ? `.${milliseconds.toString().padStart(3, "0")}` : "";
+    const secondsStr = seconds.toString().padStart(2, "0");
+    const minutesStr = minutes.toString().padStart(2, "0");
+    const hoursStr = hours.toString().padStart(2, "0");
+    const daysStr = days !== 0 ? `${days} ${days === 1 ? "day" : "days"} ` : "";
+
+    const str = `${daysStr}${hoursStr}:${minutesStr}:${secondsStr}${millisecondsStr}`;
+
+    return str;
+  }
+
   toJSON(): string {
     return this.toISOString();
   }

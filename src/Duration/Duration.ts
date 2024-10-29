@@ -26,6 +26,10 @@ class Duration {
     this.milliseconds = milliseconds;
   }
 
+  valueOf(): number {
+    return this.milliseconds;
+  }
+
   toISOString(): string {
     const milliseconds = Math.floor(this.milliseconds) % 1000;
     const seconds = Math.floor(this.seconds) % 60;

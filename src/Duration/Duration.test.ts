@@ -45,6 +45,13 @@ describe("Duration", () => {
     });
   });
 
+  describe("valueOf", () => {
+    it("should return the value of duration", () => {
+      const duration = new Duration(1 * DAYS);
+      expect(+duration).toBe(86_400_000);
+    });
+  });
+
   describe("toISOString", () => {
     it("should return the ISO-8601 string of only days", () => {
       const duration = new Duration(6 * DAYS);

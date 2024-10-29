@@ -49,6 +49,17 @@ class Duration {
     return str;
   }
 
+  [Symbol.toPrimitive](hint: string): number | string {
+    switch (hint) {
+      case "number":
+        return this.valueOf();
+      case "string":
+        return this.toString();
+      default:
+        return this.toString();
+    }
+  }
+
   toJSON(): string {
     return this.toISOString();
   }

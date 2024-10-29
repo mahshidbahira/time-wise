@@ -45,10 +45,22 @@ describe("Duration", () => {
     });
   });
 
+  describe("toPrimitive", () => {
+    it("should return a number when a number is expected of the duration", () => {
+      const duration = new Duration(1 * DAYS);
+      expect(+duration).toBe(86_400_000);
+    });
+
+    it("should return a string when a string is expected of the duration", () => {
+      const duration = new Duration(1 * DAYS);
+      expect(`${duration}`).toBe("1 day 00:00:00");
+    });
+  });
+
   describe("valueOf", () => {
     it("should return the value of duration", () => {
       const duration = new Duration(1 * DAYS);
-      expect(+duration).toBe(86_400_000);
+      expect(duration.valueOf()).toBe(86_400_000);
     });
   });
 

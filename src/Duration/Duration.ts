@@ -129,6 +129,14 @@ class Duration {
     return new Duration(Math.abs(this.milliseconds));
   }
 
+  after(date: Date): Date {
+    return new Date(date.getTime() + this.milliseconds);
+  }
+
+  before(date: Date): Date {
+    return new Date(date.getTime() - this.milliseconds);
+  }
+
   // ----------------------------------------------------------------
   // static
 

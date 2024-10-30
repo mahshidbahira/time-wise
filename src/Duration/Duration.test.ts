@@ -620,6 +620,24 @@ describe("Duration", () => {
     });
   });
 
+  describe("after", () => {
+    it("should return a date after the duration since a given date", () => {
+      const duration = new Duration(2 * DAYS);
+      const date = new Date(2001, 0, 22);
+
+      expect(duration.after(date)).toEqual(new Date(2001, 0, 24));
+    });
+  });
+
+  describe("before", () => {
+    it("should return a date before the duration since a given date", () => {
+      const duration = new Duration(2 * DAYS);
+      const date = new Date(2001, 0, 22);
+
+      expect(duration.before(date)).toEqual(new Date(2001, 0, 20));
+    });
+  });
+
   describe("static compare", () => {
     it("should return a positive number when the duration is longer than the other duration", () => {
       const duration1 = new Duration(6 * DAYS);

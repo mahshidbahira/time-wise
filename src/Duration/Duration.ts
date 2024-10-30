@@ -31,11 +31,12 @@ class Duration {
   }
 
   toString(): string {
-    const milliseconds = Math.floor(this.milliseconds) % 1000;
-    const seconds = Math.floor(this.seconds) % 60;
-    const minutes = Math.floor(this.minutes) % 60;
-    const hours = Math.floor(this.hours) % 24;
-    const days = Math.floor(this.days);
+    const absoluted = this.absolute();
+    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
+    const seconds = Math.floor(absoluted.seconds) % 60;
+    const minutes = Math.floor(absoluted.minutes) % 60;
+    const hours = Math.floor(absoluted.hours) % 24;
+    const days = Math.floor(absoluted.days);
 
     const millisecondsStr =
       milliseconds !== 0 ? `.${milliseconds.toString().padStart(3, "0")}` : "";
@@ -44,7 +45,8 @@ class Duration {
     const hoursStr = hours.toString().padStart(2, "0");
     const daysStr = days !== 0 ? `${days} ${days === 1 ? "day" : "days"} ` : "";
 
-    const str = `${daysStr}${hoursStr}:${minutesStr}:${secondsStr}${millisecondsStr}`;
+    const minusStr = this.milliseconds < 0 ? "-" : "";
+    const str = `${minusStr}${daysStr}${hoursStr}:${minutesStr}:${secondsStr}${millisecondsStr}`;
 
     return str;
   }
@@ -65,11 +67,12 @@ class Duration {
   }
 
   toISOString(): string {
-    const milliseconds = Math.floor(this.milliseconds) % 1000;
-    const seconds = Math.floor(this.seconds) % 60;
-    const minutes = Math.floor(this.minutes) % 60;
-    const hours = Math.floor(this.hours) % 24;
-    const days = Math.floor(this.days);
+    const absoluted = this.absolute();
+    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
+    const seconds = Math.floor(absoluted.seconds) % 60;
+    const minutes = Math.floor(absoluted.minutes) % 60;
+    const hours = Math.floor(absoluted.hours) % 24;
+    const days = Math.floor(absoluted.days);
 
     const millisecondsStr =
       milliseconds !== 0 ? `${(milliseconds / 1000).toString().slice(1)}` : "";
@@ -83,8 +86,9 @@ class Duration {
     const hoursStr = hours !== 0 ? `${hours}H` : "";
     const daysStr = days !== 0 ? `${days}D` : "";
 
+    const minusStr = this.milliseconds < 0 ? "-" : "";
     const tStr = hoursStr || minutesStr || secondsStr ? `T` : "";
-    const isoStr = `P${daysStr}${tStr}${hoursStr}${minutesStr}${secondsStr}`;
+    const isoStr = `${minusStr}P${daysStr}${tStr}${hoursStr}${minutesStr}${secondsStr}`;
 
     return isoStr;
   }

@@ -45,18 +45,6 @@ describe("Duration", () => {
     });
   });
 
-  describe("toPrimitive", () => {
-    it("should return a number when a number is expected of the duration", () => {
-      const duration = new Duration(1 * DAYS);
-      expect(+duration).toBe(86_400_000);
-    });
-
-    it("should return a string when a string is expected of the duration", () => {
-      const duration = new Duration(1 * DAYS);
-      expect(`${duration}`).toBe("1 day 00:00:00");
-    });
-  });
-
   describe("valueOf", () => {
     it("should return the value of duration", () => {
       const duration = new Duration(1 * DAYS);
@@ -257,6 +245,32 @@ describe("Duration", () => {
       );
 
       expect(duration.toString()).toBe("6 days 12:30:45.002");
+    });
+
+    it("should return the string of negative days, hours, minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        -(
+          6 * DAYS +
+          12 * HOURS +
+          30 * MINUTES +
+          45 * SECONDS +
+          2 * MILLISECONDS
+        )
+      );
+
+      expect(duration.toString()).toBe("-6 days 12:30:45.002");
+    });
+  });
+
+  describe("toPrimitive", () => {
+    it("should return a number when a number is expected of the duration", () => {
+      const duration = new Duration(1 * DAYS);
+      expect(+duration).toBe(86_400_000);
+    });
+
+    it("should return a string when a string is expected of the duration", () => {
+      const duration = new Duration(1 * DAYS);
+      expect(`${duration}`).toBe("1 day 00:00:00");
     });
   });
 
@@ -463,6 +477,20 @@ describe("Duration", () => {
       );
 
       expect(duration.toISOString()).toBe("P6DT12H30M45.002S");
+    });
+
+    it("should return the ISO-8601 string of negative days, hours, minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        -(
+          6 * DAYS +
+          12 * HOURS +
+          30 * MINUTES +
+          45 * SECONDS +
+          2 * MILLISECONDS
+        )
+      );
+
+      expect(duration.toISOString()).toBe("-P6DT12H30M45.002S");
     });
   });
 

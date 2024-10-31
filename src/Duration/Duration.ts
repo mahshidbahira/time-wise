@@ -162,6 +162,32 @@ class Duration {
 
       return new Duration(totalMilliseconds);
     }
+
+    const isoRegexp =
+      /^(-?)P(?=\d|T)((\d+)D)?(T(?=\d)((\d{1,2})H)?((\d{1,2})M)?((\d{1,2})(.(\d{1,3}))?S)?)?$/;
+    const isoResult = isoRegexp.exec(str);
+
+    if (isoResult) {
+      const sign = isoResult[1] ? -1 : 1;
+      const milliseconds = isoResult[12]
+        ? parseInt(isoResult[12].padEnd(3, "0"))
+        : 0;
+      const seconds = isoResult[10] ? parseInt(isoResult[10]) : 0;
+      const minutes = isoResult[8] ? parseInt(isoResult[8]) : 0;
+      const hours = isoResult[6] ? parseInt(isoResult[6]) : 0;
+      const days = isoResult[3] ? parseInt(isoResult[3]) : 0;
+
+      const totalMilliseconds =
+        sign *
+        (days * DAYS +
+          hours * HOURS +
+          minutes * MINUTES +
+          seconds * SECONDS +
+          milliseconds * MILLISECONDS);
+
+      return new Duration(totalMilliseconds);
+    }
+
     return null;
   }
 

@@ -1116,6 +1116,12 @@ describe("Duration", () => {
 
       expect(Duration.parse(str)).toEqual(duration);
     });
+
+    it("should return null from an invalid string", () => {
+      const str = "-6DT12:30MW002S";
+
+      expect(Duration.parse(str)).toBeNull();
+    });
   });
 
   describe("static compare", () => {

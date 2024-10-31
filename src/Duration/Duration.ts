@@ -1,4 +1,4 @@
-import { SECONDS, MINUTES, HOURS, DAYS } from "../Units/Units";
+import { SECONDS, MINUTES, HOURS, DAYS, MILLISECONDS } from "../Units/Units";
 
 class Duration {
   // ----------------------------------------------------------------
@@ -139,6 +139,31 @@ class Duration {
 
   // ----------------------------------------------------------------
   // static
+
+  static parse(str: string): Duration | null {
+    const regexp = /^(-?)((\d+) days? )?(\d{2}):(\d{2}):(\d{2})(.(\d{3}))?$/;
+    const result = regexp.exec(str);
+
+    if (result) {
+      const sign = result[1] ? -1 : 1;
+      const milliseconds = result[8] ? parseInt(result[8]) : 0;
+      const seconds = result[6] ? parseInt(result[6]) : 0;
+      const minutes = result[5] ? parseInt(result[5]) : 0;
+      const hours = result[4] ? parseInt(result[4]) : 0;
+      const days = result[3] ? parseInt(result[3]) : 0;
+
+      const totalMilliseconds =
+        sign *
+        (days * DAYS +
+          hours * HOURS +
+          minutes * MINUTES +
+          seconds * SECONDS +
+          milliseconds * MILLISECONDS);
+
+      return new Duration(totalMilliseconds);
+    }
+    return null;
+  }
 
   static compare(duration1: Duration, duration2: Duration): number {
     return duration1.milliseconds - duration2.milliseconds;

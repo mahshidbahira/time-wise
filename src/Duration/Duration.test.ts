@@ -638,6 +638,247 @@ describe("Duration", () => {
     });
   });
 
+  describe("static parse", () => {
+    it("should return the duration of only days", () => {
+      const str = "6 days 00:00:00";
+      const duration = new Duration(6 * DAYS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of only hours", () => {
+      const str = "12:00:00";
+      const duration = new Duration(12 * HOURS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of only minutes", () => {
+      const str = "00:30:00";
+      const duration = new Duration(30 * MINUTES);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of only seconds", () => {
+      const str = "00:00:45";
+      const duration = new Duration(45 * SECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of only milliseconds", () => {
+      const str = "00:00:00.002";
+      const duration = new Duration(2 * MILLISECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of only milliseconds", () => {
+      const str = "00:00:00.500";
+      const duration = new Duration(500 * MILLISECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days and hours", () => {
+      const str = "6 days 12:00:00";
+      const duration = new Duration(6 * DAYS + 12 * HOURS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days and minutes", () => {
+      const str = "6 days 00:30:00";
+      const duration = new Duration(6 * DAYS + 30 * MINUTES);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days and seconds", () => {
+      const str = "6 days 00:00:45";
+      const duration = new Duration(6 * DAYS + 45 * SECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days and milliseconds", () => {
+      const str = "6 days 00:00:00.002";
+      const duration = new Duration(6 * DAYS + 2 * MILLISECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of hours and minutes", () => {
+      const str = "12:30:00";
+      const duration = new Duration(12 * HOURS + 30 * MINUTES);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of hours and seconds", () => {
+      const str = "12:00:45";
+      const duration = new Duration(12 * HOURS + 45 * SECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of hours and milliseconds", () => {
+      const str = "12:00:00.002";
+      const duration = new Duration(12 * HOURS + 2 * MILLISECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of minutes and seconds", () => {
+      const str = "00:30:45";
+      const duration = new Duration(30 * MINUTES + 45 * SECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of minutes and milliseconds", () => {
+      const str = "00:30:00.002";
+      const duration = new Duration(30 * MINUTES + 2 * MILLISECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of seconds and milliseconds", () => {
+      const str = "00:00:45.002";
+      const duration = new Duration(45 * SECONDS + 2 * MILLISECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours and minutes", () => {
+      const str = "6 days 12:30:00";
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 30 * MINUTES);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours and seconds", () => {
+      const str = "6 days 12:00:45";
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 45 * SECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours and milliseconds", () => {
+      const str = "6 days 12:00:00.002";
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 2 * MILLISECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days, minutes and seconds", () => {
+      const str = "6 days 00:30:45";
+      const duration = new Duration(6 * DAYS + 30 * MINUTES + 45 * SECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days, minutes and milliseconds", () => {
+      const str = "6 days 00:30:00.002";
+      const duration = new Duration(6 * DAYS + 30 * MINUTES + 2 * MILLISECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days, seconds and milliseconds", () => {
+      const str = "6 days 00:00:45.002";
+      const duration = new Duration(6 * DAYS + 45 * SECONDS + 2 * MILLISECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of hours, minutes and seconds", () => {
+      const str = "12:30:45";
+      const duration = new Duration(12 * HOURS + 30 * MINUTES + 45 * SECONDS);
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of hours, minutes and milliseconds", () => {
+      const str = "12:30:00.002";
+      const duration = new Duration(
+        12 * HOURS + 30 * MINUTES + 2 * MILLISECONDS
+      );
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of hours, seconds and milliseconds", () => {
+      const str = "12:00:45.002";
+      const duration = new Duration(
+        12 * HOURS + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of minutes, seconds and milliseconds", () => {
+      const str = "00:30:45.002";
+      const duration = new Duration(
+        30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours, minutes and seconds", () => {
+      const str = "6 days 12:30:45";
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 45 * SECONDS
+      );
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours, minutes and milliseconds", () => {
+      const str = "6 days 12:30:00.002";
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 2 * MILLISECONDS
+      );
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of hours, minutes, seconds and milliseconds", () => {
+      const str = "12:30:45.002";
+      const duration = new Duration(
+        12 * HOURS + 30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours, minutes, seconds and milliseconds", () => {
+      const str = "6 days 12:30:45.002";
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+
+    it("should return the duration of negative days, hours, minutes, seconds and milliseconds", () => {
+      const str = "-6 days 12:30:45.002";
+      const duration = new Duration(
+        -(
+          6 * DAYS +
+          12 * HOURS +
+          30 * MINUTES +
+          45 * SECONDS +
+          2 * MILLISECONDS
+        )
+      );
+
+      expect(Duration.parse(str)).toEqual(duration);
+    });
+  });
+
   describe("static compare", () => {
     it("should return a positive number when the duration is longer than the other duration", () => {
       const duration1 = new Duration(6 * DAYS);

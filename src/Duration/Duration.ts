@@ -196,6 +196,16 @@ class Duration {
     return new Duration(until.getTime() - since.getTime());
   }
 
+  static since(date: Date): Duration {
+    const now = new Date();
+    return new Duration(now.getTime() - date.getTime());
+  }
+
+  static until(date: Date): Duration {
+    const now = new Date();
+    return new Duration(date.getTime() - now.getTime());
+  }
+
   static compare(duration1: Duration, duration2: Duration): number {
     return duration1.milliseconds - duration2.milliseconds;
   }

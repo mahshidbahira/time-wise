@@ -1,8 +1,18 @@
-import { describe, it, expect } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { DAYS, HOURS, MILLISECONDS, MINUTES, SECONDS } from "../Units/Units";
 import Duration from "./Duration";
-import { DAYS, HOURS, MINUTES, SECONDS, MILLISECONDS } from "../Units/Units";
 
 describe("Duration", () => {
+  const now = new Date();
+
+  beforeEach(() => {
+    vi.useFakeTimers().setSystemTime(now);
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   describe("constructor", () => {
     it("should return a duration", () => {
       const duration = new Duration(1 * DAYS);
@@ -1130,6 +1140,20 @@ describe("Duration", () => {
       const until = new Date(2001, 0, 22);
 
       expect(Duration.between(since, until)).toEqual(new Duration(2 * DAYS));
+    });
+  });
+
+  describe("static since", () => {
+    it("should return the duration since a date", () => {
+      const date = new Date(now.getTime() - 2 * DAYS);
+      expect(Duration.since(date)).toEqual(new Duration(2 * DAYS));
+    });
+  });
+
+  describe("static until", () => {
+    it("should return the duration until a date", () => {
+      const date = new Date(now.getTime() + 2 * DAYS);
+      expect(Duration.until(date)).toEqual(new Duration(2 * DAYS));
     });
   });
 

@@ -24,6 +24,7 @@ class Duration {
 
   constructor(milliseconds: number) {
     this.milliseconds = milliseconds;
+    Object.freeze(this);
   }
 
   valueOf(): number {

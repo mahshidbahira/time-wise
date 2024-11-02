@@ -191,6 +191,10 @@ class Duration {
     return null;
   }
 
+  static between(since: Date, until: Date): Duration {
+    return new Duration(until.getTime() - since.getTime());
+  }
+
   static compare(duration1: Duration, duration2: Duration): number {
     return duration1.milliseconds - duration2.milliseconds;
   }

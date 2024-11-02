@@ -1124,6 +1124,15 @@ describe("Duration", () => {
     });
   });
 
+  describe("static between", () => {
+    it("should return the duration between two dates", () => {
+      const since = new Date(2001, 0, 20);
+      const until = new Date(2001, 0, 22);
+
+      expect(Duration.between(since, until)).toEqual(new Duration(2 * DAYS));
+    });
+  });
+
   describe("static compare", () => {
     it("should return a positive number when the duration is longer than the other duration", () => {
       const duration1 = new Duration(6 * DAYS);

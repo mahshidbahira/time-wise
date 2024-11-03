@@ -1,6 +1,6 @@
 {
   "name": "time-wise",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A versatile time management library, featuring utilities for duration, stopwatch, timer, etc.",
   "keywords": [
     "date",

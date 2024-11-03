@@ -1,6 +1,7 @@
 import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
 
 interface ObjectDetails {
+  negative?: boolean;
   days?: number;
   hours?: number;
   minutes?: number;
@@ -102,6 +103,39 @@ class Duration {
     return isoStr;
   }
 
+  toObject(): ObjectDetails {
+    const absoluted = this.absolute();
+
+    const days = Math.floor(absoluted.days);
+    const hours = Math.floor(absoluted.hours) % 24;
+    const minutes = Math.floor(absoluted.minutes) % 60;
+    const seconds = Math.floor(absoluted.seconds) % 60;
+    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
+
+    const object: ObjectDetails = {};
+
+    if (this.milliseconds < 0) {
+      object.negative = true;
+    }
+    if (days) {
+      object.days = days;
+    }
+    if (hours) {
+      object.hours = hours;
+    }
+    if (minutes) {
+      object.minutes = minutes;
+    }
+    if (seconds) {
+      object.seconds = seconds;
+    }
+    if (milliseconds) {
+      object.milliseconds = milliseconds;
+    }
+
+    return object;
+  }
+
   equals(other: Duration): boolean {
     return this.milliseconds === other.milliseconds;
   }
@@ -154,6 +188,7 @@ class Duration {
   }
 
   static fromObject(object: ObjectDetails): Duration {
+    const sign = object.negative ? -1 : 1;
     const days = object.days ? object.days : 0;
     const hours = object.hours ? object.hours : 0;
     const minutes = object.minutes ? object.minutes : 0;
@@ -161,11 +196,12 @@ class Duration {
     const milliseconds = object.milliseconds ? object.milliseconds : 0;
 
     return new Duration(
-      days * DAY +
-        hours * HOUR +
-        minutes * MINUTE +
-        seconds * SECOND +
-        milliseconds * MILLISECOND
+      sign *
+        (days * DAY +
+          hours * HOUR +
+          minutes * MINUTE +
+          seconds * SECOND +
+          milliseconds * MILLISECOND)
     );
   }
 

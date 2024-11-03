@@ -484,6 +484,295 @@ describe("Duration", () => {
     });
   });
 
+  describe("toObject", () => {
+    it("should return the object of only days", () => {
+      const duration = new Duration(6 * DAY);
+
+      expect(duration.toObject()).toEqual({ days: 6 });
+    });
+
+    it("should return the object of only hours", () => {
+      const duration = new Duration(12 * HOUR);
+
+      expect(duration.toObject()).toEqual({ hours: 12 });
+    });
+
+    it("should return the object of only minutes", () => {
+      const duration = new Duration(30 * MINUTE);
+
+      expect(duration.toObject()).toEqual({ minutes: 30 });
+    });
+
+    it("should return the object of only seconds", () => {
+      const duration = new Duration(45 * SECOND);
+
+      expect(duration.toObject()).toEqual({ seconds: 45 });
+    });
+
+    it("should return the object of only milliseconds", () => {
+      const duration = new Duration(2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({ milliseconds: 2 });
+    });
+
+    it("should return the object of days and hours", () => {
+      const duration = new Duration(6 * DAY + 12 * HOUR);
+
+      expect(duration.toObject()).toEqual({ days: 6, hours: 12 });
+    });
+
+    it("should return the object of days and minutes", () => {
+      const duration = new Duration(6 * DAY + 30 * MINUTE);
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        minutes: 30,
+      });
+    });
+
+    it("should return the object of days and seconds", () => {
+      const duration = new Duration(6 * DAY + 45 * SECOND);
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        seconds: 45,
+      });
+    });
+
+    it("should return the object of days and milliseconds", () => {
+      const duration = new Duration(6 * DAY + 2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of hours and minutes", () => {
+      const duration = new Duration(12 * HOUR + 30 * MINUTE);
+
+      expect(duration.toObject()).toEqual({
+        hours: 12,
+        minutes: 30,
+      });
+    });
+
+    it("should return the object of hours and seconds", () => {
+      const duration = new Duration(12 * HOUR + 45 * SECOND);
+
+      expect(duration.toObject()).toEqual({
+        hours: 12,
+        seconds: 45,
+      });
+    });
+
+    it("should return the object of hours and milliseconds", () => {
+      const duration = new Duration(12 * HOUR + 2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({
+        hours: 12,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of minutes and seconds", () => {
+      const duration = new Duration(30 * MINUTE + 45 * SECOND);
+
+      expect(duration.toObject()).toEqual({
+        minutes: 30,
+        seconds: 45,
+      });
+    });
+
+    it("should return the object of minutes and milliseconds", () => {
+      const duration = new Duration(30 * MINUTE + 2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({
+        minutes: 30,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of seconds and milliseconds", () => {
+      const duration = new Duration(45 * SECOND + 2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({
+        seconds: 45,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of days, hours and minutes", () => {
+      const duration = new Duration(6 * DAY + 12 * HOUR + 30 * MINUTE);
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+      });
+    });
+
+    it("should return the object of days, hours and seconds", () => {
+      const duration = new Duration(6 * DAY + 12 * HOUR + 45 * SECOND);
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        hours: 12,
+        seconds: 45,
+      });
+    });
+
+    it("should return the object of days, hours and milliseconds", () => {
+      const duration = new Duration(6 * DAY + 12 * HOUR + 2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        hours: 12,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of days, minutes and seconds", () => {
+      const duration = new Duration(6 * DAY + 30 * MINUTE + 45 * SECOND);
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        minutes: 30,
+        seconds: 45,
+      });
+    });
+
+    it("should return the object of days, minutes and milliseconds", () => {
+      const duration = new Duration(6 * DAY + 30 * MINUTE + 2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        minutes: 30,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of days, seconds and milliseconds", () => {
+      const duration = new Duration(6 * DAY + 45 * SECOND + 2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        seconds: 45,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of hours, minutes and seconds", () => {
+      const duration = new Duration(12 * HOUR + 30 * MINUTE + 45 * SECOND);
+
+      expect(duration.toObject()).toEqual({
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+      });
+    });
+
+    it("should return the object of hours, minutes and milliseconds", () => {
+      const duration = new Duration(12 * HOUR + 30 * MINUTE + 2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({
+        hours: 12,
+        minutes: 30,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of hours, seconds and milliseconds", () => {
+      const duration = new Duration(12 * HOUR + 45 * SECOND + 2 * MILLISECOND);
+
+      expect(duration.toObject()).toEqual({
+        hours: 12,
+        seconds: 45,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+
+      expect(duration.toObject()).toEqual({
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of days, hours, minutes and seconds", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND
+      );
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+      });
+    });
+
+    it("should return the object of days, hours, minutes and milliseconds", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 2 * MILLISECOND
+      );
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of hours, minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+
+      expect(duration.toObject()).toEqual({
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of days, hours, minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+
+      expect(duration.toObject()).toEqual({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
+    });
+
+    it("should return the object of negative days, hours, minutes, seconds and milliseconds", () => {
+      const duration = new Duration(
+        -(6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND)
+      );
+
+      expect(duration.toObject()).toEqual({
+        negative: true,
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
+    });
+  });
+
   describe("equals", () => {
     it("should return true for equal durations", () => {
       const duration1 = new Duration(6 * DAY);
@@ -635,7 +924,7 @@ describe("Duration", () => {
     });
   });
 
-  describe("static fromDetails", () => {
+  describe("static fromObject", () => {
     it("should return the duration of zero from an object", () => {
       const object = {};
       const duration = new Duration(0);
@@ -943,11 +1232,12 @@ describe("Duration", () => {
 
     it("should return the duration of negative days, hours, minutes, seconds and milliseconds from an object", () => {
       const object = {
-        days: -6,
-        hours: -12,
-        minutes: -30,
-        seconds: -45,
-        milliseconds: -2,
+        negative: true,
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
       };
       const duration = new Duration(
         -(6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND)

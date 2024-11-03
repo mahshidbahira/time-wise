@@ -1,32 +1,32 @@
-import { describe, it, expect } from "vitest";
-import { MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS } from "./Units";
+import { describe, expect, it } from "vitest";
+import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "./Units";
 
-describe("MILLISECONDS", () => {
+describe("MILLISECOND", () => {
   it("should be equal to 1 milliseconds", () => {
-    expect(MILLISECONDS).toBe(1);
+    expect(MILLISECOND).toBe(1);
   });
 });
 
-describe("SECONDS", () => {
+describe("SECOND", () => {
   it("should be equal to 1000 milliseconds", () => {
-    expect(SECONDS).toBe(1000);
+    expect(SECOND).toBe(1000);
   });
 });
 
-describe("MINUTES", () => {
+describe("MINUTE", () => {
   it("should be equal to 60_000 milliseconds", () => {
-    expect(MINUTES).toBe(60_000);
+    expect(MINUTE).toBe(60_000);
   });
 });
 
-describe("HOURS", () => {
+describe("HOUR", () => {
   it("should be equal to 3_600_000 milliseconds", () => {
-    expect(HOURS).toBe(3_600_000);
+    expect(HOUR).toBe(3_600_000);
   });
 });
 
-describe("DAYS", () => {
+describe("DAY", () => {
   it("should be equal to 86_400_000 milliseconds", () => {
-    expect(DAYS).toBe(86_400_000);
+    expect(DAY).toBe(86_400_000);
   });
 });

@@ -15,13 +15,13 @@ npm install --save time-wise
 - ES Modules
 
   ```javascript
-  import { MILLISECONDS, SECONDS } from "time-wise";
+  import { MILLISECOND, SECOND } from "time-wise";
   ```
 
 - CommonJs
 
   ```javascript
-  const { MILLISECONDS, SECONDS } = require("time-wise");
+  const { MILLISECOND, SECOND } = require("time-wise");
   ```
 
 - IIFE/Browser
@@ -35,5 +35,5 @@ npm install --save time-wise
   - Destructure the global object:
 
     ```javascript
-    const { MILLISECONDS, SECONDS } = TimeWise;
+    const { MILLISECOND, SECOND } = TimeWise;
     ```

@@ -1,4 +1,4 @@
-import { SECONDS, MINUTES, HOURS, DAYS, MILLISECONDS } from "../Units/Units";
+import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
 
 interface DurationDetails {
   days?: number;
@@ -15,19 +15,19 @@ class Duration {
   readonly milliseconds: number;
 
   get seconds(): number {
-    return this.milliseconds / SECONDS;
+    return this.milliseconds / SECOND;
   }
 
   get minutes(): number {
-    return this.milliseconds / MINUTES;
+    return this.milliseconds / MINUTE;
   }
 
   get hours(): number {
-    return this.milliseconds / HOURS;
+    return this.milliseconds / HOUR;
   }
 
   get days(): number {
-    return this.milliseconds / DAYS;
+    return this.milliseconds / DAY;
   }
 
   constructor(milliseconds: number) {
@@ -161,11 +161,11 @@ class Duration {
     const milliseconds = details.milliseconds ? details.milliseconds : 0;
 
     return new Duration(
-      days * DAYS +
-        hours * HOURS +
-        minutes * MINUTES +
-        seconds * SECONDS +
-        milliseconds * MILLISECONDS
+      days * DAY +
+        hours * HOUR +
+        minutes * MINUTE +
+        seconds * SECOND +
+        milliseconds * MILLISECOND
     );
   }
 
@@ -183,11 +183,11 @@ class Duration {
 
       const totalMilliseconds =
         sign *
-        (days * DAYS +
-          hours * HOURS +
-          minutes * MINUTES +
-          seconds * SECONDS +
-          milliseconds * MILLISECONDS);
+        (days * DAY +
+          hours * HOUR +
+          minutes * MINUTE +
+          seconds * SECOND +
+          milliseconds * MILLISECOND);
 
       return new Duration(totalMilliseconds);
     }
@@ -208,11 +208,11 @@ class Duration {
 
       const totalMilliseconds =
         sign *
-        (days * DAYS +
-          hours * HOURS +
-          minutes * MINUTES +
-          seconds * SECONDS +
-          milliseconds * MILLISECONDS);
+        (days * DAY +
+          hours * HOUR +
+          minutes * MINUTE +
+          seconds * SECOND +
+          milliseconds * MILLISECOND);
 
       return new Duration(totalMilliseconds);
     }

@@ -1,7 +1,7 @@
-const MILLISECONDS: number = 1;
-const SECONDS: number = 1000 * MILLISECONDS;
-const MINUTES: number = 60 * SECONDS;
-const HOURS: number = 60 * MINUTES;
-const DAYS: number = 24 * HOURS;
+const MILLISECOND: number = 1;
+const SECOND: number = 1000 * MILLISECOND;
+const MINUTE: number = 60 * SECOND;
+const HOUR: number = 60 * MINUTE;
+const DAY: number = 24 * HOUR;
 
-export { MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS };
+export { MILLISECOND, SECOND, MINUTE, HOUR, DAY };

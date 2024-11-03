@@ -648,6 +648,345 @@ describe("Duration", () => {
     });
   });
 
+  describe("static of", () => {
+    it("should return a duration", () => {
+      const duration = Duration.of(1 * DAYS);
+      expect(duration).toBeInstanceOf(Duration);
+    });
+  });
+
+  describe("static from", () => {
+    it("should return the duration of zero from a details object", () => {
+      const details = {};
+      const duration = new Duration(0);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of only days from a details object", () => {
+      const details = {
+        days: 6,
+      };
+      const duration = new Duration(6 * DAYS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of only hours from a details object", () => {
+      const details = {
+        hours: 12,
+      };
+      const duration = new Duration(12 * HOURS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of only minutes from a details object", () => {
+      const details = {
+        minutes: 30,
+      };
+      const duration = new Duration(30 * MINUTES);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of only seconds from a details object", () => {
+      const details = {
+        seconds: 45,
+      };
+      const duration = new Duration(45 * SECONDS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of only milliseconds from a details object", () => {
+      const details = {
+        milliseconds: 2,
+      };
+      const duration = new Duration(2 * MILLISECONDS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days and hours from a details object", () => {
+      const details = {
+        days: 6,
+        hours: 12,
+      };
+      const duration = new Duration(6 * DAYS + 12 * HOURS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days and minutes from a details object", () => {
+      const details = {
+        days: 6,
+        minutes: 30,
+      };
+      const duration = new Duration(6 * DAYS + 30 * MINUTES);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days and seconds from a details object", () => {
+      const details = {
+        days: 6,
+        seconds: 45,
+      };
+      const duration = new Duration(6 * DAYS + 45 * SECONDS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days and milliseconds from a details object", () => {
+      const details = {
+        days: 6,
+        milliseconds: 2,
+      };
+      const duration = new Duration(6 * DAYS + 2 * MILLISECONDS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of hours and minutes from a details object", () => {
+      const details = {
+        hours: 12,
+        minutes: 30,
+      };
+      const duration = new Duration(12 * HOURS + 30 * MINUTES);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of hours and seconds from a details object", () => {
+      const details = {
+        hours: 12,
+        seconds: 45,
+      };
+      const duration = new Duration(12 * HOURS + 45 * SECONDS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of hours and milliseconds from a details object", () => {
+      const details = {
+        hours: 12,
+        milliseconds: 2,
+      };
+      const duration = new Duration(12 * HOURS + 2 * MILLISECONDS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of minutes and seconds from a details object", () => {
+      const details = {
+        minutes: 30,
+        seconds: 45,
+      };
+      const duration = new Duration(30 * MINUTES + 45 * SECONDS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of minutes and milliseconds from a details object", () => {
+      const details = {
+        minutes: 30,
+        milliseconds: 2,
+      };
+      const duration = new Duration(30 * MINUTES + 2 * MILLISECONDS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of seconds and milliseconds from a details object", () => {
+      const details = {
+        seconds: 45,
+        milliseconds: 2,
+      };
+      const duration = new Duration(45 * SECONDS + 2 * MILLISECONDS);
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours and minutes from a details object", () => {
+      const details = {
+        days: 6,
+        hours: 12,
+        minutes: 30,
+      };
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 30 * MINUTES);
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours and seconds from a details object", () => {
+      const details = {
+        days: 6,
+        hours: 12,
+        seconds: 45,
+      };
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 45 * SECONDS);
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours and milliseconds from a details object", () => {
+      const details = {
+        days: 6,
+        hours: 12,
+        milliseconds: 2,
+      };
+      const duration = new Duration(6 * DAYS + 12 * HOURS + 2 * MILLISECONDS);
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days, minutes and seconds from a details object", () => {
+      const details = {
+        days: 6,
+        minutes: 30,
+        seconds: 45,
+      };
+      const duration = new Duration(6 * DAYS + 30 * MINUTES + 45 * SECONDS);
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days, minutes and milliseconds from a details object", () => {
+      const details = {
+        days: 6,
+        minutes: 30,
+        milliseconds: 2,
+      };
+      const duration = new Duration(6 * DAYS + 30 * MINUTES + 2 * MILLISECONDS);
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days, seconds and milliseconds from a details object", () => {
+      const details = {
+        days: 6,
+        seconds: 45,
+        milliseconds: 2,
+      };
+      const duration = new Duration(6 * DAYS + 45 * SECONDS + 2 * MILLISECONDS);
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of hours, minutes and seconds from a details object", () => {
+      const details = {
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+      };
+      const duration = new Duration(12 * HOURS + 30 * MINUTES + 45 * SECONDS);
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of hours, minutes and milliseconds from a details object", () => {
+      const details = {
+        hours: 12,
+        minutes: 30,
+        milliseconds: 2,
+      };
+      const duration = new Duration(
+        12 * HOURS + 30 * MINUTES + 2 * MILLISECONDS
+      );
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of hours, seconds and milliseconds from a details object", () => {
+      const details = {
+        hours: 12,
+        seconds: 45,
+        milliseconds: 2,
+      };
+      const duration = new Duration(
+        12 * HOURS + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of minutes, seconds and milliseconds from a details object", () => {
+      const details = {
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      };
+      const duration = new Duration(
+        30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours, minutes and seconds from a details object", () => {
+      const details = {
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+      };
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 45 * SECONDS
+      );
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours, minutes and milliseconds from a details object", () => {
+      const details = {
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        milliseconds: 2,
+      };
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 2 * MILLISECONDS
+      );
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of hours, minutes, seconds and milliseconds from a details object", () => {
+      const details = {
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      };
+      const duration = new Duration(
+        12 * HOURS + 30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of days, hours, minutes, seconds and milliseconds from a details object", () => {
+      const details = {
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      };
+      const duration = new Duration(
+        6 * DAYS + 12 * HOURS + 30 * MINUTES + 45 * SECONDS + 2 * MILLISECONDS
+      );
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+
+    it("should return the duration of negative days, hours, minutes, seconds and milliseconds from a details object", () => {
+      const details = {
+        days: -6,
+        hours: -12,
+        minutes: -30,
+        seconds: -45,
+        milliseconds: -2,
+      };
+      const duration = new Duration(
+        -(
+          6 * DAYS +
+          12 * HOURS +
+          30 * MINUTES +
+          45 * SECONDS +
+          2 * MILLISECONDS
+        )
+      );
+
+      expect(Duration.from(details)).toEqual(duration);
+    });
+  });
+
   describe("static parse", () => {
     it("should return the duration of only days from a string", () => {
       const str = "6 days 00:00:00";

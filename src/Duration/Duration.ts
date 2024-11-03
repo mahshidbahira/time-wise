@@ -1,5 +1,13 @@
 import { SECONDS, MINUTES, HOURS, DAYS, MILLISECONDS } from "../Units/Units";
 
+interface DurationDetails {
+  days?: number;
+  hours?: number;
+  minutes?: number;
+  seconds?: number;
+  milliseconds?: number;
+}
+
 class Duration {
   // ----------------------------------------------------------------
   // instance
@@ -140,6 +148,26 @@ class Duration {
 
   // ----------------------------------------------------------------
   // static
+
+  static of(milliseconds: number): Duration {
+    return new Duration(milliseconds);
+  }
+
+  static from(details: DurationDetails): Duration {
+    const days = details.days ? details.days : 0;
+    const hours = details.hours ? details.hours : 0;
+    const minutes = details.minutes ? details.minutes : 0;
+    const seconds = details.seconds ? details.seconds : 0;
+    const milliseconds = details.milliseconds ? details.milliseconds : 0;
+
+    return new Duration(
+      days * DAYS +
+        hours * HOURS +
+        minutes * MINUTES +
+        seconds * SECONDS +
+        milliseconds * MILLISECONDS
+    );
+  }
 
   static parse(str: string): Duration | null {
     const regexp = /^(-?)((\d+) days? )?(\d{2}):(\d{2}):(\d{2})(.(\d{3}))?$/;

@@ -1,6 +1,6 @@
 import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
 
-interface DurationDetails {
+interface ObjectDetails {
   days?: number;
   hours?: number;
   minutes?: number;
@@ -114,11 +114,11 @@ class Duration {
     return this.milliseconds < other.milliseconds;
   }
 
-  add(other: Duration): Duration {
+  plus(other: Duration): Duration {
     return new Duration(this.milliseconds + other.milliseconds);
   }
 
-  subtract(other: Duration): Duration {
+  minus(other: Duration): Duration {
     return new Duration(this.milliseconds - other.milliseconds);
   }
 
@@ -153,12 +153,12 @@ class Duration {
     return new Duration(milliseconds);
   }
 
-  static from(details: DurationDetails): Duration {
-    const days = details.days ? details.days : 0;
-    const hours = details.hours ? details.hours : 0;
-    const minutes = details.minutes ? details.minutes : 0;
-    const seconds = details.seconds ? details.seconds : 0;
-    const milliseconds = details.milliseconds ? details.milliseconds : 0;
+  static fromObject(object: ObjectDetails): Duration {
+    const days = object.days ? object.days : 0;
+    const hours = object.hours ? object.hours : 0;
+    const minutes = object.minutes ? object.minutes : 0;
+    const seconds = object.seconds ? object.seconds : 0;
+    const milliseconds = object.milliseconds ? object.milliseconds : 0;
 
     return new Duration(
       days * DAY +

@@ -41,20 +41,21 @@ class Duration {
 
   toString(): string {
     const absoluted = this.absolute();
-    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
-    const seconds = Math.floor(absoluted.seconds) % 60;
-    const minutes = Math.floor(absoluted.minutes) % 60;
-    const hours = Math.floor(absoluted.hours) % 24;
-    const days = Math.floor(absoluted.days);
 
-    const millisecondsStr =
-      milliseconds !== 0 ? `.${milliseconds.toString().padStart(3, "0")}` : "";
-    const secondsStr = seconds.toString().padStart(2, "0");
-    const minutesStr = minutes.toString().padStart(2, "0");
-    const hoursStr = hours.toString().padStart(2, "0");
-    const daysStr = days !== 0 ? `${days} ${days === 1 ? "day" : "days"} ` : "";
+    const days = Math.floor(absoluted.days);
+    const hours = Math.floor(absoluted.hours) % 24;
+    const minutes = Math.floor(absoluted.minutes) % 60;
+    const seconds = Math.floor(absoluted.seconds) % 60;
+    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
 
     const minusStr = this.milliseconds < 0 ? "-" : "";
+    const daysStr = days !== 0 ? `${days} ${days === 1 ? "day" : "days"} ` : "";
+    const hoursStr = hours.toString().padStart(2, "0");
+    const minutesStr = minutes.toString().padStart(2, "0");
+    const secondsStr = seconds.toString().padStart(2, "0");
+    const millisecondsStr =
+      milliseconds !== 0 ? `.${milliseconds.toString().padStart(3, "0")}` : "";
+
     const str = `${minusStr}${daysStr}${hoursStr}:${minutesStr}:${secondsStr}${millisecondsStr}`;
 
     return str;
@@ -77,25 +78,24 @@ class Duration {
 
   toISOString(): string {
     const absoluted = this.absolute();
-    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
-    const seconds = Math.floor(absoluted.seconds) % 60;
-    const minutes = Math.floor(absoluted.minutes) % 60;
-    const hours = Math.floor(absoluted.hours) % 24;
-    const days = Math.floor(absoluted.days);
 
+    const days = Math.floor(absoluted.days);
+    const hours = Math.floor(absoluted.hours) % 24;
+    const minutes = Math.floor(absoluted.minutes) % 60;
+    const seconds = Math.floor(absoluted.seconds) % 60;
+    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
+
+    const minusStr = this.milliseconds < 0 ? "-" : "";
+    const daysStr = days !== 0 ? `${days}D` : "";
+    const hoursStr = hours !== 0 ? `${hours}H` : "";
+    const minutesStr = minutes !== 0 ? `${minutes}M` : "";
     const millisecondsStr =
       milliseconds !== 0 ? `${(milliseconds / 1000).toString().slice(1)}` : "";
-
     const secondsStr =
       seconds !== 0 || milliseconds !== 0
         ? `${seconds.toString()}${millisecondsStr}S`
         : "";
 
-    const minutesStr = minutes !== 0 ? `${minutes}M` : "";
-    const hoursStr = hours !== 0 ? `${hours}H` : "";
-    const daysStr = days !== 0 ? `${days}D` : "";
-
-    const minusStr = this.milliseconds < 0 ? "-" : "";
     const tStr = hoursStr || minutesStr || secondsStr ? `T` : "";
     const isoStr = `${minusStr}P${daysStr}${tStr}${hoursStr}${minutesStr}${secondsStr}`;
 
@@ -175,11 +175,11 @@ class Duration {
 
     if (result) {
       const sign = result[1] ? -1 : 1;
-      const milliseconds = result[8] ? parseInt(result[8]) : 0;
-      const seconds = result[6] ? parseInt(result[6]) : 0;
-      const minutes = result[5] ? parseInt(result[5]) : 0;
-      const hours = result[4] ? parseInt(result[4]) : 0;
       const days = result[3] ? parseInt(result[3]) : 0;
+      const hours = result[4] ? parseInt(result[4]) : 0;
+      const minutes = result[5] ? parseInt(result[5]) : 0;
+      const seconds = result[6] ? parseInt(result[6]) : 0;
+      const milliseconds = result[8] ? parseInt(result[8]) : 0;
 
       const totalMilliseconds =
         sign *
@@ -198,13 +198,13 @@ class Duration {
 
     if (isoResult) {
       const sign = isoResult[1] ? -1 : 1;
+      const days = isoResult[3] ? parseInt(isoResult[3]) : 0;
+      const hours = isoResult[6] ? parseInt(isoResult[6]) : 0;
+      const minutes = isoResult[8] ? parseInt(isoResult[8]) : 0;
+      const seconds = isoResult[10] ? parseInt(isoResult[10]) : 0;
       const milliseconds = isoResult[12]
         ? parseInt(isoResult[12].padEnd(3, "0"))
         : 0;
-      const seconds = isoResult[10] ? parseInt(isoResult[10]) : 0;
-      const minutes = isoResult[8] ? parseInt(isoResult[8]) : 0;
-      const hours = isoResult[6] ? parseInt(isoResult[6]) : 0;
-      const days = isoResult[3] ? parseInt(isoResult[3]) : 0;
 
       const totalMilliseconds =
         sign *

@@ -205,7 +205,7 @@ class Duration {
     );
   }
 
-  static parse(str: string): Duration | null {
+  static fromString(str: string): Duration | null {
     const regexp = /^(-?)((\d+) days? )?(\d{2}):(\d{2}):(\d{2})(.(\d{3}))?$/;
     const result = regexp.exec(str);
 
@@ -228,19 +228,21 @@ class Duration {
       return new Duration(totalMilliseconds);
     }
 
-    const isoRegexp =
-      /^(-?)P(?=\d|T)((\d+)D)?(T(?=\d)((\d{1,2})H)?((\d{1,2})M)?((\d{1,2})(.(\d{1,3}))?S)?)?$/;
-    const isoResult = isoRegexp.exec(str);
+    return null;
+  }
 
-    if (isoResult) {
-      const sign = isoResult[1] ? -1 : 1;
-      const days = isoResult[3] ? parseInt(isoResult[3]) : 0;
-      const hours = isoResult[6] ? parseInt(isoResult[6]) : 0;
-      const minutes = isoResult[8] ? parseInt(isoResult[8]) : 0;
-      const seconds = isoResult[10] ? parseInt(isoResult[10]) : 0;
-      const milliseconds = isoResult[12]
-        ? parseInt(isoResult[12].padEnd(3, "0"))
-        : 0;
+  static fromISOString(str: string): Duration | null {
+    const regexp =
+      /^(-?)P(?=\d|T)((\d+)D)?(T(?=\d)((\d{1,2})H)?((\d{1,2})M)?((\d{1,2})(.(\d{1,3}))?S)?)?$/;
+    const result = regexp.exec(str);
+
+    if (result) {
+      const sign = result[1] ? -1 : 1;
+      const days = result[3] ? parseInt(result[3]) : 0;
+      const hours = result[6] ? parseInt(result[6]) : 0;
+      const minutes = result[8] ? parseInt(result[8]) : 0;
+      const seconds = result[10] ? parseInt(result[10]) : 0;
+      const milliseconds = result[12] ? parseInt(result[12].padEnd(3, "0")) : 0;
 
       const totalMilliseconds =
         sign *
@@ -254,6 +256,10 @@ class Duration {
     }
 
     return null;
+  }
+
+  static parse(str: string): Duration | null {
+    return Duration.fromString(str) || Duration.fromISOString(str);
   }
 
   static between(since: Date, until: Date): Duration {

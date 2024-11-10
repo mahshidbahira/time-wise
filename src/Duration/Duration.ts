@@ -160,11 +160,11 @@ class Duration {
     return new Duration(this.inMilliseconds - other.inMilliseconds);
   }
 
-  multiply(factor: number): Duration {
+  multiplyBy(factor: number): Duration {
     return new Duration(this.inMilliseconds * factor);
   }
 
-  divide(divisor: number): Duration {
+  divideBy(divisor: number): Duration {
     return new Duration(this.inMilliseconds / divisor);
   }
 

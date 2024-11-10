@@ -911,21 +911,21 @@ describe("Duration", () => {
     });
   });
 
-  describe("multiply", () => {
+  describe("multiplyBy", () => {
     it("should return the multiplication of durations", () => {
       const duration = new Duration(6 * DAY);
       const factor = 2;
 
-      expect(duration.multiply(factor)).toEqual(new Duration(12 * DAY));
+      expect(duration.multiplyBy(factor)).toEqual(new Duration(12 * DAY));
     });
   });
 
-  describe("divide", () => {
+  describe("divideBy", () => {
     it("should return the division of durations", () => {
       const duration = new Duration(6 * DAY);
       const divisor = 2;
 
-      expect(duration.divide(divisor)).toEqual(new Duration(3 * DAY));
+      expect(duration.divideBy(divisor)).toEqual(new Duration(3 * DAY));
     });
   });
 

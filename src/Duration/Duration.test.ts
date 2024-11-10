@@ -15,50 +15,109 @@ describe("Duration", () => {
 
   describe("constructor", () => {
     it("should return a duration", () => {
-      const duration = new Duration(1 * DAY);
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
       expect(duration).toBeInstanceOf(Duration);
     });
   });
 
   describe("milliseconds", () => {
     it("should return the duration in milliseconds", () => {
-      const duration = new Duration(1 * DAY);
-      expect(duration.milliseconds).toBe(86_400_000);
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.milliseconds).toBe(2);
     });
   });
 
   describe("seconds", () => {
     it("should return the duration in seconds", () => {
-      const duration = new Duration(1 * DAY);
-      expect(duration.seconds).toBe(86_400);
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.seconds).toBe(45);
     });
   });
 
   describe("minutes", () => {
     it("should return the duration in minutes", () => {
-      const duration = new Duration(1 * DAY);
-      expect(duration.minutes).toBe(1_440);
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.minutes).toBe(30);
     });
   });
 
   describe("hours", () => {
     it("should return the duration in hours", () => {
-      const duration = new Duration(1 * DAY);
-      expect(duration.hours).toBe(24);
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.hours).toBe(12);
     });
   });
 
   describe("days", () => {
     it("should return the duration in days", () => {
-      const duration = new Duration(1 * DAY);
-      expect(duration.days).toBe(1);
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.days).toBe(6);
+    });
+  });
+
+  describe("inMilliseconds", () => {
+    it("should return the total duration in milliseconds", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.inMilliseconds).toBe(563445002);
+    });
+  });
+
+  describe("inSeconds", () => {
+    it("should return the total duration in seconds", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.inSeconds).toBe(563445.002);
+    });
+  });
+
+  describe("inMinutes", () => {
+    it("should return the total duration in minutes", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.inMinutes).toBe(9390.750033333334);
+    });
+  });
+
+  describe("inHours", () => {
+    it("should return the total duration in hours", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.inHours).toBe(156.51250055555556);
+    });
+  });
+
+  describe("inDays", () => {
+    it("should return the total duration in days", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.inDays).toBe(6.521354189814815);
     });
   });
 
   describe("valueOf", () => {
     it("should return the value of duration", () => {
-      const duration = new Duration(1 * DAY);
-      expect(duration.valueOf()).toBe(86_400_000);
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+      expect(duration.valueOf()).toBe(563_445_002);
     });
   });
 
@@ -763,12 +822,11 @@ describe("Duration", () => {
       );
 
       expect(duration.toObject()).toEqual({
-        negative: true,
-        days: 6,
-        hours: 12,
-        minutes: 30,
-        seconds: 45,
-        milliseconds: 2,
+        days: -6,
+        hours: -12,
+        minutes: -30,
+        seconds: -45,
+        milliseconds: -2,
       });
     });
   });
@@ -1232,12 +1290,11 @@ describe("Duration", () => {
 
     it("should return the duration of negative days, hours, minutes, seconds and milliseconds from an object", () => {
       const object = {
-        negative: true,
-        days: 6,
-        hours: 12,
-        minutes: 30,
-        seconds: 45,
-        milliseconds: 2,
+        days: -6,
+        hours: -12,
+        minutes: -30,
+        seconds: -45,
+        milliseconds: -2,
       };
       const duration = new Duration(
         -(6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND)

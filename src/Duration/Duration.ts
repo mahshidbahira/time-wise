@@ -1,7 +1,6 @@
 import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
 
 interface ObjectDetails {
-  negative?: boolean;
   days?: number;
   hours?: number;
   minutes?: number;
@@ -13,49 +12,69 @@ class Duration {
   // ----------------------------------------------------------------
   // instance
 
+  readonly days: number;
+  readonly hours: number;
+  readonly minutes: number;
+  readonly seconds: number;
   readonly milliseconds: number;
 
-  get seconds(): number {
-    return this.milliseconds / SECOND;
+  get inDays(): number {
+    return this.inMilliseconds / DAY;
   }
 
-  get minutes(): number {
-    return this.milliseconds / MINUTE;
+  get inHours(): number {
+    return this.inMilliseconds / HOUR;
   }
 
-  get hours(): number {
-    return this.milliseconds / HOUR;
+  get inMinutes(): number {
+    return this.inMilliseconds / MINUTE;
   }
 
-  get days(): number {
-    return this.milliseconds / DAY;
+  get inSeconds(): number {
+    return this.inMilliseconds / SECOND;
   }
 
-  constructor(milliseconds: number) {
-    this.milliseconds = milliseconds;
+  get inMilliseconds(): number {
+    return (
+      this.days * DAY +
+      this.hours * HOUR +
+      this.minutes * MINUTE +
+      this.seconds * SECOND +
+      this.milliseconds * MILLISECOND
+    );
+  }
+
+  constructor(inMilliseconds: number) {
+    const fn = inMilliseconds < 0 ? Math.ceil : Math.floor;
+
+    this.days = fn(inMilliseconds / DAY);
+    this.hours = fn(inMilliseconds / HOUR) % 24;
+    this.minutes = fn(inMilliseconds / MINUTE) % 60;
+    this.seconds = fn(inMilliseconds / SECOND) % 60;
+    this.milliseconds = fn(inMilliseconds / MILLISECOND) % 1000;
+
     Object.freeze(this);
   }
 
   valueOf(): number {
-    return this.milliseconds;
+    return this.inMilliseconds;
   }
 
   toString(): string {
     const absoluted = this.absolute();
 
-    const days = Math.floor(absoluted.days);
-    const hours = Math.floor(absoluted.hours) % 24;
-    const minutes = Math.floor(absoluted.minutes) % 60;
-    const seconds = Math.floor(absoluted.seconds) % 60;
-    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
-
-    const minusStr = this.milliseconds < 0 ? "-" : "";
-    const daysStr = days !== 0 ? `${days} ${days === 1 ? "day" : "days"} ` : "";
-    const hoursStr = hours.toString().padStart(2, "0");
-    const minutesStr = minutes.toString().padStart(2, "0");
-    const secondsStr = seconds.toString().padStart(2, "0");
+    const minusStr = this.inMilliseconds < 0 ? "-" : "";
+    const daysStr =
+      (absoluted.days > 1 && `${absoluted.days} days `) ||
+      (absoluted.days === 1 && `${absoluted.days} day `) ||
+      "";
+    const hoursStr = absoluted.hours.toString().padStart(2, "0");
+    const minutesStr = absoluted.minutes.toString().padStart(2, "0");
+    const secondsStr = absoluted.seconds.toString().padStart(2, "0");
     const millisecondsStr =
-      milliseconds !== 0 ? `.${milliseconds.toString().padStart(3, "0")}` : "";
+      absoluted.milliseconds !== 0
+        ? `.${absoluted.milliseconds.toString().padStart(3, "0")}`
+        : "";
 
     const str = `${minusStr}${daysStr}${hoursStr}:${minutesStr}:${secondsStr}${millisecondsStr}`;
 
@@ -80,21 +99,17 @@ class Duration {
   toISOString(): string {
     const absoluted = this.absolute();
 
-    const days = Math.floor(absoluted.days);
-    const hours = Math.floor(absoluted.hours) % 24;
-    const minutes = Math.floor(absoluted.minutes) % 60;
-    const seconds = Math.floor(absoluted.seconds) % 60;
-    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
-
-    const minusStr = this.milliseconds < 0 ? "-" : "";
-    const daysStr = days !== 0 ? `${days}D` : "";
-    const hoursStr = hours !== 0 ? `${hours}H` : "";
-    const minutesStr = minutes !== 0 ? `${minutes}M` : "";
+    const minusStr = this.inMilliseconds < 0 ? "-" : "";
+    const daysStr = absoluted.days !== 0 ? `${absoluted.days}D` : "";
+    const hoursStr = absoluted.hours !== 0 ? `${absoluted.hours}H` : "";
+    const minutesStr = absoluted.minutes !== 0 ? `${absoluted.minutes}M` : "";
     const millisecondsStr =
-      milliseconds !== 0 ? `${(milliseconds / 1000).toString().slice(1)}` : "";
+      absoluted.milliseconds !== 0
+        ? `${(absoluted.milliseconds / 1000).toString().slice(1)}`
+        : "";
     const secondsStr =
-      seconds !== 0 || milliseconds !== 0
-        ? `${seconds.toString()}${millisecondsStr}S`
+      absoluted.seconds !== 0 || absoluted.milliseconds !== 0
+        ? `${absoluted.seconds.toString()}${millisecondsStr}S`
         : "";
 
     const tStr = hoursStr || minutesStr || secondsStr ? `T` : "";
@@ -104,91 +119,79 @@ class Duration {
   }
 
   toObject(): ObjectDetails {
-    const absoluted = this.absolute();
-
-    const days = Math.floor(absoluted.days);
-    const hours = Math.floor(absoluted.hours) % 24;
-    const minutes = Math.floor(absoluted.minutes) % 60;
-    const seconds = Math.floor(absoluted.seconds) % 60;
-    const milliseconds = Math.floor(absoluted.milliseconds) % 1000;
-
     const object: ObjectDetails = {};
 
-    if (this.milliseconds < 0) {
-      object.negative = true;
+    if (this.days) {
+      object.days = this.days;
     }
-    if (days) {
-      object.days = days;
+    if (this.hours) {
+      object.hours = this.hours;
     }
-    if (hours) {
-      object.hours = hours;
+    if (this.minutes) {
+      object.minutes = this.minutes;
     }
-    if (minutes) {
-      object.minutes = minutes;
+    if (this.seconds) {
+      object.seconds = this.seconds;
     }
-    if (seconds) {
-      object.seconds = seconds;
-    }
-    if (milliseconds) {
-      object.milliseconds = milliseconds;
+    if (this.milliseconds) {
+      object.milliseconds = this.milliseconds;
     }
 
     return object;
   }
 
   equals(other: Duration): boolean {
-    return this.milliseconds === other.milliseconds;
+    return this.inMilliseconds === other.inMilliseconds;
   }
 
   isLongerThan(other: Duration): boolean {
-    return this.milliseconds > other.milliseconds;
+    return this.inMilliseconds > other.inMilliseconds;
   }
 
   isShorterThan(other: Duration): boolean {
-    return this.milliseconds < other.milliseconds;
+    return this.inMilliseconds < other.inMilliseconds;
   }
 
   plus(other: Duration): Duration {
-    return new Duration(this.milliseconds + other.milliseconds);
+    return new Duration(this.inMilliseconds + other.inMilliseconds);
   }
 
   minus(other: Duration): Duration {
-    return new Duration(this.milliseconds - other.milliseconds);
+    return new Duration(this.inMilliseconds - other.inMilliseconds);
   }
 
   multiply(factor: number): Duration {
-    return new Duration(this.milliseconds * factor);
+    return new Duration(this.inMilliseconds * factor);
   }
 
   divide(divisor: number): Duration {
-    return new Duration(this.milliseconds / divisor);
+    return new Duration(this.inMilliseconds / divisor);
   }
 
   negate(): Duration {
-    return new Duration(-this.milliseconds);
+    return new Duration(-this.inMilliseconds);
   }
 
   absolute(): Duration {
-    return new Duration(Math.abs(this.milliseconds));
+    return new Duration(Math.abs(this.inMilliseconds));
   }
 
   after(date: Date): Date {
-    return new Date(date.getTime() + this.milliseconds);
+    return new Date(date.getTime() + this.inMilliseconds);
   }
 
   before(date: Date): Date {
-    return new Date(date.getTime() - this.milliseconds);
+    return new Date(date.getTime() - this.inMilliseconds);
   }
 
   // ----------------------------------------------------------------
   // static
 
-  static of(milliseconds: number): Duration {
-    return new Duration(milliseconds);
+  static of(inMilliseconds: number): Duration {
+    return new Duration(inMilliseconds);
   }
 
   static fromObject(object: ObjectDetails): Duration {
-    const sign = object.negative ? -1 : 1;
     const days = object.days ? object.days : 0;
     const hours = object.hours ? object.hours : 0;
     const minutes = object.minutes ? object.minutes : 0;
@@ -196,12 +199,11 @@ class Duration {
     const milliseconds = object.milliseconds ? object.milliseconds : 0;
 
     return new Duration(
-      sign *
-        (days * DAY +
-          hours * HOUR +
-          minutes * MINUTE +
-          seconds * SECOND +
-          milliseconds * MILLISECOND)
+      days * DAY +
+        hours * HOUR +
+        minutes * MINUTE +
+        seconds * SECOND +
+        milliseconds * MILLISECOND
     );
   }
 
@@ -277,7 +279,7 @@ class Duration {
   }
 
   static compare(duration1: Duration, duration2: Duration): number {
-    return duration1.milliseconds - duration2.milliseconds;
+    return duration1.inMilliseconds - duration2.inMilliseconds;
   }
 }
 

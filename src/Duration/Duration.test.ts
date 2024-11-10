@@ -893,6 +893,76 @@ describe("Duration", () => {
     });
   });
 
+  describe("withDays", () => {
+    it("should return a duration", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+
+      expect(duration.withDays(3)).toEqual(
+        new Duration(
+          3 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+        )
+      );
+    });
+  });
+
+  describe("withHours", () => {
+    it("should return a duration", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+
+      expect(duration.withHours(23)).toEqual(
+        new Duration(
+          6 * DAY + 23 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+        )
+      );
+    });
+  });
+
+  describe("withMinutes", () => {
+    it("should return a duration", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+
+      expect(duration.withMinutes(59)).toEqual(
+        new Duration(
+          6 * DAY + 12 * HOUR + 59 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+        )
+      );
+    });
+  });
+
+  describe("withSeconds", () => {
+    it("should return a duration", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+
+      expect(duration.withSeconds(59)).toEqual(
+        new Duration(
+          6 * DAY + 12 * HOUR + 30 * MINUTE + 59 * SECOND + 2 * MILLISECOND
+        )
+      );
+    });
+  });
+
+  describe("withMilliseconds", () => {
+    it("should return a duration", () => {
+      const duration = new Duration(
+        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
+      );
+
+      expect(duration.withMilliseconds(999)).toEqual(
+        new Duration(
+          6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 999 * MILLISECOND
+        )
+      );
+    });
+  });
+
   describe("plus", () => {
     it("should return the addition of durations", () => {
       const duration1 = new Duration(6 * DAY);

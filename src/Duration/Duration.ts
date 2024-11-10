@@ -152,6 +152,56 @@ class Duration {
     return this.inMilliseconds < other.inMilliseconds;
   }
 
+  withDays(days: number): Duration {
+    return new Duration(
+      days * DAY +
+        this.hours * HOUR +
+        this.minutes * MINUTE +
+        this.seconds * SECOND +
+        this.milliseconds * MILLISECOND
+    );
+  }
+
+  withHours(hours: number): Duration {
+    return new Duration(
+      this.days * DAY +
+        hours * HOUR +
+        this.minutes * MINUTE +
+        this.seconds * SECOND +
+        this.milliseconds * MILLISECOND
+    );
+  }
+
+  withMinutes(minutes: number): Duration {
+    return new Duration(
+      this.days * DAY +
+        this.hours * HOUR +
+        minutes * MINUTE +
+        this.seconds * SECOND +
+        this.milliseconds * MILLISECOND
+    );
+  }
+
+  withSeconds(seconds: number): Duration {
+    return new Duration(
+      this.days * DAY +
+        this.hours * HOUR +
+        this.minutes * MINUTE +
+        seconds * SECOND +
+        this.milliseconds * MILLISECOND
+    );
+  }
+
+  withMilliseconds(milliseconds: number): Duration {
+    return new Duration(
+      this.days * DAY +
+        this.hours * HOUR +
+        this.minutes * MINUTE +
+        this.seconds * SECOND +
+        milliseconds * MILLISECOND
+    );
+  }
+
   plus(other: Duration): Duration {
     return new Duration(this.inMilliseconds + other.inMilliseconds);
   }

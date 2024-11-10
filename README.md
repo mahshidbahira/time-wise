@@ -173,7 +173,7 @@ const oneHourBefore = oneHour.before(now); // Date 1 hour ago
 
 ## License
 
-This library is licensed under the MIT License. See [LICENSE](../LICENSE) for more information.
+This library is licensed under the MIT License. See [LICENSE](./LICENSE) for more information.
 
 ## Contributing
 

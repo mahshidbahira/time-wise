@@ -61,19 +61,19 @@ class Duration {
   }
 
   toString(): string {
-    const absoluted = this.absolute();
+    const absoluteDuration = this.absolute();
 
     const minusStr = this.inMilliseconds < 0 ? "-" : "";
     const daysStr =
-      (absoluted.days > 1 && `${absoluted.days} days `) ||
-      (absoluted.days === 1 && `${absoluted.days} day `) ||
+      (absoluteDuration.days > 1 && `${absoluteDuration.days} days `) ||
+      (absoluteDuration.days === 1 && `${absoluteDuration.days} day `) ||
       "";
-    const hoursStr = absoluted.hours.toString().padStart(2, "0");
-    const minutesStr = absoluted.minutes.toString().padStart(2, "0");
-    const secondsStr = absoluted.seconds.toString().padStart(2, "0");
+    const hoursStr = absoluteDuration.hours.toString().padStart(2, "0");
+    const minutesStr = absoluteDuration.minutes.toString().padStart(2, "0");
+    const secondsStr = absoluteDuration.seconds.toString().padStart(2, "0");
     const millisecondsStr =
-      absoluted.milliseconds !== 0
-        ? `.${absoluted.milliseconds.toString().padStart(3, "0")}`
+      absoluteDuration.milliseconds !== 0
+        ? `.${absoluteDuration.milliseconds.toString().padStart(3, "0")}`
         : "";
 
     const str = `${minusStr}${daysStr}${hoursStr}:${minutesStr}:${secondsStr}${millisecondsStr}`;
@@ -97,19 +97,22 @@ class Duration {
   }
 
   toISOString(): string {
-    const absoluted = this.absolute();
+    const absoluteDuration = this.absolute();
 
     const minusStr = this.inMilliseconds < 0 ? "-" : "";
-    const daysStr = absoluted.days !== 0 ? `${absoluted.days}D` : "";
-    const hoursStr = absoluted.hours !== 0 ? `${absoluted.hours}H` : "";
-    const minutesStr = absoluted.minutes !== 0 ? `${absoluted.minutes}M` : "";
+    const daysStr =
+      absoluteDuration.days !== 0 ? `${absoluteDuration.days}D` : "";
+    const hoursStr =
+      absoluteDuration.hours !== 0 ? `${absoluteDuration.hours}H` : "";
+    const minutesStr =
+      absoluteDuration.minutes !== 0 ? `${absoluteDuration.minutes}M` : "";
     const millisecondsStr =
-      absoluted.milliseconds !== 0
-        ? `${(absoluted.milliseconds / 1000).toString().slice(1)}`
+      absoluteDuration.milliseconds !== 0
+        ? `${(absoluteDuration.milliseconds / 1000).toString().slice(1)}`
         : "";
     const secondsStr =
-      absoluted.seconds !== 0 || absoluted.milliseconds !== 0
-        ? `${absoluted.seconds.toString()}${millisecondsStr}S`
+      absoluteDuration.seconds !== 0 || absoluteDuration.milliseconds !== 0
+        ? `${absoluteDuration.seconds.toString()}${millisecondsStr}S`
         : "";
 
     const tStr = hoursStr || minutesStr || secondsStr ? `T` : "";

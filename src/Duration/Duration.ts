@@ -63,7 +63,7 @@ class Duration {
   toString(): string {
     const absoluteDuration = this.absolute();
 
-    const minusStr = this.inMilliseconds < 0 ? "-" : "";
+    const signStr = this.inMilliseconds < 0 ? "-" : "";
     const daysStr =
       (absoluteDuration.days > 1 && `${absoluteDuration.days} days `) ||
       (absoluteDuration.days === 1 && `${absoluteDuration.days} day `) ||
@@ -76,7 +76,7 @@ class Duration {
         ? `.${absoluteDuration.milliseconds.toString().padStart(3, "0")}`
         : "";
 
-    const str = `${minusStr}${daysStr}${hoursStr}:${minutesStr}:${secondsStr}${millisecondsStr}`;
+    const str = `${signStr}${daysStr}${hoursStr}:${minutesStr}:${secondsStr}${millisecondsStr}`;
 
     return str;
   }
@@ -99,7 +99,7 @@ class Duration {
   toISOString(): string {
     const absoluteDuration = this.absolute();
 
-    const minusStr = this.inMilliseconds < 0 ? "-" : "";
+    const signStr = this.inMilliseconds < 0 ? "-" : "";
     const daysStr =
       absoluteDuration.days !== 0 ? `${absoluteDuration.days}D` : "";
     const hoursStr =
@@ -116,7 +116,7 @@ class Duration {
         : "";
 
     const tStr = hoursStr || minutesStr || secondsStr ? `T` : "";
-    const isoStr = `${minusStr}P${daysStr}${tStr}${hoursStr}${minutesStr}${secondsStr}`;
+    const isoStr = `${signStr}P${daysStr}${tStr}${hoursStr}${minutesStr}${secondsStr}`;
 
     return isoStr;
   }

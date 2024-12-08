@@ -1,3 +1,13 @@
+interface ObjectDetails {
+  year: number;
+  month: number;
+  day: number;
+  hour: number;
+  minute: number;
+  second: number;
+  millisecond: number;
+}
+
 class DateTime {
   readonly year: number;
   readonly month: number;
@@ -19,6 +29,27 @@ class DateTime {
     this.millisecond = jsDate.getUTCMilliseconds();
 
     Object.freeze(this);
+  }
+
+  // static
+
+  static of(millisecondsSinceEpoch: number): DateTime {
+    return new DateTime(millisecondsSinceEpoch);
+  }
+
+  static fromObject(object: ObjectDetails): DateTime {
+    const { year, month, day, hour, minute, second, millisecond } = object;
+    const millisecondsSinceEpoch = Date.UTC(
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond
+    );
+
+    return new DateTime(millisecondsSinceEpoch);
   }
 }
 

@@ -1054,17 +1054,29 @@ describe("Duration", () => {
 
   describe("static fromObject", () => {
     it("should return the duration of zero from an object", () => {
+      // given
       const object = {};
-      const duration = new Duration(0);
-      expect(Duration.fromObject(object)).toEqual(duration);
+
+      // when
+      const duration = Duration.fromObject(object);
+
+      // then
+      const expected = new Duration(0);
+      expect(duration).toEqual(expected);
     });
 
     it("should return the duration of only days from an object", () => {
+      // given
       const object = {
         days: 6,
       };
-      const duration = new Duration(6 * DAY);
-      expect(Duration.fromObject(object)).toEqual(duration);
+
+      // when
+      const duration = Duration.fromObject(object);
+
+      // then
+      const expected = new Duration(6 * DAY);
+      expect(duration).toEqual(expected);
     });
 
     it("should return the duration of only hours from an object", () => {

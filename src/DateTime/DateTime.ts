@@ -9,6 +9,9 @@ interface ObjectDetails {
 }
 
 class DateTime {
+  // ----------------------------------------------------------------
+  // instance
+
   readonly year: number;
   readonly month: number;
   readonly day: number;
@@ -31,6 +34,7 @@ class DateTime {
     Object.freeze(this);
   }
 
+  // ----------------------------------------------------------------
   // static
 
   static of(millisecondsSinceEpoch: number): DateTime {

@@ -1311,73 +1311,118 @@ describe("Duration", () => {
 
   describe("equals", () => {
     it("should return true for equal durations", () => {
+      // given
       const duration1 = new Duration(6 * DAY);
       const duration2 = new Duration(6 * DAY);
 
-      expect(duration1.equals(duration2)).toBe(true);
+      // when
+      const isEqual = duration1.equals(duration2);
+
+      // then
+      expect(isEqual).toBe(true);
     });
 
     it("should return false for unequal durations", () => {
+      // given
       const duration1 = new Duration(6 * DAY);
       const duration2 = new Duration(2 * DAY);
 
-      expect(duration1.equals(duration2)).toBe(false);
+      // when
+      const isEqual = duration1.equals(duration2);
+
+      // then
+      expect(isEqual).toBe(false);
     });
   });
 
   describe("isLongerThan", () => {
     it("should return true when the duration is longer than the other duration", () => {
+      // given
       const duration1 = new Duration(6 * DAY);
       const duration2 = new Duration(2 * DAY);
 
-      expect(duration1.isLongerThan(duration2)).toBe(true);
+      // when
+      const isLongerThan = duration1.isLongerThan(duration2);
+
+      // then
+      expect(isLongerThan).toBe(true);
     });
 
     it("should return false when the duration is equal to the other duration", () => {
+      // given
       const duration1 = new Duration(6 * DAY);
       const duration2 = new Duration(6 * DAY);
 
-      expect(duration1.isLongerThan(duration2)).toBe(false);
+      // when
+      const isLongerThan = duration1.isLongerThan(duration2);
+
+      // then
+      expect(isLongerThan).toBe(false);
     });
 
     it("should return false when the duration is shorter than the other duration", () => {
+      // given
       const duration1 = new Duration(2 * DAY);
       const duration2 = new Duration(6 * DAY);
 
-      expect(duration1.isLongerThan(duration2)).toBe(false);
+      // when
+      const isLongerThan = duration1.isLongerThan(duration2);
+
+      // then
+      expect(isLongerThan).toBe(false);
     });
   });
 
   describe("isShorterThan", () => {
     it("should return true when the duration is shorter than the other duration", () => {
+      // given
       const duration1 = new Duration(2 * DAY);
       const duration2 = new Duration(6 * DAY);
 
-      expect(duration1.isShorterThan(duration2)).toBe(true);
+      // when
+      const isShorterThan = duration1.isShorterThan(duration2);
+
+      // then
+      expect(isShorterThan).toBe(true);
     });
 
     it("should return false when the duration is equal to the other duration", () => {
+      // given
       const duration1 = new Duration(6 * DAY);
       const duration2 = new Duration(6 * DAY);
 
-      expect(duration1.isShorterThan(duration2)).toBe(false);
+      // when
+      const isShorterThan = duration1.isShorterThan(duration2);
+
+      // then
+      expect(isShorterThan).toBe(false);
     });
 
     it("should return false when the duration is longer than the other duration", () => {
+      // given
       const duration1 = new Duration(6 * DAY);
       const duration2 = new Duration(2 * DAY);
 
-      expect(duration1.isShorterThan(duration2)).toBe(false);
+      // when
+      const isShorterThan = duration1.isShorterThan(duration2);
+
+      // then
+      expect(isShorterThan).toBe(false);
     });
   });
 
   describe("withDays", () => {
     it("should return a duration", () => {
+      // given
       const duration = new Duration(
         6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
       );
 
-      expect(duration.withDays(3)).toEqual(
+      // when
+      const durationWithDays = duration.withDays(3);
+
+      // then
+      expect(durationWithDays).toEqual(
         new Duration(
           3 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
         )
@@ -1387,11 +1432,16 @@ describe("Duration", () => {
 
   describe("withHours", () => {
     it("should return a duration", () => {
+      // given
       const duration = new Duration(
         6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
       );
 
-      expect(duration.withHours(23)).toEqual(
+      // when
+      const durationWithHours = duration.withHours(23);
+
+      // then
+      expect(durationWithHours).toEqual(
         new Duration(
           6 * DAY + 23 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
         )
@@ -1401,11 +1451,16 @@ describe("Duration", () => {
 
   describe("withMinutes", () => {
     it("should return a duration", () => {
+      // given
       const duration = new Duration(
         6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
       );
 
-      expect(duration.withMinutes(59)).toEqual(
+      // when
+      const durationWithMinutes = duration.withMinutes(59);
+
+      // then
+      expect(durationWithMinutes).toEqual(
         new Duration(
           6 * DAY + 12 * HOUR + 59 * MINUTE + 45 * SECOND + 2 * MILLISECOND
         )
@@ -1415,11 +1470,16 @@ describe("Duration", () => {
 
   describe("withSeconds", () => {
     it("should return a duration", () => {
+      // given
       const duration = new Duration(
         6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
       );
 
-      expect(duration.withSeconds(59)).toEqual(
+      // when
+      const durationWithSeconds = duration.withSeconds(59);
+
+      // then
+      expect(durationWithSeconds).toEqual(
         new Duration(
           6 * DAY + 12 * HOUR + 30 * MINUTE + 59 * SECOND + 2 * MILLISECOND
         )
@@ -1429,11 +1489,16 @@ describe("Duration", () => {
 
   describe("withMilliseconds", () => {
     it("should return a duration", () => {
+      // given
       const duration = new Duration(
         6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
       );
 
-      expect(duration.withMilliseconds(999)).toEqual(
+      // when
+      const durationWithMilliseconds = duration.withMilliseconds(999);
+
+      // then
+      expect(durationWithMilliseconds).toEqual(
         new Duration(
           6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 999 * MILLISECOND
         )

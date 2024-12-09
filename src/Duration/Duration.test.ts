@@ -1508,83 +1508,131 @@ describe("Duration", () => {
 
   describe("plus", () => {
     it("should return the addition of durations", () => {
+      // given
       const duration1 = new Duration(6 * DAY);
       const duration2 = new Duration(2 * DAY);
 
-      expect(duration1.plus(duration2)).toEqual(new Duration(8 * DAY));
+      // when
+      const sum = duration1.plus(duration2);
+
+      // then
+      expect(sum).toEqual(new Duration(8 * DAY));
     });
   });
 
   describe("minus", () => {
     it("should return the subtraction of durations", () => {
+      // given
       const duration1 = new Duration(6 * DAY);
       const duration2 = new Duration(2 * DAY);
 
-      expect(duration1.minus(duration2)).toEqual(new Duration(4 * DAY));
+      // when
+      const diff = duration1.minus(duration2);
+
+      // then
+      expect(diff).toEqual(new Duration(4 * DAY));
     });
   });
 
   describe("multiplyBy", () => {
     it("should return the multiplication of durations", () => {
+      // given
       const duration = new Duration(6 * DAY);
-      const factor = 2;
 
-      expect(duration.multiplyBy(factor)).toEqual(new Duration(12 * DAY));
+      // when
+      const product = duration.multiplyBy(2);
+
+      // then
+      expect(product).toEqual(new Duration(12 * DAY));
     });
   });
 
   describe("divideBy", () => {
     it("should return the division of durations", () => {
+      // given
       const duration = new Duration(6 * DAY);
-      const divisor = 2;
 
-      expect(duration.divideBy(divisor)).toEqual(new Duration(3 * DAY));
+      // when
+      const quotient = duration.divideBy(2);
+
+      // then
+      expect(quotient).toEqual(new Duration(3 * DAY));
     });
   });
 
   describe("negate", () => {
     it("should return the negative duration of a positive duration", () => {
+      // given
       const duration = new Duration(6 * DAY);
 
-      expect(duration.negate()).toEqual(new Duration(-6 * DAY));
+      // when
+      const negated = duration.negate();
+
+      // then
+      expect(negated).toEqual(new Duration(-6 * DAY));
     });
 
     it("should return the positive duration of a negative duration", () => {
+      // given
       const duration = new Duration(-6 * DAY);
 
-      expect(duration.negate()).toEqual(new Duration(6 * DAY));
+      // when
+      const negated = duration.negate();
+
+      // then
+      expect(negated).toEqual(new Duration(6 * DAY));
     });
   });
 
   describe("absolute", () => {
     it("should return the absolute of a negative duration", () => {
+      // given
       const duration = new Duration(-6 * DAY);
 
-      expect(duration.absolute()).toEqual(new Duration(6 * DAY));
+      // when
+      const abs = duration.absolute();
+
+      // then
+      expect(abs).toEqual(new Duration(6 * DAY));
     });
 
     it("should return the absolute of a positive duration", () => {
+      // given
       const duration = new Duration(6 * DAY);
 
-      expect(duration.absolute()).toEqual(new Duration(6 * DAY));
+      // when
+      const abs = duration.absolute();
+
+      // then
+      expect(abs).toEqual(new Duration(6 * DAY));
     });
   });
 
   describe("after", () => {
     it("should return a date after the duration since a given date", () => {
+      // given
       const duration = new Duration(2 * DAY);
       const date = new Date(2001, 0, 22);
 
-      expect(duration.after(date)).toEqual(new Date(2001, 0, 24));
+      // when
+      const future = duration.after(date);
+
+      // then
+      expect(future).toEqual(new Date(2001, 0, 24));
     });
   });
 
   describe("before", () => {
     it("should return a date before the duration since a given date", () => {
+      // given
       const duration = new Duration(2 * DAY);
       const date = new Date(2001, 0, 22);
 
-      expect(duration.before(date)).toEqual(new Date(2001, 0, 20));
+      // when
+      const past = duration.before(date);
+
+      // then
+      expect(past).toEqual(new Date(2001, 0, 20));
     });
   });
 

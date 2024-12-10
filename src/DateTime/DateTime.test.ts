@@ -15,7 +15,13 @@ describe("DateTime", () => {
 
   describe("constructor", () => {
     it("should return a datetime of epoch from zero", () => {
-      const datetime = new DateTime(0);
+      // given
+      const millisecondsSinceEpoch = 0;
+
+      // when
+      const datetime = new DateTime(millisecondsSinceEpoch);
+
+      // then
       expect(datetime).toBeInstanceOf(DateTime);
       expect(datetime.year).toBe(1970);
       expect(datetime.month).toBe(0);
@@ -27,7 +33,13 @@ describe("DateTime", () => {
     });
 
     it("should return a datetime with milliseconds since epoch", () => {
-      const datetime = new DateTime(1_733_576_179_920);
+      // given
+      const millisecondsSinceEpoch = 1_733_576_179_920;
+
+      // when
+      const datetime = new DateTime(millisecondsSinceEpoch);
+
+      // then
       expect(datetime).toBeInstanceOf(DateTime);
       expect(datetime.year).toBe(2024);
       expect(datetime.month).toBe(11);
@@ -41,7 +53,13 @@ describe("DateTime", () => {
 
   describe("static of", () => {
     it("should return a datetime of epoch from zero", () => {
-      const datetime = DateTime.of(0);
+      // given
+      const millisecondsSinceEpoch = 0;
+
+      // when
+      const datetime = DateTime.of(millisecondsSinceEpoch);
+
+      // then
       expect(datetime).toBeInstanceOf(DateTime);
       expect(datetime.year).toBe(1970);
       expect(datetime.month).toBe(0);
@@ -53,7 +71,13 @@ describe("DateTime", () => {
     });
 
     it("should return a datetime with milliseconds since epoch", () => {
-      const datetime = DateTime.of(1_733_576_179_920);
+      // given
+      const millisecondsSinceEpoch = 1_733_576_179_920;
+
+      // when
+      const datetime = DateTime.of(millisecondsSinceEpoch);
+
+      // then
       expect(datetime).toBeInstanceOf(DateTime);
       expect(datetime.year).toBe(2024);
       expect(datetime.month).toBe(11);

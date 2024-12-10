@@ -51,6 +51,32 @@ describe("DateTime", () => {
     });
   });
 
+  describe("millisecondsSinceEpoch", () => {
+    it("should return the total milliseconds since epoch", () => {
+      // given
+      const datetime = new DateTime(1_733_576_179_920);
+
+      // when
+      const millisecondsSinceEpoch = datetime.millisecondsSinceEpoch;
+
+      // then
+      expect(millisecondsSinceEpoch).toBe(1_733_576_179_920);
+    });
+  });
+
+  describe("valueOf", () => {
+    it("should return the value of duration", () => {
+      // given
+      const datetime = new DateTime(1_733_576_179_920);
+
+      // when
+      const value = datetime.valueOf();
+
+      // then
+      expect(value).toBe(1_733_576_179_920);
+    });
+  });
+
   describe("static of", () => {
     it("should return a datetime of epoch from zero", () => {
       // given

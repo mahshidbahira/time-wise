@@ -20,6 +20,18 @@ class DateTime {
   readonly second: number;
   readonly millisecond: number;
 
+  get millisecondsSinceEpoch(): number {
+    return Date.UTC(
+      this.year,
+      this.month,
+      this.day,
+      this.hour,
+      this.minute,
+      this.second,
+      this.millisecond
+    );
+  }
+
   constructor(millisecondsSinceEpoch: number) {
     const jsDate = new Date(millisecondsSinceEpoch);
 
@@ -32,6 +44,10 @@ class DateTime {
     this.millisecond = jsDate.getUTCMilliseconds();
 
     Object.freeze(this);
+  }
+
+  valueOf(): number {
+    return this.millisecondsSinceEpoch;
   }
 
   // ----------------------------------------------------------------

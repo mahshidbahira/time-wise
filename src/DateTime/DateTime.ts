@@ -50,6 +50,45 @@ class DateTime {
     return this.millisecondsSinceEpoch;
   }
 
+  toString(): string {
+    const date = new Date(this.millisecondsSinceEpoch);
+
+    return date.toUTCString();
+  }
+
+  [Symbol.toPrimitive](hint: string): number | string {
+    switch (hint) {
+      case "number":
+        return this.valueOf();
+      case "string":
+        return this.toString();
+      default:
+        return this.toString();
+    }
+  }
+
+  toJSON(): string {
+    return this.toISOString();
+  }
+
+  toISOString(): string {
+    const date = new Date(this.millisecondsSinceEpoch);
+
+    return date.toISOString();
+  }
+
+  toObject(): ObjectDetails {
+    return {
+      year: this.year,
+      month: this.month,
+      day: this.day,
+      hour: this.hour,
+      minute: this.minute,
+      second: this.second,
+      millisecond: this.millisecond,
+    };
+  }
+
   // ----------------------------------------------------------------
   // static
 

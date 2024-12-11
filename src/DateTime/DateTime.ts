@@ -89,6 +89,18 @@ class DateTime {
     };
   }
 
+  equals(other: DateTime): boolean {
+    return this.millisecondsSinceEpoch === other.millisecondsSinceEpoch;
+  }
+
+  isLaterThan(other: DateTime): boolean {
+    return this.millisecondsSinceEpoch > other.millisecondsSinceEpoch;
+  }
+
+  isEarlierThan(other: DateTime): boolean {
+    return this.millisecondsSinceEpoch < other.millisecondsSinceEpoch;
+  }
+
   // ----------------------------------------------------------------
   // static
 

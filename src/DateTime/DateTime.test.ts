@@ -161,6 +161,108 @@ describe("DateTime", () => {
     });
   });
 
+  describe("equals", () => {
+    it("should return true for equal datetimes", () => {
+      // given
+      const datetime1 = new DateTime(1_733_576_179_920);
+      const datetime2 = new DateTime(1_733_576_179_920);
+
+      // when
+      const isEqual = datetime1.equals(datetime2);
+
+      // then
+      expect(isEqual).toBe(true);
+    });
+
+    it("should return false for unequal datetimes", () => {
+      // given
+      const datetime1 = new DateTime(1_733_576_179_920);
+      const datetime2 = new DateTime(1_733_576_179_820);
+
+      // when
+      const isEqual = datetime1.equals(datetime2);
+
+      // then
+      expect(isEqual).toBe(false);
+    });
+  });
+
+  describe("isLaterThan", () => {
+    it("should return true when the datetime is later than the other datetime", () => {
+      // given
+      const datetime1 = new DateTime(1_733_576_179_920);
+      const datetime2 = new DateTime(1_733_576_179_820);
+
+      // when
+      const isLaterThan = datetime1.isLaterThan(datetime2);
+
+      // then
+      expect(isLaterThan).toBe(true);
+    });
+
+    it("should return false when the datetime is equal to the other datetime", () => {
+      // given
+      const datetime1 = new DateTime(1_733_576_179_920);
+      const datetime2 = new DateTime(1_733_576_179_920);
+
+      // when
+      const isLongerThan = datetime1.isLaterThan(datetime2);
+
+      // then
+      expect(isLongerThan).toBe(false);
+    });
+
+    it("should return false when the datetime is earlier than the other datetime", () => {
+      // given
+      const datetime1 = new DateTime(1_733_576_179_820);
+      const datetime2 = new DateTime(1_733_576_179_920);
+
+      // when
+      const isLongerThan = datetime1.isLaterThan(datetime2);
+
+      // then
+      expect(isLongerThan).toBe(false);
+    });
+  });
+
+  describe("isEarlierThan", () => {
+    it("should return true when the datetime is earlier than the other datetime", () => {
+      // given
+      const datetime1 = new DateTime(1_733_576_179_820);
+      const datetime2 = new DateTime(1_733_576_179_920);
+
+      // when
+      const isEarlierThan = datetime1.isEarlierThan(datetime2);
+
+      // then
+      expect(isEarlierThan).toBe(true);
+    });
+
+    it("should return false when the datetime is equal to the other datetime", () => {
+      // given
+      const datetime1 = new DateTime(1_733_576_179_920);
+      const datetime2 = new DateTime(1_733_576_179_920);
+
+      // when
+      const isEarlierThan = datetime1.isEarlierThan(datetime2);
+
+      // then
+      expect(isEarlierThan).toBe(false);
+    });
+
+    it("should return false when the datetime is later than the other datetime", () => {
+      // given
+      const datetime1 = new DateTime(1_733_576_179_920);
+      const datetime2 = new DateTime(1_733_576_179_820);
+
+      // when
+      const isEarlierThan = datetime1.isEarlierThan(datetime2);
+
+      // then
+      expect(isEarlierThan).toBe(false);
+    });
+  });
+
   // ----------------------------------------------------------------
   // static
 

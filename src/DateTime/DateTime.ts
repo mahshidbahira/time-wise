@@ -53,9 +53,7 @@ class DateTime {
   }
 
   toString(): string {
-    const date = new Date(this.millisecondsSinceEpoch);
-
-    return date.toUTCString();
+    return this.toJSDate().toUTCString();
   }
 
   [Symbol.toPrimitive](hint: string): number | string {
@@ -74,9 +72,7 @@ class DateTime {
   }
 
   toISOString(): string {
-    const date = new Date(this.millisecondsSinceEpoch);
-
-    return date.toISOString();
+    return this.toJSDate().toISOString();
   }
 
   toObject(): ObjectDetails {
@@ -89,6 +85,10 @@ class DateTime {
       second: this.second,
       millisecond: this.millisecond,
     };
+  }
+
+  toJSDate(): Date {
+    return new Date(this.millisecondsSinceEpoch);
   }
 
   equals(other: DateTime): boolean {

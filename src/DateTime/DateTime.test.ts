@@ -162,6 +162,19 @@ describe("DateTime", () => {
     });
   });
 
+  describe("toJSDate", () => {
+    it("should return the js date of a datetime", () => {
+      // given
+      const datetime = new DateTime(1_733_576_179_920);
+
+      // when
+      const jsDate = datetime.toJSDate();
+
+      // then
+      expect(jsDate).toEqual(new Date(1_733_576_179_920));
+    });
+  });
+
   describe("equals", () => {
     it("should return true for equal datetimes", () => {
       // given

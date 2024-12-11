@@ -1,3 +1,5 @@
+import { Duration } from "../main";
+
 interface ObjectDetails {
   year: number;
   month: number;
@@ -99,6 +101,14 @@ class DateTime {
 
   isEarlierThan(other: DateTime): boolean {
     return this.millisecondsSinceEpoch < other.millisecondsSinceEpoch;
+  }
+
+  plus(duration: Duration): DateTime {
+    return new DateTime(this.millisecondsSinceEpoch + duration.inMilliseconds);
+  }
+
+  minus(duration: Duration): DateTime {
+    return new DateTime(this.millisecondsSinceEpoch - duration.inMilliseconds);
   }
 
   // ----------------------------------------------------------------

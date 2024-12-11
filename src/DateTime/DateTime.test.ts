@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 // import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
 import DateTime from "./DateTime";
+import { Duration, MILLISECOND } from "../main";
 
 describe("DateTime", () => {
   const now = new Date();
@@ -260,6 +261,34 @@ describe("DateTime", () => {
 
       // then
       expect(isEarlierThan).toBe(false);
+    });
+  });
+
+  describe("plus", () => {
+    it("should return the addition of datetime and duration", () => {
+      // given
+      const datetime = DateTime.of(1_733_576_179_920);
+      const duration = Duration.of(10 * MILLISECOND);
+
+      // when
+      const sum = datetime.plus(duration);
+
+      // then
+      expect(sum).toEqual(new DateTime(1_733_576_179_930));
+    });
+  });
+
+  describe("minus", () => {
+    it("should return the subtraction of datetime and duration", () => {
+      // given
+      const datetime = DateTime.of(1_733_576_179_920);
+      const duration = Duration.of(10 * MILLISECOND);
+
+      // when
+      const diff = datetime.minus(duration);
+
+      // then
+      expect(diff).toEqual(new DateTime(1_733_576_179_910));
     });
   });
 

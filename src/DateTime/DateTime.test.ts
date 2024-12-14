@@ -277,6 +277,223 @@ describe("DateTime", () => {
     });
   });
 
+  describe("withYear", () => {
+    it("should return a datetime", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const datetimeWithYear = datetime.withYear(2023);
+
+      // then
+      expect(datetimeWithYear).toEqual(
+        DateTime.fromObject({
+          year: 2023,
+          month: 11,
+          day: 7,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        })
+      );
+    });
+  });
+
+  describe("withMonth", () => {
+    it("should return a datetime", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const datetimeWithMonth = datetime.withMonth(9);
+
+      // then
+      expect(datetimeWithMonth).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 9,
+          day: 7,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        })
+      );
+    });
+  });
+
+  describe("withDay", () => {
+    it("should return a datetime", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const datetimeWithDay = datetime.withDay(28);
+
+      // then
+      expect(datetimeWithDay).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 28,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        })
+      );
+    });
+  });
+
+  describe("withHour", () => {
+    it("should return a datetime", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const datetimeWithHour = datetime.withHour(21);
+
+      // then
+      expect(datetimeWithHour).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 7,
+          hour: 21,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        })
+      );
+    });
+  });
+
+  describe("withMinute", () => {
+    it("should return a datetime", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const datetimeWithMinute = datetime.withMinute(59);
+
+      // then
+      expect(datetimeWithMinute).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 7,
+          hour: 12,
+          minute: 59,
+          second: 19,
+          millisecond: 920,
+        })
+      );
+    });
+  });
+
+  describe("withSecond", () => {
+    it("should return a datetime", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const datetimeWithSecond = datetime.withSecond(45);
+
+      // then
+      expect(datetimeWithSecond).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 7,
+          hour: 12,
+          minute: 56,
+          second: 45,
+          millisecond: 920,
+        })
+      );
+    });
+  });
+
+  describe("withMillisecond", () => {
+    it("should return a datetime", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const datetimeWithMillisecond = datetime.withMillisecond(2);
+
+      // then
+      expect(datetimeWithMillisecond).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 7,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 2,
+        })
+      );
+    });
+  });
+
   describe("plus", () => {
     it("should return the addition of datetime and duration", () => {
       // given

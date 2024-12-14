@@ -103,6 +103,90 @@ class DateTime {
     return this.millisecondsSinceEpoch < other.millisecondsSinceEpoch;
   }
 
+  withYear(year: number): DateTime {
+    return DateTime.fromObject({
+      year: year,
+      month: this.month,
+      day: this.day,
+      hour: this.hour,
+      minute: this.minute,
+      second: this.second,
+      millisecond: this.millisecond,
+    });
+  }
+
+  withMonth(month: number): DateTime {
+    return DateTime.fromObject({
+      year: this.year,
+      month: month,
+      day: this.day,
+      hour: this.hour,
+      minute: this.minute,
+      second: this.second,
+      millisecond: this.millisecond,
+    });
+  }
+
+  withDay(day: number): DateTime {
+    return DateTime.fromObject({
+      year: this.year,
+      month: this.month,
+      day: day,
+      hour: this.hour,
+      minute: this.minute,
+      second: this.second,
+      millisecond: this.millisecond,
+    });
+  }
+
+  withHour(hour: number): DateTime {
+    return DateTime.fromObject({
+      year: this.year,
+      month: this.month,
+      day: this.day,
+      hour: hour,
+      minute: this.minute,
+      second: this.second,
+      millisecond: this.millisecond,
+    });
+  }
+
+  withMinute(minute: number): DateTime {
+    return DateTime.fromObject({
+      year: this.year,
+      month: this.month,
+      day: this.day,
+      hour: this.hour,
+      minute: minute,
+      second: this.second,
+      millisecond: this.millisecond,
+    });
+  }
+
+  withSecond(second: number): DateTime {
+    return DateTime.fromObject({
+      year: this.year,
+      month: this.month,
+      day: this.day,
+      hour: this.hour,
+      minute: this.minute,
+      second: second,
+      millisecond: this.millisecond,
+    });
+  }
+
+  withMillisecond(millisecond: number): DateTime {
+    return DateTime.fromObject({
+      year: this.year,
+      month: this.month,
+      day: this.day,
+      hour: this.hour,
+      minute: this.minute,
+      second: this.second,
+      millisecond: millisecond,
+    });
+  }
+
   plus(duration: Duration): DateTime {
     return new DateTime(this.millisecondsSinceEpoch + duration.inMilliseconds);
   }

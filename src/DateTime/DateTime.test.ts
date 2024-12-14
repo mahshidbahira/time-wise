@@ -55,7 +55,15 @@ describe("DateTime", () => {
   describe("millisecondsSinceEpoch", () => {
     it("should return the total milliseconds since epoch", () => {
       // given
-      const datetime = new DateTime(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const millisecondsSinceEpoch = datetime.millisecondsSinceEpoch;
@@ -68,7 +76,15 @@ describe("DateTime", () => {
   describe("valueOf", () => {
     it("should return the value of duration", () => {
       // given
-      const datetime = new DateTime(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const value = datetime.valueOf();
@@ -81,7 +97,15 @@ describe("DateTime", () => {
   describe("toString", () => {
     it("should return the string of a datetime", () => {
       // given
-      const datetime = new DateTime(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const str = datetime.toString();
@@ -94,7 +118,15 @@ describe("DateTime", () => {
   describe("toPrimitive", () => {
     it("should return a number when a number is expected of the datetime", () => {
       // given
-      const datetime = new DateTime(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const primitive = +datetime;
@@ -105,7 +137,15 @@ describe("DateTime", () => {
 
     it("should return a string when a string is expected of the datetime", () => {
       // given
-      const datetime = new DateTime(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const primitive = `${datetime}`;
@@ -118,7 +158,15 @@ describe("DateTime", () => {
   describe("toJSON", () => {
     it("should return the JSON of datetime", () => {
       // given
-      const datetime = new DateTime(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const jsonStr = JSON.stringify(datetime);
@@ -131,7 +179,15 @@ describe("DateTime", () => {
   describe("toISOString", () => {
     it("should return the iso string of a datetime", () => {
       // given
-      const datetime = new DateTime(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const isoStr = datetime.toISOString();
@@ -144,7 +200,15 @@ describe("DateTime", () => {
   describe("toObject", () => {
     it("should return the object of a datetime", () => {
       // given
-      const datetime = new DateTime(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const obj = datetime.toObject();
@@ -165,21 +229,45 @@ describe("DateTime", () => {
   describe("toJSDate", () => {
     it("should return the js date of a datetime", () => {
       // given
-      const datetime = new DateTime(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const jsDate = datetime.toJSDate();
 
       // then
-      expect(jsDate).toEqual(new Date(1_733_576_179_920));
+      expect(jsDate).toEqual(new Date(Date.UTC(2024, 11, 7, 12, 56, 19, 920)));
     });
   });
 
   describe("equals", () => {
     it("should return true for equal datetimes", () => {
       // given
-      const datetime1 = new DateTime(1_733_576_179_920);
-      const datetime2 = new DateTime(1_733_576_179_920);
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const isEqual = datetime1.equals(datetime2);
@@ -190,8 +278,24 @@ describe("DateTime", () => {
 
     it("should return false for unequal datetimes", () => {
       // given
-      const datetime1 = new DateTime(1_733_576_179_920);
-      const datetime2 = new DateTime(1_733_576_179_820);
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 820,
+      });
 
       // when
       const isEqual = datetime1.equals(datetime2);
@@ -204,8 +308,24 @@ describe("DateTime", () => {
   describe("isLaterThan", () => {
     it("should return true when the datetime is later than the other datetime", () => {
       // given
-      const datetime1 = new DateTime(1_733_576_179_920);
-      const datetime2 = new DateTime(1_733_576_179_820);
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 820,
+      });
 
       // when
       const isLaterThan = datetime1.isLaterThan(datetime2);
@@ -216,8 +336,24 @@ describe("DateTime", () => {
 
     it("should return false when the datetime is equal to the other datetime", () => {
       // given
-      const datetime1 = new DateTime(1_733_576_179_920);
-      const datetime2 = new DateTime(1_733_576_179_920);
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const isLongerThan = datetime1.isLaterThan(datetime2);
@@ -228,8 +364,24 @@ describe("DateTime", () => {
 
     it("should return false when the datetime is earlier than the other datetime", () => {
       // given
-      const datetime1 = new DateTime(1_733_576_179_820);
-      const datetime2 = new DateTime(1_733_576_179_920);
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 820,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const isLongerThan = datetime1.isLaterThan(datetime2);
@@ -242,8 +394,24 @@ describe("DateTime", () => {
   describe("isEarlierThan", () => {
     it("should return true when the datetime is earlier than the other datetime", () => {
       // given
-      const datetime1 = new DateTime(1_733_576_179_820);
-      const datetime2 = new DateTime(1_733_576_179_920);
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 820,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const isEarlierThan = datetime1.isEarlierThan(datetime2);
@@ -254,8 +422,24 @@ describe("DateTime", () => {
 
     it("should return false when the datetime is equal to the other datetime", () => {
       // given
-      const datetime1 = new DateTime(1_733_576_179_920);
-      const datetime2 = new DateTime(1_733_576_179_920);
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const isEarlierThan = datetime1.isEarlierThan(datetime2);
@@ -266,8 +450,24 @@ describe("DateTime", () => {
 
     it("should return false when the datetime is later than the other datetime", () => {
       // given
-      const datetime1 = new DateTime(1_733_576_179_920);
-      const datetime2 = new DateTime(1_733_576_179_820);
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 820,
+      });
 
       // when
       const isEarlierThan = datetime1.isEarlierThan(datetime2);
@@ -497,28 +697,64 @@ describe("DateTime", () => {
   describe("plus", () => {
     it("should return the addition of datetime and duration", () => {
       // given
-      const datetime = DateTime.of(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
       const duration = Duration.of(10 * MILLISECOND);
 
       // when
       const sum = datetime.plus(duration);
 
       // then
-      expect(sum).toEqual(new DateTime(1_733_576_179_930));
+      expect(sum).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 7,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 930,
+        })
+      );
     });
   });
 
   describe("minus", () => {
     it("should return the subtraction of datetime and duration", () => {
       // given
-      const datetime = DateTime.of(1_733_576_179_920);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
       const duration = Duration.of(10 * MILLISECOND);
 
       // when
       const diff = datetime.minus(duration);
 
       // then
-      expect(diff).toEqual(new DateTime(1_733_576_179_910));
+      expect(diff).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 7,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 910,
+        })
+      );
     });
   });
 
@@ -580,8 +816,14 @@ describe("DateTime", () => {
       const datetime = DateTime.fromObject(object);
 
       // then
-      const expected = new DateTime(1_733_576_179_920);
-      expect(datetime).toEqual(expected);
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(11);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(12);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
     });
   });
 });

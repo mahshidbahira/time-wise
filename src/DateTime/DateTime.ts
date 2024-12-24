@@ -216,6 +216,26 @@ class DateTime {
 
     return new DateTime(millisecondsSinceEpoch);
   }
+
+  static parse(str: string): DateTime | null {
+    const millisecondsSinceEpoch = Date.parse(str);
+
+    if (!millisecondsSinceEpoch) {
+      return null;
+    }
+
+    return DateTime.of(millisecondsSinceEpoch);
+  }
+
+  static fromJSDate(date: Date): DateTime {
+    const millisecondsSinceEpoch = date.getTime();
+
+    return DateTime.of(millisecondsSinceEpoch);
+  }
+
+  static compare(datetime1: DateTime, datetime2: DateTime): number {
+    return datetime1.millisecondsSinceEpoch - datetime2.millisecondsSinceEpoch;
+  }
 }
 
 export default DateTime;

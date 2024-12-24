@@ -826,4 +826,159 @@ describe("DateTime", () => {
       expect(datetime.millisecond).toBe(920);
     });
   });
+
+  describe("static parse", () => {
+    it("should return a datetime from a string", () => {
+      // given
+      const str = "Sat, 07 Dec 2024 12:56:19.920 GMT";
+
+      // when
+      const datetime = DateTime.parse(str)!;
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(11);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(12);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+    });
+
+    it("should return a datetime from an iso string", () => {
+      // given
+      const str = "2024-12-07T12:56:19.920Z";
+
+      // when
+      const datetime = DateTime.parse(str)!;
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(11);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(12);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+    });
+
+    it("should return null from an invalid string", () => {
+      // given
+      const str = "2024-12-07-12:56:19.920";
+
+      // when
+      const datetime = DateTime.parse(str)!;
+
+      // then
+      expect(datetime).toBeNull();
+    });
+  });
+
+  describe("static fromJSDate", () => {
+    it("should return a datetime from a js date", () => {
+      // given
+      const date = new Date(Date.UTC(2024, 11, 7, 12, 56, 19, 920));
+
+      // when
+      const datetime = DateTime.fromJSDate(date);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(11);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(12);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+    });
+  });
+
+  describe("static compare", () => {
+    it("should return a positive number when the duration is longer than the other duration", () => {
+      // given
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 3,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const comparison = DateTime.compare(datetime1, datetime2);
+
+      // then
+      expect(comparison).toBe(345_600_000);
+    });
+
+    it("should return zero when the duration is equal to the other duration", () => {
+      // given
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const comparison = DateTime.compare(datetime1, datetime2);
+
+      // then
+      expect(comparison).toBe(0);
+    });
+
+    it("should return a negative number when the duration is shorter than the other duration", () => {
+      // given
+      const datetime1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 3,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const datetime2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const comparison = DateTime.compare(datetime1, datetime2);
+
+      // then
+      expect(comparison).toBe(-345_600_000);
+    });
+  });
 });

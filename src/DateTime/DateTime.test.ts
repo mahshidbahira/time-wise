@@ -897,7 +897,7 @@ describe("DateTime", () => {
   });
 
   describe("static compare", () => {
-    it("should return a positive number when the duration is longer than the other duration", () => {
+    it("should return a positive number when the datetime is later than the other datetime", () => {
       // given
       const datetime1 = DateTime.fromObject({
         year: 2024,
@@ -925,7 +925,7 @@ describe("DateTime", () => {
       expect(comparison).toBe(345_600_000);
     });
 
-    it("should return zero when the duration is equal to the other duration", () => {
+    it("should return zero when the datetime is equal to the other datetime", () => {
       // given
       const datetime1 = DateTime.fromObject({
         year: 2024,
@@ -953,7 +953,7 @@ describe("DateTime", () => {
       expect(comparison).toBe(0);
     });
 
-    it("should return a negative number when the duration is shorter than the other duration", () => {
+    it("should return a negative number when the datetime is earlier than the other datetime", () => {
       // given
       const datetime1 = DateTime.fromObject({
         year: 2024,

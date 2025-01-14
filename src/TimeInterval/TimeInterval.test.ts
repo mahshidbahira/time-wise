@@ -299,4 +299,297 @@ describe("TimeInterval", () => {
       expect(obj).toEqual({ start: start, end: end });
     });
   });
+
+  describe("equals", () => {
+    it("should return true for equal durations", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval1 = new TimeInterval(start, end);
+      const interval2 = new TimeInterval(start, end);
+
+      // when
+      const isEqual = interval1.equals(interval2);
+
+      // then
+      expect(isEqual).toBe(true);
+    });
+
+    it("should return false for unequal intervals", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 3,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval1 = new TimeInterval(start, end1);
+      const interval2 = new TimeInterval(start, end2);
+
+      // when
+      const isEqual = interval1.equals(interval2);
+
+      // then
+      expect(isEqual).toBe(false);
+    });
+  });
+
+  describe("isLongerThan", () => {
+    it("should return true when the interval is longer than the other interval", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 8,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval1 = new TimeInterval(start, end1);
+      const interval2 = new TimeInterval(start, end2);
+
+      // when
+      const isLongerThan = interval1.isLongerThan(interval2);
+
+      // then
+      expect(isLongerThan).toBe(true);
+    });
+
+    it("should return false when the interval is equal to the other interval", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      const interval1 = new TimeInterval(start, end);
+      const interval2 = new TimeInterval(start, end);
+
+      // when
+      const isLongerThan = interval1.isLongerThan(interval2);
+
+      // then
+      expect(isLongerThan).toBe(false);
+    });
+
+    it("should return false when the interval is shorter than the other interval", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 8,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval1 = new TimeInterval(start, end1);
+      const interval2 = new TimeInterval(start, end2);
+
+      // when
+      const isLongerThan = interval1.isLongerThan(interval2);
+
+      // then
+      expect(isLongerThan).toBe(false);
+    });
+  });
+
+  describe("isShorterThan", () => {
+    it("should return true when the interval is shorter than the other interval", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 8,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval1 = new TimeInterval(start, end1);
+      const interval2 = new TimeInterval(start, end2);
+
+      // when
+      const isShorterThan = interval1.isShorterThan(interval2);
+
+      // then
+      expect(isShorterThan).toBe(true);
+    });
+
+    it("should return false when the interval is equal to the other interval", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      const interval1 = new TimeInterval(start, end);
+      const interval2 = new TimeInterval(start, end);
+
+      // when
+      const isShorterThan = interval1.isShorterThan(interval2);
+
+      // then
+      expect(isShorterThan).toBe(false);
+    });
+
+    it("should return false when the interval is longer than the other interval", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 8,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval1 = new TimeInterval(start, end1);
+      const interval2 = new TimeInterval(start, end2);
+
+      // when
+      const isShorterThan = interval1.isShorterThan(interval2);
+
+      // then
+      expect(isShorterThan).toBe(false);
+    });
+  });
 });

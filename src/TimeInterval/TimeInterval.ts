@@ -57,6 +57,18 @@ class TimeInterval {
   toObject(): ObjectDetails {
     return { start: this.start, end: this.end };
   }
+
+  equals(other: TimeInterval): boolean {
+    return this.duration.inMilliseconds === other.duration.inMilliseconds;
+  }
+
+  isLongerThan(other: TimeInterval): boolean {
+    return this.duration.inMilliseconds > other.duration.inMilliseconds;
+  }
+
+  isShorterThan(other: TimeInterval): boolean {
+    return this.duration.inMilliseconds < other.duration.inMilliseconds;
+  }
 }
 
 export default TimeInterval;

@@ -1,10 +1,20 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
+import { DAY } from "../Units/Units";
 import TimeInterval from "./TimeInterval";
 import DateTime from "../DateTime/DateTime";
 import Duration from "../Duration/Duration";
 
 describe("TimeInterval", () => {
+  const now = new Date();
+
+  beforeEach(() => {
+    vi.useFakeTimers().setSystemTime(now);
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   describe("constructor", () => {
     it("should return a time interval", () => {
       // given

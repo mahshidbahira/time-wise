@@ -896,6 +896,23 @@ describe("DateTime", () => {
     });
   });
 
+  describe("static now", () => {
+    it("should return the current datetime", () => {
+      // when
+      const datetime = DateTime.now();
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(now.getUTCFullYear());
+      expect(datetime.month).toBe(now.getUTCMonth());
+      expect(datetime.day).toBe(now.getUTCDate());
+      expect(datetime.hour).toBe(now.getUTCHours());
+      expect(datetime.minute).toBe(now.getUTCMinutes());
+      expect(datetime.second).toBe(now.getUTCSeconds());
+      expect(datetime.millisecond).toBe(now.getUTCMilliseconds());
+    });
+  });
+
   describe("static compare", () => {
     it("should return a positive number when the datetime is later than the other datetime", () => {
       // given

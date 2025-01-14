@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
 import Duration from "./Duration";
+import DateTime from "../DateTime/DateTime";
 
 describe("Duration", () => {
   const now = new Date();
@@ -1612,13 +1613,31 @@ describe("Duration", () => {
     it("should return a date after the duration since a given date", () => {
       // given
       const duration = new Duration(2 * DAY);
-      const date = new Date(2001, 0, 22);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
-      const future = duration.after(date);
+      const future = duration.after(datetime);
 
       // then
-      expect(future).toEqual(new Date(2001, 0, 24));
+      expect(future).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 9,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        })
+      );
     });
   });
 
@@ -1626,13 +1645,31 @@ describe("Duration", () => {
     it("should return a date before the duration since a given date", () => {
       // given
       const duration = new Duration(2 * DAY);
-      const date = new Date(2001, 0, 22);
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
-      const past = duration.before(date);
+      const past = duration.before(datetime);
 
       // then
-      expect(past).toEqual(new Date(2001, 0, 20));
+      expect(past).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 5,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        })
+      );
     });
   });
 
@@ -3726,8 +3763,24 @@ describe("Duration", () => {
   describe("static between", () => {
     it("should return the duration between two dates", () => {
       // given
-      const since = new Date(2001, 0, 20);
-      const until = new Date(2001, 0, 22);
+      const since = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const until = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
       const duration = Duration.between(since, until);
@@ -3740,10 +3793,10 @@ describe("Duration", () => {
   describe("static since", () => {
     it("should return the duration since a date", () => {
       // given
-      const date = new Date(now.getTime() - 2 * DAY);
+      const datetime = DateTime.of(now.getTime() - 2 * DAY);
 
       // when
-      const duration = Duration.since(date);
+      const duration = Duration.since(datetime);
 
       // then
       expect(duration).toEqual(new Duration(2 * DAY));
@@ -3753,10 +3806,10 @@ describe("Duration", () => {
   describe("static until", () => {
     it("should return the duration until a date", () => {
       // given
-      const date = new Date(now.getTime() + 2 * DAY);
+      const datetime = DateTime.of(now.getTime() + 2 * DAY);
 
       // when
-      const duration = Duration.until(date);
+      const duration = Duration.until(datetime);
 
       // then
       expect(duration).toEqual(new Duration(2 * DAY));

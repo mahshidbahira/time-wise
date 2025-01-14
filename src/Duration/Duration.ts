@@ -1,3 +1,4 @@
+import DateTime from "../DateTime/DateTime";
 import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
 
 interface ObjectDetails {
@@ -229,12 +230,12 @@ class Duration {
     return new Duration(Math.abs(this.inMilliseconds));
   }
 
-  after(date: Date): Date {
-    return new Date(date.getTime() + this.inMilliseconds);
+  after(datetime: DateTime): DateTime {
+    return new DateTime(datetime.millisecondsSinceEpoch + this.inMilliseconds);
   }
 
-  before(date: Date): Date {
-    return new Date(date.getTime() - this.inMilliseconds);
+  before(datetime: DateTime): DateTime {
+    return new DateTime(datetime.millisecondsSinceEpoch - this.inMilliseconds);
   }
 
   // ----------------------------------------------------------------
@@ -317,18 +318,26 @@ class Duration {
     return Duration.fromString(str) || Duration.fromISOString(str);
   }
 
-  static between(since: Date, until: Date): Duration {
-    return new Duration(until.getTime() - since.getTime());
+  static between(since: DateTime, until: DateTime): Duration {
+    return new Duration(
+      until.millisecondsSinceEpoch - since.millisecondsSinceEpoch
+    );
   }
 
-  static since(date: Date): Duration {
-    const now = new Date();
-    return new Duration(now.getTime() - date.getTime());
+  static since(datetime: DateTime): Duration {
+    const now = DateTime.now();
+
+    return new Duration(
+      now.millisecondsSinceEpoch - datetime.millisecondsSinceEpoch
+    );
   }
 
-  static until(date: Date): Duration {
-    const now = new Date();
-    return new Duration(date.getTime() - now.getTime());
+  static until(datetime: DateTime): Duration {
+    const now = DateTime.now();
+
+    return new Duration(
+      datetime.millisecondsSinceEpoch - now.millisecondsSinceEpoch
+    );
   }
 
   static compare(duration1: Duration, duration2: Duration): number {

@@ -233,6 +233,10 @@ class DateTime {
     return DateTime.of(millisecondsSinceEpoch);
   }
 
+  static now(): DateTime {
+    return new DateTime(Date.now());
+  }
+
   static compare(datetime1: DateTime, datetime2: DateTime): number {
     return datetime1.millisecondsSinceEpoch - datetime2.millisecondsSinceEpoch;
   }

@@ -10,9 +10,6 @@ interface ObjectDetails {
 }
 
 class Duration {
-  // ----------------------------------------------------------------
-  // instance
-
   readonly days: number;
   readonly hours: number;
   readonly minutes: number;

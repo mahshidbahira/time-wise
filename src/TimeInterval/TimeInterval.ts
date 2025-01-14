@@ -1,5 +1,10 @@
 import DateTime from "../DateTime/DateTime";
-import { Duration } from "../main";
+import Duration from "../Duration/Duration";
+
+interface ObjectDetails {
+  start: DateTime;
+  end: DateTime;
+}
 
 class TimeInterval {
   readonly start: DateTime;
@@ -14,6 +19,43 @@ class TimeInterval {
     this.end = end;
 
     Object.freeze(this);
+  }
+
+  valueOf(): number {
+    return this.duration.inMilliseconds;
+  }
+
+  toString(): string {
+    const startStr = this.start.toString();
+    const endStr = this.end.toString();
+
+    return `from ${startStr} to ${endStr}`;
+  }
+
+  [Symbol.toPrimitive](hint: string): number | string {
+    switch (hint) {
+      case "number":
+        return this.valueOf();
+      case "string":
+        return this.toString();
+      default:
+        return this.toString();
+    }
+  }
+
+  toJSON(): string {
+    return this.toISOString();
+  }
+
+  toISOString(): string {
+    const startISOStr = this.start.toISOString();
+    const endISOStr = this.end.toISOString();
+
+    return `${startISOStr}/${endISOStr}`;
+  }
+
+  toObject(): ObjectDetails {
+    return { start: this.start, end: this.end };
   }
 }
 

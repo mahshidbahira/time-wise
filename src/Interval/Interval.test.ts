@@ -137,7 +137,7 @@ describe("Interval", () => {
 
       // then
       expect(str).toBe(
-        "from Sat, 07 Dec 2024 12:56:19 GMT to Mon, 09 Dec 2024 12:56:19 GMT"
+        "Sat, 07 Dec 2024 12:56:19 GMT - Mon, 09 Dec 2024 12:56:19 GMT"
       );
     });
   });
@@ -192,14 +192,14 @@ describe("Interval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new Interval(start, end);
+      const interval = Interval.between(start, end);
 
       // when
       const primitive = `${interval}`;
 
       // then
       expect(primitive).toBe(
-        "from Sat, 07 Dec 2024 12:56:19 GMT to Mon, 09 Dec 2024 12:56:19 GMT"
+        "Sat, 07 Dec 2024 12:56:19 GMT - Mon, 09 Dec 2024 12:56:19 GMT"
       );
     });
   });
@@ -656,7 +656,7 @@ describe("Interval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new Interval(start, end);
+      const interval = Interval.between(start, end);
 
       const newEnd = DateTime.fromObject({
         year: 2024,

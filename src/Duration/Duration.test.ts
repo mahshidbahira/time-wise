@@ -3394,8 +3394,8 @@ describe("Duration", () => {
   describe("static compare", () => {
     it("should return a positive number when the duration is longer than the other duration", () => {
       // given
-      const duration1 = new Duration(6 * DAY);
-      const duration2 = new Duration(2 * DAY);
+      const duration1 = Duration.of(6 * DAY);
+      const duration2 = Duration.of(2 * DAY);
 
       // when
       const comparison = Duration.compare(duration1, duration2);
@@ -3406,8 +3406,8 @@ describe("Duration", () => {
 
     it("should return zero when the duration is equal to the other duration", () => {
       // given
-      const duration1 = new Duration(6 * DAY);
-      const duration2 = new Duration(6 * DAY);
+      const duration1 = Duration.of(6 * DAY);
+      const duration2 = Duration.of(6 * DAY);
 
       // when
       const comparison = Duration.compare(duration1, duration2);
@@ -3418,8 +3418,8 @@ describe("Duration", () => {
 
     it("should return a negative number when the duration is shorter than the other duration", () => {
       // given
-      const duration1 = new Duration(2 * DAY);
-      const duration2 = new Duration(6 * DAY);
+      const duration1 = Duration.of(2 * DAY);
+      const duration2 = Duration.of(6 * DAY);
 
       // when
       const comparison = Duration.compare(duration1, duration2);

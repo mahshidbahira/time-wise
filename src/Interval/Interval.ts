@@ -31,7 +31,7 @@ class Interval {
     const startStr = this.start.toString();
     const endStr = this.end.toString();
 
-    return `from ${startStr} to ${endStr}`;
+    return `${startStr} - ${endStr}`;
   }
 
   [Symbol.toPrimitive](hint: string): number | string {

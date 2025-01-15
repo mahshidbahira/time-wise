@@ -757,4 +757,369 @@ describe("Interval", () => {
       expect(interval.end).toEqual(end);
     });
   });
+
+  describe("static fromObject", () => {
+    it("should return an interval from an object", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const obj = { start, end };
+
+      // when
+      const interval = Interval.fromObject(obj);
+
+      // then
+      expect(interval).toBeInstanceOf(Interval);
+      expect(interval.start).toEqual(start);
+      expect(interval.end).toEqual(end);
+    });
+  });
+
+  describe("static fromString", () => {
+    it("should return an interval from a string", () => {
+      // given
+      const startStr = "Sat, 07 Dec 2024 12:56:19.920 GMT";
+      const endStr = "Sat, 09 Dec 2024 12:56:19.920 GMT";
+      const str = `${startStr} - ${endStr}`;
+
+      // when
+      const interval = Interval.fromString(str)!;
+
+      // then
+      expect(interval).toBeInstanceOf(Interval);
+      expect(interval.start).toEqual(DateTime.parse(startStr));
+      expect(interval.end).toEqual(DateTime.parse(endStr));
+    });
+
+    it("should return null from an invalid start string", () => {
+      // given
+      const startStr = "Sat, 07 Dec 2024 wwww 12:56:19.920 GMT";
+      const endStr = "Sat, 09 Dec 2024 12:56:19.920 GMT";
+      const str = `${startStr} - ${endStr}`;
+
+      // when
+      const interval = Interval.fromString(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+
+    it("should return null from an invalid end string", () => {
+      // given
+      const startStr = "Sat, 07 Dec 2024 12:56:19.920 GMT";
+      const endStr = "Sat, 09 Dec 2024 wwww 12:56:19.920 GMT";
+      const str = `${startStr} - ${endStr}`;
+
+      // when
+      const interval = Interval.fromString(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+
+    it("should return null from an invalid start and end string", () => {
+      // given
+      const startStr = "Sat, 07 Dec 2024 wwww 12:56:19.920 GMT";
+      const endStr = "Sat, 09 Dec 2024 wwww 12:56:19.920 GMT";
+      const str = `${startStr} - ${endStr}`;
+
+      // when
+      const interval = Interval.fromString(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+  });
+
+  describe("static fromISOString", () => {
+    it("should return an interval from an iso string", () => {
+      // given
+      const startStr = "2024-12-07T12:56:19.920Z";
+      const endStr = "2024-12-09T12:56:19.920Z";
+      const str = `${startStr}/${endStr}`;
+
+      // when
+      const interval = Interval.fromISOString(str)!;
+
+      // then
+      expect(interval).toBeInstanceOf(Interval);
+      expect(interval.start).toEqual(DateTime.parse(startStr));
+      expect(interval.end).toEqual(DateTime.parse(endStr));
+    });
+
+    it("should return null from an invalid start iso string", () => {
+      // given
+      const startStr = "2024-12-07-12:56:19.920Z";
+      const endStr = "2024-12-09T12:56:19.920Z";
+      const str = `${startStr}/${endStr}`;
+
+      // when
+      const interval = Interval.fromISOString(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+
+    it("should return null from an invalid end iso string", () => {
+      // given
+      const startStr = "2024-12-07T12:56:19.920Z";
+      const endStr = "2024-12-09-12:56:19.920Z";
+      const str = `${startStr}/${endStr}`;
+
+      // when
+      const interval = Interval.fromISOString(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+
+    it("should return null from an invalid start and end iso string", () => {
+      // given
+      const startStr = "2024-12-07-12:56:19.920Z";
+      const endStr = "2024-12-09-12:56:19.920Z";
+      const str = `${startStr}/${endStr}`;
+
+      // when
+      const interval = Interval.fromISOString(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+  });
+
+  describe("static parse", () => {
+    it("should return an interval from a string", () => {
+      // given
+      const startStr = "Sat, 07 Dec 2024 12:56:19.920 GMT";
+      const endStr = "Sat, 09 Dec 2024 12:56:19.920 GMT";
+      const str = `${startStr} - ${endStr}`;
+
+      // when
+      const interval = Interval.parse(str)!;
+
+      // then
+      expect(interval).toBeInstanceOf(Interval);
+      expect(interval.start).toEqual(DateTime.parse(startStr));
+      expect(interval.end).toEqual(DateTime.parse(endStr));
+    });
+
+    it("should return null from an invalid start string", () => {
+      // given
+      const startStr = "Sat, 07 Dec 2024 wwww 12:56:19.920 GMT";
+      const endStr = "Sat, 09 Dec 2024 12:56:19.920 GMT";
+      const str = `${startStr} - ${endStr}`;
+
+      // when
+      const interval = Interval.parse(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+
+    it("should return null from an invalid end string", () => {
+      // given
+      const startStr = "Sat, 07 Dec 2024 12:56:19.920 GMT";
+      const endStr = "Sat, 09 Dec 2024 wwww 12:56:19.920 GMT";
+      const str = `${startStr} - ${endStr}`;
+
+      // when
+      const interval = Interval.parse(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+
+    it("should return null from an invalid start and end string", () => {
+      // given
+      const startStr = "Sat, 07 Dec 2024 wwww 12:56:19.920 GMT";
+      const endStr = "Sat, 09 Dec 2024 wwww 12:56:19.920 GMT";
+      const str = `${startStr} - ${endStr}`;
+
+      // when
+      const interval = Interval.parse(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+
+    it("should return an interval from an iso string", () => {
+      // given
+      const startStr = "2024-12-07T12:56:19.920Z";
+      const endStr = "2024-12-09T12:56:19.920Z";
+      const str = `${startStr}/${endStr}`;
+
+      // when
+      const interval = Interval.parse(str)!;
+
+      // then
+      expect(interval).toBeInstanceOf(Interval);
+      expect(interval.start).toEqual(DateTime.parse(startStr));
+      expect(interval.end).toEqual(DateTime.parse(endStr));
+    });
+
+    it("should return null from an invalid start iso string", () => {
+      // given
+      const startStr = "2024-12-07-12:56:19.920Z";
+      const endStr = "2024-12-09T12:56:19.920Z";
+      const str = `${startStr}/${endStr}`;
+
+      // when
+      const interval = Interval.parse(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+
+    it("should return null from an invalid end iso string", () => {
+      // given
+      const startStr = "2024-12-07T12:56:19.920Z";
+      const endStr = "2024-12-09-12:56:19.920Z";
+      const str = `${startStr}/${endStr}`;
+
+      // when
+      const interval = Interval.parse(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+
+    it("should return null from an invalid start and end iso string", () => {
+      // given
+      const startStr = "2024-12-07-12:56:19.920Z";
+      const endStr = "2024-12-09-12:56:19.920Z";
+      const str = `${startStr}/${endStr}`;
+
+      // when
+      const interval = Interval.parse(str)!;
+
+      // then
+      expect(interval).toBeNull();
+    });
+  });
+
+  describe("static compare", () => {
+    it("should return a positive number when the interval is longer than the other interval", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 8,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval1 = Interval.between(start, end1);
+      const interval2 = Interval.between(start, end2);
+
+      // when
+      const comparison = Interval.compare(interval1, interval2);
+
+      // then
+      expect(comparison).toBe(86_400_000);
+    });
+
+    it("should return zero when the interval is equal to the other interval", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval1 = Interval.between(start, end);
+      const interval2 = Interval.between(start, end);
+
+      // when
+      const comparison = Interval.compare(interval1, interval2);
+
+      // then
+      expect(comparison).toBe(0);
+    });
+
+    it("should return a negative number when the interval is shorter than the other interval", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end1 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 8,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end2 = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval1 = Interval.between(start, end1);
+      const interval2 = Interval.between(start, end2);
+
+      // when
+      const comparison = Interval.compare(interval1, interval2);
+
+      // then
+      expect(comparison).toBe(-86_400_000);
+    });
+  });
 });

@@ -93,6 +93,56 @@ class Interval {
     const now = DateTime.now();
     return Interval.between(now, datetime);
   }
+
+  static fromObject(object: ObjectDetails): Interval {
+    return Interval.between(object.start, object.end);
+  }
+
+  static fromString(str: string): Interval | null {
+    const regexp = /^(.+) - (.+)$/;
+    const result = regexp.exec(str);
+
+    if (!result) {
+      return null;
+    }
+
+    const start = DateTime.parse(result[1]);
+    const end = DateTime.parse(result[2]);
+
+    if (!start || !end) {
+      return null;
+    }
+
+    return Interval.between(start, end);
+  }
+
+  static fromISOString(str: string): Interval | null {
+    const regexp = /^(.+)\/(.+)$/;
+    const result = regexp.exec(str);
+
+    if (!result) {
+      return null;
+    }
+
+    const start = DateTime.parse(result[1]);
+    const end = DateTime.parse(result[2]);
+
+    if (!start || !end) {
+      return null;
+    }
+
+    return Interval.between(start, end);
+  }
+
+  static parse(str: string): Interval | null {
+    return Interval.fromString(str) || Interval.fromISOString(str);
+  }
+
+  static compare(interval1: Interval, interval2: Interval): number {
+    return (
+      interval1.duration.inMilliseconds - interval2.duration.inMilliseconds
+    );
+  }
 }
 
 export default Interval;

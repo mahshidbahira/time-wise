@@ -11,7 +11,9 @@ class Interval {
   readonly end: DateTime;
 
   get duration(): Duration {
-    return Duration.between(this.start, this.end);
+    return Duration.of(
+      this.end.millisecondsSinceEpoch - this.start.millisecondsSinceEpoch
+    );
   }
 
   constructor(start: DateTime, end: DateTime) {
@@ -71,11 +73,11 @@ class Interval {
   }
 
   withStart(start: DateTime): Interval {
-    return new Interval(start, this.end);
+    return Interval.between(start, this.end);
   }
 
   withEnd(end: DateTime): Interval {
-    return new Interval(this.start, end);
+    return Interval.between(this.start, end);
   }
 
   static between(start: DateTime, end: DateTime): Interval {

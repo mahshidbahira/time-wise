@@ -154,85 +154,89 @@ class Duration {
   }
 
   withDays(days: number): Duration {
-    return new Duration(
-      days * DAY +
-        this.hours * HOUR +
-        this.minutes * MINUTE +
-        this.seconds * SECOND +
-        this.milliseconds * MILLISECOND
-    );
+    return Duration.fromObject({
+      days: days,
+      hours: this.hours,
+      minutes: this.minutes,
+      seconds: this.seconds,
+      milliseconds: this.milliseconds,
+    });
   }
 
   withHours(hours: number): Duration {
-    return new Duration(
-      this.days * DAY +
-        hours * HOUR +
-        this.minutes * MINUTE +
-        this.seconds * SECOND +
-        this.milliseconds * MILLISECOND
-    );
+    return Duration.fromObject({
+      days: this.days,
+      hours: hours,
+      minutes: this.minutes,
+      seconds: this.seconds,
+      milliseconds: this.milliseconds,
+    });
   }
 
   withMinutes(minutes: number): Duration {
-    return new Duration(
-      this.days * DAY +
-        this.hours * HOUR +
-        minutes * MINUTE +
-        this.seconds * SECOND +
-        this.milliseconds * MILLISECOND
-    );
+    return Duration.fromObject({
+      days: this.days,
+      hours: this.hours,
+      minutes: minutes,
+      seconds: this.seconds,
+      milliseconds: this.milliseconds,
+    });
   }
 
   withSeconds(seconds: number): Duration {
-    return new Duration(
-      this.days * DAY +
-        this.hours * HOUR +
-        this.minutes * MINUTE +
-        seconds * SECOND +
-        this.milliseconds * MILLISECOND
-    );
+    return Duration.fromObject({
+      days: this.days,
+      hours: this.hours,
+      minutes: this.minutes,
+      seconds: seconds,
+      milliseconds: this.milliseconds,
+    });
   }
 
   withMilliseconds(milliseconds: number): Duration {
-    return new Duration(
-      this.days * DAY +
-        this.hours * HOUR +
-        this.minutes * MINUTE +
-        this.seconds * SECOND +
-        milliseconds * MILLISECOND
-    );
+    return Duration.fromObject({
+      days: this.days,
+      hours: this.hours,
+      minutes: this.minutes,
+      seconds: this.seconds,
+      milliseconds: milliseconds,
+    });
   }
 
   plus(other: Duration): Duration {
-    return new Duration(this.inMilliseconds + other.inMilliseconds);
+    return Duration.of(this.inMilliseconds + other.inMilliseconds);
   }
 
   minus(other: Duration): Duration {
-    return new Duration(this.inMilliseconds - other.inMilliseconds);
+    return Duration.of(this.inMilliseconds - other.inMilliseconds);
   }
 
   multiplyBy(factor: number): Duration {
-    return new Duration(this.inMilliseconds * factor);
+    return Duration.of(this.inMilliseconds * factor);
   }
 
   divideBy(divisor: number): Duration {
-    return new Duration(this.inMilliseconds / divisor);
+    return Duration.of(this.inMilliseconds / divisor);
   }
 
   negate(): Duration {
-    return new Duration(-this.inMilliseconds);
+    return Duration.of(-this.inMilliseconds);
   }
 
   absolute(): Duration {
-    return new Duration(Math.abs(this.inMilliseconds));
+    return Duration.of(Math.abs(this.inMilliseconds));
   }
 
   after(datetime: DateTime): DateTime {
-    return new DateTime(datetime.millisecondsSinceEpoch + this.inMilliseconds);
+    return DateTime.fromUTCMillisecondsSinceEpoch(
+      datetime.millisecondsSinceEpoch + this.inMilliseconds
+    );
   }
 
   before(datetime: DateTime): DateTime {
-    return new DateTime(datetime.millisecondsSinceEpoch - this.inMilliseconds);
+    return DateTime.fromUTCMillisecondsSinceEpoch(
+      datetime.millisecondsSinceEpoch - this.inMilliseconds
+    );
   }
 
   static of(inMilliseconds: number): Duration {
@@ -246,7 +250,7 @@ class Duration {
     const seconds = object.seconds ? object.seconds : 0;
     const milliseconds = object.milliseconds ? object.milliseconds : 0;
 
-    return new Duration(
+    return Duration.of(
       days * DAY +
         hours * HOUR +
         minutes * MINUTE +
@@ -275,7 +279,7 @@ class Duration {
           seconds * SECOND +
           milliseconds * MILLISECOND);
 
-      return new Duration(totalMilliseconds);
+      return Duration.of(totalMilliseconds);
     }
 
     return null;
@@ -302,7 +306,7 @@ class Duration {
           seconds * SECOND +
           milliseconds * MILLISECOND);
 
-      return new Duration(totalMilliseconds);
+      return Duration.of(totalMilliseconds);
     }
 
     return null;
@@ -310,28 +314,6 @@ class Duration {
 
   static parse(str: string): Duration | null {
     return Duration.fromString(str) || Duration.fromISOString(str);
-  }
-
-  static between(since: DateTime, until: DateTime): Duration {
-    return new Duration(
-      until.millisecondsSinceEpoch - since.millisecondsSinceEpoch
-    );
-  }
-
-  static since(datetime: DateTime): Duration {
-    const now = DateTime.now();
-
-    return new Duration(
-      now.millisecondsSinceEpoch - datetime.millisecondsSinceEpoch
-    );
-  }
-
-  static until(datetime: DateTime): Duration {
-    const now = DateTime.now();
-
-    return new Duration(
-      datetime.millisecondsSinceEpoch - now.millisecondsSinceEpoch
-    );
   }
 
   static compare(duration1: Duration, duration2: Duration): number {

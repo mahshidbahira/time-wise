@@ -3347,6 +3347,469 @@ describe("Duration", () => {
   });
 
   describe("static parse", () => {
+    it("should return the duration of only days from a string", () => {
+      // given
+      const str = "6 days 00:00:00";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of only hours from a string", () => {
+      // given
+      const str = "12:00:00";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of only minutes from a string", () => {
+      // given
+      const str = "00:30:00";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of only seconds from a string", () => {
+      // given
+      const str = "00:00:45";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of only milliseconds from a string", () => {
+      // given
+      const str = "00:00:00.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of only milliseconds from a string", () => {
+      // given
+      const str = "00:00:00.500";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(500);
+    });
+
+    it("should return the duration of days and hours from a string", () => {
+      // given
+      const str = "6 days 12:00:00";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days and minutes from a string", () => {
+      // given
+      const str = "6 days 00:30:00";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days and seconds from a string", () => {
+      // given
+      const str = "6 days 00:00:45";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days and milliseconds from a string", () => {
+      // given
+      const str = "6 days 00:00:00.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of hours and minutes from a string", () => {
+      // given
+      const str = "12:30:00";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of hours and seconds from a string", () => {
+      // given
+      const str = "12:00:45";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of hours and milliseconds from a string", () => {
+      // given
+      const str = "12:00:00.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of minutes and seconds from a string", () => {
+      // given
+      const str = "00:30:45";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of minutes and milliseconds from a string", () => {
+      // given
+      const str = "00:30:00.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of seconds and milliseconds from a string", () => {
+      // given
+      const str = "00:00:45.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of days, hours and minutes from a string", () => {
+      // given
+      const str = "6 days 12:30:00";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days, hours and seconds from a string", () => {
+      // given
+      const str = "6 days 12:00:45";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days, hours and milliseconds from a string", () => {
+      // given
+      const str = "6 days 12:00:00.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of days, minutes and seconds from a string", () => {
+      // given
+      const str = "6 days 00:30:45";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days, minutes and milliseconds from a string", () => {
+      // given
+      const str = "6 days 00:30:00.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of days, seconds and milliseconds from a string", () => {
+      // given
+      const str = "6 days 00:00:45.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of hours, minutes and seconds from a string", () => {
+      // given
+      const str = "12:30:45";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of hours, minutes and milliseconds from a string", () => {
+      // given
+      const str = "12:30:00.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of hours, seconds and milliseconds from a string", () => {
+      // given
+      const str = "12:00:45.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of minutes, seconds and milliseconds from a string", () => {
+      // given
+      const str = "00:30:45.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of days, hours, minutes and seconds from a string", () => {
+      // given
+      const str = "6 days 12:30:45";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days, hours, minutes and milliseconds from a string", () => {
+      // given
+      const str = "6 days 12:30:00.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of hours, minutes, seconds and milliseconds from a string", () => {
+      // given
+      const str = "12:30:45.002";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
     it("should return the duration of days, hours, minutes, seconds and milliseconds from a string", () => {
       // given
       const str = "6 days 12:30:45.002";
@@ -3363,12 +3826,502 @@ describe("Duration", () => {
       expect(duration!.milliseconds).toBe(2);
     });
 
-    it("should return the duration of days, hours, minutes, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of negative days, hours, minutes, seconds and milliseconds from a string", () => {
       // given
-      const isoStr = "P6DT12H30M45.002S";
+      const str = "-6 days 12:30:45.002";
 
       // when
-      const duration = Duration.parse(isoStr);
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(-6);
+      expect(duration!.hours).toBe(-12);
+      expect(duration!.minutes).toBe(-30);
+      expect(duration!.seconds).toBe(-45);
+      expect(duration!.milliseconds).toBe(-2);
+    });
+
+    it("should return null from an invalid string", () => {
+      // given
+      const str = "-6 year 15:97ss";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeNull();
+    });
+
+    it("should return the duration of only days from an iso string", () => {
+      // given
+      const str = "P6D";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of only hours from an iso string", () => {
+      // given
+      const str = "PT12H";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of only minutes from an iso string", () => {
+      // given
+      const str = "PT30M";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of only seconds from an iso string", () => {
+      // given
+      const str = "PT45S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of only milliseconds from an iso string", () => {
+      // given
+      const str = "PT0.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of only milliseconds from an iso string", () => {
+      // given
+      const str = "PT0.500S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(500);
+    });
+
+    it("should return the duration of days and hours from an iso string", () => {
+      // given
+      const str = "P6DT12H";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days and minutes from an iso string", () => {
+      // given
+      const str = "P6DT30M";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days and seconds from an iso string", () => {
+      // given
+      const str = "P6DT45S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days and milliseconds from an iso string", () => {
+      // given
+      const str = "P6DT0.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of hours and minutes from an iso string", () => {
+      // given
+      const str = "PT12H30M";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of hours and seconds from an iso string", () => {
+      // given
+      const str = "PT12H45S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of hours and milliseconds from an iso string", () => {
+      // given
+      const str = "PT12H0.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of minutes and seconds from an iso string", () => {
+      // given
+      const str = "PT30M45S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of minutes and milliseconds from an iso string", () => {
+      // given
+      const str = "PT30M0.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of seconds and milliseconds from an iso string", () => {
+      // given
+      const str = "PT45.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of days, hours and minutes from an iso string", () => {
+      // given
+      const str = "P6DT12H30M";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days, hours and seconds from an iso string", () => {
+      // given
+      const str = "P6DT12H45S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days, hours and milliseconds from an iso string", () => {
+      // given
+      const str = "P6DT12H0.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of days, minutes and seconds from an iso string", () => {
+      // given
+      const str = "P6DT30M45S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days, minutes and milliseconds from an iso string", () => {
+      // given
+      const str = "P6DT30M0.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of days, seconds and milliseconds from an iso string", () => {
+      // given
+      const str = "P6DT45.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of hours, minutes and seconds from an iso string", () => {
+      // given
+      const str = "PT12H30M45S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of hours, minutes and milliseconds from an iso string", () => {
+      // given
+      const str = "PT12H30M0.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of hours, seconds and milliseconds from an iso string", () => {
+      // given
+      const str = "PT12H45.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(0);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of minutes, seconds and milliseconds from an iso string", () => {
+      // given
+      const str = "PT30M45.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(0);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of days, hours, minutes and seconds from an iso string", () => {
+      // given
+      const str = "P6DT12H30M45S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(0);
+    });
+
+    it("should return the duration of days, hours, minutes and milliseconds from an iso string", () => {
+      // given
+      const str = "P6DT12H30M0.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(6);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(0);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of hours, minutes, seconds and milliseconds from an iso string", () => {
+      // given
+      const str = "PT12H30M45.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(0);
+      expect(duration!.hours).toBe(12);
+      expect(duration!.minutes).toBe(30);
+      expect(duration!.seconds).toBe(45);
+      expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of days, hours, minutes, seconds and milliseconds from an iso string", () => {
+      // given
+      const str = "P6DT12H30M45.002S";
+
+      // when
+      const duration = Duration.parse(str);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -3377,6 +4330,22 @@ describe("Duration", () => {
       expect(duration!.minutes).toBe(30);
       expect(duration!.seconds).toBe(45);
       expect(duration!.milliseconds).toBe(2);
+    });
+
+    it("should return the duration of negative days, hours, minutes, seconds and milliseconds from an iso string", () => {
+      // given
+      const str = "-P6DT12H30M45.002S";
+
+      // when
+      const duration = Duration.parse(str);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration!.days).toBe(-6);
+      expect(duration!.hours).toBe(-12);
+      expect(duration!.minutes).toBe(-30);
+      expect(duration!.seconds).toBe(-45);
+      expect(duration!.milliseconds).toBe(-2);
     });
 
     it("should return null from an invalid string", () => {

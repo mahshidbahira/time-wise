@@ -192,9 +192,7 @@ class DateTime {
     return new DateTime(this.millisecondsSinceEpoch - duration.inMilliseconds);
   }
 
-  static fromUTCMillisecondsSinceEpoch(
-    millisecondsSinceEpoch: number
-  ): DateTime {
+  static of(millisecondsSinceEpoch: number): DateTime {
     return new DateTime(millisecondsSinceEpoch);
   }
 
@@ -220,13 +218,13 @@ class DateTime {
       return null;
     }
 
-    return DateTime.fromUTCMillisecondsSinceEpoch(millisecondsSinceEpoch);
+    return DateTime.of(millisecondsSinceEpoch);
   }
 
   static fromJSDate(date: Date): DateTime {
     const millisecondsSinceEpoch = date.getTime();
 
-    return DateTime.fromUTCMillisecondsSinceEpoch(millisecondsSinceEpoch);
+    return DateTime.of(millisecondsSinceEpoch);
   }
 
   static now(): DateTime {

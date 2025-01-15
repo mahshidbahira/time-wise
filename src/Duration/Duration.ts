@@ -228,15 +228,11 @@ class Duration {
   }
 
   after(datetime: DateTime): DateTime {
-    return DateTime.fromUTCMillisecondsSinceEpoch(
-      datetime.millisecondsSinceEpoch + this.inMilliseconds
-    );
+    return DateTime.of(datetime.millisecondsSinceEpoch + this.inMilliseconds);
   }
 
   before(datetime: DateTime): DateTime {
-    return DateTime.fromUTCMillisecondsSinceEpoch(
-      datetime.millisecondsSinceEpoch - this.inMilliseconds
-    );
+    return DateTime.of(datetime.millisecondsSinceEpoch - this.inMilliseconds);
   }
 
   static of(inMilliseconds: number): Duration {

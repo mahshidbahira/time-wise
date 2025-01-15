@@ -874,10 +874,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({ days: 6 });
+      expect(objectLiteral).toEqual({ days: 6 });
     });
 
     it("should return the object of only hours", () => {
@@ -885,10 +885,10 @@ describe("Duration", () => {
       const duration = Duration.of(12 * HOUR);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({ hours: 12 });
+      expect(objectLiteral).toEqual({ hours: 12 });
     });
 
     it("should return the object of only minutes", () => {
@@ -896,10 +896,10 @@ describe("Duration", () => {
       const duration = Duration.of(30 * MINUTE);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({ minutes: 30 });
+      expect(objectLiteral).toEqual({ minutes: 30 });
     });
 
     it("should return the object of only seconds", () => {
@@ -907,10 +907,10 @@ describe("Duration", () => {
       const duration = Duration.of(45 * SECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({ seconds: 45 });
+      expect(objectLiteral).toEqual({ seconds: 45 });
     });
 
     it("should return the object of only milliseconds", () => {
@@ -918,10 +918,10 @@ describe("Duration", () => {
       const duration = Duration.of(2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({ milliseconds: 2 });
+      expect(objectLiteral).toEqual({ milliseconds: 2 });
     });
 
     it("should return the object of days and hours", () => {
@@ -929,10 +929,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 12 * HOUR);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({ days: 6, hours: 12 });
+      expect(objectLiteral).toEqual({ days: 6, hours: 12 });
     });
 
     it("should return the object of days and minutes", () => {
@@ -940,10 +940,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 30 * MINUTE);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         minutes: 30,
       });
@@ -954,10 +954,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 45 * SECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         seconds: 45,
       });
@@ -968,10 +968,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         milliseconds: 2,
       });
@@ -982,10 +982,10 @@ describe("Duration", () => {
       const duration = Duration.of(12 * HOUR + 30 * MINUTE);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         hours: 12,
         minutes: 30,
       });
@@ -996,10 +996,10 @@ describe("Duration", () => {
       const duration = Duration.of(12 * HOUR + 45 * SECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         hours: 12,
         seconds: 45,
       });
@@ -1010,10 +1010,10 @@ describe("Duration", () => {
       const duration = Duration.of(12 * HOUR + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         hours: 12,
         milliseconds: 2,
       });
@@ -1024,10 +1024,10 @@ describe("Duration", () => {
       const duration = Duration.of(30 * MINUTE + 45 * SECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         minutes: 30,
         seconds: 45,
       });
@@ -1038,10 +1038,10 @@ describe("Duration", () => {
       const duration = Duration.of(30 * MINUTE + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         minutes: 30,
         milliseconds: 2,
       });
@@ -1052,10 +1052,10 @@ describe("Duration", () => {
       const duration = Duration.of(45 * SECOND + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         seconds: 45,
         milliseconds: 2,
       });
@@ -1066,10 +1066,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 12 * HOUR + 30 * MINUTE);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         hours: 12,
         minutes: 30,
@@ -1081,10 +1081,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 12 * HOUR + 45 * SECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         hours: 12,
         seconds: 45,
@@ -1096,10 +1096,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 12 * HOUR + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         hours: 12,
         milliseconds: 2,
@@ -1111,10 +1111,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 30 * MINUTE + 45 * SECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         minutes: 30,
         seconds: 45,
@@ -1126,10 +1126,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 30 * MINUTE + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         minutes: 30,
         milliseconds: 2,
@@ -1141,10 +1141,10 @@ describe("Duration", () => {
       const duration = Duration.of(6 * DAY + 45 * SECOND + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         seconds: 45,
         milliseconds: 2,
@@ -1156,10 +1156,10 @@ describe("Duration", () => {
       const duration = Duration.of(12 * HOUR + 30 * MINUTE + 45 * SECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         hours: 12,
         minutes: 30,
         seconds: 45,
@@ -1171,10 +1171,10 @@ describe("Duration", () => {
       const duration = Duration.of(12 * HOUR + 30 * MINUTE + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         hours: 12,
         minutes: 30,
         milliseconds: 2,
@@ -1186,10 +1186,10 @@ describe("Duration", () => {
       const duration = Duration.of(12 * HOUR + 45 * SECOND + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         hours: 12,
         seconds: 45,
         milliseconds: 2,
@@ -1201,10 +1201,10 @@ describe("Duration", () => {
       const duration = Duration.of(30 * MINUTE + 45 * SECOND + 2 * MILLISECOND);
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         minutes: 30,
         seconds: 45,
         milliseconds: 2,
@@ -1218,10 +1218,10 @@ describe("Duration", () => {
       );
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         hours: 12,
         minutes: 30,
@@ -1236,10 +1236,10 @@ describe("Duration", () => {
       );
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         hours: 12,
         minutes: 30,
@@ -1254,10 +1254,10 @@ describe("Duration", () => {
       );
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         hours: 12,
         minutes: 30,
         seconds: 45,
@@ -1272,10 +1272,10 @@ describe("Duration", () => {
       );
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: 6,
         hours: 12,
         minutes: 30,
@@ -1291,10 +1291,10 @@ describe("Duration", () => {
       );
 
       // when
-      const obj = duration.toObject();
+      const objectLiteral = duration.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         days: -6,
         hours: -12,
         minutes: -30,
@@ -1728,10 +1728,10 @@ describe("Duration", () => {
   describe("static fromObject", () => {
     it("should return the duration of zero from an object", () => {
       // given
-      const object = {};
+      const objectLiteral = {};
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1744,12 +1744,12 @@ describe("Duration", () => {
 
     it("should return the duration of only days from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1762,12 +1762,12 @@ describe("Duration", () => {
 
     it("should return the duration of only hours from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         hours: 12,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1780,12 +1780,12 @@ describe("Duration", () => {
 
     it("should return the duration of only minutes from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         minutes: 30,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1798,12 +1798,12 @@ describe("Duration", () => {
 
     it("should return the duration of only seconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         seconds: 45,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1816,12 +1816,12 @@ describe("Duration", () => {
 
     it("should return the duration of only milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1834,13 +1834,13 @@ describe("Duration", () => {
 
     it("should return the duration of days and hours from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         hours: 12,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1853,13 +1853,13 @@ describe("Duration", () => {
 
     it("should return the duration of days and minutes from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         minutes: 30,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1872,13 +1872,13 @@ describe("Duration", () => {
 
     it("should return the duration of days and seconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         seconds: 45,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1891,13 +1891,13 @@ describe("Duration", () => {
 
     it("should return the duration of days and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1910,13 +1910,13 @@ describe("Duration", () => {
 
     it("should return the duration of hours and minutes from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         hours: 12,
         minutes: 30,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1929,13 +1929,13 @@ describe("Duration", () => {
 
     it("should return the duration of hours and seconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         hours: 12,
         seconds: 45,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1948,13 +1948,13 @@ describe("Duration", () => {
 
     it("should return the duration of hours and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         hours: 12,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1967,13 +1967,13 @@ describe("Duration", () => {
 
     it("should return the duration of minutes and seconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         minutes: 30,
         seconds: 45,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -1986,13 +1986,13 @@ describe("Duration", () => {
 
     it("should return the duration of minutes and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         minutes: 30,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2005,13 +2005,13 @@ describe("Duration", () => {
 
     it("should return the duration of seconds and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         seconds: 45,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2024,14 +2024,14 @@ describe("Duration", () => {
 
     it("should return the duration of days, hours and minutes from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         hours: 12,
         minutes: 30,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2044,14 +2044,14 @@ describe("Duration", () => {
 
     it("should return the duration of days, hours and seconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         hours: 12,
         seconds: 45,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2064,14 +2064,14 @@ describe("Duration", () => {
 
     it("should return the duration of days, hours and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         hours: 12,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2084,14 +2084,14 @@ describe("Duration", () => {
 
     it("should return the duration of days, minutes and seconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         minutes: 30,
         seconds: 45,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2104,14 +2104,14 @@ describe("Duration", () => {
 
     it("should return the duration of days, minutes and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         minutes: 30,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2124,14 +2124,14 @@ describe("Duration", () => {
 
     it("should return the duration of days, seconds and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         seconds: 45,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2144,14 +2144,14 @@ describe("Duration", () => {
 
     it("should return the duration of hours, minutes and seconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         hours: 12,
         minutes: 30,
         seconds: 45,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2164,14 +2164,14 @@ describe("Duration", () => {
 
     it("should return the duration of hours, minutes and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         hours: 12,
         minutes: 30,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2184,14 +2184,14 @@ describe("Duration", () => {
 
     it("should return the duration of hours, seconds and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         hours: 12,
         seconds: 45,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2204,14 +2204,14 @@ describe("Duration", () => {
 
     it("should return the duration of minutes, seconds and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         minutes: 30,
         seconds: 45,
         milliseconds: 2,
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2224,7 +2224,7 @@ describe("Duration", () => {
 
     it("should return the duration of days, hours, minutes and seconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         hours: 12,
         minutes: 30,
@@ -2232,7 +2232,7 @@ describe("Duration", () => {
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2245,7 +2245,7 @@ describe("Duration", () => {
 
     it("should return the duration of days, hours, minutes and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         hours: 12,
         minutes: 30,
@@ -2253,7 +2253,7 @@ describe("Duration", () => {
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2266,7 +2266,7 @@ describe("Duration", () => {
 
     it("should return the duration of hours, minutes, seconds and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         hours: 12,
         minutes: 30,
         seconds: 45,
@@ -2274,7 +2274,7 @@ describe("Duration", () => {
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2287,7 +2287,7 @@ describe("Duration", () => {
 
     it("should return the duration of days, hours, minutes, seconds and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: 6,
         hours: 12,
         minutes: 30,
@@ -2296,7 +2296,7 @@ describe("Duration", () => {
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -2309,7 +2309,7 @@ describe("Duration", () => {
 
     it("should return the duration of negative days, hours, minutes, seconds and milliseconds from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         days: -6,
         hours: -12,
         minutes: -30,
@@ -2318,7 +2318,7 @@ describe("Duration", () => {
       };
 
       // when
-      const duration = Duration.fromObject(object);
+      const duration = Duration.fromObject(objectLiteral);
 
       // then
       expect(duration).toBeInstanceOf(Duration);

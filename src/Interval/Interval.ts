@@ -1,10 +1,6 @@
 import DateTime from "../DateTime/DateTime";
 import Duration from "../Duration/Duration";
-
-interface ObjectDetails {
-  start: DateTime;
-  end: DateTime;
-}
+import IntervalInfo from "./IntervalInfo";
 
 class Interval {
   readonly start: DateTime;
@@ -56,8 +52,10 @@ class Interval {
     return `${startISOStr}/${endISOStr}`;
   }
 
-  toObject(): ObjectDetails {
-    return { start: this.start, end: this.end };
+  toObject(): IntervalInfo {
+    const start = this.start.toObject();
+    const end = this.end.toObject();
+    return { start, end };
   }
 
   equals(other: Interval): boolean {
@@ -94,8 +92,10 @@ class Interval {
     return Interval.between(now, datetime);
   }
 
-  static fromObject(object: ObjectDetails): Interval {
-    return Interval.between(object.start, object.end);
+  static fromObject(object: IntervalInfo): Interval {
+    const start = DateTime.fromObject(object.start);
+    const end = DateTime.fromObject(object.end);
+    return Interval.between(start, end);
   }
 
   static fromString(str: string): Interval | null {

@@ -1,14 +1,5 @@
 import Duration from "../Duration/Duration";
-
-interface ObjectDetails {
-  year: number;
-  month: number;
-  day: number;
-  hour: number;
-  minute: number;
-  second: number;
-  millisecond: number;
-}
+import DateTimeInfo from "./DateTimeInfo";
 
 class DateTime {
   readonly year: number;
@@ -72,7 +63,7 @@ class DateTime {
     return this.toJSDate().toISOString();
   }
 
-  toObject(): ObjectDetails {
+  toObject(): DateTimeInfo {
     return {
       year: this.year,
       month: this.month,
@@ -196,7 +187,7 @@ class DateTime {
     return new DateTime(millisecondsSinceEpoch);
   }
 
-  static fromObject(object: ObjectDetails): DateTime {
+  static fromObject(object: DateTimeInfo): DateTime {
     const { year, month, day, hour, minute, second, millisecond } = object;
     const millisecondsSinceEpoch = Date.UTC(
       year,

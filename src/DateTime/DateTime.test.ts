@@ -211,10 +211,10 @@ describe("DateTime", () => {
       });
 
       // when
-      const obj = datetime.toObject();
+      const objectLiteral = datetime.toObject();
 
       // then
-      expect(obj).toEqual({
+      expect(objectLiteral).toEqual({
         year: 2024,
         month: 11,
         day: 7,
@@ -779,7 +779,7 @@ describe("DateTime", () => {
   describe("static fromObject", () => {
     it("should return a datetime from an object", () => {
       // given
-      const object = {
+      const objectLiteral = {
         year: 2024,
         month: 11,
         day: 7,
@@ -790,7 +790,7 @@ describe("DateTime", () => {
       };
 
       // when
-      const datetime = DateTime.fromObject(object);
+      const datetime = DateTime.fromObject(objectLiteral);
 
       // then
       expect(datetime).toBeInstanceOf(DateTime);

@@ -292,10 +292,29 @@ describe("Interval", () => {
       const interval = Interval.between(start, end);
 
       // when
-      const obj = interval.toObject();
+      const objectLiteral = interval.toObject();
 
       // then
-      expect(obj).toEqual({ start: start, end: end });
+      expect(objectLiteral).toEqual({
+        start: {
+          year: 2024,
+          month: 11,
+          day: 7,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        },
+        end: {
+          year: 2024,
+          month: 11,
+          day: 9,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        },
+      });
     });
   });
 
@@ -761,33 +780,54 @@ describe("Interval", () => {
   describe("static fromObject", () => {
     it("should return an interval from an object", () => {
       // given
-      const start = DateTime.fromObject({
-        year: 2024,
-        month: 11,
-        day: 7,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-      });
-      const end = DateTime.fromObject({
-        year: 2024,
-        month: 11,
-        day: 9,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-      });
-      const obj = { start, end };
+      const objectLiteral = {
+        start: {
+          year: 2024,
+          month: 11,
+          day: 7,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        },
+        end: {
+          year: 2024,
+          month: 11,
+          day: 9,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        },
+      };
 
       // when
-      const interval = Interval.fromObject(obj);
+      const interval = Interval.fromObject(objectLiteral);
 
       // then
       expect(interval).toBeInstanceOf(Interval);
-      expect(interval.start).toEqual(start);
-      expect(interval.end).toEqual(end);
+      expect(interval.start).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 7,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        })
+      );
+      expect(interval.end).toEqual(
+        DateTime.fromObject({
+          year: 2024,
+          month: 11,
+          day: 9,
+          hour: 12,
+          minute: 56,
+          second: 19,
+          millisecond: 920,
+        })
+      );
     });
   });
 

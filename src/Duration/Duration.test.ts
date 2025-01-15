@@ -3793,7 +3793,9 @@ describe("Duration", () => {
   describe("static since", () => {
     it("should return the duration since a date", () => {
       // given
-      const datetime = DateTime.of(now.getTime() - 2 * DAY);
+      const datetime = DateTime.fromUTCMillisecondsSinceEpoch(
+        now.getTime() - 2 * DAY
+      );
 
       // when
       const duration = Duration.since(datetime);
@@ -3806,7 +3808,9 @@ describe("Duration", () => {
   describe("static until", () => {
     it("should return the duration until a date", () => {
       // given
-      const datetime = DateTime.of(now.getTime() + 2 * DAY);
+      const datetime = DateTime.fromUTCMillisecondsSinceEpoch(
+        now.getTime() + 2 * DAY
+      );
 
       // when
       const duration = Duration.until(datetime);

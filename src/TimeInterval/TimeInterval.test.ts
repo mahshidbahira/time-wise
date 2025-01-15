@@ -592,4 +592,166 @@ describe("TimeInterval", () => {
       expect(isShorterThan).toBe(false);
     });
   });
+
+  describe("withStart", () => {
+    it("should return an interval with the new start", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval = new TimeInterval(start, end);
+
+      const newStart = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 4,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const intervalWithStart = interval.withStart(newStart);
+
+      // then
+      expect(intervalWithStart).toEqual(new TimeInterval(newStart, end));
+    });
+  });
+
+  describe("withEnd", () => {
+    it("should return an interval with the new end", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const interval = new TimeInterval(start, end);
+
+      const newEnd = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 11,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const intervalWithStart = interval.withEnd(newEnd);
+
+      // then
+      expect(intervalWithStart).toEqual(new TimeInterval(start, newEnd));
+    });
+  });
+
+  describe("static between", () => {
+    it("should return an interval between the start and the end", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 9,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const interval = TimeInterval.between(start, end);
+
+      // then
+      expect(interval).toBeInstanceOf(TimeInterval);
+      expect(interval.start).toEqual(start);
+      expect(interval.end).toEqual(end);
+    });
+  });
+
+  describe("static since", () => {
+    it("should return an interval since the datetime until now", () => {
+      // given
+      const start = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+      const end = DateTime.fromJSDate(now);
+
+      // when
+      const interval = TimeInterval.since(start);
+
+      // then
+      expect(interval).toBeInstanceOf(TimeInterval);
+      expect(interval.start).toEqual(start);
+      expect(interval.end).toEqual(end);
+    });
+  });
+
+  describe("static until", () => {
+    it("should return an interval since now until the datetime", () => {
+      // given
+      const start = DateTime.fromJSDate(now);
+      const end = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
+
+      // when
+      const interval = TimeInterval.until(end);
+
+      // then
+      expect(interval).toBeInstanceOf(TimeInterval);
+      expect(interval.start).toEqual(start);
+      expect(interval.end).toEqual(end);
+    });
+  });
 });

@@ -11,9 +11,6 @@ interface ObjectDetails {
 }
 
 class DateTime {
-  // ----------------------------------------------------------------
-  // instance
-
   readonly year: number;
   readonly month: number;
   readonly day: number;
@@ -195,10 +192,9 @@ class DateTime {
     return new DateTime(this.millisecondsSinceEpoch - duration.inMilliseconds);
   }
 
-  // ----------------------------------------------------------------
-  // static
-
-  static of(millisecondsSinceEpoch: number): DateTime {
+  static fromUTCMillisecondsSinceEpoch(
+    millisecondsSinceEpoch: number
+  ): DateTime {
     return new DateTime(millisecondsSinceEpoch);
   }
 
@@ -224,13 +220,13 @@ class DateTime {
       return null;
     }
 
-    return DateTime.of(millisecondsSinceEpoch);
+    return DateTime.fromUTCMillisecondsSinceEpoch(millisecondsSinceEpoch);
   }
 
   static fromJSDate(date: Date): DateTime {
     const millisecondsSinceEpoch = date.getTime();
 
-    return DateTime.of(millisecondsSinceEpoch);
+    return DateTime.fromUTCMillisecondsSinceEpoch(millisecondsSinceEpoch);
   }
 
   static now(): DateTime {

@@ -69,6 +69,28 @@ class TimeInterval {
   isShorterThan(other: TimeInterval): boolean {
     return this.duration.inMilliseconds < other.duration.inMilliseconds;
   }
+
+  withStart(start: DateTime): TimeInterval {
+    return new TimeInterval(start, this.end);
+  }
+
+  withEnd(end: DateTime): TimeInterval {
+    return new TimeInterval(this.start, end);
+  }
+
+  static between(start: DateTime, end: DateTime): TimeInterval {
+    return new TimeInterval(start, end);
+  }
+
+  static since(datetime: DateTime): TimeInterval {
+    const now = DateTime.now();
+    return TimeInterval.between(datetime, now);
+  }
+
+  static until(datetime: DateTime): TimeInterval {
+    const now = DateTime.now();
+    return TimeInterval.between(now, datetime);
+  }
 }
 
 export default TimeInterval;

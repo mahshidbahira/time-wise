@@ -235,9 +235,6 @@ class Duration {
     return new DateTime(datetime.millisecondsSinceEpoch - this.inMilliseconds);
   }
 
-  // ----------------------------------------------------------------
-  // static
-
   static of(inMilliseconds: number): Duration {
     return new Duration(inMilliseconds);
   }

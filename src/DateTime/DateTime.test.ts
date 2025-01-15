@@ -758,16 +758,15 @@ describe("DateTime", () => {
     });
   });
 
-  // ----------------------------------------------------------------
-  // static
-
-  describe("static of", () => {
+  describe("static fromUTCMillisecondsSinceEpoch", () => {
     it("should return a datetime of epoch from zero", () => {
       // given
       const millisecondsSinceEpoch = 0;
 
       // when
-      const datetime = DateTime.of(millisecondsSinceEpoch);
+      const datetime = DateTime.fromUTCMillisecondsSinceEpoch(
+        millisecondsSinceEpoch
+      );
 
       // then
       expect(datetime).toBeInstanceOf(DateTime);
@@ -785,7 +784,9 @@ describe("DateTime", () => {
       const millisecondsSinceEpoch = 1_733_576_179_920;
 
       // when
-      const datetime = DateTime.of(millisecondsSinceEpoch);
+      const datetime = DateTime.fromUTCMillisecondsSinceEpoch(
+        millisecondsSinceEpoch
+      );
 
       // then
       expect(datetime).toBeInstanceOf(DateTime);

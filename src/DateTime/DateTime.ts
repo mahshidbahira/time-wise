@@ -1,4 +1,4 @@
-import { Duration } from "../main";
+import Duration from "../Duration/Duration";
 
 interface ObjectDetails {
   year: number;
@@ -185,11 +185,11 @@ class DateTime {
   }
 
   plus(duration: Duration): DateTime {
-    return new DateTime(this.millisecondsSinceEpoch + duration.inMilliseconds);
+    return DateTime.of(this.millisecondsSinceEpoch + duration.inMilliseconds);
   }
 
   minus(duration: Duration): DateTime {
-    return new DateTime(this.millisecondsSinceEpoch - duration.inMilliseconds);
+    return DateTime.of(this.millisecondsSinceEpoch - duration.inMilliseconds);
   }
 
   static of(millisecondsSinceEpoch: number): DateTime {
@@ -208,7 +208,7 @@ class DateTime {
       millisecond
     );
 
-    return new DateTime(millisecondsSinceEpoch);
+    return DateTime.of(millisecondsSinceEpoch);
   }
 
   static parse(str: string): DateTime | null {
@@ -228,7 +228,7 @@ class DateTime {
   }
 
   static now(): DateTime {
-    return new DateTime(Date.now());
+    return DateTime.of(Date.now());
   }
 
   static compare(datetime1: DateTime, datetime2: DateTime): number {

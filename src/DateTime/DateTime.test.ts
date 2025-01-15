@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-// import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
+import { MILLISECOND } from "../Units/Units";
 import DateTime from "./DateTime";
-import { Duration, MILLISECOND } from "../main";
+import Duration from "../Duration/Duration";
 
 describe("DateTime", () => {
   const now = new Date();
@@ -243,12 +243,19 @@ describe("DateTime", () => {
       const jsDate = datetime.toJSDate();
 
       // then
-      expect(jsDate).toEqual(new Date(Date.UTC(2024, 11, 7, 12, 56, 19, 920)));
+      expect(jsDate).toBeInstanceOf(Date);
+      expect(jsDate.getUTCFullYear()).toBe(2024);
+      expect(jsDate.getUTCMonth()).toBe(11);
+      expect(jsDate.getUTCDate()).toBe(7);
+      expect(jsDate.getUTCHours()).toBe(12);
+      expect(jsDate.getUTCMinutes()).toBe(56);
+      expect(jsDate.getUTCSeconds()).toBe(19);
+      expect(jsDate.getUTCMilliseconds()).toBe(920);
     });
   });
 
   describe("equals", () => {
-    it("should return true for equal datetimes", () => {
+    it("should return true for equal datetime objects", () => {
       // given
       const datetime1 = DateTime.fromObject({
         year: 2024,
@@ -276,7 +283,7 @@ describe("DateTime", () => {
       expect(isEqual).toBe(true);
     });
 
-    it("should return false for unequal datetimes", () => {
+    it("should return false for unequal datetime objects", () => {
       // given
       const datetime1 = DateTime.fromObject({
         year: 2024,
@@ -494,17 +501,14 @@ describe("DateTime", () => {
       const datetimeWithYear = datetime.withYear(2023);
 
       // then
-      expect(datetimeWithYear).toEqual(
-        DateTime.fromObject({
-          year: 2023,
-          month: 11,
-          day: 7,
-          hour: 12,
-          minute: 56,
-          second: 19,
-          millisecond: 920,
-        })
-      );
+      expect(datetimeWithYear).toBeInstanceOf(DateTime);
+      expect(datetimeWithYear.year).toBe(2023);
+      expect(datetimeWithYear.month).toBe(11);
+      expect(datetimeWithYear.day).toBe(7);
+      expect(datetimeWithYear.hour).toBe(12);
+      expect(datetimeWithYear.minute).toBe(56);
+      expect(datetimeWithYear.second).toBe(19);
+      expect(datetimeWithYear.millisecond).toBe(920);
     });
   });
 
@@ -525,17 +529,14 @@ describe("DateTime", () => {
       const datetimeWithMonth = datetime.withMonth(9);
 
       // then
-      expect(datetimeWithMonth).toEqual(
-        DateTime.fromObject({
-          year: 2024,
-          month: 9,
-          day: 7,
-          hour: 12,
-          minute: 56,
-          second: 19,
-          millisecond: 920,
-        })
-      );
+      expect(datetimeWithMonth).toBeInstanceOf(DateTime);
+      expect(datetimeWithMonth.year).toBe(2024);
+      expect(datetimeWithMonth.month).toBe(9);
+      expect(datetimeWithMonth.day).toBe(7);
+      expect(datetimeWithMonth.hour).toBe(12);
+      expect(datetimeWithMonth.minute).toBe(56);
+      expect(datetimeWithMonth.second).toBe(19);
+      expect(datetimeWithMonth.millisecond).toBe(920);
     });
   });
 
@@ -556,17 +557,14 @@ describe("DateTime", () => {
       const datetimeWithDay = datetime.withDay(28);
 
       // then
-      expect(datetimeWithDay).toEqual(
-        DateTime.fromObject({
-          year: 2024,
-          month: 11,
-          day: 28,
-          hour: 12,
-          minute: 56,
-          second: 19,
-          millisecond: 920,
-        })
-      );
+      expect(datetimeWithDay).toBeInstanceOf(DateTime);
+      expect(datetimeWithDay.year).toBe(2024);
+      expect(datetimeWithDay.month).toBe(11);
+      expect(datetimeWithDay.day).toBe(28);
+      expect(datetimeWithDay.hour).toBe(12);
+      expect(datetimeWithDay.minute).toBe(56);
+      expect(datetimeWithDay.second).toBe(19);
+      expect(datetimeWithDay.millisecond).toBe(920);
     });
   });
 
@@ -587,17 +585,14 @@ describe("DateTime", () => {
       const datetimeWithHour = datetime.withHour(21);
 
       // then
-      expect(datetimeWithHour).toEqual(
-        DateTime.fromObject({
-          year: 2024,
-          month: 11,
-          day: 7,
-          hour: 21,
-          minute: 56,
-          second: 19,
-          millisecond: 920,
-        })
-      );
+      expect(datetimeWithHour).toBeInstanceOf(DateTime);
+      expect(datetimeWithHour.year).toBe(2024);
+      expect(datetimeWithHour.month).toBe(11);
+      expect(datetimeWithHour.day).toBe(7);
+      expect(datetimeWithHour.hour).toBe(21);
+      expect(datetimeWithHour.minute).toBe(56);
+      expect(datetimeWithHour.second).toBe(19);
+      expect(datetimeWithHour.millisecond).toBe(920);
     });
   });
 
@@ -618,17 +613,14 @@ describe("DateTime", () => {
       const datetimeWithMinute = datetime.withMinute(59);
 
       // then
-      expect(datetimeWithMinute).toEqual(
-        DateTime.fromObject({
-          year: 2024,
-          month: 11,
-          day: 7,
-          hour: 12,
-          minute: 59,
-          second: 19,
-          millisecond: 920,
-        })
-      );
+      expect(datetimeWithMinute).toBeInstanceOf(DateTime);
+      expect(datetimeWithMinute.year).toBe(2024);
+      expect(datetimeWithMinute.month).toBe(11);
+      expect(datetimeWithMinute.day).toBe(7);
+      expect(datetimeWithMinute.hour).toBe(12);
+      expect(datetimeWithMinute.minute).toBe(59);
+      expect(datetimeWithMinute.second).toBe(19);
+      expect(datetimeWithMinute.millisecond).toBe(920);
     });
   });
 
@@ -649,17 +641,14 @@ describe("DateTime", () => {
       const datetimeWithSecond = datetime.withSecond(45);
 
       // then
-      expect(datetimeWithSecond).toEqual(
-        DateTime.fromObject({
-          year: 2024,
-          month: 11,
-          day: 7,
-          hour: 12,
-          minute: 56,
-          second: 45,
-          millisecond: 920,
-        })
-      );
+      expect(datetimeWithSecond).toBeInstanceOf(DateTime);
+      expect(datetimeWithSecond.year).toBe(2024);
+      expect(datetimeWithSecond.month).toBe(11);
+      expect(datetimeWithSecond.day).toBe(7);
+      expect(datetimeWithSecond.hour).toBe(12);
+      expect(datetimeWithSecond.minute).toBe(56);
+      expect(datetimeWithSecond.second).toBe(45);
+      expect(datetimeWithSecond.millisecond).toBe(920);
     });
   });
 
@@ -680,17 +669,14 @@ describe("DateTime", () => {
       const datetimeWithMillisecond = datetime.withMillisecond(2);
 
       // then
-      expect(datetimeWithMillisecond).toEqual(
-        DateTime.fromObject({
-          year: 2024,
-          month: 11,
-          day: 7,
-          hour: 12,
-          minute: 56,
-          second: 19,
-          millisecond: 2,
-        })
-      );
+      expect(datetimeWithMillisecond).toBeInstanceOf(DateTime);
+      expect(datetimeWithMillisecond.year).toBe(2024);
+      expect(datetimeWithMillisecond.month).toBe(11);
+      expect(datetimeWithMillisecond.day).toBe(7);
+      expect(datetimeWithMillisecond.hour).toBe(12);
+      expect(datetimeWithMillisecond.minute).toBe(56);
+      expect(datetimeWithMillisecond.second).toBe(19);
+      expect(datetimeWithMillisecond.millisecond).toBe(2);
     });
   });
 
@@ -712,17 +698,14 @@ describe("DateTime", () => {
       const sum = datetime.plus(duration);
 
       // then
-      expect(sum).toEqual(
-        DateTime.fromObject({
-          year: 2024,
-          month: 11,
-          day: 7,
-          hour: 12,
-          minute: 56,
-          second: 19,
-          millisecond: 930,
-        })
-      );
+      expect(sum).toBeInstanceOf(DateTime);
+      expect(sum.year).toBe(2024);
+      expect(sum.month).toBe(11);
+      expect(sum.day).toBe(7);
+      expect(sum.hour).toBe(12);
+      expect(sum.minute).toBe(56);
+      expect(sum.second).toBe(19);
+      expect(sum.millisecond).toBe(930);
     });
   });
 
@@ -744,17 +727,14 @@ describe("DateTime", () => {
       const diff = datetime.minus(duration);
 
       // then
-      expect(diff).toEqual(
-        DateTime.fromObject({
-          year: 2024,
-          month: 11,
-          day: 7,
-          hour: 12,
-          minute: 56,
-          second: 19,
-          millisecond: 910,
-        })
-      );
+      expect(diff).toBeInstanceOf(DateTime);
+      expect(diff.year).toBe(2024);
+      expect(diff.month).toBe(11);
+      expect(diff.day).toBe(7);
+      expect(diff.hour).toBe(12);
+      expect(diff.minute).toBe(56);
+      expect(diff.second).toBe(19);
+      expect(diff.millisecond).toBe(910);
     });
   });
 

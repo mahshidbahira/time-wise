@@ -1,6 +1,6 @@
 import DateTime from "../DateTime/DateTime";
 import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
-import DurationInfo from "./DurationInfo";
+import DurationObjectLiteral from "./DurationObjectLiteral";
 
 class Duration {
   readonly days: number;
@@ -112,8 +112,8 @@ class Duration {
     return isoStr;
   }
 
-  toObject(): DurationInfo {
-    const object: DurationInfo = {};
+  toObject(): DurationObjectLiteral {
+    const object: DurationObjectLiteral = {};
 
     if (this.days) {
       object.days = this.days;
@@ -232,7 +232,7 @@ class Duration {
     return new Duration(inMilliseconds);
   }
 
-  static fromObject(object: DurationInfo): Duration {
+  static fromObject(object: DurationObjectLiteral): Duration {
     const days = object.days ? object.days : 0;
     const hours = object.hours ? object.hours : 0;
     const minutes = object.minutes ? object.minutes : 0;

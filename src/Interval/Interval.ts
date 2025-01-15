@@ -1,6 +1,6 @@
 import DateTime from "../DateTime/DateTime";
 import Duration from "../Duration/Duration";
-import IntervalInfo from "./IntervalInfo";
+import IntervalObjectLiteral from "./IntervalObjectLiteral";
 
 class Interval {
   readonly start: DateTime;
@@ -52,7 +52,7 @@ class Interval {
     return `${startISOStr}/${endISOStr}`;
   }
 
-  toObject(): IntervalInfo {
+  toObject(): IntervalObjectLiteral {
     const start = this.start.toObject();
     const end = this.end.toObject();
     return { start, end };
@@ -92,7 +92,7 @@ class Interval {
     return Interval.between(now, datetime);
   }
 
-  static fromObject(object: IntervalInfo): Interval {
+  static fromObject(object: IntervalObjectLiteral): Interval {
     const start = DateTime.fromObject(object.start);
     const end = DateTime.fromObject(object.end);
     return Interval.between(start, end);

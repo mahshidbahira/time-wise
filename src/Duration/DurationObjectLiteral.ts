@@ -1,4 +1,4 @@
-interface DurationInfo {
+interface DurationObjectLiteral {
   days?: number;
   hours?: number;
   minutes?: number;
@@ -6,4 +6,4 @@ interface DurationInfo {
   milliseconds?: number;
 }
 
-export default DurationInfo;
+export default DurationObjectLiteral;

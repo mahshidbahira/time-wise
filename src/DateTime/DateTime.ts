@@ -1,5 +1,5 @@
 import Duration from "../Duration/Duration";
-import DateTimeInfo from "./DateTimeInfo";
+import DateTimeObjectLiteral from "./DateTimeObjectLiteral";
 
 class DateTime {
   readonly year: number;
@@ -63,7 +63,7 @@ class DateTime {
     return this.toJSDate().toISOString();
   }
 
-  toObject(): DateTimeInfo {
+  toObject(): DateTimeObjectLiteral {
     return {
       year: this.year,
       month: this.month,
@@ -187,7 +187,7 @@ class DateTime {
     return new DateTime(millisecondsSinceEpoch);
   }
 
-  static fromObject(object: DateTimeInfo): DateTime {
+  static fromObject(object: DateTimeObjectLiteral): DateTime {
     const { year, month, day, hour, minute, second, millisecond } = object;
     const millisecondsSinceEpoch = Date.UTC(
       year,

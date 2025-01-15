@@ -1,4 +1,4 @@
-interface DateTimeInfo {
+interface DateTimeObjectLiteral {
   year: number;
   month: number;
   day: number;
@@ -8,4 +8,4 @@ interface DateTimeInfo {
   millisecond: number;
 }
 
-export default DateTimeInfo;
+export default DateTimeObjectLiteral;

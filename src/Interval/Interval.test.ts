@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DAY } from "../Units/Units";
-import TimeInterval from "./TimeInterval";
+import Interval from "./Interval";
 import DateTime from "../DateTime/DateTime";
 import Duration from "../Duration/Duration";
 
-describe("TimeInterval", () => {
+describe("Interval", () => {
   const now = new Date();
 
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe("TimeInterval", () => {
   });
 
   describe("constructor", () => {
-    it("should return a time interval", () => {
+    it("should return an interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
@@ -27,7 +27,6 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-
       const end = DateTime.fromObject({
         year: 2024,
         month: 11,
@@ -39,10 +38,10 @@ describe("TimeInterval", () => {
       });
 
       // when
-      const interval = new TimeInterval(start, end);
+      const interval = new Interval(start, end);
 
       // then
-      expect(interval).toBeInstanceOf(TimeInterval);
+      expect(interval).toBeInstanceOf(Interval);
       expect(interval.start).toEqual(start);
       expect(interval.end).toEqual(end);
     });
@@ -69,7 +68,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = Interval.between(start, end);
 
       // when
       const duration = interval.duration;
@@ -100,7 +99,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = Interval.between(start, end);
 
       // when
       const value = interval.valueOf();
@@ -131,7 +130,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = Interval.between(start, end);
 
       // when
       const str = interval.toString();
@@ -164,7 +163,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = Interval.between(start, end);
 
       // when
       const primitive = +interval;
@@ -193,7 +192,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = new Interval(start, end);
 
       // when
       const primitive = `${interval}`;
@@ -226,7 +225,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = Interval.between(start, end);
 
       // when
       const jsonStr = JSON.stringify(interval);
@@ -259,7 +258,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = Interval.between(start, end);
 
       // when
       const str = interval.toISOString();
@@ -290,7 +289,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = Interval.between(start, end);
 
       // when
       const obj = interval.toObject();
@@ -321,8 +320,8 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval1 = new TimeInterval(start, end);
-      const interval2 = new TimeInterval(start, end);
+      const interval1 = Interval.between(start, end);
+      const interval2 = Interval.between(start, end);
 
       // when
       const isEqual = interval1.equals(interval2);
@@ -360,8 +359,8 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval1 = new TimeInterval(start, end1);
-      const interval2 = new TimeInterval(start, end2);
+      const interval1 = Interval.between(start, end1);
+      const interval2 = Interval.between(start, end2);
 
       // when
       const isEqual = interval1.equals(interval2);
@@ -401,8 +400,8 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval1 = new TimeInterval(start, end1);
-      const interval2 = new TimeInterval(start, end2);
+      const interval1 = Interval.between(start, end1);
+      const interval2 = Interval.between(start, end2);
 
       // when
       const isLongerThan = interval1.isLongerThan(interval2);
@@ -432,8 +431,8 @@ describe("TimeInterval", () => {
         millisecond: 920,
       });
 
-      const interval1 = new TimeInterval(start, end);
-      const interval2 = new TimeInterval(start, end);
+      const interval1 = Interval.between(start, end);
+      const interval2 = Interval.between(start, end);
 
       // when
       const isLongerThan = interval1.isLongerThan(interval2);
@@ -471,8 +470,8 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval1 = new TimeInterval(start, end1);
-      const interval2 = new TimeInterval(start, end2);
+      const interval1 = Interval.between(start, end1);
+      const interval2 = Interval.between(start, end2);
 
       // when
       const isLongerThan = interval1.isLongerThan(interval2);
@@ -512,8 +511,8 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval1 = new TimeInterval(start, end1);
-      const interval2 = new TimeInterval(start, end2);
+      const interval1 = Interval.between(start, end1);
+      const interval2 = Interval.between(start, end2);
 
       // when
       const isShorterThan = interval1.isShorterThan(interval2);
@@ -543,8 +542,8 @@ describe("TimeInterval", () => {
         millisecond: 920,
       });
 
-      const interval1 = new TimeInterval(start, end);
-      const interval2 = new TimeInterval(start, end);
+      const interval1 = Interval.between(start, end);
+      const interval2 = Interval.between(start, end);
 
       // when
       const isShorterThan = interval1.isShorterThan(interval2);
@@ -582,8 +581,8 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval1 = new TimeInterval(start, end1);
-      const interval2 = new TimeInterval(start, end2);
+      const interval1 = Interval.between(start, end1);
+      const interval2 = Interval.between(start, end2);
 
       // when
       const isShorterThan = interval1.isShorterThan(interval2);
@@ -614,7 +613,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = Interval.between(start, end);
 
       const newStart = DateTime.fromObject({
         year: 2024,
@@ -630,7 +629,9 @@ describe("TimeInterval", () => {
       const intervalWithStart = interval.withStart(newStart);
 
       // then
-      expect(intervalWithStart).toEqual(new TimeInterval(newStart, end));
+      expect(intervalWithStart).toBeInstanceOf(Interval);
+      expect(intervalWithStart.start).toEqual(newStart);
+      expect(intervalWithStart.end).toEqual(end);
     });
   });
 
@@ -655,7 +656,7 @@ describe("TimeInterval", () => {
         second: 19,
         millisecond: 920,
       });
-      const interval = new TimeInterval(start, end);
+      const interval = new Interval(start, end);
 
       const newEnd = DateTime.fromObject({
         year: 2024,
@@ -668,10 +669,12 @@ describe("TimeInterval", () => {
       });
 
       // when
-      const intervalWithStart = interval.withEnd(newEnd);
+      const intervalWithEnd = interval.withEnd(newEnd);
 
       // then
-      expect(intervalWithStart).toEqual(new TimeInterval(start, newEnd));
+      expect(intervalWithEnd).toBeInstanceOf(Interval);
+      expect(intervalWithEnd.start).toEqual(start);
+      expect(intervalWithEnd.end).toEqual(newEnd);
     });
   });
 
@@ -698,10 +701,10 @@ describe("TimeInterval", () => {
       });
 
       // when
-      const interval = TimeInterval.between(start, end);
+      const interval = Interval.between(start, end);
 
       // then
-      expect(interval).toBeInstanceOf(TimeInterval);
+      expect(interval).toBeInstanceOf(Interval);
       expect(interval.start).toEqual(start);
       expect(interval.end).toEqual(end);
     });
@@ -722,10 +725,10 @@ describe("TimeInterval", () => {
       const end = DateTime.fromJSDate(now);
 
       // when
-      const interval = TimeInterval.since(start);
+      const interval = Interval.since(start);
 
       // then
-      expect(interval).toBeInstanceOf(TimeInterval);
+      expect(interval).toBeInstanceOf(Interval);
       expect(interval.start).toEqual(start);
       expect(interval.end).toEqual(end);
     });
@@ -746,10 +749,10 @@ describe("TimeInterval", () => {
       });
 
       // when
-      const interval = TimeInterval.until(end);
+      const interval = Interval.until(end);
 
       // then
-      expect(interval).toBeInstanceOf(TimeInterval);
+      expect(interval).toBeInstanceOf(Interval);
       expect(interval.start).toEqual(start);
       expect(interval.end).toEqual(end);
     });

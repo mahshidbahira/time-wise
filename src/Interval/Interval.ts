@@ -6,7 +6,7 @@ interface ObjectDetails {
   end: DateTime;
 }
 
-class TimeInterval {
+class Interval {
   readonly start: DateTime;
   readonly end: DateTime;
 
@@ -58,39 +58,39 @@ class TimeInterval {
     return { start: this.start, end: this.end };
   }
 
-  equals(other: TimeInterval): boolean {
+  equals(other: Interval): boolean {
     return this.duration.inMilliseconds === other.duration.inMilliseconds;
   }
 
-  isLongerThan(other: TimeInterval): boolean {
+  isLongerThan(other: Interval): boolean {
     return this.duration.inMilliseconds > other.duration.inMilliseconds;
   }
 
-  isShorterThan(other: TimeInterval): boolean {
+  isShorterThan(other: Interval): boolean {
     return this.duration.inMilliseconds < other.duration.inMilliseconds;
   }
 
-  withStart(start: DateTime): TimeInterval {
-    return new TimeInterval(start, this.end);
+  withStart(start: DateTime): Interval {
+    return new Interval(start, this.end);
   }
 
-  withEnd(end: DateTime): TimeInterval {
-    return new TimeInterval(this.start, end);
+  withEnd(end: DateTime): Interval {
+    return new Interval(this.start, end);
   }
 
-  static between(start: DateTime, end: DateTime): TimeInterval {
-    return new TimeInterval(start, end);
+  static between(start: DateTime, end: DateTime): Interval {
+    return new Interval(start, end);
   }
 
-  static since(datetime: DateTime): TimeInterval {
+  static since(datetime: DateTime): Interval {
     const now = DateTime.now();
-    return TimeInterval.between(datetime, now);
+    return Interval.between(datetime, now);
   }
 
-  static until(datetime: DateTime): TimeInterval {
+  static until(datetime: DateTime): Interval {
     const now = DateTime.now();
-    return TimeInterval.between(now, datetime);
+    return Interval.between(now, datetime);
   }
 }
 
-export default TimeInterval;
+export default Interval;

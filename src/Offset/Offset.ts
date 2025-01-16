@@ -184,6 +184,20 @@ class Offset {
     return Offset.fromMinutes(duration.inMinutes);
   }
 
+  static fromZoneName(zoneName: string): Offset {
+    const jsDate = new Date();
+    const jsUTCDate = new Date(
+      jsDate.toLocaleString("en-US", { timeZone: "UTC" })
+    );
+    const jsTzDate = new Date(
+      jsDate.toLocaleString("en-US", { timeZone: zoneName })
+    );
+
+    return Offset.fromDuration(
+      Duration.of(jsTzDate.getTime() - jsUTCDate.getTime())
+    );
+  }
+
   static compare(offset1: Offset, offset2: Offset): number {
     return offset1.inMinutes - offset2.inMinutes;
   }

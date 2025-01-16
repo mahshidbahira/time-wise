@@ -677,6 +677,47 @@ describe("Offset", () => {
     });
   });
 
+  describe("static fromZoneName", () => {
+    it("should return the offset of UTC", () => {
+      // given
+      const zoneName = "UTC";
+
+      // when
+      const offset = Offset.fromZoneName(zoneName);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hours).toBe(0);
+      expect(offset.minutes).toBe(0);
+    });
+
+    it("should return the offset of America/New_York", () => {
+      // given
+      const zoneName = "America/New_York";
+
+      // when
+      const offset = Offset.fromZoneName(zoneName);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hours).toBe(-5);
+      expect(offset.minutes).toBe(-0);
+    });
+
+    it("should return the offset of Asia/Tokyo", () => {
+      // given
+      const zoneName = "Asia/Tokyo";
+
+      // when
+      const offset = Offset.fromZoneName(zoneName);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hours).toBe(9);
+      expect(offset.minutes).toBe(0);
+    });
+  });
+
   describe("static compare", () => {
     it("should return a positive number when the offset is easter than the other offset", () => {
       // given

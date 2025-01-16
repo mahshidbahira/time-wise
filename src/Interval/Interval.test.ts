@@ -26,6 +26,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -35,6 +36,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -58,6 +60,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -67,6 +70,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -89,6 +93,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -98,6 +103,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -120,6 +126,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -129,6 +136,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -137,7 +145,7 @@ describe("Interval", () => {
 
       // then
       expect(str).toBe(
-        "Sat, 07 Dec 2024 12:56:19 GMT - Mon, 09 Dec 2024 12:56:19 GMT"
+        "Sat Dec 07 2024 12:56:19 GMT+0000 (Coordinated Universal Time) - Mon Dec 09 2024 12:56:19 GMT+0000 (Coordinated Universal Time)"
       );
     });
   });
@@ -153,6 +161,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -162,6 +171,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -182,6 +192,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -191,6 +202,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -199,7 +211,7 @@ describe("Interval", () => {
 
       // then
       expect(primitive).toBe(
-        "Sat, 07 Dec 2024 12:56:19 GMT - Mon, 09 Dec 2024 12:56:19 GMT"
+        "Sat Dec 07 2024 12:56:19 GMT+0000 (Coordinated Universal Time) - Mon Dec 09 2024 12:56:19 GMT+0000 (Coordinated Universal Time)"
       );
     });
   });
@@ -215,6 +227,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -224,6 +237,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -248,6 +262,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -257,6 +272,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -279,6 +295,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -288,6 +305,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -304,6 +322,7 @@ describe("Interval", () => {
           minute: 56,
           second: 19,
           millisecond: 920,
+          offset: {},
         },
         end: {
           year: 2024,
@@ -313,6 +332,7 @@ describe("Interval", () => {
           minute: 56,
           second: 19,
           millisecond: 920,
+          offset: {},
         },
       });
     });
@@ -329,6 +349,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -338,6 +359,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval1 = Interval.between(start, end);
       const interval2 = Interval.between(start, end);
@@ -359,6 +381,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end1 = DateTime.fromObject({
         year: 2024,
@@ -368,6 +391,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end2 = DateTime.fromObject({
         year: 2024,
@@ -377,6 +401,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);
@@ -400,6 +425,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end1 = DateTime.fromObject({
         year: 2024,
@@ -409,6 +435,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end2 = DateTime.fromObject({
         year: 2024,
@@ -418,6 +445,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);
@@ -439,6 +467,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -448,6 +477,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       const interval1 = Interval.between(start, end);
@@ -470,6 +500,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end1 = DateTime.fromObject({
         year: 2024,
@@ -479,6 +510,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end2 = DateTime.fromObject({
         year: 2024,
@@ -488,6 +520,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);
@@ -511,6 +544,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end1 = DateTime.fromObject({
         year: 2024,
@@ -520,6 +554,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end2 = DateTime.fromObject({
         year: 2024,
@@ -529,6 +564,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);
@@ -550,6 +586,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -559,6 +596,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       const interval1 = Interval.between(start, end);
@@ -581,6 +619,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end1 = DateTime.fromObject({
         year: 2024,
@@ -590,6 +629,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end2 = DateTime.fromObject({
         year: 2024,
@@ -599,6 +639,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);
@@ -622,6 +663,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -631,6 +673,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -642,6 +685,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -665,6 +709,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -674,6 +719,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval = Interval.between(start, end);
 
@@ -685,6 +731,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -708,6 +755,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -717,6 +765,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -740,6 +789,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromJSDate(now);
 
@@ -765,6 +815,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -789,6 +840,7 @@ describe("Interval", () => {
           minute: 56,
           second: 19,
           millisecond: 920,
+          offset: {},
         },
         end: {
           year: 2024,
@@ -798,6 +850,7 @@ describe("Interval", () => {
           minute: 56,
           second: 19,
           millisecond: 920,
+          offset: {},
         },
       };
 
@@ -815,6 +868,7 @@ describe("Interval", () => {
           minute: 56,
           second: 19,
           millisecond: 920,
+          offset: {},
         })
       );
       expect(interval.end).toEqual(
@@ -826,6 +880,7 @@ describe("Interval", () => {
           minute: 56,
           second: 19,
           millisecond: 920,
+          offset: {},
         })
       );
     });
@@ -1064,6 +1119,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end1 = DateTime.fromObject({
         year: 2024,
@@ -1073,6 +1129,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end2 = DateTime.fromObject({
         year: 2024,
@@ -1082,6 +1139,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);
@@ -1103,6 +1161,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end = DateTime.fromObject({
         year: 2024,
@@ -1112,6 +1171,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval1 = Interval.between(start, end);
       const interval2 = Interval.between(start, end);
@@ -1133,6 +1193,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end1 = DateTime.fromObject({
         year: 2024,
@@ -1142,6 +1203,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const end2 = DateTime.fromObject({
         year: 2024,
@@ -1151,6 +1213,7 @@ describe("Interval", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);

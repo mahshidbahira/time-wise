@@ -1,4 +1,5 @@
 import Duration from "../Duration/Duration";
+import { MINUTE } from "../Units/Units";
 import DateTimeObjectLiteral from "./DateTimeObjectLiteral";
 
 class DateTime {
@@ -9,9 +10,10 @@ class DateTime {
   readonly minute: number;
   readonly second: number;
   readonly millisecond: number;
+  readonly offset: Duration;
 
   get millisecondsSinceEpoch(): number {
-    return Date.UTC(
+    const wrongMillisecondsSinceEpoch = Date.UTC(
       this.year,
       this.month,
       this.day,
@@ -20,18 +22,31 @@ class DateTime {
       this.second,
       this.millisecond
     );
+    const offsetInMilliseconds = this.offset.inMilliseconds;
+    const correctMillisecondsSinceEpoch =
+      wrongMillisecondsSinceEpoch - offsetInMilliseconds;
+
+    return correctMillisecondsSinceEpoch;
   }
 
-  constructor(millisecondsSinceEpoch: number) {
-    const jsDate = new Date(millisecondsSinceEpoch);
-
-    this.year = jsDate.getUTCFullYear();
-    this.month = jsDate.getUTCMonth();
-    this.day = jsDate.getUTCDate();
-    this.hour = jsDate.getUTCHours();
-    this.minute = jsDate.getUTCMinutes();
-    this.second = jsDate.getUTCSeconds();
-    this.millisecond = jsDate.getUTCMilliseconds();
+  constructor(
+    year: number,
+    month: number,
+    day: number,
+    hour: number,
+    minute: number,
+    second: number,
+    millisecond: number,
+    offset: Duration
+  ) {
+    this.year = year;
+    this.month = month;
+    this.day = day;
+    this.hour = hour;
+    this.minute = minute;
+    this.second = second;
+    this.millisecond = millisecond;
+    this.offset = offset;
 
     Object.freeze(this);
   }
@@ -41,7 +56,7 @@ class DateTime {
   }
 
   toString(): string {
-    return this.toJSDate().toUTCString();
+    return this.toJSDate().toString();
   }
 
   [Symbol.toPrimitive](hint: string): number | string {
@@ -72,6 +87,7 @@ class DateTime {
       minute: this.minute,
       second: this.second,
       millisecond: this.millisecond,
+      offset: this.offset.toObject(),
     };
   }
 
@@ -100,6 +116,7 @@ class DateTime {
       minute: this.minute,
       second: this.second,
       millisecond: this.millisecond,
+      offset: this.offset.toObject(),
     });
   }
 
@@ -112,6 +129,7 @@ class DateTime {
       minute: this.minute,
       second: this.second,
       millisecond: this.millisecond,
+      offset: this.offset.toObject(),
     });
   }
 
@@ -124,6 +142,7 @@ class DateTime {
       minute: this.minute,
       second: this.second,
       millisecond: this.millisecond,
+      offset: this.offset.toObject(),
     });
   }
 
@@ -136,6 +155,7 @@ class DateTime {
       minute: this.minute,
       second: this.second,
       millisecond: this.millisecond,
+      offset: this.offset.toObject(),
     });
   }
 
@@ -148,6 +168,7 @@ class DateTime {
       minute: minute,
       second: this.second,
       millisecond: this.millisecond,
+      offset: this.offset.toObject(),
     });
   }
 
@@ -160,6 +181,7 @@ class DateTime {
       minute: this.minute,
       second: second,
       millisecond: this.millisecond,
+      offset: this.offset.toObject(),
     });
   }
 
@@ -172,6 +194,20 @@ class DateTime {
       minute: this.minute,
       second: this.second,
       millisecond: millisecond,
+      offset: this.offset.toObject(),
+    });
+  }
+
+  withOffset(offset: Duration): DateTime {
+    return DateTime.fromObject({
+      year: this.year,
+      month: this.month,
+      day: this.day,
+      hour: this.hour,
+      minute: this.minute,
+      second: this.second,
+      millisecond: this.millisecond,
+      offset: offset.toObject(),
     });
   }
 
@@ -184,28 +220,49 @@ class DateTime {
   }
 
   static of(millisecondsSinceEpoch: number): DateTime {
-    return new DateTime(millisecondsSinceEpoch);
-  }
+    const jsDate = new Date(millisecondsSinceEpoch);
 
-  static fromObject(object: DateTimeObjectLiteral): DateTime {
-    const { year, month, day, hour, minute, second, millisecond } = object;
-    const millisecondsSinceEpoch = Date.UTC(
+    const year = jsDate.getFullYear();
+    const month = jsDate.getMonth();
+    const day = jsDate.getDate();
+    const hour = jsDate.getHours();
+    const minute = jsDate.getMinutes();
+    const second = jsDate.getSeconds();
+    const millisecond = jsDate.getMilliseconds();
+    const offset = Duration.of(-1 * jsDate.getTimezoneOffset() * MINUTE);
+
+    return DateTime.fromObject({
       year,
       month,
       day,
       hour,
       minute,
       second,
-      millisecond
-    );
+      millisecond,
+      offset,
+    });
+  }
 
-    return DateTime.of(millisecondsSinceEpoch);
+  static fromObject(object: DateTimeObjectLiteral): DateTime {
+    const { year, month, day, hour, minute, second, millisecond, offset } =
+      object;
+
+    return new DateTime(
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      Duration.fromObject(offset)
+    );
   }
 
   static parse(str: string): DateTime | null {
     const millisecondsSinceEpoch = Date.parse(str);
 
-    if (!millisecondsSinceEpoch) {
+    if (Number.isNaN(millisecondsSinceEpoch)) {
       return null;
     }
 

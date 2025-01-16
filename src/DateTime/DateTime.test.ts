@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { MILLISECOND } from "../Units/Units";
+import { HOUR, MILLISECOND, MINUTE } from "../Units/Units";
 import DateTime from "./DateTime";
 import Duration from "../Duration/Duration";
 
@@ -15,30 +15,28 @@ describe("DateTime", () => {
   });
 
   describe("constructor", () => {
-    it("should return a datetime of epoch from zero", () => {
-      // given
-      const millisecondsSinceEpoch = 0;
-
-      // when
-      const datetime = new DateTime(millisecondsSinceEpoch);
-
-      // then
-      expect(datetime).toBeInstanceOf(DateTime);
-      expect(datetime.year).toBe(1970);
-      expect(datetime.month).toBe(0);
-      expect(datetime.day).toBe(1);
-      expect(datetime.hour).toBe(0);
-      expect(datetime.minute).toBe(0);
-      expect(datetime.second).toBe(0);
-      expect(datetime.millisecond).toBe(0);
-    });
-
     it("should return a datetime with milliseconds since epoch", () => {
       // given
-      const millisecondsSinceEpoch = 1_733_576_179_920;
+      const year = 2024;
+      const month = 11;
+      const day = 7;
+      const hour = 12;
+      const minute = 56;
+      const second = 19;
+      const millisecond = 920;
+      const offset = Duration.of(0);
 
       // when
-      const datetime = new DateTime(millisecondsSinceEpoch);
+      const datetime = new DateTime(
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+        offset
+      );
 
       // then
       expect(datetime).toBeInstanceOf(DateTime);
@@ -49,6 +47,7 @@ describe("DateTime", () => {
       expect(datetime.minute).toBe(56);
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -63,6 +62,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -84,6 +84,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -105,13 +106,16 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
       const str = datetime.toString();
 
       // then
-      expect(str).toBe("Sat, 07 Dec 2024 12:56:19 GMT");
+      expect(str).toBe(
+        "Sat Dec 07 2024 12:56:19 GMT+0000 (Coordinated Universal Time)"
+      );
     });
   });
 
@@ -126,6 +130,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -145,13 +150,16 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
       const primitive = `${datetime}`;
 
       // then
-      expect(primitive).toBe("Sat, 07 Dec 2024 12:56:19 GMT");
+      expect(primitive).toBe(
+        "Sat Dec 07 2024 12:56:19 GMT+0000 (Coordinated Universal Time)"
+      );
     });
   });
 
@@ -166,6 +174,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -187,6 +196,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -208,6 +218,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -222,6 +233,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
     });
   });
@@ -237,6 +249,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -251,6 +264,7 @@ describe("DateTime", () => {
       expect(jsDate.getUTCMinutes()).toBe(56);
       expect(jsDate.getUTCSeconds()).toBe(19);
       expect(jsDate.getUTCMilliseconds()).toBe(920);
+      expect(jsDate.getTimezoneOffset()).toBeCloseTo(0);
     });
   });
 
@@ -265,6 +279,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -274,6 +289,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -293,6 +309,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -302,6 +319,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 820,
+        offset: {},
       });
 
       // when
@@ -323,6 +341,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -332,6 +351,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 820,
+        offset: {},
       });
 
       // when
@@ -351,6 +371,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -360,6 +381,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -379,6 +401,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 820,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -388,6 +411,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -409,6 +433,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 820,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -418,6 +443,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -437,6 +463,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -446,6 +473,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -465,6 +493,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -474,6 +503,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 820,
+        offset: {},
       });
 
       // when
@@ -495,6 +525,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -509,6 +540,7 @@ describe("DateTime", () => {
       expect(datetimeWithYear.minute).toBe(56);
       expect(datetimeWithYear.second).toBe(19);
       expect(datetimeWithYear.millisecond).toBe(920);
+      expect(datetimeWithYear.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -523,6 +555,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -537,6 +570,7 @@ describe("DateTime", () => {
       expect(datetimeWithMonth.minute).toBe(56);
       expect(datetimeWithMonth.second).toBe(19);
       expect(datetimeWithMonth.millisecond).toBe(920);
+      expect(datetimeWithMonth.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -551,6 +585,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -565,6 +600,7 @@ describe("DateTime", () => {
       expect(datetimeWithDay.minute).toBe(56);
       expect(datetimeWithDay.second).toBe(19);
       expect(datetimeWithDay.millisecond).toBe(920);
+      expect(datetimeWithDay.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -579,6 +615,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -593,6 +630,7 @@ describe("DateTime", () => {
       expect(datetimeWithHour.minute).toBe(56);
       expect(datetimeWithHour.second).toBe(19);
       expect(datetimeWithHour.millisecond).toBe(920);
+      expect(datetimeWithHour.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -607,6 +645,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -621,6 +660,7 @@ describe("DateTime", () => {
       expect(datetimeWithMinute.minute).toBe(59);
       expect(datetimeWithMinute.second).toBe(19);
       expect(datetimeWithMinute.millisecond).toBe(920);
+      expect(datetimeWithMinute.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -635,6 +675,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -649,6 +690,7 @@ describe("DateTime", () => {
       expect(datetimeWithSecond.minute).toBe(56);
       expect(datetimeWithSecond.second).toBe(45);
       expect(datetimeWithSecond.millisecond).toBe(920);
+      expect(datetimeWithSecond.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -663,6 +705,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -677,6 +720,41 @@ describe("DateTime", () => {
       expect(datetimeWithMillisecond.minute).toBe(56);
       expect(datetimeWithMillisecond.second).toBe(19);
       expect(datetimeWithMillisecond.millisecond).toBe(2);
+      expect(datetimeWithMillisecond.offset.inMilliseconds).toBeCloseTo(0);
+    });
+  });
+
+  describe("withOffset", () => {
+    it("should return a datetime", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 11,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+        offset: {},
+      });
+
+      // when
+      const datetimeWithOffset = datetime.withOffset(
+        Duration.of(3 * HOUR + 30 * MINUTE)
+      );
+
+      // then
+      expect(datetimeWithOffset).toBeInstanceOf(DateTime);
+      expect(datetimeWithOffset.year).toBe(2024);
+      expect(datetimeWithOffset.month).toBe(11);
+      expect(datetimeWithOffset.day).toBe(7);
+      expect(datetimeWithOffset.hour).toBe(12);
+      expect(datetimeWithOffset.minute).toBe(56);
+      expect(datetimeWithOffset.second).toBe(19);
+      expect(datetimeWithOffset.millisecond).toBe(920);
+      expect(datetimeWithOffset.offset.inMilliseconds).toBeCloseTo(
+        3 * HOUR + 30 * MINUTE
+      );
     });
   });
 
@@ -691,6 +769,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const duration = Duration.of(10 * MILLISECOND);
 
@@ -706,6 +785,7 @@ describe("DateTime", () => {
       expect(sum.minute).toBe(56);
       expect(sum.second).toBe(19);
       expect(sum.millisecond).toBe(930);
+      expect(sum.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -720,6 +800,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const duration = Duration.of(10 * MILLISECOND);
 
@@ -735,6 +816,7 @@ describe("DateTime", () => {
       expect(diff.minute).toBe(56);
       expect(diff.second).toBe(19);
       expect(diff.millisecond).toBe(910);
+      expect(diff.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -755,6 +837,7 @@ describe("DateTime", () => {
       expect(datetime.minute).toBe(0);
       expect(datetime.second).toBe(0);
       expect(datetime.millisecond).toBe(0);
+      expect(datetime.offset.inMilliseconds).toBeCloseTo(0);
     });
 
     it("should return a datetime with milliseconds since epoch", () => {
@@ -773,6 +856,7 @@ describe("DateTime", () => {
       expect(datetime.minute).toBe(56);
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -787,6 +871,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       };
 
       // when
@@ -801,6 +886,7 @@ describe("DateTime", () => {
       expect(datetime.minute).toBe(56);
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -821,6 +907,7 @@ describe("DateTime", () => {
       expect(datetime.minute).toBe(56);
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMilliseconds).toBeCloseTo(0);
     });
 
     it("should return a datetime from an iso string", () => {
@@ -839,6 +926,7 @@ describe("DateTime", () => {
       expect(datetime.minute).toBe(56);
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMilliseconds).toBeCloseTo(0);
     });
 
     it("should return null from an invalid string", () => {
@@ -870,6 +958,7 @@ describe("DateTime", () => {
       expect(datetime.minute).toBe(56);
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -887,6 +976,7 @@ describe("DateTime", () => {
       expect(datetime.minute).toBe(now.getUTCMinutes());
       expect(datetime.second).toBe(now.getUTCSeconds());
       expect(datetime.millisecond).toBe(now.getUTCMilliseconds());
+      expect(datetime.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -901,6 +991,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -910,6 +1001,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -929,6 +1021,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -938,6 +1031,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -957,6 +1051,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
@@ -966,6 +1061,7 @@ describe("DateTime", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when

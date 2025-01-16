@@ -44,8 +44,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint .",
-    "test": "vitest run",
-    "coverage": "vitest run --coverage"
+    "test": "TZ=UTC vitest run",
+    "coverage": "TZ=UTC vitest run --coverage"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

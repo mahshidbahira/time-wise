@@ -1660,6 +1660,7 @@ describe("Duration", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -1674,6 +1675,7 @@ describe("Duration", () => {
       expect(future.minute).toBe(56);
       expect(future.second).toBe(19);
       expect(future.millisecond).toBe(920);
+      expect(future.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 
@@ -1689,6 +1691,7 @@ describe("Duration", () => {
         minute: 56,
         second: 19,
         millisecond: 920,
+        offset: {},
       });
 
       // when
@@ -1703,6 +1706,7 @@ describe("Duration", () => {
       expect(past.minute).toBe(56);
       expect(past.second).toBe(19);
       expect(past.millisecond).toBe(920);
+      expect(past.offset.inMilliseconds).toBeCloseTo(0);
     });
   });
 

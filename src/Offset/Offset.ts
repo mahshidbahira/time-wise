@@ -156,8 +156,7 @@ class Offset {
     const hours = result[2] ? parseInt(result[2]) : 0;
     const minutes = result[4] ? parseInt(result[4]) : 0;
 
-    const totalMinutes = sign * (hours * MINUTES_IN_AN_HOUR + minutes);
-    return Offset.fromMinutes(totalMinutes);
+    return Offset.fromObject({ hours: sign * hours, minutes: sign * minutes });
   }
 
   static fromISOString(str: string): Offset | null {
@@ -172,8 +171,7 @@ class Offset {
     const hours = result[2] ? parseInt(result[2]) : 0;
     const minutes = result[4] ? parseInt(result[4]) : 0;
 
-    const totalMinutes = sign * (hours * MINUTES_IN_AN_HOUR + minutes);
-    return Offset.fromMinutes(totalMinutes);
+    return Offset.fromObject({ hours: sign * hours, minutes: sign * minutes });
   }
 
   static parse(str: string): Offset | null {

@@ -240,6 +240,94 @@ describe("DateTime", () => {
     });
   });
 
+  describe("daysSinceEpoch", () => {
+    it("should return the total days since epoch", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+        offset: {},
+      });
+
+      // when
+      const daysSinceEpoch = datetime.daysSinceEpoch;
+
+      // then
+      expect(daysSinceEpoch).toBe(20064.539119444446);
+    });
+  });
+
+  describe("hoursSinceEpoch", () => {
+    it("should return the total hours since epoch", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+        offset: {},
+      });
+
+      // when
+      const hoursSinceEpoch = datetime.hoursSinceEpoch;
+
+      // then
+      expect(hoursSinceEpoch).toBe(481548.9388666667);
+    });
+  });
+
+  describe("minutesSinceEpoch", () => {
+    it("should return the total minutes since epoch", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+        offset: {},
+      });
+
+      // when
+      const minutesSinceEpoch = datetime.minutesSinceEpoch;
+
+      // then
+      expect(minutesSinceEpoch).toBe(28892936.332);
+    });
+  });
+
+  describe("secondsSinceEpoch", () => {
+    it("should return the total seconds since epoch", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+        offset: {},
+      });
+
+      // when
+      const secondsSinceEpoch = datetime.secondsSinceEpoch;
+
+      // then
+      expect(secondsSinceEpoch).toBe(1_733_576_179.92);
+    });
+  });
+
   describe("millisecondsSinceEpoch", () => {
     it("should return the total milliseconds since epoch", () => {
       // given
@@ -259,6 +347,33 @@ describe("DateTime", () => {
 
       // then
       expect(millisecondsSinceEpoch).toBe(1_733_576_179_920);
+    });
+  });
+
+  describe("durationSinceEpoch", () => {
+    it("should return the duration since epoch", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+        offset: {},
+      });
+
+      // when
+      const durationSinceEpoch = datetime.durationSinceEpoch;
+
+      // then
+      expect(durationSinceEpoch).toBeInstanceOf(Duration);
+      expect(durationSinceEpoch.day).toBe(20064);
+      expect(durationSinceEpoch.hour).toBe(12);
+      expect(durationSinceEpoch.minute).toBe(56);
+      expect(durationSinceEpoch.second).toBe(19);
+      expect(durationSinceEpoch.millisecond).toBe(920);
     });
   });
 

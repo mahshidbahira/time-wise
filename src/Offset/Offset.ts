@@ -125,6 +125,8 @@ class Offset {
     return Offset.fromMinutes(Math.abs(this.inMinutes));
   }
 
+  static UTC = Offset.fromObject({ hours: 0, minutes: 0 });
+
   static fromHours(inHours: number): Offset {
     return Offset.fromMinutes(inHours * MINUTES_IN_AN_HOUR);
   }
@@ -135,7 +137,7 @@ class Offset {
     const hours = fn(inMinutes / MINUTES_IN_AN_HOUR);
     const minutes = fn(inMinutes) % MINUTES_IN_AN_HOUR;
 
-    return Offset.fromObject({ hours, minutes: minutes });
+    return Offset.fromObject({ hours, minutes });
   }
 
   static fromObject(object: OffsetObjectLiteral): Offset {
@@ -144,12 +146,12 @@ class Offset {
     return new Offset(hours, minutes);
   }
 
-  static fromString(str: string): Offset | null {
+  static fromString(str: string): Offset {
     const regexp = /^UTC(-|\+)(\d{2})(:(\d{2}))?$/;
     const result = regexp.exec(str);
 
     if (!result) {
-      return null;
+      throw new Error(`offset string is invalid: ${str}`);
     }
 
     const sign = result[1] === "-" ? -1 : 1;
@@ -159,12 +161,12 @@ class Offset {
     return Offset.fromObject({ hours: sign * hours, minutes: sign * minutes });
   }
 
-  static fromISOString(str: string): Offset | null {
+  static fromISOString(str: string): Offset {
     const regexp = /^(-|\+)(\d{2})(:(\d{2}))?$/;
     const result = regexp.exec(str);
 
     if (!result) {
-      return null;
+      throw new Error(`offset iso string is invalid: ${str}`);
     }
 
     const sign = result[1] === "-" ? -1 : 1;
@@ -174,8 +176,20 @@ class Offset {
     return Offset.fromObject({ hours: sign * hours, minutes: sign * minutes });
   }
 
-  static parse(str: string): Offset | null {
-    return Offset.fromString(str) || Offset.fromISOString(str);
+  static parse(str: string): Offset {
+    try {
+      return Offset.fromString(str);
+    } catch {
+      try {
+        return Offset.fromISOString(str);
+      } catch {
+        try {
+          return Offset.fromZoneName(str);
+        } catch {
+          throw new Error(`offset parse failed: ${str}`);
+        }
+      }
+    }
   }
 
   static fromDuration(duration: Duration): Offset {
@@ -183,17 +197,26 @@ class Offset {
   }
 
   static fromZoneName(zoneName: string): Offset {
-    const jsDate = new Date();
-    const jsUTCDate = new Date(
-      jsDate.toLocaleString("en-US", { timeZone: "UTC" })
-    );
-    const jsTzDate = new Date(
-      jsDate.toLocaleString("en-US", { timeZone: zoneName })
-    );
+    try {
+      const jsDate = new Date();
+      const jsUTCDate = new Date(
+        jsDate.toLocaleString("en-US", { timeZone: "UTC" })
+      );
+      const jsTzDate = new Date(
+        jsDate.toLocaleString("en-US", { timeZone: zoneName })
+      );
 
-    return Offset.fromDuration(
-      Duration.of(jsTzDate.getTime() - jsUTCDate.getTime())
-    );
+      return Offset.fromDuration(
+        Duration.of(jsTzDate.getTime() - jsUTCDate.getTime())
+      );
+    } catch {
+      throw new Error(`offset zone name is invalid: ${zoneName}`);
+    }
+  }
+
+  static local(): Offset {
+    const offsetInMinutes = new Date().getTimezoneOffset();
+    return Offset.fromMinutes(offsetInMinutes !== 0 ? -1 * offsetInMinutes : 0);
   }
 
   static compare(offset1: Offset, offset2: Offset): number {

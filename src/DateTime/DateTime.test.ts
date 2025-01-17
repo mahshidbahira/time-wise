@@ -1,5 +1,4 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { HOUR, MILLISECOND, MINUTE } from "../Units/Units";
 import DateTime from "./DateTime";
 import Duration from "../Duration/Duration";
 
@@ -740,7 +739,7 @@ describe("DateTime", () => {
 
       // when
       const datetimeWithOffset = datetime.withOffset(
-        Duration.of(3 * HOUR + 30 * MINUTE)
+        Duration.fromObject({ hours: 3, minutes: 30 })
       );
 
       // then
@@ -753,7 +752,7 @@ describe("DateTime", () => {
       expect(datetimeWithOffset.second).toBe(19);
       expect(datetimeWithOffset.millisecond).toBe(920);
       expect(datetimeWithOffset.offset.inMilliseconds).toBeCloseTo(
-        3 * HOUR + 30 * MINUTE
+        Duration.fromObject({ hours: 3, minutes: 30 }).inMilliseconds
       );
     });
   });
@@ -771,7 +770,7 @@ describe("DateTime", () => {
         millisecond: 920,
         offset: {},
       });
-      const duration = Duration.of(10 * MILLISECOND);
+      const duration = Duration.fromObject({ milliseconds: 10 });
 
       // when
       const sum = datetime.plus(duration);
@@ -802,7 +801,7 @@ describe("DateTime", () => {
         millisecond: 920,
         offset: {},
       });
-      const duration = Duration.of(10 * MILLISECOND);
+      const duration = Duration.fromObject({ milliseconds: 10 });
 
       // when
       const diff = datetime.minus(duration);

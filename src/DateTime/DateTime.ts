@@ -1,5 +1,4 @@
 import Duration from "../Duration/Duration";
-import { MINUTE } from "../Units/Units";
 import DateTimeObjectLiteral from "./DateTimeObjectLiteral";
 
 class DateTime {
@@ -229,7 +228,7 @@ class DateTime {
     const minute = jsDate.getMinutes();
     const second = jsDate.getSeconds();
     const millisecond = jsDate.getMilliseconds();
-    const offset = Duration.of(-1 * jsDate.getTimezoneOffset() * MINUTE);
+    const offset = Duration.of(-1 * jsDate.getTimezoneOffset() * 60_000);
 
     return DateTime.fromObject({
       year,

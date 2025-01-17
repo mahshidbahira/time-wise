@@ -1,6 +1,10 @@
 import DateTime from "../DateTime/DateTime";
-import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
 import DurationObjectLiteral from "./DurationObjectLiteral";
+
+const MILLISECONDS_IN_A_SECOND: number = 1000;
+const MILLISECONDS_IN_A_MINUTE: number = 60 * MILLISECONDS_IN_A_SECOND;
+const MILLISECONDS_IN_AN_HOUR: number = 60 * MILLISECONDS_IN_A_MINUTE;
+const MILLISECONDS_IN_A_DAY: number = 24 * MILLISECONDS_IN_AN_HOUR;
 
 class Duration {
   readonly days: number;
@@ -10,39 +14,39 @@ class Duration {
   readonly milliseconds: number;
 
   get inDays(): number {
-    return this.inMilliseconds / DAY;
+    return this.inMilliseconds / MILLISECONDS_IN_A_DAY;
   }
 
   get inHours(): number {
-    return this.inMilliseconds / HOUR;
+    return this.inMilliseconds / MILLISECONDS_IN_AN_HOUR;
   }
 
   get inMinutes(): number {
-    return this.inMilliseconds / MINUTE;
+    return this.inMilliseconds / MILLISECONDS_IN_A_MINUTE;
   }
 
   get inSeconds(): number {
-    return this.inMilliseconds / SECOND;
+    return this.inMilliseconds / MILLISECONDS_IN_A_SECOND;
   }
 
   get inMilliseconds(): number {
     return (
-      this.days * DAY +
-      this.hours * HOUR +
-      this.minutes * MINUTE +
-      this.seconds * SECOND +
-      this.milliseconds * MILLISECOND
+      this.days * MILLISECONDS_IN_A_DAY +
+      this.hours * MILLISECONDS_IN_AN_HOUR +
+      this.minutes * MILLISECONDS_IN_A_MINUTE +
+      this.seconds * MILLISECONDS_IN_A_SECOND +
+      this.milliseconds
     );
   }
 
   constructor(inMilliseconds: number) {
     const fn = inMilliseconds < 0 ? Math.ceil : Math.floor;
 
-    this.days = fn(inMilliseconds / DAY);
-    this.hours = fn(inMilliseconds / HOUR) % 24;
-    this.minutes = fn(inMilliseconds / MINUTE) % 60;
-    this.seconds = fn(inMilliseconds / SECOND) % 60;
-    this.milliseconds = fn(inMilliseconds / MILLISECOND) % 1000;
+    this.days = fn(inMilliseconds / MILLISECONDS_IN_A_DAY);
+    this.hours = fn(inMilliseconds / MILLISECONDS_IN_AN_HOUR) % 24;
+    this.minutes = fn(inMilliseconds / MILLISECONDS_IN_A_MINUTE) % 60;
+    this.seconds = fn(inMilliseconds / MILLISECONDS_IN_A_SECOND) % 60;
+    this.milliseconds = fn(inMilliseconds) % 1000;
 
     Object.freeze(this);
   }
@@ -240,11 +244,11 @@ class Duration {
     const milliseconds = object.milliseconds ? object.milliseconds : 0;
 
     return Duration.of(
-      days * DAY +
-        hours * HOUR +
-        minutes * MINUTE +
-        seconds * SECOND +
-        milliseconds * MILLISECOND
+      days * MILLISECONDS_IN_A_DAY +
+        hours * MILLISECONDS_IN_AN_HOUR +
+        minutes * MILLISECONDS_IN_A_MINUTE +
+        seconds * MILLISECONDS_IN_A_SECOND +
+        milliseconds
     );
   }
 
@@ -265,11 +269,11 @@ class Duration {
 
     const totalMilliseconds =
       sign *
-      (days * DAY +
-        hours * HOUR +
-        minutes * MINUTE +
-        seconds * SECOND +
-        milliseconds * MILLISECOND);
+      (days * MILLISECONDS_IN_A_DAY +
+        hours * MILLISECONDS_IN_AN_HOUR +
+        minutes * MILLISECONDS_IN_A_MINUTE +
+        seconds * MILLISECONDS_IN_A_SECOND +
+        milliseconds);
 
     return Duration.of(totalMilliseconds);
   }
@@ -292,11 +296,11 @@ class Duration {
 
     const totalMilliseconds =
       sign *
-      (days * DAY +
-        hours * HOUR +
-        minutes * MINUTE +
-        seconds * SECOND +
-        milliseconds * MILLISECOND);
+      (days * MILLISECONDS_IN_A_DAY +
+        hours * MILLISECONDS_IN_AN_HOUR +
+        minutes * MILLISECONDS_IN_A_MINUTE +
+        seconds * MILLISECONDS_IN_A_SECOND +
+        milliseconds);
 
     return Duration.of(totalMilliseconds);
   }

@@ -1,5 +1,4 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { DAY } from "../Units/Units";
 import Interval from "./Interval";
 import DateTime from "../DateTime/DateTime";
 import Duration from "../Duration/Duration";
@@ -78,7 +77,7 @@ describe("Interval", () => {
       const duration = interval.duration;
 
       // then
-      expect(duration).toEqual(Duration.of(2 * DAY));
+      expect(duration).toEqual(Duration.fromObject({ days: 2 }));
     });
   });
 
@@ -111,7 +110,7 @@ describe("Interval", () => {
       const value = interval.valueOf();
 
       // then
-      expect(value).toBe(2 * DAY);
+      expect(value).toBe(Duration.fromObject({ days: 2 }).inMilliseconds);
     });
   });
 
@@ -179,7 +178,7 @@ describe("Interval", () => {
       const primitive = +interval;
 
       // then
-      expect(primitive).toBe(2 * DAY);
+      expect(primitive).toBe(Duration.fromObject({ days: 2 }).inMilliseconds);
     });
 
     it("should return a string when a string is expected of the duration", () => {

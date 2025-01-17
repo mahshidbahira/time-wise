@@ -1,5 +1,4 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { DAY, HOUR, MILLISECOND, MINUTE, SECOND } from "../Units/Units";
 import Duration from "./Duration";
 import DateTime from "../DateTime/DateTime";
 
@@ -17,8 +16,7 @@ describe("Duration", () => {
   describe("constructor", () => {
     it("should return a duration", () => {
       // given
-      const inMilliseconds =
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND;
+      const inMilliseconds = 563445002;
 
       // when
       const duration = new Duration(inMilliseconds);
@@ -36,9 +34,13 @@ describe("Duration", () => {
   describe("inDays", () => {
     it("should return the total duration in days", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const inDays = duration.inDays;
@@ -51,9 +53,13 @@ describe("Duration", () => {
   describe("inHours", () => {
     it("should return the total duration in hours", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const inHours = duration.inHours;
@@ -66,9 +72,13 @@ describe("Duration", () => {
   describe("inMinutes", () => {
     it("should return the total duration in minutes", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const inMinutes = duration.inMinutes;
@@ -81,9 +91,13 @@ describe("Duration", () => {
   describe("inSeconds", () => {
     it("should return the total duration in seconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const inSeconds = duration.inSeconds;
@@ -96,9 +110,13 @@ describe("Duration", () => {
   describe("inMilliseconds", () => {
     it("should return the total duration in milliseconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const inMilliseconds = duration.inMilliseconds;
@@ -111,9 +129,13 @@ describe("Duration", () => {
   describe("valueOf", () => {
     it("should return the value of duration", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const value = duration.valueOf();
@@ -126,7 +148,13 @@ describe("Duration", () => {
   describe("toString", () => {
     it("should return the string of only days", () => {
       // given
-      const duration = Duration.of(6 * DAY);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -137,7 +165,13 @@ describe("Duration", () => {
 
     it("should return the string of only hours", () => {
       // given
-      const duration = Duration.of(12 * HOUR);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -148,7 +182,13 @@ describe("Duration", () => {
 
     it("should return the string of only minutes", () => {
       // given
-      const duration = Duration.of(30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -159,7 +199,13 @@ describe("Duration", () => {
 
     it("should return the string of only seconds", () => {
       // given
-      const duration = Duration.of(45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -170,7 +216,13 @@ describe("Duration", () => {
 
     it("should return the string of only milliseconds", () => {
       // given
-      const duration = Duration.of(2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -181,7 +233,13 @@ describe("Duration", () => {
 
     it("should return the string of only milliseconds", () => {
       // given
-      const duration = Duration.of(500 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 500,
+      });
 
       // when
       const str = duration.toString();
@@ -192,7 +250,13 @@ describe("Duration", () => {
 
     it("should return the string of days and hours", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -203,7 +267,13 @@ describe("Duration", () => {
 
     it("should return the string of days and minutes", () => {
       // given
-      const duration = Duration.of(6 * DAY + 30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -214,7 +284,13 @@ describe("Duration", () => {
 
     it("should return the string of days and seconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -225,7 +301,13 @@ describe("Duration", () => {
 
     it("should return the string of days and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -236,7 +318,13 @@ describe("Duration", () => {
 
     it("should return the string of hours and minutes", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -247,7 +335,13 @@ describe("Duration", () => {
 
     it("should return the string of hours and seconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -258,7 +352,13 @@ describe("Duration", () => {
 
     it("should return the string of hours and milliseconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -269,7 +369,13 @@ describe("Duration", () => {
 
     it("should return the string of minutes and seconds", () => {
       // given
-      const duration = Duration.of(30 * MINUTE + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -280,7 +386,13 @@ describe("Duration", () => {
 
     it("should return the string of minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(30 * MINUTE + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -291,7 +403,13 @@ describe("Duration", () => {
 
     it("should return the string of seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -302,7 +420,13 @@ describe("Duration", () => {
 
     it("should return the string of days, hours and minutes", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR + 30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -313,7 +437,13 @@ describe("Duration", () => {
 
     it("should return the string of days, hours and seconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -324,7 +454,13 @@ describe("Duration", () => {
 
     it("should return the string of days, hours and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -335,7 +471,13 @@ describe("Duration", () => {
 
     it("should return the string of days, minutes and seconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 30 * MINUTE + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -346,7 +488,13 @@ describe("Duration", () => {
 
     it("should return the string of days, minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 30 * MINUTE + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -357,7 +505,13 @@ describe("Duration", () => {
 
     it("should return the string of days, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -368,7 +522,13 @@ describe("Duration", () => {
 
     it("should return the string of hours, minutes and seconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 30 * MINUTE + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -379,7 +539,13 @@ describe("Duration", () => {
 
     it("should return the string of hours, minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 30 * MINUTE + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -390,7 +556,13 @@ describe("Duration", () => {
 
     it("should return the string of hours, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -401,7 +573,13 @@ describe("Duration", () => {
 
     it("should return the string of minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(30 * MINUTE + 45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -412,9 +590,13 @@ describe("Duration", () => {
 
     it("should return the string of days, hours, minutes and seconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const str = duration.toString();
@@ -425,9 +607,13 @@ describe("Duration", () => {
 
     it("should return the string of days, hours, minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -438,9 +624,13 @@ describe("Duration", () => {
 
     it("should return the string of hours, minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -451,9 +641,13 @@ describe("Duration", () => {
 
     it("should return the string of days, hours, minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const str = duration.toString();
@@ -464,9 +658,13 @@ describe("Duration", () => {
 
     it("should return the string of negative days, hours, minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        -(6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND)
-      );
+      const duration = Duration.fromObject({
+        days: -6,
+        hours: -12,
+        minutes: -30,
+        seconds: -45,
+        milliseconds: -2,
+      });
 
       // when
       const str = duration.toString();
@@ -479,7 +677,13 @@ describe("Duration", () => {
   describe("toPrimitive", () => {
     it("should return a number when a number is expected of the duration", () => {
       // given
-      const duration = Duration.of(1 * DAY);
+      const duration = Duration.fromObject({
+        days: 1,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const primitive = +duration;
@@ -490,7 +694,13 @@ describe("Duration", () => {
 
     it("should return a string when a string is expected of the duration", () => {
       // given
-      const duration = Duration.of(1 * DAY);
+      const duration = Duration.fromObject({
+        days: 1,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const primitive = `${duration}`;
@@ -503,9 +713,13 @@ describe("Duration", () => {
   describe("toJSON", () => {
     it("should return the JSON of duration", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const jsonStr = JSON.stringify(duration);
@@ -518,7 +732,13 @@ describe("Duration", () => {
   describe("toISOString", () => {
     it("should return the ISO-8601 string of only days", () => {
       // given
-      const duration = Duration.of(6 * DAY);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -529,7 +749,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of only hours", () => {
       // given
-      const duration = Duration.of(12 * HOUR);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -540,7 +766,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of only minutes", () => {
       // given
-      const duration = Duration.of(30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -551,7 +783,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of only seconds", () => {
       // given
-      const duration = Duration.of(45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -562,7 +800,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of only milliseconds", () => {
       // given
-      const duration = Duration.of(2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -573,7 +817,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of only milliseconds", () => {
       // given
-      const duration = Duration.of(500 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 500,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -584,7 +834,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days and hours", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -595,7 +851,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days and minutes", () => {
       // given
-      const duration = Duration.of(6 * DAY + 30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -606,7 +868,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days and seconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -617,7 +885,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -628,7 +902,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of hours and minutes", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -639,7 +919,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of hours and seconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -650,7 +936,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of hours and milliseconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -661,7 +953,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of minutes and seconds", () => {
       // given
-      const duration = Duration.of(30 * MINUTE + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -672,7 +970,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(30 * MINUTE + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -683,7 +987,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -694,7 +1004,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days, hours and minutes", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR + 30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -705,7 +1021,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days, hours and seconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -716,7 +1038,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days, hours and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -727,7 +1055,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days, minutes and seconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 30 * MINUTE + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -738,7 +1072,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days, minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 30 * MINUTE + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -749,7 +1089,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -760,7 +1106,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of hours, minutes and seconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 30 * MINUTE + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -771,7 +1123,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of hours, minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 30 * MINUTE + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -782,7 +1140,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of hours, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -793,7 +1157,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(30 * MINUTE + 45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -804,9 +1174,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days, hours, minutes and seconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -817,9 +1191,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days, hours, minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -830,9 +1208,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of hours, minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -843,9 +1225,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of days, hours, minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -856,9 +1242,13 @@ describe("Duration", () => {
 
     it("should return the ISO-8601 string of negative days, hours, minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        -(6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND)
-      );
+      const duration = Duration.fromObject({
+        days: -6,
+        hours: -12,
+        minutes: -30,
+        seconds: -45,
+        milliseconds: -2,
+      });
 
       // when
       const isoStr = duration.toISOString();
@@ -871,7 +1261,13 @@ describe("Duration", () => {
   describe("toObject", () => {
     it("should return the object of only days", () => {
       // given
-      const duration = Duration.of(6 * DAY);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -882,7 +1278,13 @@ describe("Duration", () => {
 
     it("should return the object of only hours", () => {
       // given
-      const duration = Duration.of(12 * HOUR);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -893,7 +1295,13 @@ describe("Duration", () => {
 
     it("should return the object of only minutes", () => {
       // given
-      const duration = Duration.of(30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -904,7 +1312,13 @@ describe("Duration", () => {
 
     it("should return the object of only seconds", () => {
       // given
-      const duration = Duration.of(45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -915,7 +1329,13 @@ describe("Duration", () => {
 
     it("should return the object of only milliseconds", () => {
       // given
-      const duration = Duration.of(2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -926,7 +1346,13 @@ describe("Duration", () => {
 
     it("should return the object of days and hours", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -937,7 +1363,13 @@ describe("Duration", () => {
 
     it("should return the object of days and minutes", () => {
       // given
-      const duration = Duration.of(6 * DAY + 30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -951,7 +1383,13 @@ describe("Duration", () => {
 
     it("should return the object of days and seconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -965,7 +1403,13 @@ describe("Duration", () => {
 
     it("should return the object of days and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -979,7 +1423,13 @@ describe("Duration", () => {
 
     it("should return the object of hours and minutes", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -993,7 +1443,13 @@ describe("Duration", () => {
 
     it("should return the object of hours and seconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1007,7 +1463,13 @@ describe("Duration", () => {
 
     it("should return the object of hours and milliseconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1021,7 +1483,13 @@ describe("Duration", () => {
 
     it("should return the object of minutes and seconds", () => {
       // given
-      const duration = Duration.of(30 * MINUTE + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1035,7 +1503,13 @@ describe("Duration", () => {
 
     it("should return the object of minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(30 * MINUTE + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1049,7 +1523,13 @@ describe("Duration", () => {
 
     it("should return the object of seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1063,7 +1543,13 @@ describe("Duration", () => {
 
     it("should return the object of days, hours and minutes", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR + 30 * MINUTE);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1078,7 +1564,13 @@ describe("Duration", () => {
 
     it("should return the object of days, hours and seconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1093,7 +1585,13 @@ describe("Duration", () => {
 
     it("should return the object of days, hours and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 12 * HOUR + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1108,7 +1606,13 @@ describe("Duration", () => {
 
     it("should return the object of days, minutes and seconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 30 * MINUTE + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1123,7 +1627,13 @@ describe("Duration", () => {
 
     it("should return the object of days, minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 30 * MINUTE + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1138,7 +1648,13 @@ describe("Duration", () => {
 
     it("should return the object of days, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(6 * DAY + 45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1153,7 +1669,13 @@ describe("Duration", () => {
 
     it("should return the object of hours, minutes and seconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 30 * MINUTE + 45 * SECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1168,7 +1690,13 @@ describe("Duration", () => {
 
     it("should return the object of hours, minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 30 * MINUTE + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1183,7 +1711,13 @@ describe("Duration", () => {
 
     it("should return the object of hours, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(12 * HOUR + 45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 0,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1198,7 +1732,13 @@ describe("Duration", () => {
 
     it("should return the object of minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(30 * MINUTE + 45 * SECOND + 2 * MILLISECOND);
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 0,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1213,9 +1753,13 @@ describe("Duration", () => {
 
     it("should return the object of days, hours, minutes and seconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 0,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1231,9 +1775,13 @@ describe("Duration", () => {
 
     it("should return the object of days, hours, minutes and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 0,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1249,9 +1797,13 @@ describe("Duration", () => {
 
     it("should return the object of hours, minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 0,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1267,9 +1819,13 @@ describe("Duration", () => {
 
     it("should return the object of days, hours, minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1286,9 +1842,13 @@ describe("Duration", () => {
 
     it("should return the object of negative days, hours, minutes, seconds and milliseconds", () => {
       // given
-      const duration = Duration.of(
-        -(6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND)
-      );
+      const duration = Duration.fromObject({
+        days: -6,
+        hours: -12,
+        minutes: -30,
+        seconds: -45,
+        milliseconds: -2,
+      });
 
       // when
       const objectLiteral = duration.toObject();
@@ -1307,8 +1867,20 @@ describe("Duration", () => {
   describe("equals", () => {
     it("should return true for equal durations", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(6 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isEqual = duration1.equals(duration2);
@@ -1319,8 +1891,20 @@ describe("Duration", () => {
 
     it("should return false for unequal durations", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(2 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isEqual = duration1.equals(duration2);
@@ -1333,8 +1917,20 @@ describe("Duration", () => {
   describe("isLongerThan", () => {
     it("should return true when the duration is longer than the other duration", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(2 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isLongerThan = duration1.isLongerThan(duration2);
@@ -1345,8 +1941,20 @@ describe("Duration", () => {
 
     it("should return false when the duration is equal to the other duration", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(6 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isLongerThan = duration1.isLongerThan(duration2);
@@ -1357,8 +1965,20 @@ describe("Duration", () => {
 
     it("should return false when the duration is shorter than the other duration", () => {
       // given
-      const duration1 = Duration.of(2 * DAY);
-      const duration2 = Duration.of(6 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isLongerThan = duration1.isLongerThan(duration2);
@@ -1371,8 +1991,20 @@ describe("Duration", () => {
   describe("isShorterThan", () => {
     it("should return true when the duration is shorter than the other duration", () => {
       // given
-      const duration1 = Duration.of(2 * DAY);
-      const duration2 = Duration.of(6 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isShorterThan = duration1.isShorterThan(duration2);
@@ -1383,8 +2015,20 @@ describe("Duration", () => {
 
     it("should return false when the duration is equal to the other duration", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(6 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isShorterThan = duration1.isShorterThan(duration2);
@@ -1395,8 +2039,20 @@ describe("Duration", () => {
 
     it("should return false when the duration is longer than the other duration", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(2 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const isShorterThan = duration1.isShorterThan(duration2);
@@ -1409,9 +2065,13 @@ describe("Duration", () => {
   describe("withDays", () => {
     it("should return a duration", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const durationWithDays = duration.withDays(3);
@@ -1429,9 +2089,13 @@ describe("Duration", () => {
   describe("withHours", () => {
     it("should return a duration", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const durationWithHours = duration.withHours(23);
@@ -1449,9 +2113,13 @@ describe("Duration", () => {
   describe("withMinutes", () => {
     it("should return a duration", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const durationWithMinutes = duration.withMinutes(59);
@@ -1469,9 +2137,13 @@ describe("Duration", () => {
   describe("withSeconds", () => {
     it("should return a duration", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const durationWithSeconds = duration.withSeconds(59);
@@ -1489,9 +2161,13 @@ describe("Duration", () => {
   describe("withMilliseconds", () => {
     it("should return a duration", () => {
       // given
-      const duration = Duration.of(
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND
-      );
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 12,
+        minutes: 30,
+        seconds: 45,
+        milliseconds: 2,
+      });
 
       // when
       const durationWithMilliseconds = duration.withMilliseconds(999);
@@ -1509,8 +2185,20 @@ describe("Duration", () => {
   describe("plus", () => {
     it("should return the addition of durations", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(2 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const sum = duration1.plus(duration2);
@@ -1528,8 +2216,20 @@ describe("Duration", () => {
   describe("minus", () => {
     it("should return the subtraction of durations", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(2 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const diff = duration1.minus(duration2);
@@ -1547,7 +2247,13 @@ describe("Duration", () => {
   describe("multiplyBy", () => {
     it("should return the multiplication of durations", () => {
       // given
-      const duration = Duration.of(6 * DAY);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const product = duration.multiplyBy(2);
@@ -1565,7 +2271,13 @@ describe("Duration", () => {
   describe("divideBy", () => {
     it("should return the division of durations", () => {
       // given
-      const duration = Duration.of(6 * DAY);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const quotient = duration.divideBy(2);
@@ -1583,7 +2295,13 @@ describe("Duration", () => {
   describe("negate", () => {
     it("should return the negative duration of a positive duration", () => {
       // given
-      const duration = Duration.of(6 * DAY);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const negated = duration.negate();
@@ -1599,7 +2317,13 @@ describe("Duration", () => {
 
     it("should return the positive duration of a negative duration", () => {
       // given
-      const duration = Duration.of(-6 * DAY);
+      const duration = Duration.fromObject({
+        days: -6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const negated = duration.negate();
@@ -1617,7 +2341,13 @@ describe("Duration", () => {
   describe("absolute", () => {
     it("should return the absolute of a negative duration", () => {
       // given
-      const duration = Duration.of(-6 * DAY);
+      const duration = Duration.fromObject({
+        days: -6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const abs = duration.absolute();
@@ -1633,7 +2363,13 @@ describe("Duration", () => {
 
     it("should return the absolute of a positive duration", () => {
       // given
-      const duration = Duration.of(6 * DAY);
+      const duration = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const abs = duration.absolute();
@@ -1651,7 +2387,13 @@ describe("Duration", () => {
   describe("after", () => {
     it("should return a date after the duration since a given date", () => {
       // given
-      const duration = Duration.of(2 * DAY);
+      const duration = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
       const datetime = DateTime.fromObject({
         year: 2024,
         month: 11,
@@ -1682,7 +2424,13 @@ describe("Duration", () => {
   describe("before", () => {
     it("should return a date before the duration since a given date", () => {
       // given
-      const duration = Duration.of(2 * DAY);
+      const duration = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
       const datetime = DateTime.fromObject({
         year: 2024,
         month: 11,
@@ -1713,8 +2461,7 @@ describe("Duration", () => {
   describe("static of", () => {
     it("should return a duration", () => {
       // given
-      const inMilliseconds =
-        6 * DAY + 12 * HOUR + 30 * MINUTE + 45 * SECOND + 2 * MILLISECOND;
+      const inMilliseconds = 563445002;
 
       // when
       const duration = Duration.of(inMilliseconds);
@@ -4367,8 +5114,20 @@ describe("Duration", () => {
   describe("static compare", () => {
     it("should return a positive number when the duration is longer than the other duration", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(2 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const comparison = Duration.compare(duration1, duration2);
@@ -4379,8 +5138,20 @@ describe("Duration", () => {
 
     it("should return zero when the duration is equal to the other duration", () => {
       // given
-      const duration1 = Duration.of(6 * DAY);
-      const duration2 = Duration.of(6 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const comparison = Duration.compare(duration1, duration2);
@@ -4391,8 +5162,20 @@ describe("Duration", () => {
 
     it("should return a negative number when the duration is shorter than the other duration", () => {
       // given
-      const duration1 = Duration.of(2 * DAY);
-      const duration2 = Duration.of(6 * DAY);
+      const duration1 = Duration.fromObject({
+        days: 2,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const duration2 = Duration.fromObject({
+        days: 6,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
 
       // when
       const comparison = Duration.compare(duration1, duration2);

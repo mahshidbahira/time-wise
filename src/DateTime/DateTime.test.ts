@@ -481,7 +481,7 @@ describe("DateTime", () => {
       const jsonStr = JSON.stringify(datetime);
 
       // then
-      expect(jsonStr).toBe(`"2024-12-07T12:56:19.920Z"`);
+      expect(jsonStr).toBe(`"2024-12-07T12:56:19.920+00:00"`);
     });
   });
 
@@ -503,7 +503,7 @@ describe("DateTime", () => {
       const isoStr = datetime.toISOString();
 
       // then
-      expect(isoStr).toBe("2024-12-07T12:56:19.920Z");
+      expect(isoStr).toBe("2024-12-07T12:56:19.920+00:00");
     });
   });
 

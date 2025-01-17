@@ -4,28 +4,28 @@ import OffsetObjectLiteral from "./OffsetObjectLiteral";
 const MINUTES_IN_AN_HOUR = 60;
 
 class Offset {
-  readonly hours: number;
-  readonly minutes: number;
+  readonly hour: number;
+  readonly minute: number;
 
   get inHours(): number {
     return this.inMinutes / MINUTES_IN_AN_HOUR;
   }
 
   get inMinutes(): number {
-    return this.hours * MINUTES_IN_AN_HOUR + this.minutes;
+    return this.hour * MINUTES_IN_AN_HOUR + this.minute;
   }
 
-  constructor(hours: number, minutes: number) {
-    if (hours > 23 || hours < -23) {
-      throw new Error(`offset hours is invalid: ${hours}`);
+  constructor(hour: number, minute: number) {
+    if (hour > 23 || hour < -23) {
+      throw new Error(`offset hour is invalid: ${hour}`);
     }
 
-    if (minutes > 59 || minutes < -59) {
-      throw new Error(`offset minutes is invalid: ${minutes}`);
+    if (minute > 59 || minute < -59) {
+      throw new Error(`offset minute is invalid: ${minute}`);
     }
 
-    this.hours = hours;
-    this.minutes = minutes;
+    this.hour = hour;
+    this.minute = minute;
 
     Object.freeze(this);
   }
@@ -37,10 +37,10 @@ class Offset {
   toString(): string {
     const signStr = this.inMinutes < 0 ? "-" : "+";
     const absoluteOffset = this.absolute();
-    const hoursStr = absoluteOffset.hours.toString().padStart(2, "0");
-    const minutesStr = absoluteOffset.minutes.toString().padStart(2, "0");
+    const hourStr = absoluteOffset.hour.toString().padStart(2, "0");
+    const minuteStr = absoluteOffset.minute.toString().padStart(2, "0");
 
-    const str = `UTC${signStr}${hoursStr}:${minutesStr}`;
+    const str = `UTC${signStr}${hourStr}:${minuteStr}`;
 
     return str;
   }
@@ -63,24 +63,24 @@ class Offset {
   toISOString(): string {
     const signStr = this.inMinutes < 0 ? "-" : "+";
     const absoluteOffset = this.absolute();
-    const hoursStr = absoluteOffset.hours.toString().padStart(2, "0");
-    const minutesStr = absoluteOffset.minutes.toString().padStart(2, "0");
+    const hourStr = absoluteOffset.hour.toString().padStart(2, "0");
+    const minuteStr = absoluteOffset.minute.toString().padStart(2, "0");
 
-    const isoStr = `${signStr}${hoursStr}:${minutesStr}`;
+    const isoStr = `${signStr}${hourStr}:${minuteStr}`;
 
     return isoStr;
   }
 
   toObject(): OffsetObjectLiteral {
     const object: OffsetObjectLiteral = {
-      hours: this.hours,
-      minutes: this.minutes,
+      hour: this.hour,
+      minute: this.minute,
     };
     return object;
   }
 
   toDuration(): Duration {
-    return Duration.fromObject({ hours: this.hours, minutes: this.minutes });
+    return Duration.fromObject({ hours: this.hour, minutes: this.minute });
   }
 
   equals(other: Offset): boolean {
@@ -95,17 +95,17 @@ class Offset {
     return this.inMinutes < other.inMinutes;
   }
 
-  withHours(hours: number): Offset {
+  withHour(hour: number): Offset {
     return Offset.fromObject({
-      hours: hours,
-      minutes: this.minutes,
+      hour: hour,
+      minute: this.minute,
     });
   }
 
-  withMinutes(minutes: number): Offset {
+  withMinute(minute: number): Offset {
     return Offset.fromObject({
-      hours: this.hours,
-      minutes: minutes,
+      hour: this.hour,
+      minute: minute,
     });
   }
 
@@ -125,7 +125,7 @@ class Offset {
     return Offset.fromMinutes(Math.abs(this.inMinutes));
   }
 
-  static UTC = Offset.fromObject({ hours: 0, minutes: 0 });
+  static UTC = Offset.fromObject({ hour: 0, minute: 0 });
 
   static fromHours(inHours: number): Offset {
     return Offset.fromMinutes(inHours * MINUTES_IN_AN_HOUR);
@@ -134,16 +134,16 @@ class Offset {
   static fromMinutes(inMinutes: number): Offset {
     const fn = inMinutes < 0 ? Math.ceil : Math.floor;
 
-    const hours = fn(inMinutes / MINUTES_IN_AN_HOUR);
-    const minutes = fn(inMinutes) % MINUTES_IN_AN_HOUR;
+    const hour = fn(inMinutes / MINUTES_IN_AN_HOUR);
+    const minute = fn(inMinutes) % MINUTES_IN_AN_HOUR;
 
-    return Offset.fromObject({ hours, minutes });
+    return Offset.fromObject({ hour, minute });
   }
 
   static fromObject(object: OffsetObjectLiteral): Offset {
-    const { hours, minutes } = object;
+    const { hour, minute } = object;
 
-    return new Offset(hours, minutes);
+    return new Offset(hour, minute);
   }
 
   static fromString(str: string): Offset {
@@ -155,10 +155,10 @@ class Offset {
     }
 
     const sign = result[1] === "-" ? -1 : 1;
-    const hours = result[2] ? parseInt(result[2]) : 0;
-    const minutes = result[4] ? parseInt(result[4]) : 0;
+    const hour = result[2] ? parseInt(result[2]) : 0;
+    const minute = result[4] ? parseInt(result[4]) : 0;
 
-    return Offset.fromObject({ hours: sign * hours, minutes: sign * minutes });
+    return Offset.fromObject({ hour: sign * hour, minute: sign * minute });
   }
 
   static fromISOString(str: string): Offset {
@@ -170,10 +170,10 @@ class Offset {
     }
 
     const sign = result[1] === "-" ? -1 : 1;
-    const hours = result[2] ? parseInt(result[2]) : 0;
-    const minutes = result[4] ? parseInt(result[4]) : 0;
+    const hour = result[2] ? parseInt(result[2]) : 0;
+    const minute = result[4] ? parseInt(result[4]) : 0;
 
-    return Offset.fromObject({ hours: sign * hours, minutes: sign * minutes });
+    return Offset.fromObject({ hour: sign * hour, minute: sign * minute });
   }
 
   static parse(str: string): Offset {

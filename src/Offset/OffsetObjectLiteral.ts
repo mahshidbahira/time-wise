@@ -1,6 +1,6 @@
 interface OffsetObjectLiteral {
-  hours: number;
-  minutes: number;
+  hour: number;
+  minute: number;
 }
 
 export default OffsetObjectLiteral;

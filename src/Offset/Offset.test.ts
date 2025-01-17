@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import Duration from "../Duration/Duration";
 import Offset from "./Offset";
-import { Duration } from "../main";
 
 describe("Offset", () => {
   const now = new Date();
@@ -16,41 +16,41 @@ describe("Offset", () => {
   describe("constructor", () => {
     it("should return an offset", () => {
       // given
-      const hours = 1;
-      const minutes = 30;
+      const hour = 1;
+      const minute = 30;
 
       // when
-      const offset = new Offset(hours, minutes);
+      const offset = new Offset(hour, minute);
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(hours);
-      expect(offset.minutes).toBe(minutes);
+      expect(offset.hour).toBe(hour);
+      expect(offset.minute).toBe(minute);
     });
 
-    it("should throw an error with invalid hours", () => {
+    it("should throw an error with invalid hour", () => {
       // given
-      const hours = 24;
-      const minutes = 30;
+      const hour = 24;
+      const minute = 30;
 
       // when/then
-      expect(() => new Offset(hours, minutes)).toThrowError();
+      expect(() => new Offset(hour, minute)).toThrowError();
     });
 
-    it("should throw an error with invalid minutes", () => {
+    it("should throw an error with invalid minute", () => {
       // given
-      const hours = 1;
-      const minutes = 60;
+      const hour = 1;
+      const minute = 60;
 
       // when/then
-      expect(() => new Offset(hours, minutes)).toThrowError();
+      expect(() => new Offset(hour, minute)).toThrowError();
     });
   });
 
   describe("inHours", () => {
-    it("should return the total offset in hours", () => {
+    it("should return the total offset in hour", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const inHours = offset.inHours;
@@ -61,9 +61,9 @@ describe("Offset", () => {
   });
 
   describe("inMinutes", () => {
-    it("should return the total offset in minutes", () => {
+    it("should return the total offset in minute", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const inMinutes = offset.inMinutes;
@@ -76,7 +76,7 @@ describe("Offset", () => {
   describe("valueOf", () => {
     it("should return the value of offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const value = offset.valueOf();
@@ -89,7 +89,7 @@ describe("Offset", () => {
   describe("toString", () => {
     it("should return the string of positive offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const str = offset.toString();
@@ -100,7 +100,7 @@ describe("Offset", () => {
 
     it("should return the string of negative offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: -1, minutes: -30 });
+      const offset = Offset.fromObject({ hour: -1, minute: -30 });
 
       // when
       const str = offset.toString();
@@ -113,7 +113,7 @@ describe("Offset", () => {
   describe("toPrimitive", () => {
     it("should return a number when a number is expected of the offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const primitive = +offset;
@@ -124,7 +124,7 @@ describe("Offset", () => {
 
     it("should return a string when a string is expected of the offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const primitive = `${offset}`;
@@ -137,7 +137,7 @@ describe("Offset", () => {
   describe("toJSON", () => {
     it("should return the JSON of offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const jsonStr = JSON.stringify(offset);
@@ -150,7 +150,7 @@ describe("Offset", () => {
   describe("toISOString", () => {
     it("should return the iso string of positive offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const isoStr = offset.toISOString();
@@ -161,7 +161,7 @@ describe("Offset", () => {
 
     it("should return the iso string of negative offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: -1, minutes: -30 });
+      const offset = Offset.fromObject({ hour: -1, minute: -30 });
 
       // when
       const isoStr = offset.toISOString();
@@ -174,31 +174,31 @@ describe("Offset", () => {
   describe("toObject", () => {
     it("should return the object of positive offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const objectLiteral = offset.toObject();
 
       // then
-      expect(objectLiteral).toEqual({ hours: 1, minutes: 30 });
+      expect(objectLiteral).toEqual({ hour: 1, minute: 30 });
     });
 
     it("should return the object of negative offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: -1, minutes: -30 });
+      const offset = Offset.fromObject({ hour: -1, minute: -30 });
 
       // when
       const objectLiteral = offset.toObject();
 
       // then
-      expect(objectLiteral).toEqual({ hours: -1, minutes: -30 });
+      expect(objectLiteral).toEqual({ hour: -1, minute: -30 });
     });
   });
 
   describe("toDuration", () => {
     it("should return the duration of positive offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const duration = offset.toDuration();
@@ -214,7 +214,7 @@ describe("Offset", () => {
 
     it("should return the duration of negative offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: -1, minutes: -30 });
+      const offset = Offset.fromObject({ hour: -1, minute: -30 });
 
       // when
       const duration = offset.toDuration();
@@ -232,8 +232,8 @@ describe("Offset", () => {
   describe("equals", () => {
     it("should return true for equal offsets", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const isEqual = offset1.equals(offset2);
@@ -244,8 +244,8 @@ describe("Offset", () => {
 
     it("should return false for unequal offsets", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 0 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
 
       // when
       const isEqual = offset1.equals(offset2);
@@ -258,8 +258,8 @@ describe("Offset", () => {
   describe("isEasterThan", () => {
     it("should return true when the offset is easter than the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 0 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
 
       // when
       const isEasterThan = offset1.isEasterThan(offset2);
@@ -270,8 +270,8 @@ describe("Offset", () => {
 
     it("should return false when the offset is equal to the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const isEasterThan = offset1.isEasterThan(offset2);
@@ -282,8 +282,8 @@ describe("Offset", () => {
 
     it("should return false when the offset is wester than the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 0 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const isEasterThan = offset1.isEasterThan(offset2);
@@ -296,8 +296,8 @@ describe("Offset", () => {
   describe("isWesterThan", () => {
     it("should return true when the offset is wester than the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 0 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const isWesterThan = offset1.isWesterThan(offset2);
@@ -308,8 +308,8 @@ describe("Offset", () => {
 
     it("should return false when the offset is equal to the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const isWesterThan = offset1.isWesterThan(offset2);
@@ -320,8 +320,8 @@ describe("Offset", () => {
 
     it("should return false when the offset is easter than the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 0 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
 
       // when
       const isWesterThan = offset1.isWesterThan(offset2);
@@ -331,121 +331,121 @@ describe("Offset", () => {
     });
   });
 
-  describe("withHours", () => {
-    it("should return an offset with replaced hours", () => {
+  describe("withHour", () => {
+    it("should return an offset with replaced hour", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
-      const offsetWithHours = offset.withHours(2);
+      const offsetWithHours = offset.withHour(2);
 
       // then
       expect(offsetWithHours).toBeInstanceOf(Offset);
-      expect(offsetWithHours.hours).toBe(2);
-      expect(offsetWithHours.minutes).toBe(30);
+      expect(offsetWithHours.hour).toBe(2);
+      expect(offsetWithHours.minute).toBe(30);
     });
   });
 
-  describe("withMinutes", () => {
-    it("should return an offset with replaced minutes", () => {
+  describe("withMinute", () => {
+    it("should return an offset with replaced minute", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
-      const offsetWithMinutes = offset.withMinutes(0);
+      const offsetWithMinutes = offset.withMinute(0);
 
       // then
       expect(offsetWithMinutes).toBeInstanceOf(Offset);
-      expect(offsetWithMinutes.hours).toBe(1);
-      expect(offsetWithMinutes.minutes).toBe(0);
+      expect(offsetWithMinutes.hour).toBe(1);
+      expect(offsetWithMinutes.minute).toBe(0);
     });
   });
 
   describe("plus", () => {
     it("should return the addition of offsets", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 0 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
 
       // when
       const sum = offset1.plus(offset2);
 
       // then
       expect(sum).toBeInstanceOf(Offset);
-      expect(sum.hours).toBe(2);
-      expect(sum.minutes).toBe(30);
+      expect(sum.hour).toBe(2);
+      expect(sum.minute).toBe(30);
     });
   });
 
   describe("minus", () => {
     it("should return the subtraction of offsets", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 0 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
 
       // when
       const diff = offset1.minus(offset2);
 
       // then
       expect(diff).toBeInstanceOf(Offset);
-      expect(diff.hours).toBe(0);
-      expect(diff.minutes).toBe(30);
+      expect(diff.hour).toBe(0);
+      expect(diff.minute).toBe(30);
     });
   });
 
   describe("negate", () => {
     it("should return the negative offset of a positive offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const negated = offset.negate();
 
       // then
       expect(negated).toBeInstanceOf(Offset);
-      expect(negated.hours).toBe(-1);
-      expect(negated.minutes).toBe(-30);
+      expect(negated.hour).toBe(-1);
+      expect(negated.minute).toBe(-30);
     });
 
     it("should return the positive offset of a negative offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: -1, minutes: -30 });
+      const offset = Offset.fromObject({ hour: -1, minute: -30 });
 
       // when
       const negated = offset.negate();
 
       // then
       expect(negated).toBeInstanceOf(Offset);
-      expect(negated.hours).toBe(1);
-      expect(negated.minutes).toBe(30);
+      expect(negated.hour).toBe(1);
+      expect(negated.minute).toBe(30);
     });
   });
 
   describe("absolute", () => {
     it("should return the absolute of a negative offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: -1, minutes: -30 });
+      const offset = Offset.fromObject({ hour: -1, minute: -30 });
 
       // when
       const abs = offset.absolute();
 
       // then
       expect(abs).toBeInstanceOf(Offset);
-      expect(abs.hours).toBe(1);
-      expect(abs.minutes).toBe(30);
+      expect(abs.hour).toBe(1);
+      expect(abs.minute).toBe(30);
     });
 
     it("should return the absolute of a positive offset", () => {
       // given
-      const offset = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const abs = offset.absolute();
 
       // then
       expect(abs).toBeInstanceOf(Offset);
-      expect(abs.hours).toBe(1);
-      expect(abs.minutes).toBe(30);
+      expect(abs.hour).toBe(1);
+      expect(abs.minute).toBe(30);
     });
   });
 
@@ -456,13 +456,13 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(0);
-      expect(offset.minutes).toBe(0);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(0);
     });
   });
 
   describe("static fromHours", () => {
-    it("should return an offset from positive hours", () => {
+    it("should return an offset from positive hour", () => {
       // given
       const inHours = 1.5;
 
@@ -471,11 +471,11 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(1);
-      expect(offset.minutes).toBe(30);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(30);
     });
 
-    it("should return an offset from negative hours", () => {
+    it("should return an offset from negative hour", () => {
       // given
       const inHours = -1.5;
 
@@ -484,13 +484,13 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-1);
-      expect(offset.minutes).toBe(-30);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(-30);
     });
   });
 
   describe("static fromMinutes", () => {
-    it("should return an offset from positive minutes", () => {
+    it("should return an offset from positive minute", () => {
       // given
       const inMinutes = 90;
 
@@ -499,11 +499,11 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(1);
-      expect(offset.minutes).toBe(30);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(30);
     });
 
-    it("should return an offset from negative minutes", () => {
+    it("should return an offset from negative minute", () => {
       // given
       const inMinutes = -90;
 
@@ -512,8 +512,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-1);
-      expect(offset.minutes).toBe(-30);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(-30);
     });
   });
 
@@ -521,8 +521,8 @@ describe("Offset", () => {
     it("should return the offset of positive object", () => {
       // given
       const objectLiteral = {
-        hours: 1,
-        minutes: 30,
+        hour: 1,
+        minute: 30,
       };
 
       // when
@@ -530,15 +530,15 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(1);
-      expect(offset.minutes).toBe(30);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(30);
     });
 
     it("should return the offset of negative object", () => {
       // given
       const objectLiteral = {
-        hours: -1,
-        minutes: -30,
+        hour: -1,
+        minute: -30,
       };
 
       // when
@@ -546,8 +546,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-1);
-      expect(offset.minutes).toBe(-30);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(-30);
     });
   });
 
@@ -561,8 +561,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(1);
-      expect(offset.minutes).toBe(30);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(30);
     });
 
     it("should return the offset of negative string", () => {
@@ -574,8 +574,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-1);
-      expect(offset.minutes).toBe(-30);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(-30);
     });
 
     it("should throw an error with an invalid string", () => {
@@ -597,8 +597,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(1);
-      expect(offset.minutes).toBe(30);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(30);
     });
 
     it("should return the offset of negative iso string", () => {
@@ -610,8 +610,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-1);
-      expect(offset.minutes).toBe(-30);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(-30);
     });
 
     it("should throw an error with an invalid iso string", () => {
@@ -633,8 +633,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(1);
-      expect(offset.minutes).toBe(30);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(30);
     });
 
     it("should return the offset of negative string", () => {
@@ -646,8 +646,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-1);
-      expect(offset.minutes).toBe(-30);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(-30);
     });
 
     it("should throw an error with an invalid string", () => {
@@ -667,8 +667,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(1);
-      expect(offset.minutes).toBe(30);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(30);
     });
 
     it("should return the offset of negative iso string", () => {
@@ -680,8 +680,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-1);
-      expect(offset.minutes).toBe(-30);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(-30);
     });
 
     it("should throw an error with an invalid iso string", () => {
@@ -701,8 +701,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(0);
-      expect(offset.minutes).toBe(0);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(0);
     });
 
     it("should return the offset of America/New_York", () => {
@@ -714,8 +714,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-5);
-      expect(offset.minutes).toBe(-0);
+      expect(offset.hour).toBe(-5);
+      expect(offset.minute).toBe(-0);
     });
 
     it("should return the offset of Asia/Tokyo", () => {
@@ -727,8 +727,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(9);
-      expect(offset.minutes).toBe(0);
+      expect(offset.hour).toBe(9);
+      expect(offset.minute).toBe(0);
     });
 
     it("should throw an error with an invalid zone name", () => {
@@ -750,8 +750,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(1);
-      expect(offset.minutes).toBe(30);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(30);
     });
 
     it("should return the offset of negative duration", () => {
@@ -763,8 +763,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-1);
-      expect(offset.minutes).toBe(-30);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(-30);
     });
   });
 
@@ -778,8 +778,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(0);
-      expect(offset.minutes).toBe(0);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(0);
     });
 
     it("should return the offset of America/New_York", () => {
@@ -791,8 +791,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(-5);
-      expect(offset.minutes).toBe(-0);
+      expect(offset.hour).toBe(-5);
+      expect(offset.minute).toBe(-0);
     });
 
     it("should return the offset of Asia/Tokyo", () => {
@@ -804,8 +804,8 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(9);
-      expect(offset.minutes).toBe(0);
+      expect(offset.hour).toBe(9);
+      expect(offset.minute).toBe(0);
     });
 
     it("should throw an error with an invalid zone name", () => {
@@ -824,16 +824,16 @@ describe("Offset", () => {
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hours).toBe(0);
-      expect(offset.minutes).toBe(0);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(0);
     });
   });
 
   describe("static compare", () => {
     it("should return a positive number when the offset is easter than the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 0 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
 
       // when
       const comparison = Offset.compare(offset1, offset2);
@@ -844,8 +844,8 @@ describe("Offset", () => {
 
     it("should return zero when the offset is equal to the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 30 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const comparison = Offset.compare(offset1, offset2);
@@ -856,8 +856,8 @@ describe("Offset", () => {
 
     it("should return a negative number when the offset is wester than the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hours: 1, minutes: 0 });
-      const offset2 = Offset.fromObject({ hours: 1, minutes: 30 });
+      const offset1 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
       const comparison = Offset.compare(offset1, offset2);

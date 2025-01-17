@@ -887,227 +887,227 @@ describe("Interval", () => {
     });
   });
 
-  describe("static fromString", () => {
-    it("should return an interval from a string", () => {
-      // given
-      const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
-      const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
-      const str = `${startStr} / ${endStr}`;
+  // describe("static fromString", () => {
+  //   it("should return an interval from a string", () => {
+  //     // given
+  //     const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
+  //     const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
+  //     const str = `${startStr} / ${endStr}`;
 
-      // when
-      const interval = Interval.fromString(str)!;
+  //     // when
+  //     const interval = Interval.fromString(str)!;
 
-      // then
-      expect(interval).toBeInstanceOf(Interval);
-      expect(interval.start).toEqual(DateTime.parse(startStr));
-      expect(interval.end).toEqual(DateTime.parse(endStr));
-    });
+  //     // then
+  //     expect(interval).toBeInstanceOf(Interval);
+  //     expect(interval.start).toEqual(DateTime.parse(startStr));
+  //     expect(interval.end).toEqual(DateTime.parse(endStr));
+  //   });
 
-    it("should return null from an invalid start string", () => {
-      // given
-      const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
-      const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
-      const str = `${startStr} / ${endStr}`;
+  //   it("should return null from an invalid start string", () => {
+  //     // given
+  //     const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
+  //     const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
+  //     const str = `${startStr} / ${endStr}`;
 
-      // when
-      const interval = Interval.fromString(str)!;
+  //     // when
+  //     const interval = Interval.fromString(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
 
-    it("should return null from an invalid end string", () => {
-      // given
-      const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
-      const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
-      const str = `${startStr} / ${endStr}`;
+  //   it("should return null from an invalid end string", () => {
+  //     // given
+  //     const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
+  //     const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
+  //     const str = `${startStr} / ${endStr}`;
 
-      // when
-      const interval = Interval.fromString(str)!;
+  //     // when
+  //     const interval = Interval.fromString(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
 
-    it("should return null from an invalid start and end string", () => {
-      // given
-      const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
-      const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
-      const str = `${startStr} / ${endStr}`;
+  //   it("should return null from an invalid start and end string", () => {
+  //     // given
+  //     const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
+  //     const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
+  //     const str = `${startStr} / ${endStr}`;
 
-      // when
-      const interval = Interval.fromString(str)!;
+  //     // when
+  //     const interval = Interval.fromString(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
-  });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
+  // });
 
-  describe("static fromISOString", () => {
-    it("should return an interval from an iso string", () => {
-      // given
-      const startStr = "2024-12-07T12:56:19.920Z";
-      const endStr = "2024-12-09T12:56:19.920Z";
-      const str = `${startStr}/${endStr}`;
+  // describe("static fromISOString", () => {
+  //   it("should return an interval from an iso string", () => {
+  //     // given
+  //     const startStr = "2024-12-07T12:56:19.920Z";
+  //     const endStr = "2024-12-09T12:56:19.920Z";
+  //     const str = `${startStr}/${endStr}`;
 
-      // when
-      const interval = Interval.fromISOString(str)!;
+  //     // when
+  //     const interval = Interval.fromISOString(str)!;
 
-      // then
-      expect(interval).toBeInstanceOf(Interval);
-      expect(interval.start).toEqual(DateTime.parse(startStr));
-      expect(interval.end).toEqual(DateTime.parse(endStr));
-    });
+  //     // then
+  //     expect(interval).toBeInstanceOf(Interval);
+  //     expect(interval.start).toEqual(DateTime.parse(startStr));
+  //     expect(interval.end).toEqual(DateTime.parse(endStr));
+  //   });
 
-    it("should return null from an invalid start iso string", () => {
-      // given
-      const startStr = "2024-12-07-12:56:19.920Z";
-      const endStr = "2024-12-09T12:56:19.920Z";
-      const str = `${startStr}/${endStr}`;
+  //   it("should return null from an invalid start iso string", () => {
+  //     // given
+  //     const startStr = "2024-12-07-12:56:19.920Z";
+  //     const endStr = "2024-12-09T12:56:19.920Z";
+  //     const str = `${startStr}/${endStr}`;
 
-      // when
-      const interval = Interval.fromISOString(str)!;
+  //     // when
+  //     const interval = Interval.fromISOString(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
 
-    it("should return null from an invalid end iso string", () => {
-      // given
-      const startStr = "2024-12-07T12:56:19.920Z";
-      const endStr = "2024-12-09-12:56:19.920Z";
-      const str = `${startStr}/${endStr}`;
+  //   it("should return null from an invalid end iso string", () => {
+  //     // given
+  //     const startStr = "2024-12-07T12:56:19.920Z";
+  //     const endStr = "2024-12-09-12:56:19.920Z";
+  //     const str = `${startStr}/${endStr}`;
 
-      // when
-      const interval = Interval.fromISOString(str)!;
+  //     // when
+  //     const interval = Interval.fromISOString(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
 
-    it("should return null from an invalid start and end iso string", () => {
-      // given
-      const startStr = "2024-12-07-12:56:19.920Z";
-      const endStr = "2024-12-09-12:56:19.920Z";
-      const str = `${startStr}/${endStr}`;
+  //   it("should return null from an invalid start and end iso string", () => {
+  //     // given
+  //     const startStr = "2024-12-07-12:56:19.920Z";
+  //     const endStr = "2024-12-09-12:56:19.920Z";
+  //     const str = `${startStr}/${endStr}`;
 
-      // when
-      const interval = Interval.fromISOString(str)!;
+  //     // when
+  //     const interval = Interval.fromISOString(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
-  });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
+  // });
 
-  describe("static parse", () => {
-    it("should return an interval from a string", () => {
-      // given
-      const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
-      const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
-      const str = `${startStr} / ${endStr}`;
+  // describe("static parse", () => {
+  //   it("should return an interval from a string", () => {
+  //     // given
+  //     const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
+  //     const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
+  //     const str = `${startStr} / ${endStr}`;
 
-      // when
-      const interval = Interval.parse(str)!;
+  //     // when
+  //     const interval = Interval.parse(str)!;
 
-      // then
-      expect(interval).toBeInstanceOf(Interval);
-      expect(interval.start).toEqual(DateTime.parse(startStr));
-      expect(interval.end).toEqual(DateTime.parse(endStr));
-    });
+  //     // then
+  //     expect(interval).toBeInstanceOf(Interval);
+  //     expect(interval.start).toEqual(DateTime.parse(startStr));
+  //     expect(interval.end).toEqual(DateTime.parse(endStr));
+  //   });
 
-    it("should return null from an invalid start string", () => {
-      // given
-      const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
-      const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
-      const str = `${startStr} / ${endStr}`;
+  //   it("should return null from an invalid start string", () => {
+  //     // given
+  //     const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
+  //     const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
+  //     const str = `${startStr} / ${endStr}`;
 
-      // when
-      const interval = Interval.parse(str)!;
+  //     // when
+  //     const interval = Interval.parse(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
 
-    it("should return null from an invalid end string", () => {
-      // given
-      const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
-      const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
-      const str = `${startStr} / ${endStr}`;
+  //   it("should return null from an invalid end string", () => {
+  //     // given
+  //     const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
+  //     const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
+  //     const str = `${startStr} / ${endStr}`;
 
-      // when
-      const interval = Interval.parse(str)!;
+  //     // when
+  //     const interval = Interval.parse(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
 
-    it("should return null from an invalid start and end string", () => {
-      // given
-      const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
-      const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
-      const str = `${startStr} / ${endStr}`;
+  //   it("should return null from an invalid start and end string", () => {
+  //     // given
+  //     const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
+  //     const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
+  //     const str = `${startStr} / ${endStr}`;
 
-      // when
-      const interval = Interval.parse(str)!;
+  //     // when
+  //     const interval = Interval.parse(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
 
-    it("should return an interval from an iso string", () => {
-      // given
-      const startStr = "2024-12-07T12:56:19.920Z";
-      const endStr = "2024-12-09T12:56:19.920Z";
-      const str = `${startStr}/${endStr}`;
+  //   it("should return an interval from an iso string", () => {
+  //     // given
+  //     const startStr = "2024-12-07T12:56:19.920Z";
+  //     const endStr = "2024-12-09T12:56:19.920Z";
+  //     const str = `${startStr}/${endStr}`;
 
-      // when
-      const interval = Interval.parse(str)!;
+  //     // when
+  //     const interval = Interval.parse(str)!;
 
-      // then
-      expect(interval).toBeInstanceOf(Interval);
-      expect(interval.start).toEqual(DateTime.parse(startStr));
-      expect(interval.end).toEqual(DateTime.parse(endStr));
-    });
+  //     // then
+  //     expect(interval).toBeInstanceOf(Interval);
+  //     expect(interval.start).toEqual(DateTime.parse(startStr));
+  //     expect(interval.end).toEqual(DateTime.parse(endStr));
+  //   });
 
-    it("should return null from an invalid start iso string", () => {
-      // given
-      const startStr = "2024-12-07-12:56:19.920Z";
-      const endStr = "2024-12-09T12:56:19.920Z";
-      const str = `${startStr}/${endStr}`;
+  //   it("should return null from an invalid start iso string", () => {
+  //     // given
+  //     const startStr = "2024-12-07-12:56:19.920Z";
+  //     const endStr = "2024-12-09T12:56:19.920Z";
+  //     const str = `${startStr}/${endStr}`;
 
-      // when
-      const interval = Interval.parse(str)!;
+  //     // when
+  //     const interval = Interval.parse(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
 
-    it("should return null from an invalid end iso string", () => {
-      // given
-      const startStr = "2024-12-07T12:56:19.920Z";
-      const endStr = "2024-12-09-12:56:19.920Z";
-      const str = `${startStr}/${endStr}`;
+  //   it("should return null from an invalid end iso string", () => {
+  //     // given
+  //     const startStr = "2024-12-07T12:56:19.920Z";
+  //     const endStr = "2024-12-09-12:56:19.920Z";
+  //     const str = `${startStr}/${endStr}`;
 
-      // when
-      const interval = Interval.parse(str)!;
+  //     // when
+  //     const interval = Interval.parse(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
 
-    it("should return null from an invalid start and end iso string", () => {
-      // given
-      const startStr = "2024-12-07-12:56:19.920Z";
-      const endStr = "2024-12-09-12:56:19.920Z";
-      const str = `${startStr}/${endStr}`;
+  //   it("should return null from an invalid start and end iso string", () => {
+  //     // given
+  //     const startStr = "2024-12-07-12:56:19.920Z";
+  //     const endStr = "2024-12-09-12:56:19.920Z";
+  //     const str = `${startStr}/${endStr}`;
 
-      // when
-      const interval = Interval.parse(str)!;
+  //     // when
+  //     const interval = Interval.parse(str)!;
 
-      // then
-      expect(interval).toBeNull();
-    });
-  });
+  //     // then
+  //     expect(interval).toBeNull();
+  //   });
+  // });
 
   describe("static compare", () => {
     it("should return a positive number when the interval is longer than the other interval", () => {

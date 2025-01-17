@@ -381,14 +381,80 @@ class DateTime {
     );
   }
 
-  static parse(str: string): DateTime | null {
-    const millisecondsSinceEpoch = Date.parse(str);
+  static fromString(str: string): DateTime {
+    const regexp =
+      /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})\.(\d{3}) (UTC[+\-]\d{2}:\d{2})$/;
+    const result = regexp.exec(str);
 
-    if (Number.isNaN(millisecondsSinceEpoch)) {
-      return null;
+    if (!result) {
+      throw new Error(`date time string is invalid: ${str}`);
     }
 
-    return DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
+    const year = result[1] ? parseInt(result[1]) : 0;
+    const month = result[2] ? parseInt(result[2]) : 0;
+    const day = result[3] ? parseInt(result[3]) : 0;
+    const hour = result[4] ? parseInt(result[4]) : 0;
+    const minute = result[5] ? parseInt(result[5]) : 0;
+    const second = result[6] ? parseInt(result[6]) : 0;
+    const millisecond = result[7] ? parseInt(result[7]) : 0;
+    const offset = Offset.fromString(result[8]);
+
+    return DateTime.fromObject({
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      offset,
+    });
+  }
+
+  static fromISOString(str: string): DateTime {
+    const regexp =
+      /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.(\d{3})([+\-]\d{2}:\d{2})$/;
+    const result = regexp.exec(str);
+
+    if (!result) {
+      throw new Error(`date time iso string is invalid: ${str}`);
+    }
+
+    const year = result[1] ? parseInt(result[1]) : 0;
+    const month = result[2] ? parseInt(result[2]) : 0;
+    const day = result[3] ? parseInt(result[3]) : 0;
+    const hour = result[4] ? parseInt(result[4]) : 0;
+    const minute = result[5] ? parseInt(result[5]) : 0;
+    const second = result[6] ? parseInt(result[6]) : 0;
+    const millisecond = result[7] ? parseInt(result[7]) : 0;
+    const offset = Offset.fromISOString(result[8]);
+
+    return DateTime.fromObject({
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      offset,
+    });
+  }
+
+  static parse(str: string): DateTime {
+    try {
+      return DateTime.fromString(str);
+    } catch {
+      try {
+        return DateTime.fromISOString(str);
+      } catch {
+        const millisecondsSinceEpoch = Date.parse(str);
+        if (Number.isNaN(millisecondsSinceEpoch)) {
+          throw new Error(`date time parse failed: ${str}`);
+        }
+        return DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
+      }
+    }
   }
 
   static fromJSDate(date: Date): DateTime {

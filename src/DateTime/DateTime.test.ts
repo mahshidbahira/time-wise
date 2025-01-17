@@ -1290,11 +1290,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       };
 
       // when
@@ -1305,15 +1305,127 @@ describe("DateTime", () => {
       expect(datetime.year).toBe(2024);
       expect(datetime.month).toBe(12);
       expect(datetime.day).toBe(7);
-      expect(datetime.hour).toBe(12);
+      expect(datetime.hour).toBe(13);
       expect(datetime.minute).toBe(56);
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
-      expect(datetime.offset.inMinutes).toBe(0);
+      expect(datetime.offset.inMinutes).toBe(60);
+    });
+  });
+
+  describe("static fromString", () => {
+    it("should return the date time from a string", () => {
+      // given
+      const str = "2024-12-07 13:56:19.920 UTC+01:00";
+
+      // when
+      const datetime = DateTime.fromString(str);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(13);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMinutes).toBe(60);
+    });
+
+    it("should throw an error with an invalid string", () => {
+      // given
+      const str = "2024-12-07 wwww 13:56:19.920 UTC+01:00";
+
+      // when/then
+      expect(() => DateTime.fromString(str)).toThrowError();
+    });
+  });
+
+  describe("static fromISOString", () => {
+    it("should return the date time from an iso string", () => {
+      // given
+      const str = "2024-12-07T13:56:19.920+01:00";
+
+      // when
+      const datetime = DateTime.fromISOString(str);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(13);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMinutes).toBe(60);
+    });
+
+    it("should throw an error with an invalid string", () => {
+      // given
+      const str = "2024-12-07-13:56:19.920+01:00";
+
+      // when/then
+      expect(() => DateTime.fromISOString(str)).toThrowError();
     });
   });
 
   describe("static parse", () => {
+    it("should return the date time from a string", () => {
+      // given
+      const str = "2024-12-07 13:56:19.920 UTC+01:00";
+
+      // when
+      const datetime = DateTime.parse(str);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(13);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMinutes).toBe(60);
+    });
+
+    it("should throw an error with an invalid string", () => {
+      // given
+      const str = "2024-12-07 wwww 13:56:19.920 UTC+01:00";
+
+      // when/then
+      expect(() => DateTime.parse(str)).toThrowError();
+    });
+
+    it("should return the date time from an iso string", () => {
+      // given
+      const str = "2024-12-07T13:56:19.920+01:00";
+
+      // when
+      const datetime = DateTime.parse(str);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(13);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMinutes).toBe(60);
+    });
+
+    it("should throw an error with an invalid string", () => {
+      // given
+      const str = "2024-12-07-13:56:19.920+01:00";
+
+      // when/then
+      expect(() => DateTime.parse(str)).toThrowError();
+    });
+
     it("should return a datetime from a string", () => {
       // given
       const str = "Sat, 07 Dec 2024 12:56:19.920 GMT";
@@ -1331,36 +1443,6 @@ describe("DateTime", () => {
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
       expect(datetime.offset.inMinutes).toBe(0);
-    });
-
-    it("should return a datetime from an iso string", () => {
-      // given
-      const str = "2024-12-07T12:56:19.920Z";
-
-      // when
-      const datetime = DateTime.parse(str)!;
-
-      // then
-      expect(datetime).toBeInstanceOf(DateTime);
-      expect(datetime.year).toBe(2024);
-      expect(datetime.month).toBe(12);
-      expect(datetime.day).toBe(7);
-      expect(datetime.hour).toBe(12);
-      expect(datetime.minute).toBe(56);
-      expect(datetime.second).toBe(19);
-      expect(datetime.millisecond).toBe(920);
-      expect(datetime.offset.inMinutes).toBe(0);
-    });
-
-    it("should return null from an invalid string", () => {
-      // given
-      const str = "2024-12-07-12:56:19.920";
-
-      // when
-      const datetime = DateTime.parse(str)!;
-
-      // then
-      expect(datetime).toBeNull();
     });
   });
 

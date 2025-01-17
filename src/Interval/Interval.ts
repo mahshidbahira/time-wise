@@ -27,7 +27,7 @@ class Interval {
     const startStr = this.start.toString();
     const endStr = this.end.toString();
 
-    return `${startStr} / ${endStr}`;
+    return `[ ${startStr} , ${endStr} )`;
   }
 
   [Symbol.toPrimitive](hint: string): number | string {
@@ -59,15 +59,11 @@ class Interval {
   }
 
   equals(other: Interval): boolean {
-    return this.duration.inMilliseconds === other.duration.inMilliseconds;
-  }
-
-  isLongerThan(other: Interval): boolean {
-    return this.duration.inMilliseconds > other.duration.inMilliseconds;
-  }
-
-  isShorterThan(other: Interval): boolean {
-    return this.duration.inMilliseconds < other.duration.inMilliseconds;
+    return (
+      this.start.millisecondsSinceEpoch ===
+        other.start.millisecondsSinceEpoch &&
+      this.end.millisecondsSinceEpoch === other.end.millisecondsSinceEpoch
+    );
   }
 
   withStart(start: DateTime): Interval {
@@ -98,44 +94,44 @@ class Interval {
     return Interval.between(start, end);
   }
 
-  static fromString(str: string): Interval | null {
-    const regexp = /^(.+) \/ (.+)$/;
+  static fromString(str: string): Interval {
+    const regexp = /^\[ (.+) , (.+) \)$/;
     const result = regexp.exec(str);
 
     if (!result) {
-      return null;
+      throw new Error(`interval string is invalid: ${str}`);
     }
 
-    const start = DateTime.parse(result[1]);
-    const end = DateTime.parse(result[2]);
-
-    if (!start || !end) {
-      return null;
-    }
+    const start = DateTime.fromString(result[1]);
+    const end = DateTime.fromString(result[2]);
 
     return Interval.between(start, end);
   }
 
-  static fromISOString(str: string): Interval | null {
+  static fromISOString(str: string): Interval {
     const regexp = /^(.+)\/(.+)$/;
     const result = regexp.exec(str);
 
     if (!result) {
-      return null;
+      throw new Error(`interval iso string is invalid: ${str}`);
     }
 
-    const start = DateTime.parse(result[1]);
-    const end = DateTime.parse(result[2]);
-
-    if (!start || !end) {
-      return null;
-    }
+    const start = DateTime.fromISOString(result[1]);
+    const end = DateTime.fromISOString(result[2]);
 
     return Interval.between(start, end);
   }
 
-  static parse(str: string): Interval | null {
-    return Interval.fromString(str) || Interval.fromISOString(str);
+  static parse(str: string): Interval {
+    try {
+      return Interval.fromString(str);
+    } catch {
+      try {
+        return Interval.fromISOString(str);
+      } catch {
+        throw new Error(`interval parse failed: ${str}`);
+      }
+    }
   }
 
   static compare(interval1: Interval, interval2: Interval): number {

@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import Interval from "./Interval";
 import DateTime from "../DateTime/DateTime";
 import Duration from "../Duration/Duration";
+import Interval from "./Interval";
 
 describe("Interval", () => {
   const now = new Date();
@@ -21,21 +21,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 3,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -55,21 +55,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -77,7 +77,12 @@ describe("Interval", () => {
       const duration = interval.duration;
 
       // then
-      expect(duration).toEqual(Duration.fromObject({ day: 2 }));
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(2);
+      expect(duration.hour).toBe(0);
+      expect(duration.minute).toBe(0);
+      expect(duration.second).toBe(0);
+      expect(duration.millisecond).toBe(0);
     });
   });
 
@@ -88,21 +93,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -110,7 +115,7 @@ describe("Interval", () => {
       const value = interval.valueOf();
 
       // then
-      expect(value).toBe(Duration.fromObject({ day: 2 }).inMilliseconds);
+      expect(value).toBe(172_800_000);
     });
   });
 
@@ -121,21 +126,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -144,7 +149,7 @@ describe("Interval", () => {
 
       // then
       expect(str).toBe(
-        "2024-12-07 12:56:19.920 UTC+00:00 / 2024-12-09 12:56:19.920 UTC+00:00"
+        "[ 2024-12-07 13:56:19.920 UTC+01:00 , 2024-12-09 13:56:19.920 UTC+01:00 )"
       );
     });
   });
@@ -156,21 +161,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -178,7 +183,7 @@ describe("Interval", () => {
       const primitive = +interval;
 
       // then
-      expect(primitive).toBe(Duration.fromObject({ day: 2 }).inMilliseconds);
+      expect(primitive).toBe(172_800_000);
     });
 
     it("should return a string when a string is expected of the duration", () => {
@@ -187,21 +192,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -210,7 +215,7 @@ describe("Interval", () => {
 
       // then
       expect(primitive).toBe(
-        "2024-12-07 12:56:19.920 UTC+00:00 / 2024-12-09 12:56:19.920 UTC+00:00"
+        "[ 2024-12-07 13:56:19.920 UTC+01:00 , 2024-12-09 13:56:19.920 UTC+01:00 )"
       );
     });
   });
@@ -222,21 +227,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -245,7 +250,7 @@ describe("Interval", () => {
 
       // then
       expect(jsonStr).toBe(
-        `"2024-12-07T12:56:19.920+00:00/2024-12-09T12:56:19.920+00:00"`
+        `"2024-12-07T13:56:19.920+01:00/2024-12-09T13:56:19.920+01:00"`
       );
     });
   });
@@ -257,21 +262,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -280,7 +285,7 @@ describe("Interval", () => {
 
       // then
       expect(str).toBe(
-        "2024-12-07T12:56:19.920+00:00/2024-12-09T12:56:19.920+00:00"
+        "2024-12-07T13:56:19.920+01:00/2024-12-09T13:56:19.920+01:00"
       );
     });
   });
@@ -292,21 +297,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -319,21 +324,21 @@ describe("Interval", () => {
           year: 2024,
           month: 12,
           day: 7,
-          hour: 12,
+          hour: 13,
           minute: 56,
           second: 19,
           millisecond: 920,
-          offset: {},
+          offset: { hour: 1 },
         },
         end: {
           year: 2024,
           month: 12,
           day: 9,
-          hour: 12,
+          hour: 13,
           minute: 56,
           second: 19,
           millisecond: 920,
-          offset: {},
+          offset: { hour: 1 },
         },
       });
     });
@@ -346,21 +351,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval1 = Interval.between(start, end);
       const interval2 = Interval.between(start, end);
@@ -378,31 +383,31 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end1 = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end2 = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 3,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);
@@ -415,244 +420,6 @@ describe("Interval", () => {
     });
   });
 
-  describe("isLongerThan", () => {
-    it("should return true when the interval is longer than the other interval", () => {
-      // given
-      const start = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 7,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end1 = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 9,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end2 = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 8,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const interval1 = Interval.between(start, end1);
-      const interval2 = Interval.between(start, end2);
-
-      // when
-      const isLongerThan = interval1.isLongerThan(interval2);
-
-      // then
-      expect(isLongerThan).toBe(true);
-    });
-
-    it("should return false when the interval is equal to the other interval", () => {
-      // given
-      const start = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 7,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 9,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-
-      const interval1 = Interval.between(start, end);
-      const interval2 = Interval.between(start, end);
-
-      // when
-      const isLongerThan = interval1.isLongerThan(interval2);
-
-      // then
-      expect(isLongerThan).toBe(false);
-    });
-
-    it("should return false when the interval is shorter than the other interval", () => {
-      // given
-      const start = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 7,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end1 = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 8,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end2 = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 9,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const interval1 = Interval.between(start, end1);
-      const interval2 = Interval.between(start, end2);
-
-      // when
-      const isLongerThan = interval1.isLongerThan(interval2);
-
-      // then
-      expect(isLongerThan).toBe(false);
-    });
-  });
-
-  describe("isShorterThan", () => {
-    it("should return true when the interval is shorter than the other interval", () => {
-      // given
-      const start = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 7,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end1 = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 8,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end2 = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 9,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const interval1 = Interval.between(start, end1);
-      const interval2 = Interval.between(start, end2);
-
-      // when
-      const isShorterThan = interval1.isShorterThan(interval2);
-
-      // then
-      expect(isShorterThan).toBe(true);
-    });
-
-    it("should return false when the interval is equal to the other interval", () => {
-      // given
-      const start = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 7,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 9,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-
-      const interval1 = Interval.between(start, end);
-      const interval2 = Interval.between(start, end);
-
-      // when
-      const isShorterThan = interval1.isShorterThan(interval2);
-
-      // then
-      expect(isShorterThan).toBe(false);
-    });
-
-    it("should return false when the interval is longer than the other interval", () => {
-      // given
-      const start = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 7,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end1 = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 9,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const end2 = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 8,
-        hour: 12,
-        minute: 56,
-        second: 19,
-        millisecond: 920,
-        offset: {},
-      });
-      const interval1 = Interval.between(start, end1);
-      const interval2 = Interval.between(start, end2);
-
-      // when
-      const isShorterThan = interval1.isShorterThan(interval2);
-
-      // then
-      expect(isShorterThan).toBe(false);
-    });
-  });
-
   describe("withStart", () => {
     it("should return an interval with the new start", () => {
       // given
@@ -660,21 +427,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -682,11 +449,11 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 4,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -706,21 +473,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval = Interval.between(start, end);
 
@@ -728,11 +495,11 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 11,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -752,21 +519,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -786,11 +553,11 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromJSDate(now);
 
@@ -812,11 +579,11 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -837,21 +604,21 @@ describe("Interval", () => {
           year: 2024,
           month: 12,
           day: 7,
-          hour: 12,
+          hour: 13,
           minute: 56,
           second: 19,
           millisecond: 920,
-          offset: {},
+          offset: { hour: 1 },
         },
         end: {
           year: 2024,
           month: 12,
           day: 9,
-          hour: 12,
+          hour: 13,
           minute: 56,
           second: 19,
           millisecond: 920,
-          offset: {},
+          offset: { hour: 1 },
         },
       };
 
@@ -865,11 +632,11 @@ describe("Interval", () => {
           year: 2024,
           month: 12,
           day: 7,
-          hour: 12,
+          hour: 13,
           minute: 56,
           second: 19,
           millisecond: 920,
-          offset: {},
+          offset: { hour: 1 },
         })
       );
       expect(interval.end).toEqual(
@@ -877,237 +644,201 @@ describe("Interval", () => {
           year: 2024,
           month: 12,
           day: 9,
-          hour: 12,
+          hour: 13,
           minute: 56,
           second: 19,
           millisecond: 920,
-          offset: {},
+          offset: { hour: 1 },
         })
       );
     });
   });
 
-  // describe("static fromString", () => {
-  //   it("should return an interval from a string", () => {
-  //     // given
-  //     const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
-  //     const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
-  //     const str = `${startStr} / ${endStr}`;
+  describe("static fromString", () => {
+    it("should return an interval from a string", () => {
+      // given
+      const startStr = "2024-12-07 13:56:19.920 UTC+01:00";
+      const endStr = "2024-12-09 13:56:19.920 UTC+01:00";
+      const str = `[ ${startStr} , ${endStr} )`;
 
-  //     // when
-  //     const interval = Interval.fromString(str)!;
+      // when
+      const interval = Interval.fromString(str)!;
 
-  //     // then
-  //     expect(interval).toBeInstanceOf(Interval);
-  //     expect(interval.start).toEqual(DateTime.parse(startStr));
-  //     expect(interval.end).toEqual(DateTime.parse(endStr));
-  //   });
+      // then
+      expect(interval).toBeInstanceOf(Interval);
+      expect(interval.start).toEqual(DateTime.fromString(startStr));
+      expect(interval.end).toEqual(DateTime.fromString(endStr));
+    });
 
-  //   it("should return null from an invalid start string", () => {
-  //     // given
-  //     const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
-  //     const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
-  //     const str = `${startStr} / ${endStr}`;
+    it("should return null from an invalid start string", () => {
+      // given
+      const startStr = "2024-12-07 wwww 13:56:19.920 UTC+01:00";
+      const endStr = "2024-12-09 13:56:19.920 UTC+01:00";
+      const str = `[ ${startStr} , ${endStr} )`;
 
-  //     // when
-  //     const interval = Interval.fromString(str)!;
+      // when/then
+      expect(() => Interval.fromString(str)).toThrowError();
+    });
 
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
+    it("should return null from an invalid end string", () => {
+      // given
+      const startStr = "2024-12-07 13:56:19.920 UTC+01:00";
+      const endStr = "2024-12-09 wwww 13:56:19.920 UTC+01:00";
+      const str = `[ ${startStr} , ${endStr} )`;
 
-  //   it("should return null from an invalid end string", () => {
-  //     // given
-  //     const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
-  //     const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
-  //     const str = `${startStr} / ${endStr}`;
+      // when/then
+      expect(() => Interval.fromString(str)).toThrowError();
+    });
 
-  //     // when
-  //     const interval = Interval.fromString(str)!;
+    it("should return null from an invalid start and end string", () => {
+      // given
+      const startStr = "2024-12-07 wwww 13:56:19.920 UTC+01:00";
+      const endStr = "2024-12-09 wwww 13:56:19.920 UTC+01:00";
+      const str = `[ ${startStr} , ${endStr} )`;
 
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
+      // when/then
+      expect(() => Interval.fromString(str)).toThrowError();
+    });
+  });
 
-  //   it("should return null from an invalid start and end string", () => {
-  //     // given
-  //     const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
-  //     const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
-  //     const str = `${startStr} / ${endStr}`;
+  describe("static fromISOString", () => {
+    it("should return an interval from an iso string", () => {
+      // given
+      const startStr = "2024-12-07T13:56:19.920+01:00";
+      const endStr = "2024-12-09T13:56:19.920+01:00";
+      const str = `${startStr}/${endStr}`;
 
-  //     // when
-  //     const interval = Interval.fromString(str)!;
+      // when
+      const interval = Interval.fromISOString(str);
 
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
-  // });
+      // then
+      expect(interval).toBeInstanceOf(Interval);
+      expect(interval.start).toEqual(DateTime.fromISOString(startStr));
+      expect(interval.end).toEqual(DateTime.fromISOString(endStr));
+    });
 
-  // describe("static fromISOString", () => {
-  //   it("should return an interval from an iso string", () => {
-  //     // given
-  //     const startStr = "2024-12-07T12:56:19.920Z";
-  //     const endStr = "2024-12-09T12:56:19.920Z";
-  //     const str = `${startStr}/${endStr}`;
+    it("should return null from an invalid start iso string", () => {
+      // given
+      const startStr = "2024-12-07-13:56:19.920+01:00";
+      const endStr = "2024-12-09T13:56:19.920+01:00";
+      const str = `${startStr}/${endStr}`;
 
-  //     // when
-  //     const interval = Interval.fromISOString(str)!;
+      // when/then
+      expect(() => Interval.fromISOString(str)).toThrowError();
+    });
 
-  //     // then
-  //     expect(interval).toBeInstanceOf(Interval);
-  //     expect(interval.start).toEqual(DateTime.parse(startStr));
-  //     expect(interval.end).toEqual(DateTime.parse(endStr));
-  //   });
+    it("should return null from an invalid end iso string", () => {
+      // given
+      const startStr = "2024-12-07T13:56:19.920+01:00";
+      const endStr = "2024-12-09-13:56:19.920+01:00";
+      const str = `${startStr}/${endStr}`;
 
-  //   it("should return null from an invalid start iso string", () => {
-  //     // given
-  //     const startStr = "2024-12-07-12:56:19.920Z";
-  //     const endStr = "2024-12-09T12:56:19.920Z";
-  //     const str = `${startStr}/${endStr}`;
+      // when/then
+      expect(() => Interval.fromISOString(str)).toThrowError();
+    });
 
-  //     // when
-  //     const interval = Interval.fromISOString(str)!;
+    it("should return null from an invalid start and end iso string", () => {
+      // given
+      const startStr = "2024-12-07-13:56:19.920+01:00";
+      const endStr = "2024-12-09-13:56:19.920+01:00";
+      const str = `${startStr}/${endStr}`;
 
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
+      // when/then
+      expect(() => Interval.fromISOString(str)).toThrowError();
+    });
+  });
 
-  //   it("should return null from an invalid end iso string", () => {
-  //     // given
-  //     const startStr = "2024-12-07T12:56:19.920Z";
-  //     const endStr = "2024-12-09-12:56:19.920Z";
-  //     const str = `${startStr}/${endStr}`;
+  describe("static parse", () => {
+    it("should return an interval from a string", () => {
+      // given
+      const startStr = "2024-12-07 13:56:19.920 UTC+01:00";
+      const endStr = "2024-12-09 13:56:19.920 UTC+01:00";
+      const str = `[ ${startStr} , ${endStr} )`;
 
-  //     // when
-  //     const interval = Interval.fromISOString(str)!;
+      // when
+      const interval = Interval.parse(str)!;
 
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
+      // then
+      expect(interval).toBeInstanceOf(Interval);
+      expect(interval.start).toEqual(DateTime.parse(startStr));
+      expect(interval.end).toEqual(DateTime.parse(endStr));
+    });
 
-  //   it("should return null from an invalid start and end iso string", () => {
-  //     // given
-  //     const startStr = "2024-12-07-12:56:19.920Z";
-  //     const endStr = "2024-12-09-12:56:19.920Z";
-  //     const str = `${startStr}/${endStr}`;
+    it("should return null from an invalid start string", () => {
+      // given
+      const startStr = "2024-12-07 wwww 13:56:19.920 UTC+01:00";
+      const endStr = "2024-12-09 13:56:19.920 UTC+01:00";
+      const str = `[ ${startStr} , ${endStr} )`;
 
-  //     // when
-  //     const interval = Interval.fromISOString(str)!;
+      // when/then
+      expect(() => Interval.parse(str)).toThrowError();
+    });
 
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
-  // });
+    it("should return null from an invalid end string", () => {
+      // given
+      const startStr = "2024-12-07 13:56:19.920 UTC+01:00";
+      const endStr = "2024-12-09 wwww 13:56:19.920 UTC+01:00";
+      const str = `[ ${startStr} , ${endStr} )`;
 
-  // describe("static parse", () => {
-  //   it("should return an interval from a string", () => {
-  //     // given
-  //     const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
-  //     const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
-  //     const str = `${startStr} / ${endStr}`;
+      // when/then
+      expect(() => Interval.parse(str)).toThrowError();
+    });
 
-  //     // when
-  //     const interval = Interval.parse(str)!;
+    it("should return null from an invalid start and end string", () => {
+      // given
+      const startStr = "2024-12-07 wwww 13:56:19.920 UTC+01:00";
+      const endStr = "2024-12-09 wwww 13:56:19.920 UTC+01:00";
+      const str = `[ ${startStr} , ${endStr} )`;
 
-  //     // then
-  //     expect(interval).toBeInstanceOf(Interval);
-  //     expect(interval.start).toEqual(DateTime.parse(startStr));
-  //     expect(interval.end).toEqual(DateTime.parse(endStr));
-  //   });
+      // when/then
+      expect(() => Interval.parse(str)).toThrowError();
+    });
 
-  //   it("should return null from an invalid start string", () => {
-  //     // given
-  //     const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
-  //     const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
-  //     const str = `${startStr} / ${endStr}`;
+    it("should return an interval from an iso string", () => {
+      // given
+      const startStr = "2024-12-07T13:56:19.920+01:00";
+      const endStr = "2024-12-09T13:56:19.920+01:00";
+      const str = `${startStr}/${endStr}`;
 
-  //     // when
-  //     const interval = Interval.parse(str)!;
+      // when
+      const interval = Interval.parse(str);
 
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
+      // then
+      expect(interval).toBeInstanceOf(Interval);
+      expect(interval.start).toEqual(DateTime.parse(startStr));
+      expect(interval.end).toEqual(DateTime.parse(endStr));
+    });
 
-  //   it("should return null from an invalid end string", () => {
-  //     // given
-  //     const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
-  //     const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
-  //     const str = `${startStr} / ${endStr}`;
+    it("should return null from an invalid start iso string", () => {
+      // given
+      const startStr = "2024-12-07-13:56:19.920+01:00";
+      const endStr = "2024-12-09T13:56:19.920+01:00";
+      const str = `${startStr}/${endStr}`;
 
-  //     // when
-  //     const interval = Interval.parse(str)!;
+      // when/then
+      expect(() => Interval.parse(str)).toThrowError();
+    });
 
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
+    it("should return null from an invalid end iso string", () => {
+      // given
+      const startStr = "2024-12-07T13:56:19.920+01:00";
+      const endStr = "2024-12-09-13:56:19.920+01:00";
+      const str = `${startStr}/${endStr}`;
 
-  //   it("should return null from an invalid start and end string", () => {
-  //     // given
-  //     const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
-  //     const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
-  //     const str = `${startStr} / ${endStr}`;
+      // when/then
+      expect(() => Interval.parse(str)).toThrowError();
+    });
 
-  //     // when
-  //     const interval = Interval.parse(str)!;
+    it("should return null from an invalid start and end iso string", () => {
+      // given
+      const startStr = "2024-12-07-13:56:19.920+01:00";
+      const endStr = "2024-12-09-13:56:19.920+01:00";
+      const str = `${startStr}/${endStr}`;
 
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
-
-  //   it("should return an interval from an iso string", () => {
-  //     // given
-  //     const startStr = "2024-12-07T12:56:19.920Z";
-  //     const endStr = "2024-12-09T12:56:19.920Z";
-  //     const str = `${startStr}/${endStr}`;
-
-  //     // when
-  //     const interval = Interval.parse(str)!;
-
-  //     // then
-  //     expect(interval).toBeInstanceOf(Interval);
-  //     expect(interval.start).toEqual(DateTime.parse(startStr));
-  //     expect(interval.end).toEqual(DateTime.parse(endStr));
-  //   });
-
-  //   it("should return null from an invalid start iso string", () => {
-  //     // given
-  //     const startStr = "2024-12-07-12:56:19.920Z";
-  //     const endStr = "2024-12-09T12:56:19.920Z";
-  //     const str = `${startStr}/${endStr}`;
-
-  //     // when
-  //     const interval = Interval.parse(str)!;
-
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
-
-  //   it("should return null from an invalid end iso string", () => {
-  //     // given
-  //     const startStr = "2024-12-07T12:56:19.920Z";
-  //     const endStr = "2024-12-09-12:56:19.920Z";
-  //     const str = `${startStr}/${endStr}`;
-
-  //     // when
-  //     const interval = Interval.parse(str)!;
-
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
-
-  //   it("should return null from an invalid start and end iso string", () => {
-  //     // given
-  //     const startStr = "2024-12-07-12:56:19.920Z";
-  //     const endStr = "2024-12-09-12:56:19.920Z";
-  //     const str = `${startStr}/${endStr}`;
-
-  //     // when
-  //     const interval = Interval.parse(str)!;
-
-  //     // then
-  //     expect(interval).toBeNull();
-  //   });
-  // });
+      // when/then
+      expect(() => Interval.parse(str)).toThrowError();
+    });
+  });
 
   describe("static compare", () => {
     it("should return a positive number when the interval is longer than the other interval", () => {
@@ -1116,31 +847,31 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end1 = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end2 = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 8,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);
@@ -1158,21 +889,21 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval1 = Interval.between(start, end);
       const interval2 = Interval.between(start, end);
@@ -1190,31 +921,31 @@ describe("Interval", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end1 = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 8,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const end2 = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 9,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const interval1 = Interval.between(start, end1);
       const interval2 = Interval.between(start, end2);

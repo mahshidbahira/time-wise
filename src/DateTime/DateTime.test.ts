@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import DateTime from "./DateTime";
 import Duration from "../Duration/Duration";
 import Offset from "../Offset/Offset";
+import DateTime from "./DateTime";
 
 describe("DateTime", () => {
   const now = new Date();
@@ -1431,7 +1431,7 @@ describe("DateTime", () => {
       const str = "Sat, 07 Dec 2024 12:56:19.920 GMT";
 
       // when
-      const datetime = DateTime.parse(str)!;
+      const datetime = DateTime.parse(str);
 
       // then
       expect(datetime).toBeInstanceOf(DateTime);

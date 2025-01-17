@@ -1,5 +1,5 @@
-import Offset from "../Offset/Offset";
 import Duration from "../Duration/Duration";
+import Offset from "../Offset/Offset";
 import DateTimeObjectLiteral from "./DateTimeObjectLiteral";
 
 class DateTime {

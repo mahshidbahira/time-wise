@@ -91,7 +91,7 @@ class Offset {
   }
 
   toDuration(): Duration {
-    return Duration.fromObject({ hours: this.hour, minutes: this.minute });
+    return Duration.fromObject({ hour: this.hour, minute: this.minute });
   }
 
   equals(other: Offset): boolean {

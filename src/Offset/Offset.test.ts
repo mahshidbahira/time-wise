@@ -238,11 +238,11 @@ describe("Offset", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
-      expect(duration.days).toBe(0);
-      expect(duration.hours).toBe(1);
-      expect(duration.minutes).toBe(30);
-      expect(duration.seconds).toBe(0);
-      expect(duration.milliseconds).toBe(0);
+      expect(duration.day).toBe(0);
+      expect(duration.hour).toBe(1);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(0);
+      expect(duration.millisecond).toBe(0);
     });
 
     it("should return the duration of negative offset", () => {
@@ -254,11 +254,11 @@ describe("Offset", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
-      expect(duration.days).toBe(0);
-      expect(duration.hours).toBe(-1);
-      expect(duration.minutes).toBe(-30);
-      expect(duration.seconds).toBe(0);
-      expect(duration.milliseconds).toBe(0);
+      expect(duration.day).toBe(0);
+      expect(duration.hour).toBe(-1);
+      expect(duration.minute).toBe(-30);
+      expect(duration.second).toBe(0);
+      expect(duration.millisecond).toBe(0);
     });
   });
 
@@ -815,7 +815,7 @@ describe("Offset", () => {
   describe("static fromDuration", () => {
     it("should return the offset of positive duration", () => {
       // given
-      const duration = Duration.fromObject({ hours: 1, minutes: 30 });
+      const duration = Duration.fromObject({ hour: 1, minute: 30 });
 
       // when
       const offset = Offset.fromDuration(duration);
@@ -828,7 +828,7 @@ describe("Offset", () => {
 
     it("should return the offset of negative duration", () => {
       // given
-      const duration = Duration.fromObject({ hours: -1, minutes: -30 });
+      const duration = Duration.fromObject({ hour: -1, minute: -30 });
 
       // when
       const offset = Offset.fromDuration(duration);

@@ -739,7 +739,7 @@ describe("DateTime", () => {
 
       // when
       const datetimeWithOffset = datetime.withOffset(
-        Duration.fromObject({ hours: 3, minutes: 30 })
+        Duration.fromObject({ hour: 3, minute: 30 })
       );
 
       // then
@@ -752,7 +752,7 @@ describe("DateTime", () => {
       expect(datetimeWithOffset.second).toBe(19);
       expect(datetimeWithOffset.millisecond).toBe(920);
       expect(datetimeWithOffset.offset.inMilliseconds).toBeCloseTo(
-        Duration.fromObject({ hours: 3, minutes: 30 }).inMilliseconds
+        Duration.fromObject({ hour: 3, minute: 30 }).inMilliseconds
       );
     });
   });
@@ -770,7 +770,7 @@ describe("DateTime", () => {
         millisecond: 920,
         offset: {},
       });
-      const duration = Duration.fromObject({ milliseconds: 10 });
+      const duration = Duration.fromObject({ millisecond: 10 });
 
       // when
       const sum = datetime.plus(duration);
@@ -801,7 +801,7 @@ describe("DateTime", () => {
         millisecond: 920,
         offset: {},
       });
-      const duration = Duration.fromObject({ milliseconds: 10 });
+      const duration = Duration.fromObject({ millisecond: 10 });
 
       // when
       const diff = datetime.minus(duration);

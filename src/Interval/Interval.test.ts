@@ -77,7 +77,7 @@ describe("Interval", () => {
       const duration = interval.duration;
 
       // then
-      expect(duration).toEqual(Duration.fromObject({ days: 2 }));
+      expect(duration).toEqual(Duration.fromObject({ day: 2 }));
     });
   });
 
@@ -110,7 +110,7 @@ describe("Interval", () => {
       const value = interval.valueOf();
 
       // then
-      expect(value).toBe(Duration.fromObject({ days: 2 }).inMilliseconds);
+      expect(value).toBe(Duration.fromObject({ day: 2 }).inMilliseconds);
     });
   });
 
@@ -178,7 +178,7 @@ describe("Interval", () => {
       const primitive = +interval;
 
       // then
-      expect(primitive).toBe(Duration.fromObject({ days: 2 }).inMilliseconds);
+      expect(primitive).toBe(Duration.fromObject({ day: 2 }).inMilliseconds);
     });
 
     it("should return a string when a string is expected of the duration", () => {

@@ -821,11 +821,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -836,11 +836,11 @@ describe("DateTime", () => {
       expect(datetimeWithYear.year).toBe(2023);
       expect(datetimeWithYear.month).toBe(12);
       expect(datetimeWithYear.day).toBe(7);
-      expect(datetimeWithYear.hour).toBe(12);
+      expect(datetimeWithYear.hour).toBe(13);
       expect(datetimeWithYear.minute).toBe(56);
       expect(datetimeWithYear.second).toBe(19);
       expect(datetimeWithYear.millisecond).toBe(920);
-      expect(datetimeWithYear.offset.inMinutes).toBe(0);
+      expect(datetimeWithYear.offset.inMinutes).toBe(60);
     });
   });
 
@@ -851,11 +851,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -866,11 +866,11 @@ describe("DateTime", () => {
       expect(datetimeWithMonth.year).toBe(2024);
       expect(datetimeWithMonth.month).toBe(9);
       expect(datetimeWithMonth.day).toBe(7);
-      expect(datetimeWithMonth.hour).toBe(12);
+      expect(datetimeWithMonth.hour).toBe(13);
       expect(datetimeWithMonth.minute).toBe(56);
       expect(datetimeWithMonth.second).toBe(19);
       expect(datetimeWithMonth.millisecond).toBe(920);
-      expect(datetimeWithMonth.offset.inMinutes).toBe(0);
+      expect(datetimeWithMonth.offset.inMinutes).toBe(60);
     });
   });
 
@@ -881,11 +881,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -896,11 +896,11 @@ describe("DateTime", () => {
       expect(datetimeWithDay.year).toBe(2024);
       expect(datetimeWithDay.month).toBe(12);
       expect(datetimeWithDay.day).toBe(28);
-      expect(datetimeWithDay.hour).toBe(12);
+      expect(datetimeWithDay.hour).toBe(13);
       expect(datetimeWithDay.minute).toBe(56);
       expect(datetimeWithDay.second).toBe(19);
       expect(datetimeWithDay.millisecond).toBe(920);
-      expect(datetimeWithDay.offset.inMinutes).toBe(0);
+      expect(datetimeWithDay.offset.inMinutes).toBe(60);
     });
   });
 
@@ -911,11 +911,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -930,7 +930,7 @@ describe("DateTime", () => {
       expect(datetimeWithHour.minute).toBe(56);
       expect(datetimeWithHour.second).toBe(19);
       expect(datetimeWithHour.millisecond).toBe(920);
-      expect(datetimeWithHour.offset.inMinutes).toBe(0);
+      expect(datetimeWithHour.offset.inMinutes).toBe(60);
     });
   });
 
@@ -941,11 +941,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -956,11 +956,11 @@ describe("DateTime", () => {
       expect(datetimeWithMinute.year).toBe(2024);
       expect(datetimeWithMinute.month).toBe(12);
       expect(datetimeWithMinute.day).toBe(7);
-      expect(datetimeWithMinute.hour).toBe(12);
+      expect(datetimeWithMinute.hour).toBe(13);
       expect(datetimeWithMinute.minute).toBe(59);
       expect(datetimeWithMinute.second).toBe(19);
       expect(datetimeWithMinute.millisecond).toBe(920);
-      expect(datetimeWithMinute.offset.inMinutes).toBe(0);
+      expect(datetimeWithMinute.offset.inMinutes).toBe(60);
     });
   });
 
@@ -971,11 +971,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -986,11 +986,11 @@ describe("DateTime", () => {
       expect(datetimeWithSecond.year).toBe(2024);
       expect(datetimeWithSecond.month).toBe(12);
       expect(datetimeWithSecond.day).toBe(7);
-      expect(datetimeWithSecond.hour).toBe(12);
+      expect(datetimeWithSecond.hour).toBe(13);
       expect(datetimeWithSecond.minute).toBe(56);
       expect(datetimeWithSecond.second).toBe(45);
       expect(datetimeWithSecond.millisecond).toBe(920);
-      expect(datetimeWithSecond.offset.inMinutes).toBe(0);
+      expect(datetimeWithSecond.offset.inMinutes).toBe(60);
     });
   });
 
@@ -1001,11 +1001,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -1016,11 +1016,11 @@ describe("DateTime", () => {
       expect(datetimeWithMillisecond.year).toBe(2024);
       expect(datetimeWithMillisecond.month).toBe(12);
       expect(datetimeWithMillisecond.day).toBe(7);
-      expect(datetimeWithMillisecond.hour).toBe(12);
+      expect(datetimeWithMillisecond.hour).toBe(13);
       expect(datetimeWithMillisecond.minute).toBe(56);
       expect(datetimeWithMillisecond.second).toBe(19);
       expect(datetimeWithMillisecond.millisecond).toBe(2);
-      expect(datetimeWithMillisecond.offset.inMinutes).toBe(0);
+      expect(datetimeWithMillisecond.offset.inMinutes).toBe(60);
     });
   });
 
@@ -1031,16 +1031,16 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
       const datetimeWithOffset = datetime.withOffset(
-        Offset.fromObject({ hour: 3, minute: 30 })
+        Offset.fromObject({ hour: -1 })
       );
 
       // then
@@ -1048,13 +1048,11 @@ describe("DateTime", () => {
       expect(datetimeWithOffset.year).toBe(2024);
       expect(datetimeWithOffset.month).toBe(12);
       expect(datetimeWithOffset.day).toBe(7);
-      expect(datetimeWithOffset.hour).toBe(12);
+      expect(datetimeWithOffset.hour).toBe(13);
       expect(datetimeWithOffset.minute).toBe(56);
       expect(datetimeWithOffset.second).toBe(19);
       expect(datetimeWithOffset.millisecond).toBe(920);
-      expect(datetimeWithOffset.offset.inMinutes).toBe(
-        Offset.fromObject({ hour: 3, minute: 30 }).inMinutes
-      );
+      expect(datetimeWithOffset.offset.inMinutes).toBe(-60);
     });
   });
 

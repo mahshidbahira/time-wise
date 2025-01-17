@@ -59,7 +59,7 @@ class DateTime {
     millisecond: number,
     offset: Offset
   ) {
-    if (year < 1) {
+    if (year < 1969) {
       throw new Error(`date time year is invalid: ${year}`);
     }
     if (month < 1 || month > 12) {

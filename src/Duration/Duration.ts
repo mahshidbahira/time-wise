@@ -48,16 +48,16 @@ class Duration {
     second: number,
     millisecond: number
   ) {
-    if (hour > 23 || hour < -23) {
+    if (hour < -23 || hour > 23) {
       throw new Error(`duration hour is invalid: ${hour}`);
     }
-    if (minute > 59 || minute < -59) {
+    if (minute < -59 || minute > 59) {
       throw new Error(`duration minute is invalid: ${minute}`);
     }
-    if (second > 59 || second < -59) {
+    if (second < -59 || second > 59) {
       throw new Error(`duration second is invalid: ${second}`);
     }
-    if (millisecond > 999 || millisecond < -999) {
+    if (millisecond < -999 || millisecond > 999) {
       throw new Error(`duration millisecond is invalid: ${millisecond}`);
     }
 

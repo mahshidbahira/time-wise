@@ -16,10 +16,10 @@ class Offset {
   }
 
   constructor(hour: number, minute: number) {
-    if (hour > 23 || hour < -23) {
+    if (hour < -23 || hour > 23) {
       throw new Error(`offset hour is invalid: ${hour}`);
     }
-    if (minute > 59 || minute < -59) {
+    if (minute < -59 || minute > 59) {
       throw new Error(`offset minute is invalid: ${minute}`);
     }
 

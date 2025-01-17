@@ -15,10 +15,10 @@ describe("DateTime", () => {
   });
 
   describe("constructor", () => {
-    it("should return a datetime with milliseconds since epoch", () => {
+    it("should return a datetime", () => {
       // given
       const year = 2024;
-      const month = 11;
+      const month = 12;
       const day = 7;
       const hour = 12;
       const minute = 56;
@@ -41,13 +41,202 @@ describe("DateTime", () => {
       // then
       expect(datetime).toBeInstanceOf(DateTime);
       expect(datetime.year).toBe(2024);
-      expect(datetime.month).toBe(11);
+      expect(datetime.month).toBe(12);
       expect(datetime.day).toBe(7);
       expect(datetime.hour).toBe(12);
       expect(datetime.minute).toBe(56);
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
       expect(datetime.offset.inMinutes).toBe(0);
+    });
+
+    it("should throw an error with invalid year", () => {
+      // given
+      const year = 1968;
+      const month = 12;
+      const day = 7;
+      const hour = 12;
+      const minute = 56;
+      const second = 19;
+      const millisecond = 920;
+      const offset = Offset.fromObject({});
+
+      // when/then
+      expect(
+        () =>
+          new DateTime(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            offset
+          )
+      ).toThrowError();
+    });
+
+    it("should throw an error with invalid month", () => {
+      // given
+      const year = 2024;
+      const month = 0;
+      const day = 7;
+      const hour = 12;
+      const minute = 56;
+      const second = 19;
+      const millisecond = 920;
+      const offset = Offset.fromObject({});
+
+      // when/then
+      expect(
+        () =>
+          new DateTime(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            offset
+          )
+      ).toThrowError();
+    });
+
+    it("should throw an error with invalid day", () => {
+      // given
+      const year = 2024;
+      const month = 12;
+      const day = 0;
+      const hour = 12;
+      const minute = 56;
+      const second = 19;
+      const millisecond = 920;
+      const offset = Offset.fromObject({});
+
+      // when/then
+      expect(
+        () =>
+          new DateTime(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            offset
+          )
+      ).toThrowError();
+    });
+
+    it("should throw an error with invalid hour", () => {
+      // given
+      const year = 2024;
+      const month = 12;
+      const day = 7;
+      const hour = 24;
+      const minute = 56;
+      const second = 19;
+      const millisecond = 920;
+      const offset = Offset.fromObject({});
+
+      // when/then
+      expect(
+        () =>
+          new DateTime(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            offset
+          )
+      ).toThrowError();
+    });
+
+    it("should throw an error with invalid minute", () => {
+      // given
+      const year = 2024;
+      const month = 12;
+      const day = 7;
+      const hour = 12;
+      const minute = 60;
+      const second = 19;
+      const millisecond = 920;
+      const offset = Offset.fromObject({});
+
+      // when/then
+      expect(
+        () =>
+          new DateTime(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            offset
+          )
+      ).toThrowError();
+    });
+
+    it("should throw an error with invalid second", () => {
+      // given
+      const year = 2024;
+      const month = 12;
+      const day = 7;
+      const hour = 12;
+      const minute = 56;
+      const second = 60;
+      const millisecond = 920;
+      const offset = Offset.fromObject({});
+
+      // when/then
+      expect(
+        () =>
+          new DateTime(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            offset
+          )
+      ).toThrowError();
+    });
+
+    it("should throw an error with invalid millisecond", () => {
+      // given
+      const year = 2024;
+      const month = 12;
+      const day = 7;
+      const hour = 12;
+      const minute = 56;
+      const second = 19;
+      const millisecond = 1000;
+      const offset = Offset.fromObject({});
+
+      // when/then
+      expect(
+        () =>
+          new DateTime(
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
+            millisecond,
+            offset
+          )
+      ).toThrowError();
     });
   });
 

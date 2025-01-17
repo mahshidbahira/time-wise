@@ -1149,10 +1149,94 @@ describe("DateTime", () => {
     });
   });
 
-  describe("static of", () => {
-    it("should return a datetime of epoch from zero", () => {
+  describe("static fromDaysSinceEpoch", () => {
+    it("should return a datetime from days since epoch", () => {
       // given
-      const millisecondsSinceEpoch = 0;
+      const daysSinceEpoch = 20064.539119444446;
+
+      // when
+      const datetime = DateTime.fromDaysSinceEpoch(daysSinceEpoch);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(12);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMinutes).toBe(0);
+    });
+  });
+
+  describe("static fromHoursSinceEpoch", () => {
+    it("should return a datetime from hours since epoch", () => {
+      // given
+      const hoursSinceEpoch = 481548.9388666667;
+
+      // when
+      const datetime = DateTime.fromHoursSinceEpoch(hoursSinceEpoch);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(12);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMinutes).toBe(0);
+    });
+  });
+
+  describe("static fromMinutesSinceEpoch", () => {
+    it("should return a datetime from minutes since epoch", () => {
+      // given
+      const minutesSinceEpoch = 28892936.332;
+
+      // when
+      const datetime = DateTime.fromMinutesSinceEpoch(minutesSinceEpoch);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(12);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMinutes).toBe(0);
+    });
+  });
+
+  describe("static fromSecondsSinceEpoch", () => {
+    it("should return a datetime from seconds since epoch", () => {
+      // given
+      const secondsSinceEpoch = 1_733_576_179.92;
+
+      // when
+      const datetime = DateTime.fromSecondsSinceEpoch(secondsSinceEpoch);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(12);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
+      expect(datetime.offset.inMinutes).toBe(0);
+    });
+  });
+
+  describe("static fromMillisecondsSinceEpoch", () => {
+    it("should return a datetime from milliseconds since epoch", () => {
+      // given
+      const millisecondsSinceEpoch = 1_733_576_179_920;
 
       // when
       const datetime = DateTime.fromMillisecondsSinceEpoch(
@@ -1161,24 +1245,30 @@ describe("DateTime", () => {
 
       // then
       expect(datetime).toBeInstanceOf(DateTime);
-      expect(datetime.year).toBe(1970);
-      expect(datetime.month).toBe(1);
-      expect(datetime.day).toBe(1);
-      expect(datetime.hour).toBe(0);
-      expect(datetime.minute).toBe(0);
-      expect(datetime.second).toBe(0);
-      expect(datetime.millisecond).toBe(0);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(12);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(920);
       expect(datetime.offset.inMinutes).toBe(0);
     });
+  });
 
-    it("should return a datetime with milliseconds since epoch", () => {
+  describe("static fromDurationSinceEpoch", () => {
+    it("should return a datetime from duration since epoch", () => {
       // given
-      const millisecondsSinceEpoch = 1_733_576_179_920;
+      const durationSinceEpoch = Duration.fromObject({
+        day: 20064,
+        hour: 12,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+      });
 
       // when
-      const datetime = DateTime.fromMillisecondsSinceEpoch(
-        millisecondsSinceEpoch
-      );
+      const datetime = DateTime.fromDurationSinceEpoch(durationSinceEpoch);
 
       // then
       expect(datetime).toBeInstanceOf(DateTime);

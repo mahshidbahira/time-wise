@@ -715,7 +715,7 @@ describe("Offset", () => {
       // then
       expect(offset).toBeInstanceOf(Offset);
       expect(offset.hour).toBe(-5);
-      expect(offset.minute).toBe(-0);
+      expect(offset.minute).toBe(0);
     });
 
     it("should return the offset of Asia/Tokyo", () => {
@@ -792,7 +792,7 @@ describe("Offset", () => {
       // then
       expect(offset).toBeInstanceOf(Offset);
       expect(offset.hour).toBe(-5);
-      expect(offset.minute).toBe(-0);
+      expect(offset.minute).toBe(0);
     });
 
     it("should return the offset of Asia/Tokyo", () => {

@@ -662,7 +662,7 @@ describe("Interval", () => {
       const str = `[ ${startStr} , ${endStr} )`;
 
       // when
-      const interval = Interval.fromString(str)!;
+      const interval = Interval.fromString(str);
 
       // then
       expect(interval).toBeInstanceOf(Interval);
@@ -756,7 +756,7 @@ describe("Interval", () => {
       const str = `[ ${startStr} , ${endStr} )`;
 
       // when
-      const interval = Interval.parse(str)!;
+      const interval = Interval.parse(str);
 
       // then
       expect(interval).toBeInstanceOf(Interval);

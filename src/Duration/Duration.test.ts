@@ -33,7 +33,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should throw an error with invalid hours", () => {
+    it("should throw an error with invalid hour", () => {
       // given
       const day = 6;
       const hour = 24;
@@ -47,7 +47,7 @@ describe("Duration", () => {
       ).toThrowError();
     });
 
-    it("should throw an error with invalid minutes", () => {
+    it("should throw an error with invalid minute", () => {
       // given
       const day = 6;
       const hour = 12;
@@ -61,7 +61,7 @@ describe("Duration", () => {
       ).toThrowError();
     });
 
-    it("should throw an error with invalid seconds", () => {
+    it("should throw an error with invalid second", () => {
       // given
       const day = 6;
       const hour = 12;
@@ -75,7 +75,7 @@ describe("Duration", () => {
       ).toThrowError();
     });
 
-    it("should throw an error with invalid milliseconds", () => {
+    it("should throw an error with invalid millisecond", () => {
       // given
       const day = 6;
       const hour = 12;
@@ -205,7 +205,7 @@ describe("Duration", () => {
   });
 
   describe("toString", () => {
-    it("should return the string of only days", () => {
+    it("should return the string of only day", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -218,7 +218,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 00:00:00");
     });
 
-    it("should return the string of only hours", () => {
+    it("should return the string of only hour", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -231,7 +231,7 @@ describe("Duration", () => {
       expect(str).toBe("12:00:00");
     });
 
-    it("should return the string of only minutes", () => {
+    it("should return the string of only minute", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -244,7 +244,7 @@ describe("Duration", () => {
       expect(str).toBe("00:30:00");
     });
 
-    it("should return the string of only seconds", () => {
+    it("should return the string of only second", () => {
       // given
       const duration = Duration.fromObject({
         second: 45,
@@ -257,7 +257,7 @@ describe("Duration", () => {
       expect(str).toBe("00:00:45");
     });
 
-    it("should return the string of only milliseconds", () => {
+    it("should return the string of only millisecond", () => {
       // given
       const duration = Duration.fromObject({
         millisecond: 2,
@@ -270,7 +270,7 @@ describe("Duration", () => {
       expect(str).toBe("00:00:00.002");
     });
 
-    it("should return the string of only milliseconds", () => {
+    it("should return the string of only millisecond", () => {
       // given
       const duration = Duration.fromObject({
         millisecond: 500,
@@ -283,7 +283,7 @@ describe("Duration", () => {
       expect(str).toBe("00:00:00.500");
     });
 
-    it("should return the string of days and hours", () => {
+    it("should return the string of day and hour", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -297,7 +297,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 12:00:00");
     });
 
-    it("should return the string of days and minutes", () => {
+    it("should return the string of day and minute", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -312,7 +312,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 00:30:00");
     });
 
-    it("should return the string of days and seconds", () => {
+    it("should return the string of day and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -327,7 +327,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 00:00:45");
     });
 
-    it("should return the string of days and milliseconds", () => {
+    it("should return the string of day and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -342,7 +342,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 00:00:00.002");
     });
 
-    it("should return the string of hours and minutes", () => {
+    it("should return the string of hour and minute", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -356,7 +356,7 @@ describe("Duration", () => {
       expect(str).toBe("12:30:00");
     });
 
-    it("should return the string of hours and seconds", () => {
+    it("should return the string of hour and second", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -371,7 +371,7 @@ describe("Duration", () => {
       expect(str).toBe("12:00:45");
     });
 
-    it("should return the string of hours and milliseconds", () => {
+    it("should return the string of hour and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -386,7 +386,7 @@ describe("Duration", () => {
       expect(str).toBe("12:00:00.002");
     });
 
-    it("should return the string of minutes and seconds", () => {
+    it("should return the string of minute and second", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -400,7 +400,7 @@ describe("Duration", () => {
       expect(str).toBe("00:30:45");
     });
 
-    it("should return the string of minutes and milliseconds", () => {
+    it("should return the string of minute and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -415,7 +415,7 @@ describe("Duration", () => {
       expect(str).toBe("00:30:00.002");
     });
 
-    it("should return the string of seconds and milliseconds", () => {
+    it("should return the string of second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         second: 45,
@@ -429,7 +429,7 @@ describe("Duration", () => {
       expect(str).toBe("00:00:45.002");
     });
 
-    it("should return the string of day, hours and minutes", () => {
+    it("should return the string of day, hour and minute", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -444,7 +444,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 12:30:00");
     });
 
-    it("should return the string of day, hours and seconds", () => {
+    it("should return the string of day, hour and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -460,7 +460,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 12:00:45");
     });
 
-    it("should return the string of day, hours and milliseconds", () => {
+    it("should return the string of day, hour and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -476,7 +476,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 12:00:00.002");
     });
 
-    it("should return the string of day, minutes and seconds", () => {
+    it("should return the string of day, minute and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -492,7 +492,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 00:30:45");
     });
 
-    it("should return the string of day, minutes and milliseconds", () => {
+    it("should return the string of day, minute and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -509,7 +509,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 00:30:00.002");
     });
 
-    it("should return the string of day, seconds and milliseconds", () => {
+    it("should return the string of day, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -525,7 +525,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 00:00:45.002");
     });
 
-    it("should return the string of hour, minutes and seconds", () => {
+    it("should return the string of hour, minute and second", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -540,7 +540,7 @@ describe("Duration", () => {
       expect(str).toBe("12:30:45");
     });
 
-    it("should return the string of hour, minutes and milliseconds", () => {
+    it("should return the string of hour, minute and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -556,7 +556,7 @@ describe("Duration", () => {
       expect(str).toBe("12:30:00.002");
     });
 
-    it("should return the string of hour, seconds and milliseconds", () => {
+    it("should return the string of hour, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -572,7 +572,7 @@ describe("Duration", () => {
       expect(str).toBe("12:00:45.002");
     });
 
-    it("should return the string of minute, seconds and milliseconds", () => {
+    it("should return the string of minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -587,7 +587,7 @@ describe("Duration", () => {
       expect(str).toBe("00:30:45.002");
     });
 
-    it("should return the string of day, hour, minutes and seconds", () => {
+    it("should return the string of day, hour, minute and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -603,7 +603,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 12:30:45");
     });
 
-    it("should return the string of day, hour, minutes and milliseconds", () => {
+    it("should return the string of day, hour, minute and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -620,7 +620,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 12:30:00.002");
     });
 
-    it("should return the string of hour, minute, seconds and milliseconds", () => {
+    it("should return the string of hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -636,7 +636,7 @@ describe("Duration", () => {
       expect(str).toBe("12:30:45.002");
     });
 
-    it("should return the string of day, hour, minute, seconds and milliseconds", () => {
+    it("should return the string of day, hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -653,7 +653,7 @@ describe("Duration", () => {
       expect(str).toBe("6 days 12:30:45.002");
     });
 
-    it("should return the string of negative day, hour, minute, seconds and milliseconds", () => {
+    it("should return the string of negative day, hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: -6,
@@ -719,7 +719,7 @@ describe("Duration", () => {
   });
 
   describe("toISOString", () => {
-    it("should return the ISO-8601 string of only days", () => {
+    it("should return the ISO-8601 string of only day", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -732,7 +732,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6D");
     });
 
-    it("should return the ISO-8601 string of only hours", () => {
+    it("should return the ISO-8601 string of only hour", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -745,7 +745,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT12H");
     });
 
-    it("should return the ISO-8601 string of only minutes", () => {
+    it("should return the ISO-8601 string of only minute", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -758,7 +758,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT30M");
     });
 
-    it("should return the ISO-8601 string of only seconds", () => {
+    it("should return the ISO-8601 string of only second", () => {
       // given
       const duration = Duration.fromObject({
         second: 45,
@@ -771,7 +771,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT45S");
     });
 
-    it("should return the ISO-8601 string of only milliseconds", () => {
+    it("should return the ISO-8601 string of only millisecond", () => {
       // given
       const duration = Duration.fromObject({
         millisecond: 2,
@@ -784,7 +784,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT0.002S");
     });
 
-    it("should return the ISO-8601 string of only milliseconds", () => {
+    it("should return the ISO-8601 string of only millisecond", () => {
       // given
       const duration = Duration.fromObject({
         millisecond: 500,
@@ -797,7 +797,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT0.5S");
     });
 
-    it("should return the ISO-8601 string of days and hours", () => {
+    it("should return the ISO-8601 string of day and hour", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -811,7 +811,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT12H");
     });
 
-    it("should return the ISO-8601 string of days and minutes", () => {
+    it("should return the ISO-8601 string of day and minute", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -826,7 +826,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT30M");
     });
 
-    it("should return the ISO-8601 string of days and seconds", () => {
+    it("should return the ISO-8601 string of day and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -841,7 +841,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT45S");
     });
 
-    it("should return the ISO-8601 string of days and milliseconds", () => {
+    it("should return the ISO-8601 string of day and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -856,7 +856,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT0.002S");
     });
 
-    it("should return the ISO-8601 string of hours and minutes", () => {
+    it("should return the ISO-8601 string of hour and minute", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -870,7 +870,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT12H30M");
     });
 
-    it("should return the ISO-8601 string of hours and seconds", () => {
+    it("should return the ISO-8601 string of hour and second", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -885,7 +885,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT12H45S");
     });
 
-    it("should return the ISO-8601 string of hours and milliseconds", () => {
+    it("should return the ISO-8601 string of hour and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -900,7 +900,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT12H0.002S");
     });
 
-    it("should return the ISO-8601 string of minutes and seconds", () => {
+    it("should return the ISO-8601 string of minute and second", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -914,7 +914,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT30M45S");
     });
 
-    it("should return the ISO-8601 string of minutes and milliseconds", () => {
+    it("should return the ISO-8601 string of minute and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -929,7 +929,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT30M0.002S");
     });
 
-    it("should return the ISO-8601 string of seconds and milliseconds", () => {
+    it("should return the ISO-8601 string of second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         second: 45,
@@ -943,7 +943,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT45.002S");
     });
 
-    it("should return the ISO-8601 string of day, hours and minutes", () => {
+    it("should return the ISO-8601 string of day, hour and minute", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -958,7 +958,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT12H30M");
     });
 
-    it("should return the ISO-8601 string of day, hours and seconds", () => {
+    it("should return the ISO-8601 string of day, hour and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -974,7 +974,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT12H45S");
     });
 
-    it("should return the ISO-8601 string of day, hours and milliseconds", () => {
+    it("should return the ISO-8601 string of day, hour and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -990,7 +990,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT12H0.002S");
     });
 
-    it("should return the ISO-8601 string of day, minutes and seconds", () => {
+    it("should return the ISO-8601 string of day, minute and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1006,7 +1006,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT30M45S");
     });
 
-    it("should return the ISO-8601 string of day, minutes and milliseconds", () => {
+    it("should return the ISO-8601 string of day, minute and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1023,7 +1023,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT30M0.002S");
     });
 
-    it("should return the ISO-8601 string of day, seconds and milliseconds", () => {
+    it("should return the ISO-8601 string of day, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1039,7 +1039,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT45.002S");
     });
 
-    it("should return the ISO-8601 string of hour, minutes and seconds", () => {
+    it("should return the ISO-8601 string of hour, minute and second", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -1054,7 +1054,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT12H30M45S");
     });
 
-    it("should return the ISO-8601 string of hour, minutes and milliseconds", () => {
+    it("should return the ISO-8601 string of hour, minute and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -1070,7 +1070,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT12H30M0.002S");
     });
 
-    it("should return the ISO-8601 string of hour, seconds and milliseconds", () => {
+    it("should return the ISO-8601 string of hour, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -1086,7 +1086,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT12H45.002S");
     });
 
-    it("should return the ISO-8601 string of minute, seconds and milliseconds", () => {
+    it("should return the ISO-8601 string of minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -1101,7 +1101,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT30M45.002S");
     });
 
-    it("should return the ISO-8601 string of day, hour, minutes and seconds", () => {
+    it("should return the ISO-8601 string of day, hour, minute and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1117,7 +1117,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT12H30M45S");
     });
 
-    it("should return the ISO-8601 string of day, hour, minutes and milliseconds", () => {
+    it("should return the ISO-8601 string of day, hour, minute and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1134,7 +1134,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT12H30M0.002S");
     });
 
-    it("should return the ISO-8601 string of hour, minute, seconds and milliseconds", () => {
+    it("should return the ISO-8601 string of hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -1150,7 +1150,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("PT12H30M45.002S");
     });
 
-    it("should return the ISO-8601 string of day, hour, minute, seconds and milliseconds", () => {
+    it("should return the ISO-8601 string of day, hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1167,7 +1167,7 @@ describe("Duration", () => {
       expect(isoStr).toBe("P6DT12H30M45.002S");
     });
 
-    it("should return the ISO-8601 string of negative day, hour, minute, seconds and milliseconds", () => {
+    it("should return the ISO-8601 string of negative day, hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: -6,
@@ -1197,7 +1197,7 @@ describe("Duration", () => {
       expect(objectLiteral).toEqual({});
     });
 
-    it("should return the object of only days", () => {
+    it("should return the object of only day", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1210,7 +1210,7 @@ describe("Duration", () => {
       expect(objectLiteral).toEqual({ day: 6 });
     });
 
-    it("should return the object of only hours", () => {
+    it("should return the object of only hour", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -1223,7 +1223,7 @@ describe("Duration", () => {
       expect(objectLiteral).toEqual({ hour: 12 });
     });
 
-    it("should return the object of only minutes", () => {
+    it("should return the object of only minute", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -1236,7 +1236,7 @@ describe("Duration", () => {
       expect(objectLiteral).toEqual({ minute: 30 });
     });
 
-    it("should return the object of only seconds", () => {
+    it("should return the object of only second", () => {
       // given
       const duration = Duration.fromObject({
         second: 45,
@@ -1249,7 +1249,7 @@ describe("Duration", () => {
       expect(objectLiteral).toEqual({ second: 45 });
     });
 
-    it("should return the object of only milliseconds", () => {
+    it("should return the object of only millisecond", () => {
       // given
       const duration = Duration.fromObject({
         millisecond: 2,
@@ -1262,7 +1262,7 @@ describe("Duration", () => {
       expect(objectLiteral).toEqual({ millisecond: 2 });
     });
 
-    it("should return the object of days and hours", () => {
+    it("should return the object of day and hour", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1276,7 +1276,7 @@ describe("Duration", () => {
       expect(objectLiteral).toEqual({ day: 6, hour: 12 });
     });
 
-    it("should return the object of days and minutes", () => {
+    it("should return the object of day and minute", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1294,7 +1294,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of days and seconds", () => {
+    it("should return the object of day and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1312,7 +1312,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of days and milliseconds", () => {
+    it("should return the object of day and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1330,7 +1330,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of hours and minutes", () => {
+    it("should return the object of hour and minute", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -1347,7 +1347,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of hours and seconds", () => {
+    it("should return the object of hour and second", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -1365,7 +1365,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of hours and milliseconds", () => {
+    it("should return the object of hour and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -1383,7 +1383,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of minutes and seconds", () => {
+    it("should return the object of minute and second", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -1400,7 +1400,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of minutes and milliseconds", () => {
+    it("should return the object of minute and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         minute: 30,
@@ -1418,7 +1418,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of seconds and milliseconds", () => {
+    it("should return the object of second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         second: 45,
@@ -1435,7 +1435,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of day, hours and minutes", () => {
+    it("should return the object of day, hour and minute", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1454,7 +1454,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of day, hours and seconds", () => {
+    it("should return the object of day, hour and second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1474,192 +1474,11 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of day, hours and milliseconds", () => {
+    it("should return the object of day, hour and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
         hour: 12,
-
-        millisecond: 2,
-      });
-
-      // when
-      const objectLiteral = duration.toObject();
-
-      // then
-      expect(objectLiteral).toEqual({
-        day: 6,
-        hour: 12,
-        millisecond: 2,
-      });
-    });
-
-    it("should return the object of day, minutes and seconds", () => {
-      // given
-      const duration = Duration.fromObject({
-        day: 6,
-
-        minute: 30,
-        second: 45,
-      });
-
-      // when
-      const objectLiteral = duration.toObject();
-
-      // then
-      expect(objectLiteral).toEqual({
-        day: 6,
-        minute: 30,
-        second: 45,
-      });
-    });
-
-    it("should return the object of day, minutes and milliseconds", () => {
-      // given
-      const duration = Duration.fromObject({
-        day: 6,
-
-        minute: 30,
-
-        millisecond: 2,
-      });
-
-      // when
-      const objectLiteral = duration.toObject();
-
-      // then
-      expect(objectLiteral).toEqual({
-        day: 6,
-        minute: 30,
-        millisecond: 2,
-      });
-    });
-
-    it("should return the object of day, seconds and milliseconds", () => {
-      // given
-      const duration = Duration.fromObject({
-        day: 6,
-
-        second: 45,
-        millisecond: 2,
-      });
-
-      // when
-      const objectLiteral = duration.toObject();
-
-      // then
-      expect(objectLiteral).toEqual({
-        day: 6,
-        second: 45,
-        millisecond: 2,
-      });
-    });
-
-    it("should return the object of hour, minutes and seconds", () => {
-      // given
-      const duration = Duration.fromObject({
-        hour: 12,
-        minute: 30,
-        second: 45,
-      });
-
-      // when
-      const objectLiteral = duration.toObject();
-
-      // then
-      expect(objectLiteral).toEqual({
-        hour: 12,
-        minute: 30,
-        second: 45,
-      });
-    });
-
-    it("should return the object of hour, minutes and milliseconds", () => {
-      // given
-      const duration = Duration.fromObject({
-        hour: 12,
-        minute: 30,
-
-        millisecond: 2,
-      });
-
-      // when
-      const objectLiteral = duration.toObject();
-
-      // then
-      expect(objectLiteral).toEqual({
-        hour: 12,
-        minute: 30,
-        millisecond: 2,
-      });
-    });
-
-    it("should return the object of hour, seconds and milliseconds", () => {
-      // given
-      const duration = Duration.fromObject({
-        hour: 12,
-
-        second: 45,
-        millisecond: 2,
-      });
-
-      // when
-      const objectLiteral = duration.toObject();
-
-      // then
-      expect(objectLiteral).toEqual({
-        hour: 12,
-        second: 45,
-        millisecond: 2,
-      });
-    });
-
-    it("should return the object of minute, seconds and milliseconds", () => {
-      // given
-      const duration = Duration.fromObject({
-        minute: 30,
-        second: 45,
-        millisecond: 2,
-      });
-
-      // when
-      const objectLiteral = duration.toObject();
-
-      // then
-      expect(objectLiteral).toEqual({
-        minute: 30,
-        second: 45,
-        millisecond: 2,
-      });
-    });
-
-    it("should return the object of day, hour, minutes and seconds", () => {
-      // given
-      const duration = Duration.fromObject({
-        day: 6,
-        hour: 12,
-        minute: 30,
-        second: 45,
-      });
-
-      // when
-      const objectLiteral = duration.toObject();
-
-      // then
-      expect(objectLiteral).toEqual({
-        day: 6,
-        hour: 12,
-        minute: 30,
-        second: 45,
-      });
-    });
-
-    it("should return the object of day, hour, minutes and milliseconds", () => {
-      // given
-      const duration = Duration.fromObject({
-        day: 6,
-        hour: 12,
-        minute: 30,
 
         millisecond: 2,
       });
@@ -1671,12 +1490,193 @@ describe("Duration", () => {
       expect(objectLiteral).toEqual({
         day: 6,
         hour: 12,
+        millisecond: 2,
+      });
+    });
+
+    it("should return the object of day, minute and second", () => {
+      // given
+      const duration = Duration.fromObject({
+        day: 6,
+
+        minute: 30,
+        second: 45,
+      });
+
+      // when
+      const objectLiteral = duration.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({
+        day: 6,
+        minute: 30,
+        second: 45,
+      });
+    });
+
+    it("should return the object of day, minute and millisecond", () => {
+      // given
+      const duration = Duration.fromObject({
+        day: 6,
+
+        minute: 30,
+
+        millisecond: 2,
+      });
+
+      // when
+      const objectLiteral = duration.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({
+        day: 6,
         minute: 30,
         millisecond: 2,
       });
     });
 
-    it("should return the object of hour, minute, seconds and milliseconds", () => {
+    it("should return the object of day, second and millisecond", () => {
+      // given
+      const duration = Duration.fromObject({
+        day: 6,
+
+        second: 45,
+        millisecond: 2,
+      });
+
+      // when
+      const objectLiteral = duration.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({
+        day: 6,
+        second: 45,
+        millisecond: 2,
+      });
+    });
+
+    it("should return the object of hour, minute and second", () => {
+      // given
+      const duration = Duration.fromObject({
+        hour: 12,
+        minute: 30,
+        second: 45,
+      });
+
+      // when
+      const objectLiteral = duration.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({
+        hour: 12,
+        minute: 30,
+        second: 45,
+      });
+    });
+
+    it("should return the object of hour, minute and millisecond", () => {
+      // given
+      const duration = Duration.fromObject({
+        hour: 12,
+        minute: 30,
+
+        millisecond: 2,
+      });
+
+      // when
+      const objectLiteral = duration.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({
+        hour: 12,
+        minute: 30,
+        millisecond: 2,
+      });
+    });
+
+    it("should return the object of hour, second and millisecond", () => {
+      // given
+      const duration = Duration.fromObject({
+        hour: 12,
+
+        second: 45,
+        millisecond: 2,
+      });
+
+      // when
+      const objectLiteral = duration.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({
+        hour: 12,
+        second: 45,
+        millisecond: 2,
+      });
+    });
+
+    it("should return the object of minute, second and millisecond", () => {
+      // given
+      const duration = Duration.fromObject({
+        minute: 30,
+        second: 45,
+        millisecond: 2,
+      });
+
+      // when
+      const objectLiteral = duration.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({
+        minute: 30,
+        second: 45,
+        millisecond: 2,
+      });
+    });
+
+    it("should return the object of day, hour, minute and second", () => {
+      // given
+      const duration = Duration.fromObject({
+        day: 6,
+        hour: 12,
+        minute: 30,
+        second: 45,
+      });
+
+      // when
+      const objectLiteral = duration.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({
+        day: 6,
+        hour: 12,
+        minute: 30,
+        second: 45,
+      });
+    });
+
+    it("should return the object of day, hour, minute and millisecond", () => {
+      // given
+      const duration = Duration.fromObject({
+        day: 6,
+        hour: 12,
+        minute: 30,
+
+        millisecond: 2,
+      });
+
+      // when
+      const objectLiteral = duration.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({
+        day: 6,
+        hour: 12,
+        minute: 30,
+        millisecond: 2,
+      });
+    });
+
+    it("should return the object of hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
@@ -1697,7 +1697,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of day, hour, minute, seconds and milliseconds", () => {
+    it("should return the object of day, hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1720,7 +1720,7 @@ describe("Duration", () => {
       });
     });
 
-    it("should return the object of negative day, hour, minute, seconds and milliseconds", () => {
+    it("should return the object of negative day, hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: -6,
@@ -1878,7 +1878,7 @@ describe("Duration", () => {
     });
   });
 
-  describe("withDays", () => {
+  describe("withDay", () => {
     it("should return a duration", () => {
       // given
       const duration = Duration.fromObject({
@@ -1902,7 +1902,7 @@ describe("Duration", () => {
     });
   });
 
-  describe("withHours", () => {
+  describe("withHour", () => {
     it("should return a duration", () => {
       // given
       const duration = Duration.fromObject({
@@ -1926,7 +1926,7 @@ describe("Duration", () => {
     });
   });
 
-  describe("withMinutes", () => {
+  describe("withMinute", () => {
     it("should return a duration", () => {
       // given
       const duration = Duration.fromObject({
@@ -1950,7 +1950,7 @@ describe("Duration", () => {
     });
   });
 
-  describe("withSeconds", () => {
+  describe("withSecond", () => {
     it("should return a duration", () => {
       // given
       const duration = Duration.fromObject({
@@ -1974,7 +1974,7 @@ describe("Duration", () => {
     });
   });
 
-  describe("withMilliseconds", () => {
+  describe("withMillisecond", () => {
     it("should return a duration", () => {
       // given
       const duration = Duration.fromObject({
@@ -2267,7 +2267,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only days from an object", () => {
+    it("should return the duration of only day from an object", () => {
       // given
       const objectLiteral = {
         day: 6,
@@ -2285,7 +2285,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only hours from an object", () => {
+    it("should return the duration of only hour from an object", () => {
       // given
       const objectLiteral = {
         hour: 12,
@@ -2303,7 +2303,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only minutes from an object", () => {
+    it("should return the duration of only minute from an object", () => {
       // given
       const objectLiteral = {
         minute: 30,
@@ -2321,7 +2321,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only seconds from an object", () => {
+    it("should return the duration of only second from an object", () => {
       // given
       const objectLiteral = {
         second: 45,
@@ -2339,7 +2339,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only milliseconds from an object", () => {
+    it("should return the duration of only millisecond from an object", () => {
       // given
       const objectLiteral = {
         millisecond: 2,
@@ -2357,7 +2357,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of days and hours from an object", () => {
+    it("should return the duration of day and hour from an object", () => {
       // given
       const objectLiteral = {
         day: 6,
@@ -2376,7 +2376,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and minutes from an object", () => {
+    it("should return the duration of day and minute from an object", () => {
       // given
       const objectLiteral = {
         day: 6,
@@ -2395,264 +2395,11 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and seconds from an object", () => {
+    it("should return the duration of day and second from an object", () => {
       // given
       const objectLiteral = {
         day: 6,
         second: 45,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(6);
-      expect(duration.hour).toBe(0);
-      expect(duration.minute).toBe(0);
-      expect(duration.second).toBe(45);
-      expect(duration.millisecond).toBe(0);
-    });
-
-    it("should return the duration of days and milliseconds from an object", () => {
-      // given
-      const objectLiteral = {
-        day: 6,
-        millisecond: 2,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(6);
-      expect(duration.hour).toBe(0);
-      expect(duration.minute).toBe(0);
-      expect(duration.second).toBe(0);
-      expect(duration.millisecond).toBe(2);
-    });
-
-    it("should return the duration of hours and minutes from an object", () => {
-      // given
-      const objectLiteral = {
-        hour: 12,
-        minute: 30,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(0);
-      expect(duration.hour).toBe(12);
-      expect(duration.minute).toBe(30);
-      expect(duration.second).toBe(0);
-      expect(duration.millisecond).toBe(0);
-    });
-
-    it("should return the duration of hours and seconds from an object", () => {
-      // given
-      const objectLiteral = {
-        hour: 12,
-        second: 45,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(0);
-      expect(duration.hour).toBe(12);
-      expect(duration.minute).toBe(0);
-      expect(duration.second).toBe(45);
-      expect(duration.millisecond).toBe(0);
-    });
-
-    it("should return the duration of hours and milliseconds from an object", () => {
-      // given
-      const objectLiteral = {
-        hour: 12,
-        millisecond: 2,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(0);
-      expect(duration.hour).toBe(12);
-      expect(duration.minute).toBe(0);
-      expect(duration.second).toBe(0);
-      expect(duration.millisecond).toBe(2);
-    });
-
-    it("should return the duration of minutes and seconds from an object", () => {
-      // given
-      const objectLiteral = {
-        minute: 30,
-        second: 45,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(0);
-      expect(duration.hour).toBe(0);
-      expect(duration.minute).toBe(30);
-      expect(duration.second).toBe(45);
-      expect(duration.millisecond).toBe(0);
-    });
-
-    it("should return the duration of minutes and milliseconds from an object", () => {
-      // given
-      const objectLiteral = {
-        minute: 30,
-        millisecond: 2,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(0);
-      expect(duration.hour).toBe(0);
-      expect(duration.minute).toBe(30);
-      expect(duration.second).toBe(0);
-      expect(duration.millisecond).toBe(2);
-    });
-
-    it("should return the duration of seconds and milliseconds from an object", () => {
-      // given
-      const objectLiteral = {
-        second: 45,
-        millisecond: 2,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(0);
-      expect(duration.hour).toBe(0);
-      expect(duration.minute).toBe(0);
-      expect(duration.second).toBe(45);
-      expect(duration.millisecond).toBe(2);
-    });
-
-    it("should return the duration of day, hours and minutes from an object", () => {
-      // given
-      const objectLiteral = {
-        day: 6,
-        hour: 12,
-        minute: 30,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(6);
-      expect(duration.hour).toBe(12);
-      expect(duration.minute).toBe(30);
-      expect(duration.second).toBe(0);
-      expect(duration.millisecond).toBe(0);
-    });
-
-    it("should return the duration of day, hours and seconds from an object", () => {
-      // given
-      const objectLiteral = {
-        day: 6,
-        hour: 12,
-        second: 45,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(6);
-      expect(duration.hour).toBe(12);
-      expect(duration.minute).toBe(0);
-      expect(duration.second).toBe(45);
-      expect(duration.millisecond).toBe(0);
-    });
-
-    it("should return the duration of day, hours and milliseconds from an object", () => {
-      // given
-      const objectLiteral = {
-        day: 6,
-        hour: 12,
-        millisecond: 2,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(6);
-      expect(duration.hour).toBe(12);
-      expect(duration.minute).toBe(0);
-      expect(duration.second).toBe(0);
-      expect(duration.millisecond).toBe(2);
-    });
-
-    it("should return the duration of day, minutes and seconds from an object", () => {
-      // given
-      const objectLiteral = {
-        day: 6,
-        minute: 30,
-        second: 45,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(6);
-      expect(duration.hour).toBe(0);
-      expect(duration.minute).toBe(30);
-      expect(duration.second).toBe(45);
-      expect(duration.millisecond).toBe(0);
-    });
-
-    it("should return the duration of day, minutes and milliseconds from an object", () => {
-      // given
-      const objectLiteral = {
-        day: 6,
-        minute: 30,
-        millisecond: 2,
-      };
-
-      // when
-      const duration = Duration.fromObject(objectLiteral);
-
-      // then
-      expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(6);
-      expect(duration.hour).toBe(0);
-      expect(duration.minute).toBe(30);
-      expect(duration.second).toBe(0);
-      expect(duration.millisecond).toBe(2);
-    });
-
-    it("should return the duration of day, seconds and milliseconds from an object", () => {
-      // given
-      const objectLiteral = {
-        day: 6,
-        second: 45,
-        millisecond: 2,
       };
 
       // when
@@ -2664,10 +2411,263 @@ describe("Duration", () => {
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
       expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(0);
+    });
+
+    it("should return the duration of day and millisecond from an object", () => {
+      // given
+      const objectLiteral = {
+        day: 6,
+        millisecond: 2,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(0);
+      expect(duration.minute).toBe(0);
+      expect(duration.second).toBe(0);
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minutes and seconds from an object", () => {
+    it("should return the duration of hour and minute from an object", () => {
+      // given
+      const objectLiteral = {
+        hour: 12,
+        minute: 30,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(0);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(0);
+      expect(duration.millisecond).toBe(0);
+    });
+
+    it("should return the duration of hour and second from an object", () => {
+      // given
+      const objectLiteral = {
+        hour: 12,
+        second: 45,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(0);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(0);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(0);
+    });
+
+    it("should return the duration of hour and millisecond from an object", () => {
+      // given
+      const objectLiteral = {
+        hour: 12,
+        millisecond: 2,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(0);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(0);
+      expect(duration.second).toBe(0);
+      expect(duration.millisecond).toBe(2);
+    });
+
+    it("should return the duration of minute and second from an object", () => {
+      // given
+      const objectLiteral = {
+        minute: 30,
+        second: 45,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(0);
+      expect(duration.hour).toBe(0);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(0);
+    });
+
+    it("should return the duration of minute and millisecond from an object", () => {
+      // given
+      const objectLiteral = {
+        minute: 30,
+        millisecond: 2,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(0);
+      expect(duration.hour).toBe(0);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(0);
+      expect(duration.millisecond).toBe(2);
+    });
+
+    it("should return the duration of second and millisecond from an object", () => {
+      // given
+      const objectLiteral = {
+        second: 45,
+        millisecond: 2,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(0);
+      expect(duration.hour).toBe(0);
+      expect(duration.minute).toBe(0);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(2);
+    });
+
+    it("should return the duration of day, hour and minute from an object", () => {
+      // given
+      const objectLiteral = {
+        day: 6,
+        hour: 12,
+        minute: 30,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(0);
+      expect(duration.millisecond).toBe(0);
+    });
+
+    it("should return the duration of day, hour and second from an object", () => {
+      // given
+      const objectLiteral = {
+        day: 6,
+        hour: 12,
+        second: 45,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(0);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(0);
+    });
+
+    it("should return the duration of day, hour and millisecond from an object", () => {
+      // given
+      const objectLiteral = {
+        day: 6,
+        hour: 12,
+        millisecond: 2,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(0);
+      expect(duration.second).toBe(0);
+      expect(duration.millisecond).toBe(2);
+    });
+
+    it("should return the duration of day, minute and second from an object", () => {
+      // given
+      const objectLiteral = {
+        day: 6,
+        minute: 30,
+        second: 45,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(0);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(0);
+    });
+
+    it("should return the duration of day, minute and millisecond from an object", () => {
+      // given
+      const objectLiteral = {
+        day: 6,
+        minute: 30,
+        millisecond: 2,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(0);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(0);
+      expect(duration.millisecond).toBe(2);
+    });
+
+    it("should return the duration of day, second and millisecond from an object", () => {
+      // given
+      const objectLiteral = {
+        day: 6,
+        second: 45,
+        millisecond: 2,
+      };
+
+      // when
+      const duration = Duration.fromObject(objectLiteral);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(0);
+      expect(duration.minute).toBe(0);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(2);
+    });
+
+    it("should return the duration of hour, minute and second from an object", () => {
       // given
       const objectLiteral = {
         hour: 12,
@@ -2687,7 +2687,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hour, minutes and milliseconds from an object", () => {
+    it("should return the duration of hour, minute and millisecond from an object", () => {
       // given
       const objectLiteral = {
         hour: 12,
@@ -2707,7 +2707,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, seconds and milliseconds from an object", () => {
+    it("should return the duration of hour, second and millisecond from an object", () => {
       // given
       const objectLiteral = {
         hour: 12,
@@ -2727,7 +2727,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of minute, seconds and milliseconds from an object", () => {
+    it("should return the duration of minute, second and millisecond from an object", () => {
       // given
       const objectLiteral = {
         minute: 30,
@@ -2747,7 +2747,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minutes and seconds from an object", () => {
+    it("should return the duration of day, hour, minute and second from an object", () => {
       // given
       const objectLiteral = {
         day: 6,
@@ -2768,7 +2768,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hour, minutes and milliseconds from an object", () => {
+    it("should return the duration of day, hour, minute and millisecond from an object", () => {
       // given
       const objectLiteral = {
         day: 6,
@@ -2789,7 +2789,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minute, seconds and milliseconds from an object", () => {
+    it("should return the duration of hour, minute, second and millisecond from an object", () => {
       // given
       const objectLiteral = {
         hour: 12,
@@ -2810,7 +2810,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minute, seconds and milliseconds from an object", () => {
+    it("should return the duration of day, hour, minute, second and millisecond from an object", () => {
       // given
       const objectLiteral = {
         day: 6,
@@ -2832,7 +2832,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of negative day, hour, minute, seconds and milliseconds from an object", () => {
+    it("should return the duration of negative day, hour, minute, second and millisecond from an object", () => {
       // given
       const objectLiteral = {
         day: -6,
@@ -2856,7 +2856,7 @@ describe("Duration", () => {
   });
 
   describe("static fromString", () => {
-    it("should return the duration of only days from a string", () => {
+    it("should return the duration of only day from a string", () => {
       // given
       const str = "6 days 00:00:00";
 
@@ -2872,7 +2872,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only hours from a string", () => {
+    it("should return the duration of only hour from a string", () => {
       // given
       const str = "12:00:00";
 
@@ -2888,7 +2888,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only minutes from a string", () => {
+    it("should return the duration of only minute from a string", () => {
       // given
       const str = "00:30:00";
 
@@ -2904,7 +2904,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only seconds from a string", () => {
+    it("should return the duration of only second from a string", () => {
       // given
       const str = "00:00:45";
 
@@ -2920,7 +2920,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only milliseconds from a string", () => {
+    it("should return the duration of only millisecond from a string", () => {
       // given
       const str = "00:00:00.002";
 
@@ -2936,7 +2936,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of only milliseconds from a string", () => {
+    it("should return the duration of only millisecond from a string", () => {
       // given
       const str = "00:00:00.500";
 
@@ -2952,7 +2952,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(500);
     });
 
-    it("should return the duration of days and hours from a string", () => {
+    it("should return the duration of day and hour from a string", () => {
       // given
       const str = "6 days 12:00:00";
 
@@ -2967,7 +2967,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and minutes from a string", () => {
+    it("should return the duration of day and minute from a string", () => {
       // given
       const str = "6 days 00:30:00";
 
@@ -2983,7 +2983,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and seconds from a string", () => {
+    it("should return the duration of day and second from a string", () => {
       // given
       const str = "6 days 00:00:45";
 
@@ -2999,7 +2999,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and milliseconds from a string", () => {
+    it("should return the duration of day and millisecond from a string", () => {
       // given
       const str = "6 days 00:00:00.002";
 
@@ -3015,7 +3015,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hours and minutes from a string", () => {
+    it("should return the duration of hour and minute from a string", () => {
       // given
       const str = "12:30:00";
 
@@ -3031,7 +3031,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hours and seconds from a string", () => {
+    it("should return the duration of hour and second from a string", () => {
       // given
       const str = "12:00:45";
 
@@ -3047,7 +3047,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hours and milliseconds from a string", () => {
+    it("should return the duration of hour and millisecond from a string", () => {
       // given
       const str = "12:00:00.002";
 
@@ -3063,7 +3063,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of minutes and seconds from a string", () => {
+    it("should return the duration of minute and second from a string", () => {
       // given
       const str = "00:30:45";
 
@@ -3079,7 +3079,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of minutes and milliseconds from a string", () => {
+    it("should return the duration of minute and millisecond from a string", () => {
       // given
       const str = "00:30:00.002";
 
@@ -3095,7 +3095,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of seconds and milliseconds from a string", () => {
+    it("should return the duration of second and millisecond from a string", () => {
       // given
       const str = "00:00:45.002";
 
@@ -3111,7 +3111,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hours and minutes from a string", () => {
+    it("should return the duration of day, hour and minute from a string", () => {
       // given
       const str = "6 days 12:30:00";
 
@@ -3127,7 +3127,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hours and seconds from a string", () => {
+    it("should return the duration of day, hour and second from a string", () => {
       // given
       const str = "6 days 12:00:45";
 
@@ -3143,7 +3143,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hours and milliseconds from a string", () => {
+    it("should return the duration of day, hour and millisecond from a string", () => {
       // given
       const str = "6 days 12:00:00.002";
 
@@ -3159,7 +3159,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, minutes and seconds from a string", () => {
+    it("should return the duration of day, minute and second from a string", () => {
       // given
       const str = "6 days 00:30:45";
 
@@ -3175,7 +3175,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, minutes and milliseconds from a string", () => {
+    it("should return the duration of day, minute and millisecond from a string", () => {
       // given
       const str = "6 days 00:30:00.002";
 
@@ -3191,7 +3191,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, seconds and milliseconds from a string", () => {
+    it("should return the duration of day, second and millisecond from a string", () => {
       // given
       const str = "6 days 00:00:45.002";
 
@@ -3207,7 +3207,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minutes and seconds from a string", () => {
+    it("should return the duration of hour, minute and second from a string", () => {
       // given
       const str = "12:30:45";
 
@@ -3223,7 +3223,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hour, minutes and milliseconds from a string", () => {
+    it("should return the duration of hour, minute and millisecond from a string", () => {
       // given
       const str = "12:30:00.002";
 
@@ -3239,7 +3239,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, seconds and milliseconds from a string", () => {
+    it("should return the duration of hour, second and millisecond from a string", () => {
       // given
       const str = "12:00:45.002";
 
@@ -3255,7 +3255,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of minute, seconds and milliseconds from a string", () => {
+    it("should return the duration of minute, second and millisecond from a string", () => {
       // given
       const str = "00:30:45.002";
 
@@ -3271,7 +3271,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minutes and seconds from a string", () => {
+    it("should return the duration of day, hour, minute and second from a string", () => {
       // given
       const str = "6 days 12:30:45";
 
@@ -3287,7 +3287,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hour, minutes and milliseconds from a string", () => {
+    it("should return the duration of day, hour, minute and millisecond from a string", () => {
       // given
       const str = "6 days 12:30:00.002";
 
@@ -3303,7 +3303,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minute, seconds and milliseconds from a string", () => {
+    it("should return the duration of hour, minute, second and millisecond from a string", () => {
       // given
       const str = "12:30:45.002";
 
@@ -3319,7 +3319,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minute, seconds and milliseconds from a string", () => {
+    it("should return the duration of day, hour, minute, second and millisecond from a string", () => {
       // given
       const str = "6 days 12:30:45.002";
 
@@ -3335,7 +3335,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of negative day, hour, minute, seconds and milliseconds from a string", () => {
+    it("should return the duration of negative day, hour, minute, second and millisecond from a string", () => {
       // given
       const str = "-6 days 12:30:45.002";
 
@@ -3361,7 +3361,7 @@ describe("Duration", () => {
   });
 
   describe("static fromISOString", () => {
-    it("should return the duration of only days from an iso string", () => {
+    it("should return the duration of only day from an iso string", () => {
       // given
       const str = "P6D";
 
@@ -3377,7 +3377,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only hours from an iso string", () => {
+    it("should return the duration of only hour from an iso string", () => {
       // given
       const str = "PT12H";
 
@@ -3393,7 +3393,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only minutes from an iso string", () => {
+    it("should return the duration of only minute from an iso string", () => {
       // given
       const str = "PT30M";
 
@@ -3409,7 +3409,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only seconds from an iso string", () => {
+    it("should return the duration of only second from an iso string", () => {
       // given
       const str = "PT45S";
 
@@ -3425,7 +3425,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only milliseconds from an iso string", () => {
+    it("should return the duration of only millisecond from an iso string", () => {
       // given
       const str = "PT0.002S";
 
@@ -3441,7 +3441,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of only milliseconds from an iso string", () => {
+    it("should return the duration of only millisecond from an iso string", () => {
       // given
       const str = "PT0.500S";
 
@@ -3457,7 +3457,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(500);
     });
 
-    it("should return the duration of days and hours from an iso string", () => {
+    it("should return the duration of day and hour from an iso string", () => {
       // given
       const str = "P6DT12H";
 
@@ -3472,7 +3472,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and minutes from an iso string", () => {
+    it("should return the duration of day and minute from an iso string", () => {
       // given
       const str = "P6DT30M";
 
@@ -3488,7 +3488,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and seconds from an iso string", () => {
+    it("should return the duration of day and second from an iso string", () => {
       // given
       const str = "P6DT45S";
 
@@ -3504,7 +3504,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and milliseconds from an iso string", () => {
+    it("should return the duration of day and millisecond from an iso string", () => {
       // given
       const str = "P6DT0.002S";
 
@@ -3520,7 +3520,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hours and minutes from an iso string", () => {
+    it("should return the duration of hour and minute from an iso string", () => {
       // given
       const str = "PT12H30M";
 
@@ -3536,7 +3536,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hours and seconds from an iso string", () => {
+    it("should return the duration of hour and second from an iso string", () => {
       // given
       const str = "PT12H45S";
 
@@ -3552,7 +3552,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hours and milliseconds from an iso string", () => {
+    it("should return the duration of hour and millisecond from an iso string", () => {
       // given
       const str = "PT12H0.002S";
 
@@ -3568,7 +3568,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of minutes and seconds from an iso string", () => {
+    it("should return the duration of minute and second from an iso string", () => {
       // given
       const str = "PT30M45S";
 
@@ -3584,7 +3584,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of minutes and milliseconds from an iso string", () => {
+    it("should return the duration of minute and millisecond from an iso string", () => {
       // given
       const str = "PT30M0.002S";
 
@@ -3600,7 +3600,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of seconds and milliseconds from an iso string", () => {
+    it("should return the duration of second and millisecond from an iso string", () => {
       // given
       const str = "PT45.002S";
 
@@ -3616,7 +3616,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hours and minutes from an iso string", () => {
+    it("should return the duration of day, hour and minute from an iso string", () => {
       // given
       const str = "P6DT12H30M";
 
@@ -3632,7 +3632,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hours and seconds from an iso string", () => {
+    it("should return the duration of day, hour and second from an iso string", () => {
       // given
       const str = "P6DT12H45S";
 
@@ -3648,7 +3648,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hours and milliseconds from an iso string", () => {
+    it("should return the duration of day, hour and millisecond from an iso string", () => {
       // given
       const str = "P6DT12H0.002S";
 
@@ -3664,7 +3664,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, minutes and seconds from an iso string", () => {
+    it("should return the duration of day, minute and second from an iso string", () => {
       // given
       const str = "P6DT30M45S";
 
@@ -3680,7 +3680,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, minutes and milliseconds from an iso string", () => {
+    it("should return the duration of day, minute and millisecond from an iso string", () => {
       // given
       const str = "P6DT30M0.002S";
 
@@ -3696,7 +3696,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of day, second and millisecond from an iso string", () => {
       // given
       const str = "P6DT45.002S";
 
@@ -3712,7 +3712,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minutes and seconds from an iso string", () => {
+    it("should return the duration of hour, minute and second from an iso string", () => {
       // given
       const str = "PT12H30M45S";
 
@@ -3728,7 +3728,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hour, minutes and milliseconds from an iso string", () => {
+    it("should return the duration of hour, minute and millisecond from an iso string", () => {
       // given
       const str = "PT12H30M0.002S";
 
@@ -3744,7 +3744,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of hour, second and millisecond from an iso string", () => {
       // given
       const str = "PT12H45.002S";
 
@@ -3760,7 +3760,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of minute, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of minute, second and millisecond from an iso string", () => {
       // given
       const str = "PT30M45.002S";
 
@@ -3776,7 +3776,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minutes and seconds from an iso string", () => {
+    it("should return the duration of day, hour, minute and second from an iso string", () => {
       // given
       const str = "P6DT12H30M45S";
 
@@ -3792,7 +3792,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hour, minutes and milliseconds from an iso string", () => {
+    it("should return the duration of day, hour, minute and millisecond from an iso string", () => {
       // given
       const str = "P6DT12H30M0.002S";
 
@@ -3808,7 +3808,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minute, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of hour, minute, second and millisecond from an iso string", () => {
       // given
       const str = "PT12H30M45.002S";
 
@@ -3824,7 +3824,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minute, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of day, hour, minute, second and millisecond from an iso string", () => {
       // given
       const str = "P6DT12H30M45.002S";
 
@@ -3840,7 +3840,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of negative day, hour, minute, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of negative day, hour, minute, second and millisecond from an iso string", () => {
       // given
       const str = "-P6DT12H30M45.002S";
 
@@ -3866,7 +3866,7 @@ describe("Duration", () => {
   });
 
   describe("static parse", () => {
-    it("should return the duration of only days from a string", () => {
+    it("should return the duration of only day from a string", () => {
       // given
       const str = "6 days 00:00:00";
 
@@ -3882,7 +3882,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only hours from a string", () => {
+    it("should return the duration of only hour from a string", () => {
       // given
       const str = "12:00:00";
 
@@ -3898,7 +3898,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only minutes from a string", () => {
+    it("should return the duration of only minute from a string", () => {
       // given
       const str = "00:30:00";
 
@@ -3914,7 +3914,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only seconds from a string", () => {
+    it("should return the duration of only second from a string", () => {
       // given
       const str = "00:00:45";
 
@@ -3930,7 +3930,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only milliseconds from a string", () => {
+    it("should return the duration of only millisecond from a string", () => {
       // given
       const str = "00:00:00.002";
 
@@ -3946,7 +3946,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of only milliseconds from a string", () => {
+    it("should return the duration of only millisecond from a string", () => {
       // given
       const str = "00:00:00.500";
 
@@ -3962,7 +3962,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(500);
     });
 
-    it("should return the duration of days and hours from a string", () => {
+    it("should return the duration of day and hour from a string", () => {
       // given
       const str = "6 days 12:00:00";
 
@@ -3977,7 +3977,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and minutes from a string", () => {
+    it("should return the duration of day and minute from a string", () => {
       // given
       const str = "6 days 00:30:00";
 
@@ -3993,7 +3993,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and seconds from a string", () => {
+    it("should return the duration of day and second from a string", () => {
       // given
       const str = "6 days 00:00:45";
 
@@ -4009,7 +4009,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and milliseconds from a string", () => {
+    it("should return the duration of day and millisecond from a string", () => {
       // given
       const str = "6 days 00:00:00.002";
 
@@ -4025,7 +4025,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hours and minutes from a string", () => {
+    it("should return the duration of hour and minute from a string", () => {
       // given
       const str = "12:30:00";
 
@@ -4041,7 +4041,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hours and seconds from a string", () => {
+    it("should return the duration of hour and second from a string", () => {
       // given
       const str = "12:00:45";
 
@@ -4057,7 +4057,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hours and milliseconds from a string", () => {
+    it("should return the duration of hour and millisecond from a string", () => {
       // given
       const str = "12:00:00.002";
 
@@ -4073,7 +4073,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of minutes and seconds from a string", () => {
+    it("should return the duration of minute and second from a string", () => {
       // given
       const str = "00:30:45";
 
@@ -4089,7 +4089,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of minutes and milliseconds from a string", () => {
+    it("should return the duration of minute and millisecond from a string", () => {
       // given
       const str = "00:30:00.002";
 
@@ -4105,7 +4105,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of seconds and milliseconds from a string", () => {
+    it("should return the duration of second and millisecond from a string", () => {
       // given
       const str = "00:00:45.002";
 
@@ -4121,7 +4121,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hours and minutes from a string", () => {
+    it("should return the duration of day, hour and minute from a string", () => {
       // given
       const str = "6 days 12:30:00";
 
@@ -4137,7 +4137,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hours and seconds from a string", () => {
+    it("should return the duration of day, hour and second from a string", () => {
       // given
       const str = "6 days 12:00:45";
 
@@ -4153,7 +4153,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hours and milliseconds from a string", () => {
+    it("should return the duration of day, hour and millisecond from a string", () => {
       // given
       const str = "6 days 12:00:00.002";
 
@@ -4169,7 +4169,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, minutes and seconds from a string", () => {
+    it("should return the duration of day, minute and second from a string", () => {
       // given
       const str = "6 days 00:30:45";
 
@@ -4185,7 +4185,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, minutes and milliseconds from a string", () => {
+    it("should return the duration of day, minute and millisecond from a string", () => {
       // given
       const str = "6 days 00:30:00.002";
 
@@ -4201,7 +4201,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, seconds and milliseconds from a string", () => {
+    it("should return the duration of day, second and millisecond from a string", () => {
       // given
       const str = "6 days 00:00:45.002";
 
@@ -4217,7 +4217,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minutes and seconds from a string", () => {
+    it("should return the duration of hour, minute and second from a string", () => {
       // given
       const str = "12:30:45";
 
@@ -4233,7 +4233,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hour, minutes and milliseconds from a string", () => {
+    it("should return the duration of hour, minute and millisecond from a string", () => {
       // given
       const str = "12:30:00.002";
 
@@ -4249,7 +4249,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, seconds and milliseconds from a string", () => {
+    it("should return the duration of hour, second and millisecond from a string", () => {
       // given
       const str = "12:00:45.002";
 
@@ -4265,7 +4265,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of minute, seconds and milliseconds from a string", () => {
+    it("should return the duration of minute, second and millisecond from a string", () => {
       // given
       const str = "00:30:45.002";
 
@@ -4281,7 +4281,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minutes and seconds from a string", () => {
+    it("should return the duration of day, hour, minute and second from a string", () => {
       // given
       const str = "6 days 12:30:45";
 
@@ -4297,7 +4297,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hour, minutes and milliseconds from a string", () => {
+    it("should return the duration of day, hour, minute and millisecond from a string", () => {
       // given
       const str = "6 days 12:30:00.002";
 
@@ -4313,7 +4313,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minute, seconds and milliseconds from a string", () => {
+    it("should return the duration of hour, minute, second and millisecond from a string", () => {
       // given
       const str = "12:30:45.002";
 
@@ -4329,7 +4329,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minute, seconds and milliseconds from a string", () => {
+    it("should return the duration of day, hour, minute, second and millisecond from a string", () => {
       // given
       const str = "6 days 12:30:45.002";
 
@@ -4345,7 +4345,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of negative day, hour, minute, seconds and milliseconds from a string", () => {
+    it("should return the duration of negative day, hour, minute, second and millisecond from a string", () => {
       // given
       const str = "-6 days 12:30:45.002";
 
@@ -4369,7 +4369,7 @@ describe("Duration", () => {
       expect(() => Duration.parse(str)).toThrowError();
     });
 
-    it("should return the duration of only days from an iso string", () => {
+    it("should return the duration of only day from an iso string", () => {
       // given
       const str = "P6D";
 
@@ -4385,7 +4385,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only hours from an iso string", () => {
+    it("should return the duration of only hour from an iso string", () => {
       // given
       const str = "PT12H";
 
@@ -4401,7 +4401,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only minutes from an iso string", () => {
+    it("should return the duration of only minute from an iso string", () => {
       // given
       const str = "PT30M";
 
@@ -4417,7 +4417,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only seconds from an iso string", () => {
+    it("should return the duration of only second from an iso string", () => {
       // given
       const str = "PT45S";
 
@@ -4433,7 +4433,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of only milliseconds from an iso string", () => {
+    it("should return the duration of only millisecond from an iso string", () => {
       // given
       const str = "PT0.002S";
 
@@ -4449,7 +4449,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of only milliseconds from an iso string", () => {
+    it("should return the duration of only millisecond from an iso string", () => {
       // given
       const str = "PT0.500S";
 
@@ -4465,7 +4465,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(500);
     });
 
-    it("should return the duration of days and hours from an iso string", () => {
+    it("should return the duration of day and hour from an iso string", () => {
       // given
       const str = "P6DT12H";
 
@@ -4480,7 +4480,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and minutes from an iso string", () => {
+    it("should return the duration of day and minute from an iso string", () => {
       // given
       const str = "P6DT30M";
 
@@ -4496,7 +4496,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and seconds from an iso string", () => {
+    it("should return the duration of day and second from an iso string", () => {
       // given
       const str = "P6DT45S";
 
@@ -4512,7 +4512,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of days and milliseconds from an iso string", () => {
+    it("should return the duration of day and millisecond from an iso string", () => {
       // given
       const str = "P6DT0.002S";
 
@@ -4528,7 +4528,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hours and minutes from an iso string", () => {
+    it("should return the duration of hour and minute from an iso string", () => {
       // given
       const str = "PT12H30M";
 
@@ -4544,7 +4544,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hours and seconds from an iso string", () => {
+    it("should return the duration of hour and second from an iso string", () => {
       // given
       const str = "PT12H45S";
 
@@ -4560,7 +4560,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hours and milliseconds from an iso string", () => {
+    it("should return the duration of hour and millisecond from an iso string", () => {
       // given
       const str = "PT12H0.002S";
 
@@ -4576,7 +4576,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of minutes and seconds from an iso string", () => {
+    it("should return the duration of minute and second from an iso string", () => {
       // given
       const str = "PT30M45S";
 
@@ -4592,7 +4592,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of minutes and milliseconds from an iso string", () => {
+    it("should return the duration of minute and millisecond from an iso string", () => {
       // given
       const str = "PT30M0.002S";
 
@@ -4608,7 +4608,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of seconds and milliseconds from an iso string", () => {
+    it("should return the duration of second and millisecond from an iso string", () => {
       // given
       const str = "PT45.002S";
 
@@ -4624,7 +4624,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hours and minutes from an iso string", () => {
+    it("should return the duration of day, hour and minute from an iso string", () => {
       // given
       const str = "P6DT12H30M";
 
@@ -4640,7 +4640,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hours and seconds from an iso string", () => {
+    it("should return the duration of day, hour and second from an iso string", () => {
       // given
       const str = "P6DT12H45S";
 
@@ -4656,7 +4656,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hours and milliseconds from an iso string", () => {
+    it("should return the duration of day, hour and millisecond from an iso string", () => {
       // given
       const str = "P6DT12H0.002S";
 
@@ -4672,7 +4672,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, minutes and seconds from an iso string", () => {
+    it("should return the duration of day, minute and second from an iso string", () => {
       // given
       const str = "P6DT30M45S";
 
@@ -4688,7 +4688,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, minutes and milliseconds from an iso string", () => {
+    it("should return the duration of day, minute and millisecond from an iso string", () => {
       // given
       const str = "P6DT30M0.002S";
 
@@ -4704,7 +4704,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of day, second and millisecond from an iso string", () => {
       // given
       const str = "P6DT45.002S";
 
@@ -4720,7 +4720,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minutes and seconds from an iso string", () => {
+    it("should return the duration of hour, minute and second from an iso string", () => {
       // given
       const str = "PT12H30M45S";
 
@@ -4736,7 +4736,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of hour, minutes and milliseconds from an iso string", () => {
+    it("should return the duration of hour, minute and millisecond from an iso string", () => {
       // given
       const str = "PT12H30M0.002S";
 
@@ -4752,7 +4752,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of hour, second and millisecond from an iso string", () => {
       // given
       const str = "PT12H45.002S";
 
@@ -4768,7 +4768,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of minute, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of minute, second and millisecond from an iso string", () => {
       // given
       const str = "PT30M45.002S";
 
@@ -4784,7 +4784,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minutes and seconds from an iso string", () => {
+    it("should return the duration of day, hour, minute and second from an iso string", () => {
       // given
       const str = "P6DT12H30M45S";
 
@@ -4800,7 +4800,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(0);
     });
 
-    it("should return the duration of day, hour, minutes and milliseconds from an iso string", () => {
+    it("should return the duration of day, hour, minute and millisecond from an iso string", () => {
       // given
       const str = "P6DT12H30M0.002S";
 
@@ -4816,7 +4816,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of hour, minute, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of hour, minute, second and millisecond from an iso string", () => {
       // given
       const str = "PT12H30M45.002S";
 
@@ -4832,7 +4832,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of day, hour, minute, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of day, hour, minute, second and millisecond from an iso string", () => {
       // given
       const str = "P6DT12H30M45.002S";
 
@@ -4848,7 +4848,7 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
-    it("should return the duration of negative day, hour, minute, seconds and milliseconds from an iso string", () => {
+    it("should return the duration of negative day, hour, minute, second and millisecond from an iso string", () => {
       // given
       const str = "-P6DT12H30M45.002S";
 

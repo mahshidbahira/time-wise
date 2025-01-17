@@ -24,6 +24,13 @@ class Offset {
       throw new Error(`offset minute is invalid: ${minute}`);
     }
 
+    if (Object.is(hour, -0)) {
+      hour = 0;
+    }
+    if (Object.is(minute, -0)) {
+      minute = 0;
+    }
+
     this.hour = hour;
     this.minute = minute;
 
@@ -134,15 +141,8 @@ class Offset {
   static fromMinutes(inMinutes: number): Offset {
     const fn = inMinutes < 0 ? Math.ceil : Math.floor;
 
-    let hour = fn(inMinutes / MINUTES_IN_AN_HOUR);
-    let minute = fn(inMinutes) % MINUTES_IN_AN_HOUR;
-
-    if (Object.is(hour, -0)) {
-      hour = 0;
-    }
-    if (Object.is(minute, -0)) {
-      minute = 0;
-    }
+    const hour = fn(inMinutes / MINUTES_IN_AN_HOUR);
+    const minute = fn(inMinutes) % MINUTES_IN_AN_HOUR;
 
     return Offset.fromObject({ hour, minute });
   }

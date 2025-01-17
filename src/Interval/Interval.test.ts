@@ -144,7 +144,7 @@ describe("Interval", () => {
 
       // then
       expect(str).toBe(
-        "Sat Dec 07 2024 12:56:19 GMT+0000 (Coordinated Universal Time) - Mon Dec 09 2024 12:56:19 GMT+0000 (Coordinated Universal Time)"
+        "2024-12-07 12:56:19.920 UTC+00:00 / 2024-12-09 12:56:19.920 UTC+00:00"
       );
     });
   });
@@ -210,7 +210,7 @@ describe("Interval", () => {
 
       // then
       expect(primitive).toBe(
-        "Sat Dec 07 2024 12:56:19 GMT+0000 (Coordinated Universal Time) - Mon Dec 09 2024 12:56:19 GMT+0000 (Coordinated Universal Time)"
+        "2024-12-07 12:56:19.920 UTC+00:00 / 2024-12-09 12:56:19.920 UTC+00:00"
       );
     });
   });
@@ -888,9 +888,9 @@ describe("Interval", () => {
   describe("static fromString", () => {
     it("should return an interval from a string", () => {
       // given
-      const startStr = "Sat, 07 Dec 2024 12:56:19.920 GMT";
-      const endStr = "Sat, 09 Dec 2024 12:56:19.920 GMT";
-      const str = `${startStr} - ${endStr}`;
+      const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
+      const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
+      const str = `${startStr} / ${endStr}`;
 
       // when
       const interval = Interval.fromString(str)!;
@@ -903,9 +903,9 @@ describe("Interval", () => {
 
     it("should return null from an invalid start string", () => {
       // given
-      const startStr = "Sat, 07 Dec 2024 wwww 12:56:19.920 GMT";
-      const endStr = "Sat, 09 Dec 2024 12:56:19.920 GMT";
-      const str = `${startStr} - ${endStr}`;
+      const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
+      const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
+      const str = `${startStr} / ${endStr}`;
 
       // when
       const interval = Interval.fromString(str)!;
@@ -916,9 +916,9 @@ describe("Interval", () => {
 
     it("should return null from an invalid end string", () => {
       // given
-      const startStr = "Sat, 07 Dec 2024 12:56:19.920 GMT";
-      const endStr = "Sat, 09 Dec 2024 wwww 12:56:19.920 GMT";
-      const str = `${startStr} - ${endStr}`;
+      const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
+      const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
+      const str = `${startStr} / ${endStr}`;
 
       // when
       const interval = Interval.fromString(str)!;
@@ -929,9 +929,9 @@ describe("Interval", () => {
 
     it("should return null from an invalid start and end string", () => {
       // given
-      const startStr = "Sat, 07 Dec 2024 wwww 12:56:19.920 GMT";
-      const endStr = "Sat, 09 Dec 2024 wwww 12:56:19.920 GMT";
-      const str = `${startStr} - ${endStr}`;
+      const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
+      const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
+      const str = `${startStr} / ${endStr}`;
 
       // when
       const interval = Interval.fromString(str)!;
@@ -1000,9 +1000,9 @@ describe("Interval", () => {
   describe("static parse", () => {
     it("should return an interval from a string", () => {
       // given
-      const startStr = "Sat, 07 Dec 2024 12:56:19.920 GMT";
-      const endStr = "Sat, 09 Dec 2024 12:56:19.920 GMT";
-      const str = `${startStr} - ${endStr}`;
+      const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
+      const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
+      const str = `${startStr} / ${endStr}`;
 
       // when
       const interval = Interval.parse(str)!;
@@ -1015,9 +1015,9 @@ describe("Interval", () => {
 
     it("should return null from an invalid start string", () => {
       // given
-      const startStr = "Sat, 07 Dec 2024 wwww 12:56:19.920 GMT";
-      const endStr = "Sat, 09 Dec 2024 12:56:19.920 GMT";
-      const str = `${startStr} - ${endStr}`;
+      const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
+      const endStr = "2024-12-09 12:56:19.920 UTC+00:00";
+      const str = `${startStr} / ${endStr}`;
 
       // when
       const interval = Interval.parse(str)!;
@@ -1028,9 +1028,9 @@ describe("Interval", () => {
 
     it("should return null from an invalid end string", () => {
       // given
-      const startStr = "Sat, 07 Dec 2024 12:56:19.920 GMT";
-      const endStr = "Sat, 09 Dec 2024 wwww 12:56:19.920 GMT";
-      const str = `${startStr} - ${endStr}`;
+      const startStr = "2024-12-07 12:56:19.920 UTC+00:00";
+      const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
+      const str = `${startStr} / ${endStr}`;
 
       // when
       const interval = Interval.parse(str)!;
@@ -1041,9 +1041,9 @@ describe("Interval", () => {
 
     it("should return null from an invalid start and end string", () => {
       // given
-      const startStr = "Sat, 07 Dec 2024 wwww 12:56:19.920 GMT";
-      const endStr = "Sat, 09 Dec 2024 wwww 12:56:19.920 GMT";
-      const str = `${startStr} - ${endStr}`;
+      const startStr = "2024-12-07 wwww 12:56:19.920 UTC+00:00";
+      const endStr = "2024-12-09 wwww 12:56:19.920 UTC+00:00";
+      const str = `${startStr} / ${endStr}`;
 
       // when
       const interval = Interval.parse(str)!;

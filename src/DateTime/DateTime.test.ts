@@ -417,9 +417,7 @@ describe("DateTime", () => {
       const str = datetime.toString();
 
       // then
-      expect(str).toBe(
-        "Sat Dec 07 2024 12:56:19 GMT+0000 (Coordinated Universal Time)"
-      );
+      expect(str).toBe("2024-12-07 12:56:19.920 UTC+00:00");
     });
   });
 
@@ -461,9 +459,7 @@ describe("DateTime", () => {
       const primitive = `${datetime}`;
 
       // then
-      expect(primitive).toBe(
-        "Sat Dec 07 2024 12:56:19 GMT+0000 (Coordinated Universal Time)"
-      );
+      expect(primitive).toBe("2024-12-07 12:56:19.920 UTC+00:00");
     });
   });
 

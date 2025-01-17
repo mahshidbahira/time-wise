@@ -120,7 +120,16 @@ class DateTime {
   }
 
   toString(): string {
-    return this.toJSDate().toString();
+    const year = this.year.toString().padStart(4, "0");
+    const month = this.month.toString().padStart(2, "0");
+    const day = this.day.toString().padStart(2, "0");
+    const hour = this.hour.toString().padStart(2, "0");
+    const minute = this.minute.toString().padStart(2, "0");
+    const second = this.second.toString().padStart(2, "0");
+    const millisecond = this.millisecond.toString().padStart(2, "0");
+    const offset = this.offset.toString();
+
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}.${millisecond} ${offset}`;
   }
 
   [Symbol.toPrimitive](hint: string): number | string {

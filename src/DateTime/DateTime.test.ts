@@ -1056,6 +1056,37 @@ describe("DateTime", () => {
     });
   });
 
+  describe("inOffset", () => {
+    it("should return the date time in another offset", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 13,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+        offset: { hour: 1 },
+      });
+      const offset = Offset.UTC;
+
+      // when
+      const datetimeInOffset = datetime.inOffset(offset);
+
+      // then
+      expect(datetimeInOffset).toBeInstanceOf(DateTime);
+      expect(datetimeInOffset.year).toBe(2024);
+      expect(datetimeInOffset.month).toBe(12);
+      expect(datetimeInOffset.day).toBe(7);
+      expect(datetimeInOffset.hour).toBe(12);
+      expect(datetimeInOffset.minute).toBe(56);
+      expect(datetimeInOffset.second).toBe(19);
+      expect(datetimeInOffset.millisecond).toBe(920);
+      expect(datetimeInOffset.offset.inMinutes).toBe(0);
+    });
+  });
+
   describe("plus", () => {
     it("should return the addition of datetime and duration", () => {
       // given
@@ -1063,11 +1094,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const duration = Duration.fromObject({ millisecond: 10 });
 
@@ -1079,11 +1110,11 @@ describe("DateTime", () => {
       expect(sum.year).toBe(2024);
       expect(sum.month).toBe(12);
       expect(sum.day).toBe(7);
-      expect(sum.hour).toBe(12);
+      expect(sum.hour).toBe(13);
       expect(sum.minute).toBe(56);
       expect(sum.second).toBe(19);
       expect(sum.millisecond).toBe(930);
-      expect(sum.offset.inMinutes).toBe(0);
+      expect(sum.offset.inMinutes).toBe(60);
     });
   });
 
@@ -1094,11 +1125,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const duration = Duration.fromObject({ millisecond: 10 });
 
@@ -1110,11 +1141,11 @@ describe("DateTime", () => {
       expect(diff.year).toBe(2024);
       expect(diff.month).toBe(12);
       expect(diff.day).toBe(7);
-      expect(diff.hour).toBe(12);
+      expect(diff.hour).toBe(13);
       expect(diff.minute).toBe(56);
       expect(diff.second).toBe(19);
       expect(diff.millisecond).toBe(910);
-      expect(diff.offset.inMinutes).toBe(0);
+      expect(diff.offset.inMinutes).toBe(60);
     });
   });
 

@@ -293,16 +293,25 @@ class DateTime {
     });
   }
 
+  inOffset(offset: Offset): DateTime {
+    const diff = this.offset.minus(offset).toDuration();
+    const instanceEquivalentInLocal = this.withOffset(Offset.local());
+
+    return DateTime.fromMillisecondsSinceEpoch(
+      instanceEquivalentInLocal.millisecondsSinceEpoch - diff.inMilliseconds
+    ).withOffset(offset);
+  }
+
   plus(duration: Duration): DateTime {
     return DateTime.fromMillisecondsSinceEpoch(
       this.millisecondsSinceEpoch + duration.inMilliseconds
-    );
+    ).inOffset(this.offset);
   }
 
   minus(duration: Duration): DateTime {
     return DateTime.fromMillisecondsSinceEpoch(
       this.millisecondsSinceEpoch - duration.inMilliseconds
-    );
+    ).inOffset(this.offset);
   }
 
   static fromDaysSinceEpoch(daysSinceEpoch: number): DateTime {

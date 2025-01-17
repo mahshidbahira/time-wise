@@ -20,11 +20,11 @@ describe("DateTime", () => {
       const year = 2024;
       const month = 12;
       const day = 7;
-      const hour = 12;
+      const hour = 13;
       const minute = 56;
       const second = 19;
       const millisecond = 920;
-      const offset = Offset.fromObject({});
+      const offset = Offset.fromObject({ hour: 1 });
 
       // when
       const datetime = new DateTime(
@@ -43,11 +43,11 @@ describe("DateTime", () => {
       expect(datetime.year).toBe(2024);
       expect(datetime.month).toBe(12);
       expect(datetime.day).toBe(7);
-      expect(datetime.hour).toBe(12);
+      expect(datetime.hour).toBe(13);
       expect(datetime.minute).toBe(56);
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
-      expect(datetime.offset.inMinutes).toBe(0);
+      expect(datetime.offset.inMinutes).toBe(60);
     });
 
     it("should throw an error with invalid year", () => {
@@ -55,11 +55,11 @@ describe("DateTime", () => {
       const year = 1968;
       const month = 12;
       const day = 7;
-      const hour = 12;
+      const hour = 13;
       const minute = 56;
       const second = 19;
       const millisecond = 920;
-      const offset = Offset.fromObject({});
+      const offset = Offset.fromObject({ hour: 1 });
 
       // when/then
       expect(
@@ -82,11 +82,11 @@ describe("DateTime", () => {
       const year = 2024;
       const month = 0;
       const day = 7;
-      const hour = 12;
+      const hour = 13;
       const minute = 56;
       const second = 19;
       const millisecond = 920;
-      const offset = Offset.fromObject({});
+      const offset = Offset.fromObject({ hour: 1 });
 
       // when/then
       expect(
@@ -109,11 +109,11 @@ describe("DateTime", () => {
       const year = 2024;
       const month = 12;
       const day = 0;
-      const hour = 12;
+      const hour = 13;
       const minute = 56;
       const second = 19;
       const millisecond = 920;
-      const offset = Offset.fromObject({});
+      const offset = Offset.fromObject({ hour: 1 });
 
       // when/then
       expect(
@@ -140,7 +140,7 @@ describe("DateTime", () => {
       const minute = 56;
       const second = 19;
       const millisecond = 920;
-      const offset = Offset.fromObject({});
+      const offset = Offset.fromObject({ hour: 1 });
 
       // when/then
       expect(
@@ -163,11 +163,11 @@ describe("DateTime", () => {
       const year = 2024;
       const month = 12;
       const day = 7;
-      const hour = 12;
+      const hour = 13;
       const minute = 60;
       const second = 19;
       const millisecond = 920;
-      const offset = Offset.fromObject({});
+      const offset = Offset.fromObject({ hour: 1 });
 
       // when/then
       expect(
@@ -190,11 +190,11 @@ describe("DateTime", () => {
       const year = 2024;
       const month = 12;
       const day = 7;
-      const hour = 12;
+      const hour = 13;
       const minute = 56;
       const second = 60;
       const millisecond = 920;
-      const offset = Offset.fromObject({});
+      const offset = Offset.fromObject({ hour: 1 });
 
       // when/then
       expect(
@@ -217,11 +217,11 @@ describe("DateTime", () => {
       const year = 2024;
       const month = 12;
       const day = 7;
-      const hour = 12;
+      const hour = 13;
       const minute = 56;
       const second = 19;
       const millisecond = 1000;
-      const offset = Offset.fromObject({});
+      const offset = Offset.fromObject({ hour: 1 });
 
       // when/then
       expect(
@@ -247,11 +247,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -269,11 +269,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -291,11 +291,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -313,11 +313,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -335,11 +335,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -357,11 +357,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -384,11 +384,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -406,18 +406,18 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
       const str = datetime.toString();
 
       // then
-      expect(str).toBe("2024-12-07 12:56:19.920 UTC+00:00");
+      expect(str).toBe("2024-12-07 13:56:19.920 UTC+01:00");
     });
   });
 
@@ -428,11 +428,11 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -448,18 +448,18 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
       const primitive = `${datetime}`;
 
       // then
-      expect(primitive).toBe("2024-12-07 12:56:19.920 UTC+00:00");
+      expect(primitive).toBe("2024-12-07 13:56:19.920 UTC+01:00");
     });
   });
 
@@ -470,18 +470,18 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
       const jsonStr = JSON.stringify(datetime);
 
       // then
-      expect(jsonStr).toBe(`"2024-12-07T12:56:19.920+00:00"`);
+      expect(jsonStr).toBe(`"2024-12-07T13:56:19.920+01:00"`);
     });
   });
 
@@ -492,18 +492,18 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
       const isoStr = datetime.toISOString();
 
       // then
-      expect(isoStr).toBe("2024-12-07T12:56:19.920+00:00");
+      expect(isoStr).toBe("2024-12-07T13:56:19.920+01:00");
     });
   });
 

@@ -19,7 +19,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 3,
         hour: 12,
         minute: 56,
@@ -29,7 +29,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -53,7 +53,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -63,7 +63,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -86,7 +86,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -96,7 +96,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -119,7 +119,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -129,7 +129,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -154,7 +154,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -164,7 +164,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -185,7 +185,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -195,7 +195,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -220,7 +220,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -230,7 +230,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -255,7 +255,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -265,7 +265,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -288,7 +288,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -298,7 +298,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -315,7 +315,7 @@ describe("Interval", () => {
       expect(objectLiteral).toEqual({
         start: {
           year: 2024,
-          month: 11,
+          month: 12,
           day: 7,
           hour: 12,
           minute: 56,
@@ -325,7 +325,7 @@ describe("Interval", () => {
         },
         end: {
           year: 2024,
-          month: 11,
+          month: 12,
           day: 9,
           hour: 12,
           minute: 56,
@@ -342,7 +342,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -352,7 +352,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -374,7 +374,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -384,7 +384,7 @@ describe("Interval", () => {
       });
       const end1 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -394,7 +394,7 @@ describe("Interval", () => {
       });
       const end2 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 3,
         hour: 12,
         minute: 56,
@@ -418,7 +418,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -428,7 +428,7 @@ describe("Interval", () => {
       });
       const end1 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -438,7 +438,7 @@ describe("Interval", () => {
       });
       const end2 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 8,
         hour: 12,
         minute: 56,
@@ -460,7 +460,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -470,7 +470,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -493,7 +493,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -503,7 +503,7 @@ describe("Interval", () => {
       });
       const end1 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 8,
         hour: 12,
         minute: 56,
@@ -513,7 +513,7 @@ describe("Interval", () => {
       });
       const end2 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -537,7 +537,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -547,7 +547,7 @@ describe("Interval", () => {
       });
       const end1 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 8,
         hour: 12,
         minute: 56,
@@ -557,7 +557,7 @@ describe("Interval", () => {
       });
       const end2 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -579,7 +579,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -589,7 +589,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -612,7 +612,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -622,7 +622,7 @@ describe("Interval", () => {
       });
       const end1 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -632,7 +632,7 @@ describe("Interval", () => {
       });
       const end2 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 8,
         hour: 12,
         minute: 56,
@@ -656,7 +656,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -666,7 +666,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -678,7 +678,7 @@ describe("Interval", () => {
 
       const newStart = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 4,
         hour: 12,
         minute: 56,
@@ -702,7 +702,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -712,7 +712,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -724,7 +724,7 @@ describe("Interval", () => {
 
       const newEnd = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 11,
         hour: 12,
         minute: 56,
@@ -748,7 +748,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -758,7 +758,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -782,7 +782,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -808,7 +808,7 @@ describe("Interval", () => {
       const start = DateTime.fromJSDate(now);
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -833,7 +833,7 @@ describe("Interval", () => {
       const objectLiteral = {
         start: {
           year: 2024,
-          month: 11,
+          month: 12,
           day: 7,
           hour: 12,
           minute: 56,
@@ -843,7 +843,7 @@ describe("Interval", () => {
         },
         end: {
           year: 2024,
-          month: 11,
+          month: 12,
           day: 9,
           hour: 12,
           minute: 56,
@@ -861,7 +861,7 @@ describe("Interval", () => {
       expect(interval.start).toEqual(
         DateTime.fromObject({
           year: 2024,
-          month: 11,
+          month: 12,
           day: 7,
           hour: 12,
           minute: 56,
@@ -873,7 +873,7 @@ describe("Interval", () => {
       expect(interval.end).toEqual(
         DateTime.fromObject({
           year: 2024,
-          month: 11,
+          month: 12,
           day: 9,
           hour: 12,
           minute: 56,
@@ -1112,7 +1112,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -1122,7 +1122,7 @@ describe("Interval", () => {
       });
       const end1 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -1132,7 +1132,7 @@ describe("Interval", () => {
       });
       const end2 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 8,
         hour: 12,
         minute: 56,
@@ -1154,7 +1154,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -1164,7 +1164,7 @@ describe("Interval", () => {
       });
       const end = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,
@@ -1186,7 +1186,7 @@ describe("Interval", () => {
       // given
       const start = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 7,
         hour: 12,
         minute: 56,
@@ -1196,7 +1196,7 @@ describe("Interval", () => {
       });
       const end1 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 8,
         hour: 12,
         minute: 56,
@@ -1206,7 +1206,7 @@ describe("Interval", () => {
       });
       const end2 = DateTime.fromObject({
         year: 2024,
-        month: 11,
+        month: 12,
         day: 9,
         hour: 12,
         minute: 56,

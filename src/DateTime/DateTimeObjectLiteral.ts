@@ -1,4 +1,4 @@
-import DurationObjectLiteral from "../Duration/DurationObjectLiteral";
+import OffsetObjectLiteral from "../Offset/OffsetObjectLiteral";
 
 interface DateTimeObjectLiteral {
   year: number;
@@ -8,7 +8,7 @@ interface DateTimeObjectLiteral {
   minute: number;
   second: number;
   millisecond: number;
-  offset: DurationObjectLiteral;
+  offset: OffsetObjectLiteral;
 }
 
 export default DateTimeObjectLiteral;

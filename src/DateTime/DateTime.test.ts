@@ -1492,21 +1492,21 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 3,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -1522,21 +1522,21 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when
@@ -1552,21 +1552,21 @@ describe("DateTime", () => {
         year: 2024,
         month: 12,
         day: 3,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
       const datetime2 = DateTime.fromObject({
         year: 2024,
         month: 12,
         day: 7,
-        hour: 12,
+        hour: 13,
         minute: 56,
         second: 19,
         millisecond: 920,
-        offset: {},
+        offset: { hour: 1 },
       });
 
       // when

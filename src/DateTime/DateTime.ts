@@ -228,7 +228,9 @@ class DateTime {
     const minute = jsDate.getMinutes();
     const second = jsDate.getSeconds();
     const millisecond = jsDate.getMilliseconds();
-    const offset = Duration.of(-1 * jsDate.getTimezoneOffset() * 60_000);
+    const offset = Duration.fromMilliseconds(
+      -1 * jsDate.getTimezoneOffset() * 60_000
+    );
 
     return DateTime.fromObject({
       year,

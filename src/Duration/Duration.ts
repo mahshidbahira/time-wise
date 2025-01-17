@@ -1,10 +1,12 @@
-import DateTime from "../DateTime/DateTime";
 import DurationObjectLiteral from "./DurationObjectLiteral";
 
 const MILLISECONDS_IN_A_SECOND: number = 1000;
 const MILLISECONDS_IN_A_MINUTE: number = 60 * MILLISECONDS_IN_A_SECOND;
 const MILLISECONDS_IN_AN_HOUR: number = 60 * MILLISECONDS_IN_A_MINUTE;
 const MILLISECONDS_IN_A_DAY: number = 24 * MILLISECONDS_IN_AN_HOUR;
+const SECONDS_IN_A_MINUTE: number = 60;
+const MINUTES_IN_AN_HOUR: number = 60;
+const HOURS_IN_A_DAY: number = 24;
 
 class Duration {
   readonly days: number;
@@ -59,6 +61,22 @@ class Duration {
       throw new Error(`offset milliseconds is invalid: ${milliseconds}`);
     }
 
+    if (Object.is(days, -0)) {
+      days = 0;
+    }
+    if (Object.is(hours, -0)) {
+      hours = 0;
+    }
+    if (Object.is(minutes, -0)) {
+      minutes = 0;
+    }
+    if (Object.is(seconds, -0)) {
+      seconds = 0;
+    }
+    if (Object.is(milliseconds, -0)) {
+      milliseconds = 0;
+    }
+
     this.days = days;
     this.hours = hours;
     this.minutes = minutes;
@@ -73,9 +91,8 @@ class Duration {
   }
 
   toString(): string {
-    const absoluteDuration = this.absolute();
-
     const signStr = this.inMilliseconds < 0 ? "-" : "";
+    const absoluteDuration = this.absolute();
     const daysStr =
       (absoluteDuration.days > 1 && `${absoluteDuration.days} days `) ||
       (absoluteDuration.days === 1 && `${absoluteDuration.days} day `) ||
@@ -109,9 +126,8 @@ class Duration {
   }
 
   toISOString(): string {
-    const absoluteDuration = this.absolute();
-
     const signStr = this.inMilliseconds < 0 ? "-" : "";
+    const absoluteDuration = this.absolute();
     const daysStr =
       absoluteDuration.days !== 0 ? `${absoluteDuration.days}D` : "";
     const hoursStr =
@@ -218,45 +234,59 @@ class Duration {
   }
 
   plus(other: Duration): Duration {
-    return Duration.of(this.inMilliseconds + other.inMilliseconds);
+    return Duration.fromMilliseconds(
+      this.inMilliseconds + other.inMilliseconds
+    );
   }
 
   minus(other: Duration): Duration {
-    return Duration.of(this.inMilliseconds - other.inMilliseconds);
+    return Duration.fromMilliseconds(
+      this.inMilliseconds - other.inMilliseconds
+    );
   }
 
   multiplyBy(factor: number): Duration {
-    return Duration.of(this.inMilliseconds * factor);
+    return Duration.fromMilliseconds(this.inMilliseconds * factor);
   }
 
   divideBy(divisor: number): Duration {
-    return Duration.of(this.inMilliseconds / divisor);
+    return Duration.fromMilliseconds(this.inMilliseconds / divisor);
   }
 
   negate(): Duration {
-    return Duration.of(-this.inMilliseconds);
+    return Duration.fromMilliseconds(-this.inMilliseconds);
   }
 
   absolute(): Duration {
-    return Duration.of(Math.abs(this.inMilliseconds));
+    return Duration.fromMilliseconds(Math.abs(this.inMilliseconds));
   }
 
-  after(datetime: DateTime): DateTime {
-    return DateTime.of(datetime.millisecondsSinceEpoch + this.inMilliseconds);
+  static fromDays(inDays: number): Duration {
+    return Duration.fromMilliseconds(inDays * MILLISECONDS_IN_A_DAY);
   }
 
-  before(datetime: DateTime): DateTime {
-    return DateTime.of(datetime.millisecondsSinceEpoch - this.inMilliseconds);
+  static fromHours(inHours: number): Duration {
+    return Duration.fromMilliseconds(inHours * MILLISECONDS_IN_AN_HOUR);
   }
 
-  static of(inMilliseconds: number): Duration {
+  static fromMinutes(inMinutes: number): Duration {
+    return Duration.fromMilliseconds(inMinutes * MILLISECONDS_IN_A_MINUTE);
+  }
+
+  static fromSeconds(inSeconds: number): Duration {
+    return Duration.fromMilliseconds(inSeconds * MILLISECONDS_IN_A_SECOND);
+  }
+
+  static fromMilliseconds(inMilliseconds: number): Duration {
     const fn = inMilliseconds < 0 ? Math.ceil : Math.floor;
 
     const days = fn(inMilliseconds / MILLISECONDS_IN_A_DAY);
-    const hours = fn(inMilliseconds / MILLISECONDS_IN_AN_HOUR) % 24;
-    const minutes = fn(inMilliseconds / MILLISECONDS_IN_A_MINUTE) % 60;
-    const seconds = fn(inMilliseconds / MILLISECONDS_IN_A_SECOND) % 60;
-    const milliseconds = fn(inMilliseconds) % 1000;
+    const hours = fn(inMilliseconds / MILLISECONDS_IN_AN_HOUR) % HOURS_IN_A_DAY;
+    const minutes =
+      fn(inMilliseconds / MILLISECONDS_IN_A_MINUTE) % MINUTES_IN_AN_HOUR;
+    const seconds =
+      fn(inMilliseconds / MILLISECONDS_IN_A_SECOND) % SECONDS_IN_A_MINUTE;
+    const milliseconds = fn(inMilliseconds) % MILLISECONDS_IN_A_SECOND;
 
     return Duration.fromObject({ days, hours, minutes, seconds, milliseconds });
   }
@@ -271,12 +301,12 @@ class Duration {
     return new Duration(days, hours, minutes, seconds, milliseconds);
   }
 
-  static fromString(str: string): Duration | null {
+  static fromString(str: string): Duration {
     const regexp = /^(-?)((\d+) days? )?(\d{2}):(\d{2}):(\d{2})(.(\d{3}))?$/;
     const result = regexp.exec(str);
 
     if (!result) {
-      return null;
+      throw new Error(`duration string is invalid: ${str}`);
     }
 
     const sign = result[1] ? -1 : 1;
@@ -286,24 +316,22 @@ class Duration {
     const seconds = result[6] ? parseInt(result[6]) : 0;
     const milliseconds = result[8] ? parseInt(result[8]) : 0;
 
-    const totalMilliseconds =
-      sign *
-      (days * MILLISECONDS_IN_A_DAY +
-        hours * MILLISECONDS_IN_AN_HOUR +
-        minutes * MILLISECONDS_IN_A_MINUTE +
-        seconds * MILLISECONDS_IN_A_SECOND +
-        milliseconds);
-
-    return Duration.of(totalMilliseconds);
+    return Duration.fromObject({
+      days: sign * days,
+      hours: sign * hours,
+      minutes: sign * minutes,
+      seconds: sign * seconds,
+      milliseconds: sign * milliseconds,
+    });
   }
 
-  static fromISOString(str: string): Duration | null {
+  static fromISOString(str: string): Duration {
     const regexp =
       /^(-?)P(?=\d|T)((\d+)D)?(T(?=\d)((\d{1,2})H)?((\d{1,2})M)?((\d{1,2})(.(\d{1,3}))?S)?)?$/;
     const result = regexp.exec(str);
 
     if (!result) {
-      return null;
+      throw new Error(`duration iso string is invalid: ${str}`);
     }
 
     const sign = result[1] ? -1 : 1;
@@ -313,19 +341,25 @@ class Duration {
     const seconds = result[10] ? parseInt(result[10]) : 0;
     const milliseconds = result[12] ? parseInt(result[12].padEnd(3, "0")) : 0;
 
-    const totalMilliseconds =
-      sign *
-      (days * MILLISECONDS_IN_A_DAY +
-        hours * MILLISECONDS_IN_AN_HOUR +
-        minutes * MILLISECONDS_IN_A_MINUTE +
-        seconds * MILLISECONDS_IN_A_SECOND +
-        milliseconds);
-
-    return Duration.of(totalMilliseconds);
+    return Duration.fromObject({
+      days: sign * days,
+      hours: sign * hours,
+      minutes: sign * minutes,
+      seconds: sign * seconds,
+      milliseconds: sign * milliseconds,
+    });
   }
 
-  static parse(str: string): Duration | null {
-    return Duration.fromString(str) || Duration.fromISOString(str);
+  static parse(str: string): Duration {
+    try {
+      return Duration.fromString(str);
+    } catch {
+      try {
+        return Duration.fromISOString(str);
+      } catch {
+        throw new Error(`duration parse failed: ${str}`);
+      }
+    }
   }
 
   static compare(duration1: Duration, duration2: Duration): number {

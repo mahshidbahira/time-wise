@@ -7,7 +7,7 @@ class Interval {
   readonly end: DateTime;
 
   get duration(): Duration {
-    return Duration.of(
+    return Duration.fromMilliseconds(
       this.end.millisecondsSinceEpoch - this.start.millisecondsSinceEpoch
     );
   }

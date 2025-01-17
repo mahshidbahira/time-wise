@@ -19,7 +19,6 @@ class Offset {
     if (hour > 23 || hour < -23) {
       throw new Error(`offset hour is invalid: ${hour}`);
     }
-
     if (minute > 59 || minute < -59) {
       throw new Error(`offset minute is invalid: ${minute}`);
     }
@@ -79,10 +78,15 @@ class Offset {
   }
 
   toObject(): OffsetObjectLiteral {
-    const object: OffsetObjectLiteral = {
-      hour: this.hour,
-      minute: this.minute,
-    };
+    const object: OffsetObjectLiteral = {};
+
+    if (this.hour) {
+      object.hour = this.hour;
+    }
+    if (this.minute) {
+      object.minute = this.minute;
+    }
+
     return object;
   }
 
@@ -148,7 +152,8 @@ class Offset {
   }
 
   static fromObject(object: OffsetObjectLiteral): Offset {
-    const { hour, minute } = object;
+    const hour = object.hour ? object.hour : 0;
+    const minute = object.minute ? object.minute : 0;
 
     return new Offset(hour, minute);
   }
@@ -205,17 +210,21 @@ class Offset {
 
   static fromZoneName(zoneName: string): Offset {
     try {
-      const jsDate = new Date();
-      const jsUTCDate = new Date(
-        jsDate.toLocaleString("en-US", { timeZone: "UTC" })
-      );
-      const jsTzDate = new Date(
-        jsDate.toLocaleString("en-US", { timeZone: zoneName })
-      );
+      const now = new Date();
+      const nowStringInUTC = now.toLocaleString("en-US", {
+        timeZone: "UTC",
+      });
+      const nowStringInTz = now.toLocaleString("en-US", {
+        timeZone: zoneName,
+      });
 
-      return Offset.fromDuration(
-        Duration.of(jsTzDate.getTime() - jsUTCDate.getTime())
-      );
+      const utcDate = new Date(nowStringInUTC);
+      const tzDate = new Date(nowStringInTz);
+
+      const diffInMilliseconds = tzDate.getTime() - utcDate.getTime();
+      const diff = Duration.fromMilliseconds(diffInMilliseconds);
+
+      return Offset.fromDuration(diff);
     } catch {
       throw new Error(`offset zone name is invalid: ${zoneName}`);
     }

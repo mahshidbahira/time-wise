@@ -23,7 +23,7 @@ describe("DateTime", () => {
       const minute = 56;
       const second = 19;
       const millisecond = 920;
-      const offset = Duration.of(0);
+      const offset = Duration.fromMilliseconds(0);
 
       // when
       const datetime = new DateTime(

@@ -172,6 +172,39 @@ describe("Offset", () => {
   });
 
   describe("toObject", () => {
+    it("should return the empty object of zero", () => {
+      // given
+      const offset = Offset.fromObject({});
+
+      // when
+      const objectLiteral = offset.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({});
+    });
+
+    it("should return the object of only hour", () => {
+      // given
+      const offset = Offset.fromObject({ hour: 1 });
+
+      // when
+      const objectLiteral = offset.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({ hour: 1 });
+    });
+
+    it("should return the object of only minute", () => {
+      // given
+      const offset = Offset.fromObject({ minute: 30 });
+
+      // when
+      const objectLiteral = offset.toObject();
+
+      // then
+      expect(objectLiteral).toEqual({ minute: 30 });
+    });
+
     it("should return the object of positive offset", () => {
       // given
       const offset = Offset.fromObject({ hour: 1, minute: 30 });
@@ -245,7 +278,7 @@ describe("Offset", () => {
     it("should return false for unequal offsets", () => {
       // given
       const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
-      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset2 = Offset.fromObject({ hour: 1 });
 
       // when
       const isEqual = offset1.equals(offset2);
@@ -259,7 +292,7 @@ describe("Offset", () => {
     it("should return true when the offset is easter than the other offset", () => {
       // given
       const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
-      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset2 = Offset.fromObject({ hour: 1 });
 
       // when
       const isEasterThan = offset1.isEasterThan(offset2);
@@ -282,7 +315,7 @@ describe("Offset", () => {
 
     it("should return false when the offset is wester than the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset1 = Offset.fromObject({ hour: 1 });
       const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
@@ -296,7 +329,7 @@ describe("Offset", () => {
   describe("isWesterThan", () => {
     it("should return true when the offset is wester than the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset1 = Offset.fromObject({ hour: 1 });
       const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
@@ -321,7 +354,7 @@ describe("Offset", () => {
     it("should return false when the offset is easter than the other offset", () => {
       // given
       const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
-      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset2 = Offset.fromObject({ hour: 1 });
 
       // when
       const isWesterThan = offset1.isWesterThan(offset2);
@@ -365,7 +398,7 @@ describe("Offset", () => {
     it("should return the addition of offsets", () => {
       // given
       const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
-      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset2 = Offset.fromObject({ hour: 1 });
 
       // when
       const sum = offset1.plus(offset2);
@@ -381,7 +414,7 @@ describe("Offset", () => {
     it("should return the subtraction of offsets", () => {
       // given
       const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
-      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset2 = Offset.fromObject({ hour: 1 });
 
       // when
       const diff = offset1.minus(offset2);
@@ -518,6 +551,45 @@ describe("Offset", () => {
   });
 
   describe("static fromObject", () => {
+    it("should return the offset of zero from an object", () => {
+      // given
+      const objectLiteral = {};
+
+      // when
+      const offset = Offset.fromObject(objectLiteral);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(0);
+    });
+
+    it("should return the offset of only hour from an object", () => {
+      // given
+      const objectLiteral = { hour: 1 };
+
+      // when
+      const offset = Offset.fromObject(objectLiteral);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(0);
+    });
+
+    it("should return the offset of only minute from an object", () => {
+      // given
+      const objectLiteral = { minute: 30 };
+
+      // when
+      const offset = Offset.fromObject(objectLiteral);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(30);
+    });
+
     it("should return the offset of positive object", () => {
       // given
       const objectLiteral = {
@@ -833,7 +905,7 @@ describe("Offset", () => {
     it("should return a positive number when the offset is easter than the other offset", () => {
       // given
       const offset1 = Offset.fromObject({ hour: 1, minute: 30 });
-      const offset2 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset2 = Offset.fromObject({ hour: 1 });
 
       // when
       const comparison = Offset.compare(offset1, offset2);
@@ -856,7 +928,7 @@ describe("Offset", () => {
 
     it("should return a negative number when the offset is wester than the other offset", () => {
       // given
-      const offset1 = Offset.fromObject({ hour: 1, minute: 0 });
+      const offset1 = Offset.fromObject({ hour: 1 });
       const offset2 = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when

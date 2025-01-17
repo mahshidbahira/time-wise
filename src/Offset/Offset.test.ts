@@ -221,11 +221,11 @@ describe("Offset", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
-      expect(duration.days).toBe(-0);
+      expect(duration.days).toBe(0);
       expect(duration.hours).toBe(-1);
       expect(duration.minutes).toBe(-30);
-      expect(duration.seconds).toBe(-0);
-      expect(duration.milliseconds).toBe(-0);
+      expect(duration.seconds).toBe(0);
+      expect(duration.milliseconds).toBe(0);
     });
   });
 

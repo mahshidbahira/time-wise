@@ -39,14 +39,31 @@ class Duration {
     );
   }
 
-  constructor(inMilliseconds: number) {
-    const fn = inMilliseconds < 0 ? Math.ceil : Math.floor;
+  constructor(
+    days: number,
+    hours: number,
+    minutes: number,
+    seconds: number,
+    milliseconds: number
+  ) {
+    if (hours > 23 || hours < -23) {
+      throw new Error(`offset hours is invalid: ${hours}`);
+    }
+    if (minutes > 59 || minutes < -59) {
+      throw new Error(`offset minutes is invalid: ${minutes}`);
+    }
+    if (seconds > 59 || seconds < -59) {
+      throw new Error(`offset seconds is invalid: ${seconds}`);
+    }
+    if (milliseconds > 999 || milliseconds < -999) {
+      throw new Error(`offset milliseconds is invalid: ${milliseconds}`);
+    }
 
-    this.days = fn(inMilliseconds / MILLISECONDS_IN_A_DAY);
-    this.hours = fn(inMilliseconds / MILLISECONDS_IN_AN_HOUR) % 24;
-    this.minutes = fn(inMilliseconds / MILLISECONDS_IN_A_MINUTE) % 60;
-    this.seconds = fn(inMilliseconds / MILLISECONDS_IN_A_SECOND) % 60;
-    this.milliseconds = fn(inMilliseconds) % 1000;
+    this.days = days;
+    this.hours = hours;
+    this.minutes = minutes;
+    this.seconds = seconds;
+    this.milliseconds = milliseconds;
 
     Object.freeze(this);
   }
@@ -233,7 +250,15 @@ class Duration {
   }
 
   static of(inMilliseconds: number): Duration {
-    return new Duration(inMilliseconds);
+    const fn = inMilliseconds < 0 ? Math.ceil : Math.floor;
+
+    const days = fn(inMilliseconds / MILLISECONDS_IN_A_DAY);
+    const hours = fn(inMilliseconds / MILLISECONDS_IN_AN_HOUR) % 24;
+    const minutes = fn(inMilliseconds / MILLISECONDS_IN_A_MINUTE) % 60;
+    const seconds = fn(inMilliseconds / MILLISECONDS_IN_A_SECOND) % 60;
+    const milliseconds = fn(inMilliseconds) % 1000;
+
+    return Duration.fromObject({ days, hours, minutes, seconds, milliseconds });
   }
 
   static fromObject(object: DurationObjectLiteral): Duration {
@@ -243,13 +268,7 @@ class Duration {
     const seconds = object.seconds ? object.seconds : 0;
     const milliseconds = object.milliseconds ? object.milliseconds : 0;
 
-    return Duration.of(
-      days * MILLISECONDS_IN_A_DAY +
-        hours * MILLISECONDS_IN_AN_HOUR +
-        minutes * MILLISECONDS_IN_A_MINUTE +
-        seconds * MILLISECONDS_IN_A_SECOND +
-        milliseconds
-    );
+    return new Duration(days, hours, minutes, seconds, milliseconds);
   }
 
   static fromString(str: string): Duration | null {

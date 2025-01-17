@@ -16,10 +16,20 @@ describe("Duration", () => {
   describe("constructor", () => {
     it("should return a duration", () => {
       // given
-      const inMilliseconds = 563445002;
+      const days = 6;
+      const hours = 12;
+      const minutes = 30;
+      const seconds = 45;
+      const milliseconds = 2;
 
       // when
-      const duration = new Duration(inMilliseconds);
+      const duration = new Duration(
+        days,
+        hours,
+        minutes,
+        seconds,
+        milliseconds
+      );
 
       // then
       expect(duration).toBeInstanceOf(Duration);
@@ -28,6 +38,62 @@ describe("Duration", () => {
       expect(duration.minutes).toBe(30);
       expect(duration.seconds).toBe(45);
       expect(duration.milliseconds).toBe(2);
+    });
+
+    it("should throw an error with invalid hours", () => {
+      // given
+      const days = 6;
+      const hours = 24;
+      const minutes = 30;
+      const seconds = 45;
+      const milliseconds = 2;
+
+      // when/then
+      expect(
+        () => new Duration(days, hours, minutes, seconds, milliseconds)
+      ).toThrowError();
+    });
+
+    it("should throw an error with invalid minutes", () => {
+      // given
+      const days = 6;
+      const hours = 12;
+      const minutes = 60;
+      const seconds = 45;
+      const milliseconds = 2;
+
+      // when/then
+      expect(
+        () => new Duration(days, hours, minutes, seconds, milliseconds)
+      ).toThrowError();
+    });
+
+    it("should throw an error with invalid seconds", () => {
+      // given
+      const days = 6;
+      const hours = 12;
+      const minutes = 30;
+      const seconds = 60;
+      const milliseconds = 2;
+
+      // when/then
+      expect(
+        () => new Duration(days, hours, minutes, seconds, milliseconds)
+      ).toThrowError();
+    });
+
+    it("should throw an error with invalid milliseconds", () => {
+      // given
+      const days = 6;
+      const hours = 12;
+      const minutes = 30;
+      const seconds = 45;
+      const milliseconds = 1000;
+
+      // when/then
+      expect(
+        () => new Duration(days, hours, minutes, seconds, milliseconds)
+      ).toThrowError();
     });
   });
 
@@ -2309,10 +2375,10 @@ describe("Duration", () => {
       // then
       expect(negated).toBeInstanceOf(Duration);
       expect(negated.days).toBe(-6);
-      expect(negated.hours).toBe(-0);
-      expect(negated.minutes).toBe(-0);
-      expect(negated.seconds).toBe(-0);
-      expect(negated.milliseconds).toBe(-0);
+      expect(negated.hours).toBe(0);
+      expect(negated.minutes).toBe(0);
+      expect(negated.seconds).toBe(0);
+      expect(negated.milliseconds).toBe(0);
     });
 
     it("should return the positive duration of a negative duration", () => {

@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Reference
-      link: /reference/duration
+      link: /reference/DateTime
     - theme: alt
       text: Github
       link: https://github.com/mahshidbahira/time-wise

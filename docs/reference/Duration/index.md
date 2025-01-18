@@ -537,7 +537,7 @@ const duration = Duration.fromObject({
   millisecond: 2,
 });
 const durationWithDay = duration.withDay(3);
-console.log(duration.toString()); // 3 days 12:30:45.002
+console.log(durationWithDay.toString()); // 3 days 12:30:45.002
 ```
 
 ### `withHour`
@@ -566,7 +566,8 @@ const duration = Duration.fromObject({
   millisecond: 2,
 });
 const durationWithHour = duration.withHour(23);
-console.log(duration.toString()); // 6 days 23:30:45.002
+console.log(const durationWithHour = duration.withHour(23);
+.toString()); // 6 days 23:30:45.002
 ```
 
 ### `withMinute`
@@ -595,7 +596,7 @@ const duration = Duration.fromObject({
   millisecond: 2,
 });
 const durationWithMinute = duration.withMinute(59);
-console.log(duration.toString()); // 6 days 12:59:45.002
+console.log(durationWithMinute.toString()); // 6 days 12:59:45.002
 ```
 
 ### `withSecond`
@@ -624,7 +625,7 @@ const duration = Duration.fromObject({
   millisecond: 2,
 });
 const durationWithSecond = duration.withSecond(59);
-console.log(duration.toString()); // 6 days 12:30:59.002
+console.log(durationWithSecond.toString()); // 6 days 12:30:59.002
 ```
 
 ### `withMillisecond`
@@ -653,7 +654,7 @@ const duration = Duration.fromObject({
   millisecond: 2,
 });
 const durationWithMillisecond = duration.withMillisecond(999);
-console.log(duration.toString()); // 6 days 12:30:45.999
+console.log(durationWithMillisecond.toString()); // 6 days 12:30:45.999
 ```
 
 ### `plus`

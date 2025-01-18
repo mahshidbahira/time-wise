@@ -729,8 +729,8 @@ const datetime = DateTime.fromObject({
   millisecond: 920,
   offset: { hour: 1 },
 });
-const datetimeWithDay = datetime.withYear(2023);
-console.log(datetime.toString()); // 2023-12-07 13:56:19.920 UTC+01:00
+const datetimeWithYear = datetime.withYear(2023);
+console.log(datetimeWithYear.toString()); // 2023-12-07 13:56:19.920 UTC+01:00
 ```
 
 ### `withMonth`
@@ -761,8 +761,8 @@ const datetime = DateTime.fromObject({
   millisecond: 920,
   offset: { hour: 1 },
 });
-const datetimeWithDay = datetime.withMonth(9);
-console.log(datetime.toString()); // 2024-09-07 13:56:19.920 UTC+01:00
+const datetimeWithMonth = datetime.withMonth(9);
+console.log(datetimeWithMonth.toString()); // 2024-09-07 13:56:19.920 UTC+01:00
 ```
 
 ### `withDay`
@@ -794,7 +794,7 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 const datetimeWithDay = datetime.withDay(28);
-console.log(datetime.toString()); // 2024-12-28 13:56:19.920 UTC+01:00
+console.log(datetimeWithDay.toString()); // 2024-12-28 13:56:19.920 UTC+01:00
 ```
 
 ### `withHour`
@@ -826,7 +826,7 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 const datetimeWithHour = datetime.withHour(21);
-console.log(datetime.toString()); // 2024-12-07 21:56:19.920 UTC+01:00
+console.log(datetimeWithHour.toString()); // 2024-12-07 21:56:19.920 UTC+01:00
 ```
 
 ### `withMinute`
@@ -858,7 +858,7 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 const datetimeWithMinute = datetime.withMinute(59);
-console.log(datetime.toString()); // 2024-12-07 13:59:19.920 UTC+01:00
+console.log(datetimeWithMinute.toString()); // 2024-12-07 13:59:19.920 UTC+01:00
 ```
 
 ### `withSecond`
@@ -890,7 +890,7 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 const datetimeWithSecond = datetime.withSecond(59);
-console.log(datetime.toString()); // 2024-12-07 13:56:59.920 UTC+01:00
+console.log(datetimeWithSecond.toString()); // 2024-12-07 13:56:59.920 UTC+01:00
 ```
 
 ### `withMillisecond`
@@ -922,7 +922,7 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 const datetimeWithMillisecond = datetime.withMillisecond(999);
-console.log(datetime.toString()); // 2024-12-07 13:56:19.999 UTC+01:00
+console.log(datetimeWithMillisecond.toString()); // 2024-12-07 13:56:19.999 UTC+01:00
 ```
 
 ### `withOffset`
@@ -960,7 +960,7 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 const datetimeWithOffset = datetime.withOffset(Offset.fromObject({ hour: -1 }));
-console.log(datetime.toString()); // 2024-12-07 13:56:19.920 UTC-01:00
+console.log(datetimeWithOffset.toString()); // 2024-12-07 13:56:19.920 UTC-01:00
 ```
 
 ### `inOffset`
@@ -1000,7 +1000,7 @@ const datetime = DateTime.fromObject({
 const offset = Offset.UTC;
 
 const datetimeInOffset = datetime.inOffset(offset);
-console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC+00:00
+console.log(datetimeInOffset.toString()); // 2024-12-07 12:56:19.920 UTC+00:00
 ```
 
 ### `plus`

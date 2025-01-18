@@ -11,11 +11,11 @@ hero:
     alt: Time-Wise
   actions:
     - theme: brand
+      text: Get Started
+      link: /guide/
+    - theme: alt
       text: Reference
       link: /reference/DateTime
-    - theme: alt
-      text: Github
-      link: https://github.com/mahshidbahira/time-wise
 
 features:
   - title: DateTime

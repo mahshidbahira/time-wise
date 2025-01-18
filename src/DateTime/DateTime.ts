@@ -302,6 +302,10 @@ class DateTime {
     ).withOffset(offset);
   }
 
+  inZone(zoneName: string): DateTime {
+    return this.inOffset(Offset.fromZoneName(zoneName));
+  }
+
   plus(duration: Duration): DateTime {
     return DateTime.fromMillisecondsSinceEpoch(
       this.millisecondsSinceEpoch + duration.inMilliseconds

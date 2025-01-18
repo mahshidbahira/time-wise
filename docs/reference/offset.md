@@ -530,7 +530,7 @@ Return the offset of UTC.
 
 ```typescript
 const offset = Offset.UTC;
-console.log(offset.toString()); // UTC
+console.log(offset.toString()); // UTC+00:00
 ```
 
 ## Static Methods
@@ -734,7 +734,7 @@ Offset.local(): Offset
 
 ```typescript
 const offset = Offset.local();
-console.log(offset.toString()); // UTC+03:30
+console.log(offset.toString()); // depends on your zone
 ```
 
 ### `compare`

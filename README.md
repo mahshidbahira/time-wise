@@ -1,13 +1,28 @@
 # Time-Wise
 
-A TypeScript library for handling time durations with high precision, flexible formatting, and rich manipulation capabilities. The `Duration` class provides methods to create, compare, and format time intervals in a readable way, supporting conversions between milliseconds, seconds, minutes, hours, and days.
+A Model-Driven Approach to Date and Time!
+
+## Documentation
+
+[Jump into the docs!](https://mahshidbahira.github.io/time-wise/)
 
 ## Features
 
-- **Flexible Duration Parsing:** Parse from human-readable strings, ISO-8601 duration strings, or custom objects.
-- **High Precision:** Supports operations down to the millisecond level.
-- **Intuitive Duration Manipulation:** Add, subtract, compare, and format durations.
-- **Date Calculations:** Add or subtract durations from specific dates.
+- **DateTime**
+
+  Easily create, format, and compare DateTime objects with precision, supporting various time zones.
+
+- **Duration**
+
+  Perform arithmetic operations with durations, including conversion between time units like seconds, minutes, hours, and more.
+
+- **Offset**
+
+  Handle time zone offsets and calculate time differences accurately, taking into account daylight savings and other factors.
+
+- **Interval**
+
+  Work with time intervals to compute intersections, contains, and durations, offering enhanced flexibility in managing time spans.
 
 ## Installation
 
@@ -17,159 +32,105 @@ Install via npm:
 npm install time-wise
 ```
 
-## Usage
+## Import
 
-If you're using **ES Modules**:
+### ES Modules
 
-```typescript
-import { Duration, SECOND, MINUTE } from "time-wise";
-```
-
-Or if you're using **CommonJS**:
+When using ESM:
 
 ```typescript
-const { Duration, SECOND, MINUTE } = require("time-wise");
+import { DateTime, Offset, Interval, Duration } from "time-wise";
 ```
 
-Or if you're using the **browser** include the script tag:
+### CommonJS
+
+When using CJS:
+
+```typescript
+const { DateTime, Offset, Interval, Duration } = require("time-wise");
+```
+
+### Browser
+
+When using browser, include the script tag:
 
 ```html
 <script src="time-wise.iife.js"></script>
 <script>
-  const { Duration, SECOND, MINUTE } = TimeWise;
+  const { DateTime, Offset, Interval, Duration } = TimeWise;
 </script>
 ```
 
-### Creating a Duration
+## Have fun with ...
 
-You can create a duration using milliseconds, an object, or a string.
+### DateTime
+
+Wanna know what time it is in your favorite city right now?
 
 ```typescript
-// Using milliseconds
-const durationOfMilliseconds = Duration.of(5_400_000); // 1 hour and 30 minutes
+DateTime.now().inZone("America/New_York").toString();
 
-const duration = Duration.of(1 * HOUR + 30 * MINUTE); // 1 hour and 30 minutes (but readable!)
+// 2025-01-01 15:45:30.250 UTC-05:00
+```
 
-// From an object
-const durationFromObject = Duration.fromObject({
-  hours: 1,
-  minutes: 30,
+Create a special datetime; Maybe the day you fell in love?
+
+```typescript
+DateTime.fromObject({
+  year: 2024,
+  month: 2,
+  day: 14,
+  hour: 18,
+  minute: 0,
+  second: 0,
+  millisecond: 0,
+  offset: { hour: 1 }, // Paris? wow!
 });
-
-// From a string (e.g., "1 day 01:30:00" or ISO 8601 format)
-const durationFromString = Duration.fromString("1 day 01:30:00");
-const durationFromISO = Duration.fromISOString("P1DT1H30M");
 ```
 
-### Accessing Duration Properties
+### Offset
 
-Retrieve various properties and representations of the duration in days, hours, minutes, etc.
+Which city is more to the west?
 
 ```typescript
-console.log(duration.hours); // 1 hour
-console.log(duration.minutes); // 30 minutes
-console.log(duration.milliseconds); // 0 milliseconds
+const losAngeles = Offset.fromZoneName("America/Los_Angeles");
+const newYork = Offset.fromZoneName("America/New_York");
 
-console.log(duration.inHours); // 1.5 hours
-console.log(duration.inMinutes); // 90 minutes
-console.log(duration.inMilliseconds); // 5_400_000 milliseconds
+losAngeles.isWesterThan(newYork); // true
 ```
 
-### Performing Operations on Durations
+### Interval
 
-You can add, subtract, multiply, and divide durations.
+How many milliseconds has passed since your were born?
 
 ```typescript
-const duration1 = Duration.of(1 * HOUR); // 1 hour
-const duration2 = Duration.of(30 * MINUTE); // 30 minutes
+const birthday = DateTime.fromObject({
+  year: 2000,
+  month: 12,
+  day: 7,
+  hour: 0,
+  minute: 0,
+  second: 0,
+  millisecond: 0,
+  offset: { hour: 1 },
+});
+const now = DateTime.now();
+Interval.between(birthday, now).duration.inMilliseconds;
 
-// Adding durations
-const totalDuration = duration1.plus(duration2); // 1 hour 30 minutes
-
-// Subtracting durations
-const remainingDuration = duration1.minus(duration2); // 30 minutes
-
-// Multiplying and dividing durations
-const doubledDuration = duration1.multiplyBy(2); // 2 hours
-const halvedDuration = duration1.divideBy(2); // 30 minutes
+// 761093667321
 ```
 
-### Comparing Durations
+### Duration
 
-Use `equals`, `isLongerThan`, and `isShorterThan` for comparisons.
+If each year of a dog's life is `7x` of a humans,
+which is bigger? `1800` dog days? or `9000` human days?
 
 ```typescript
-const duration1 = Duration.of(1 * HOUR); // 1 hour
-const duration2 = Duration.of(30 * MINUTE); // 30 minutes
+const dogs = Duration.fromDays(1800).multiplyBy(7);
+const humans = Duration.fromDays(9000);
 
-console.log(duration1.isLongerThan(duration2)); // true
-console.log(duration1.equals(Duration.of(60 * MINUTE))); // true
+dogs.isLongerThan(humans); // true
 ```
-
-### Formatting Durations
-
-The library supports various string formats for durations.
-
-```typescript
-const duration = Duration.of(1 * HOUR + 1 * MINUTE + 1 * SECOND); // 1 hour, 1 minute, and 1 second
-
-// Default string format
-console.log(duration.toString()); // "01:01:01"
-
-// ISO 8601 format
-console.log(duration.toISOString()); // "PT1H1M1S"
-```
-
-### Using Durations with Dates
-
-Calculate dates in the future or past based on a duration.
-
-```typescript
-const oneHour = Duration.of(1 * HOUR); // 1 hour
-const now = new Date();
-
-const oneHourLater = oneHour.after(now); // Date 1 hour from now
-const oneHourBefore = oneHour.before(now); // Date 1 hour ago
-```
-
-## API Reference
-
-### `Duration` Class
-
-#### Static Methods
-
-- `Duration.of(milliseconds: number): Duration`
-- `Duration.fromObject(object: ObjectDetails): Duration`
-- `Duration.fromString(str: string): Duration | null`
-- `Duration.fromISOString(str: string): Duration | null`
-- `Duration.parse(str: string): Duration | null`
-- `Duration.between(since: Date, until: Date): Duration`
-- `Duration.since(date: Date): Duration`
-- `Duration.until(date: Date): Duration`
-- `Duration.compare(duration1: Duration, duration2: Duration): number`
-
-#### Instance Properties
-
-- `days`, `hours`, `minutes`, `seconds`, `milliseconds`
-- `inDays`, `inHours`, `inMinutes`, `inSeconds`, `inMilliseconds`
-
-#### Instance Methods
-
-- `toObject(): ObjectDetails`
-- `toString(): string`
-- `toISOString(): string`
-- `toJSON(): string`
-- `equals(other: Duration): boolean`
-- `isLongerThan(other: Duration): boolean`
-- `isShorterThan(other: Duration): boolean`
-- `plus(other: Duration): Duration`
-- `minus(other: Duration): Duration`
-- `multiplyBy(factor: number): Duration`
-- `divideBy(divisor: number): Duration`
-- `negate(): Duration`
-- `absolute(): Duration`
-- `after(date: Date): Date`
-- `before(date: Date): Date`
 
 ## License
 

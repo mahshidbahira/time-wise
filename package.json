@@ -1,13 +1,15 @@
 {
   "name": "time-wise",
   "version": "2.0.2",
-  "description": "A versatile time management library, featuring utilities for duration, stopwatch, timer, etc.",
+  "description": "A Model-Driven Approach to Date and Time",
   "keywords": [
+    "datetime",
     "date",
     "time",
-    "duration",
-    "stopwatch",
-    "timer"
+    "offset",
+    "timezone",
+    "interval",
+    "duration"
   ],
   "homepage": "https://github.com/mahshidbahira/time-wise",
   "bugs": {

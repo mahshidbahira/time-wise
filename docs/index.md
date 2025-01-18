@@ -8,8 +8,8 @@ hero:
   tagline: "A Model-Driven Approach to Date and Time!"
   actions:
     - theme: brand
-      text: Guide
-      link: /guide/duration
+      text: Reference
+      link: /reference/duration
     - theme: alt
       text: Github
       link: https://github.com/mahshidbahira/time-wise

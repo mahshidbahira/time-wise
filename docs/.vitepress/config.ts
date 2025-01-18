@@ -10,9 +10,12 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: "Guide",
+        text: "Reference",
+        items: [{ text: "Duration", link: "/reference/duration" }],
+      },
+      {
+        text: "VitePress",
         items: [
-          { text: "Duration", link: "/guide/duration" },
           { text: "Markdown Examples", link: "/markdown-examples" },
           { text: "Runtime API Examples", link: "/api-examples" },
         ],

@@ -5,8 +5,8 @@ days, hours, minutes, seconds, and milliseconds.
 It provides a variety of methods for creation, formatting, comparison,
 calculation, and conversion of durations.
 
-::: warning
-All instances of duration are **immutable**!
+::: tip
+All instances of `Duration` are **immutable**!
 
 So all manipulation methods return a new instance of duration.
 :::
@@ -1018,7 +1018,11 @@ console.log(duration.toObject()); // {day: 6, hour: 12, minute: 30, second: 45, 
 
 ### `compare`
 
-Returns the difference between two durations (useful for sorting durations in an array).
+Returns the difference between two durations.
+
+::: tip
+This method is useful for sorting `Duration` instances in an array.
+:::
 
 ```typescript
 Duration.compare(duration1: Duration, duration2: Duration): number

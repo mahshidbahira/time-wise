@@ -5,8 +5,8 @@ Universal Time) broken down into hours and minutes.
 It provides a variety of methods for creation, formatting, comparison,
 calculation, and conversion of offsets.
 
-::: warning
-All instances of offset are **immutable**!
+::: tip
+All instances of `Offset` are **immutable**!
 
 So all manipulation methods return a new instance of offset.
 :::
@@ -739,7 +739,11 @@ console.log(offset.toString()); // depends on your zone
 
 ### `compare`
 
-Returns the difference between two offsets (useful for sorting offsets in an array).
+Returns the difference between two offsets.
+
+::: tip
+This method is useful for sorting `Offset` instances in an array.
+:::
 
 ```typescript
 Offset.compare(offset1: Offset, offset2: Offset): number

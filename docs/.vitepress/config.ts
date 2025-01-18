@@ -12,6 +12,7 @@ export default defineConfig({
       {
         text: "Reference",
         items: [
+          { text: "DateTime", link: "/reference/datetime" },
           { text: "Offset", link: "/reference/offset" },
           { text: "Duration", link: "/reference/duration" },
         ],

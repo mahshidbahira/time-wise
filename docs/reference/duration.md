@@ -5,6 +5,12 @@ days, hours, minutes, seconds, and milliseconds. It provides a variety of
 methods for creation, formatting, comparison, calculation, and conversion of
 durations.
 
+::: warning
+All instances of duration are **immutable**!
+
+So all manipulation methods return a new instance of duration.
+:::
+
 ## Table of Contents
 
 - [Instance Properties](#instance-properties)
@@ -41,6 +47,16 @@ durations.
   - [`absolute`](#absolute)
 - [Static Properties](#static-properties)
 - [Static Methods](#static-methods)
+  - [`fromDays`](#fromdays)
+  - [`fromHours`](#fromhours)
+  - [`fromMinutes`](#fromminutes)
+  - [`fromSeconds`](#fromseconds)
+  - [`fromMilliseconds`](#frommilliseconds)
+  - [`fromObject`](#fromobject)
+  - [`fromString`](#fromstring)
+  - [`fromISOString`](#fromisostring)
+  - [`parse`](#parse)
+  - [`compare`](#compare)
 
 ## Instance Properties
 
@@ -263,7 +279,7 @@ console.log(duration.valueOf()); // 563445002
 
 ### `toString`
 
-Returns the string representation of the duration.
+Returns the human-readable string representation of the duration.
 
 ```typescript
 toString(): string
@@ -367,7 +383,7 @@ console.log(duration.toISOString()); // P6DT12H30M45.002S
 
 ### `toObject`
 
-Returns the object representation of the duration.
+Returns the object literal of the duration.
 
 ```typescript
 toObject(): Object
@@ -788,4 +804,252 @@ const duration = Duration.fromObject({
 });
 const abs = duration.absolute();
 console.log(abs.toString()); // 6 days 00:00:00
+```
+
+## Static Properties
+
+None
+
+## Static Methods
+
+### `fromDays`
+
+Return a new duration from the total days.
+
+```typescript
+Duration.fromDays(inDays: number): Duration
+```
+
+- **Parameters**:
+  - `inDays`:
+    - **description**: the total duration in days.
+    - **Type**: `number`
+- **Returns**: `Duration`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration = Duration.fromDays(6.521354189814815);
+console.log(duration.toString()); // 6 days 12:30:45.002
+```
+
+### `fromHours`
+
+Return a new duration from the total hours.
+
+```typescript
+Duration.fromHours(inHours: number): Duration
+```
+
+- **Parameters**:
+  - `inHours`:
+    - **description**: the total duration in hours.
+    - **Type**: `number`
+- **Returns**: `Duration`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration = Duration.fromHours(156.51250055555556);
+console.log(duration.toString()); // 6 days 12:30:45.002
+```
+
+### `fromMinutes`
+
+Return a new duration from the total minutes.
+
+```typescript
+Duration.fromMinutes(inMinutes: number): Duration
+```
+
+- **Parameters**:
+  - `inMinutes`:
+    - **description**: the total duration in minutes.
+    - **Type**: `number`
+- **Returns**: `Duration`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration = Duration.fromMinutes(9390.750033333334);
+console.log(duration.toString()); // 6 days 12:30:45.002
+```
+
+### `fromSeconds`
+
+Return a new duration from the total seconds.
+
+```typescript
+Duration.fromSeconds(inSeconds: number): Duration
+```
+
+- **Parameters**:
+  - `inSeconds`:
+    - **description**: the total duration in seconds.
+    - **Type**: `number`
+- **Returns**: `Duration`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration = Duration.fromSeconds(563445.002);
+console.log(duration.toString()); // 6 days 12:30:45.002
+```
+
+### `fromMilliseconds`
+
+Return a new duration from the total milliseconds.
+
+```typescript
+Duration.fromMilliseconds(inMilliseconds: number): Duration
+```
+
+- **Parameters**:
+  - `inMilliseconds`:
+    - **description**: the total duration in milliseconds.
+    - **Type**: `number`
+- **Returns**: `Duration`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration = Duration.fromMilliseconds(563445002);
+console.log(duration.toString()); // 6 days 12:30:45.002
+```
+
+### `fromObject`
+
+Return a new duration from an object literal.
+
+```typescript
+Duration.fromObject(object: Object): Duration
+```
+
+- **Parameters**:
+  - `object`:
+    - **description**: the object literal.
+    - **Type**: `Object`
+- **Returns**: `Duration`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration = Duration.fromObject({
+  day: 6,
+  hour: 12,
+  minute: 30,
+  second: 45,
+  millisecond: 2,
+});
+console.log(duration.toString()); // 6 days 12:30:45.002
+```
+
+### `fromString`
+
+Return a new duration from a human-readable string representation.
+
+```typescript
+Duration.fromString(str: string): Duration
+```
+
+- **Parameters**:
+  - `str`:
+    - **description**: the human-readable string representation.
+    - **Type**: `string`
+- **Returns**: `Duration`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration = Duration.fromString("6 days 12:30:45.002");
+console.log(duration.toObject()); // {day: 6, hour: 12, minute: 30, second: 45, millisecond: 2}
+```
+
+### `fromISOString`
+
+Return a new duration from an ISO 8601 representation.
+
+```typescript
+Duration.fromISOString(str: string): Duration
+```
+
+- **Parameters**:
+  - `str`:
+    - **description**: the ISO 8601 representation.
+    - **Type**: `string`
+- **Returns**: `Duration`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration = Duration.fromISOString("P6DT12H30M45.002S");
+console.log(duration.toObject()); // {day: 6, hour: 12, minute: 30, second: 45, millisecond: 2}
+```
+
+### `parse`
+
+Return a new duration from any possible string.
+
+```typescript
+Duration.parse(str: string): Duration
+```
+
+- **Parameters**:
+  - `str`:
+    - **description**: the string.
+    - **Type**: `string`
+- **Returns**: `Duration`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration = Duration.parse("6 days 12:30:45.002");
+console.log(duration.toObject()); // {day: 6, hour: 12, minute: 30, second: 45, millisecond: 2}
+```
+
+### `compare`
+
+Returns the difference between two durations (useful for sorting durations in an array).
+
+```typescript
+Duration.compare(duration1: Duration, duration2: Duration): number
+```
+
+- **Parameters**:
+  - `duration1`:
+    - **description**: The first duration.
+    - **Type**: `Duration`
+  - `duration2`:
+    - **description**: The second duration.
+    - **Type**: `Duration`
+- **Returns**: `number`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const duration1 = Duration.fromObject({
+  day: 6,
+  hour: 12,
+  minute: 30,
+  second: 45,
+  millisecond: 2,
+});
+const duration2 = Duration.fromObject({
+  day: 6,
+  hour: 12,
+  minute: 30,
+  second: 45,
+  millisecond: 2,
+});
+console.log(Duration.compare(duration1, duration2)); // 0
 ```

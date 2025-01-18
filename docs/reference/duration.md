@@ -1,5 +1,10 @@
 # Duration
 
+The `Duration` immutable class represents a duration of time broken down into
+days, hours, minutes, seconds, and milliseconds. It provides a variety of
+methods for creation, formatting, comparison, calculation, and conversion of
+durations.
+
 ## Table of Contents
 
 - [Instance Properties](#instance-properties)

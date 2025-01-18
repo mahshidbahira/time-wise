@@ -1,9 +1,9 @@
 # Offset
 
-The `Offset` immutable class represents a offset of time broken down into
-days, hours, minutes, seconds, and milliseconds. It provides a variety of
-methods for creation, formatting, comparison, calculation, and conversion of
-offsets.
+The `Offset` immutable class represents a time zone offset from UTC (Coordinated
+Universal Time) broken down into hours and minutes.
+It provides a variety of methods for creation, formatting, comparison,
+calculation, and conversion of offsets.
 
 ::: warning
 All instances of offset are **immutable**!

@@ -20,7 +20,7 @@ describe("Interval", () => {
       const start = DateTime.fromObject({
         year: 2024,
         month: 12,
-        day: 3,
+        day: 7,
         hour: 13,
         minute: 56,
         second: 19,
@@ -30,7 +30,7 @@ describe("Interval", () => {
       const end = DateTime.fromObject({
         year: 2024,
         month: 12,
-        day: 7,
+        day: 9,
         hour: 13,
         minute: 56,
         second: 19,

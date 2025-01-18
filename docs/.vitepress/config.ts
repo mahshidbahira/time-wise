@@ -14,6 +14,7 @@ export default defineConfig({
         items: [
           { text: "DateTime", link: "/reference/DateTime/" },
           { text: "Offset", link: "/reference/Offset/" },
+          { text: "Interval", link: "/reference/Interval/" },
           { text: "Duration", link: "/reference/Duration/" },
         ],
       },

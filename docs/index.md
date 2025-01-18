@@ -6,6 +6,9 @@ hero:
   name: "Time-Wise"
   text: "Wisdom of Time"
   tagline: "A Model-Driven Approach to Date and Time!"
+  image:
+    src: /time-wise.svg
+    alt: Time-Wise
   actions:
     - theme: brand
       text: Reference

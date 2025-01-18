@@ -11,7 +11,10 @@ export default defineConfig({
     sidebar: [
       {
         text: "Reference",
-        items: [{ text: "Duration", link: "/reference/duration" }],
+        items: [
+          { text: "Offset", link: "/reference/offset" },
+          { text: "Duration", link: "/reference/duration" },
+        ],
       },
       {
         text: "VitePress",

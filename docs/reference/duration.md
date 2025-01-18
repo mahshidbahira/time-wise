@@ -390,7 +390,7 @@ toObject(): Object
 ```
 
 - **Parameters**: `void`
-- **Returns**: `object`
+- **Returns**: `Object`
 - **Throws**: `void`
 
 **Example**:

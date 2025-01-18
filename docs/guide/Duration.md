@@ -41,7 +41,7 @@
 
 ### `day`
 
-Represents the number of days in the duration.
+Return the number of days in the duration.
 
 - **Type**: `number`
 - **Example**:
@@ -59,7 +59,7 @@ Represents the number of days in the duration.
 
 ### `hour`
 
-Represents the number of hours in the duration.
+Return the number of hours in the duration.
 
 - **Type**: `number`
 - **Example**:
@@ -77,7 +77,7 @@ Represents the number of hours in the duration.
 
 ### `minute`
 
-Represents the number of minutes in the duration.
+Return the number of minutes in the duration.
 
 - **Type**: `number`
 - **Example**:
@@ -95,7 +95,7 @@ Represents the number of minutes in the duration.
 
 ### `second`
 
-Represents the number of seconds in the duration.
+Return the number of seconds in the duration.
 
 - **Type**: `number`
 - **Example**:
@@ -113,7 +113,7 @@ Represents the number of seconds in the duration.
 
 ### `millisecond`
 
-Represents the number of milliseconds in the duration.
+Return the number of milliseconds in the duration.
 
 - **Type**: `number`
 - **Example**:
@@ -347,7 +347,7 @@ toISOString(): string
 
 ### `toObject`
 
-Returns the ISO 8601 representation of the duration.
+Returns the object representation of the duration.
 
 ```typescript
 toObject(): Object
@@ -371,7 +371,7 @@ toObject(): Object
 
 ### `equals`
 
-Compares this duration to another duration for equality.
+Returns whether the duration is equal to the other duration.
 
 ```typescript
 equals(other: Duration): boolean
@@ -405,7 +405,7 @@ equals(other: Duration): boolean
 
 ### `isLongerThan`
 
-Checks if this duration is longer than another duration.
+Returns whether the duration is longer than the other duration.
 
 ```typescript
 isLongerThan(other: Duration): boolean
@@ -439,7 +439,7 @@ isLongerThan(other: Duration): boolean
 
 ### `isShorterThan`
 
-Checks if this duration is shorter than another duration.
+Returns whether the duration is shorter than the other duration.
 
 ```typescript
 isShorterThan(other: Duration): boolean
@@ -613,7 +613,7 @@ withMillisecond(millisecond: number): Duration
 
 ### `plus`
 
-Return the sum of the duration with another duration.
+Return a new duration as the sum of the duration with another duration.
 
 ```typescript
 plus(other: Duration): Duration
@@ -640,7 +640,7 @@ plus(other: Duration): Duration
 
 ### `minus`
 
-Return the difference of the duration with another duration.
+Return a new duration as the difference of the duration with another duration.
 
 ```typescript
 minus(other: Duration): Duration
@@ -667,7 +667,7 @@ minus(other: Duration): Duration
 
 ### `multiplyBy`
 
-Return the product of the duration with a factor.
+Return a new duration as the product of the duration with a factor.
 
 ```typescript
 multiplyBy(factor: number): Duration
@@ -691,7 +691,7 @@ multiplyBy(factor: number): Duration
 
 ### `divideBy`
 
-Return the quotient of the duration with a divisor.
+Return a new duration as the quotient of the duration with a divisor.
 
 ```typescript
 divideBy(divisor: number): Duration
@@ -715,7 +715,7 @@ divideBy(divisor: number): Duration
 
 ### `negate`
 
-Return the negated duration.
+Return a new duration as the negated duration.
 
 ```typescript
 negate(): Duration
@@ -736,7 +736,7 @@ negate(): Duration
 
 ### `absolute`
 
-Return the absolute duration.
+Return a new duration as the absolute duration.
 
 ```typescript
 absolute(): Duration

@@ -3,7 +3,7 @@
 The `Duration` immutable class represents a duration of time broken down into
 days, hours, minutes, seconds, and milliseconds.
 It provides a variety of methods for creation, formatting, comparison,
-calculation, and conversion of durations.
+calculation, and conversion of duration instances.
 
 ::: tip
 All instances of `Duration` are **immutable**!

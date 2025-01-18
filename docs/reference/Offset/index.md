@@ -3,7 +3,7 @@
 The `Offset` immutable class represents a time zone offset from UTC (Coordinated
 Universal Time) broken down into hours and minutes.
 It provides a variety of methods for creation, formatting, comparison,
-calculation, and conversion of offsets.
+calculation, and conversion of offset instances.
 
 ::: tip
 All instances of `Offset` are **immutable**!

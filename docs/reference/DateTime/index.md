@@ -1,9 +1,9 @@
 # DateTime
 
-The `DateTime` immutable class represents a datetime of time broken down into year, month,
-days, hours, minutes, seconds, and milliseconds.
+The `DateTime` immutable class represents a datetime broken down into year, month,
+day, hour, minute, second, millisecond, and offset.
 It provides a variety of methods for creation, formatting, comparison,
-calculation, and conversion of datetimes.
+calculation, and conversion of datetime instances.
 
 ::: tip
 All instances of `DateTime` are **immutable**!

@@ -507,6 +507,29 @@ describe("DateTime", () => {
     });
   });
 
+  describe("toLocaleString", () => {
+    it("should return the locale string of a datetime", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 13,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+        offset: { hour: 1 },
+      });
+      const localeName = "en-GB";
+
+      // when
+      const localeStr = datetime.toLocaleString(localeName);
+
+      // then
+      expect(localeStr).toBe("07/12/2024, 13:56:19");
+    });
+  });
+
   describe("toObject", () => {
     it("should return the object of a datetime", () => {
       // given

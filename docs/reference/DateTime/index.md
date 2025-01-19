@@ -34,6 +34,7 @@ So all manipulation methods return a new instance of datetime.
   - [`[Symbol.toPrimitive]`](#symbol-toprimitive)
   - [`toJSON`](#tojson)
   - [`toISOString`](#toisostring)
+  - [`toLocaleString`](#tolocalestring)
   - [`toObject`](#toobject)
   - [`toJSDate`](#tojsdate)
   - [`equals`](#equals)
@@ -521,6 +522,37 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 console.log(datetime.toISOString()); // 2024-12-07T13:56:19.920+01:00
+```
+
+### `toLocaleString`
+
+Returns the locale representation of the datetime.
+
+```typescript
+toLocaleString(localeName: string): string
+```
+
+- **Parameters**:
+  - `localeName`:
+    - **description**: The locale to represent the datetime in.
+    - **Type**: `string`
+- **Returns**: `string`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const datetime = DateTime.fromObject({
+  year: 2024,
+  month: 12,
+  day: 7,
+  hour: 13,
+  minute: 56,
+  second: 19,
+  millisecond: 920,
+  offset: { hour: 1 },
+});
+console.log(datetime.toLocaleString("en-GB")); // 07/12/2024, 13:56:19
 ```
 
 ### `toObject`

@@ -160,6 +160,16 @@ class DateTime {
     return `${year}-${month}-${day}T${hour}:${minute}:${second}.${millisecond}${offset}`;
   }
 
+  toLocaleString(localeName: string): string {
+    const adjustedDate = new Date(
+      this.millisecondsSinceEpoch + this.offset.toDuration().inMilliseconds
+    );
+    const adjustedZone = "UTC";
+    return adjustedDate.toLocaleString(localeName, {
+      timeZone: adjustedZone,
+    });
+  }
+
   toObject(): DateTimeObjectLiteral {
     return {
       year: this.year,

@@ -1141,6 +1141,36 @@ describe("DateTime", () => {
     });
   });
 
+  describe("inUTC", () => {
+    it("should return the date time in UTC", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 13,
+        minute: 56,
+        second: 19,
+        millisecond: 920,
+        offset: { hour: 1 },
+      });
+
+      // when
+      const datetimeInZone = datetime.inUTC();
+
+      // then
+      expect(datetimeInZone).toBeInstanceOf(DateTime);
+      expect(datetimeInZone.year).toBe(2024);
+      expect(datetimeInZone.month).toBe(12);
+      expect(datetimeInZone.day).toBe(7);
+      expect(datetimeInZone.hour).toBe(12);
+      expect(datetimeInZone.minute).toBe(56);
+      expect(datetimeInZone.second).toBe(19);
+      expect(datetimeInZone.millisecond).toBe(920);
+      expect(datetimeInZone.offset.inMinutes).toBe(0);
+    });
+  });
+
   describe("plus", () => {
     it("should return the addition of datetime and duration", () => {
       // given

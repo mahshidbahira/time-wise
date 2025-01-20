@@ -316,6 +316,10 @@ class DateTime {
     return this.inOffset(Offset.fromZoneName(zoneName));
   }
 
+  inUTC(): DateTime {
+    return this.inOffset(Offset.UTC);
+  }
+
   plus(duration: Duration): DateTime {
     return DateTime.fromMillisecondsSinceEpoch(
       this.millisecondsSinceEpoch + duration.inMilliseconds

@@ -50,6 +50,7 @@ So all manipulation methods return a new instance of datetime.
   - [`withOffset`](#withoffset)
   - [`inOffset`](#inoffset)
   - [`inZone`](#inzone)
+  - [`inUTC`](#inutc)
   - [`plus`](#plus)
   - [`minus`](#minus)
 - [Static Properties](#static-properties)
@@ -1068,6 +1069,39 @@ const datetime = DateTime.fromObject({
 });
 const datetimeInZone = datetime.inZone("UTC");
 console.log(datetimeInZone.toString()); // 2024-12-07 12:56:19.920 UTC+00:00
+```
+
+### `inUTC`
+
+Return the same datetime reflected in UTC.
+
+::: warning
+This method returns a datetime with other fields **changed**.
+:::
+
+```typescript
+inUTC(): DateTime
+```
+
+- **Parameters**: `void`
+- **Returns**: `DateTime`
+- **Throws**: `void`
+
+**Example**:
+
+```typescript
+const datetime = DateTime.fromObject({
+  year: 2024,
+  month: 12,
+  day: 7,
+  hour: 13,
+  minute: 56,
+  second: 19,
+  millisecond: 920,
+  offset: { hour: 1 },
+});
+const datetimeInUTC = datetime.inUTC();
+console.log(datetimeInUTC.toString()); // 2024-12-07 12:56:19.920 UTC+00:00
 ```
 
 ### `plus`

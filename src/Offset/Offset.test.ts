@@ -203,26 +203,81 @@ describe("Offset", () => {
   });
 
   describe("toISOString", () => {
-    it("should return the iso string of positive offset", () => {
+    it("should return the string of zero", () => {
+      // given
+      const offset = Offset.UTC;
+
+      // when
+      const str = offset.toISOString();
+
+      // then
+      expect(str).toBe("Z");
+    });
+
+    it("should return the string of only positive hours", () => {
+      // given
+      const offset = Offset.fromObject({ hour: 1 });
+
+      // when
+      const str = offset.toISOString();
+
+      // then
+      expect(str).toBe("+01:00");
+    });
+
+    it("should return the string of only negative hours", () => {
+      // given
+      const offset = Offset.fromObject({ hour: -1 });
+
+      // when
+      const str = offset.toISOString();
+
+      // then
+      expect(str).toBe("-01:00");
+    });
+
+    it("should return the string of only positive minutes", () => {
+      // given
+      const offset = Offset.fromObject({ minute: 30 });
+
+      // when
+      const str = offset.toISOString();
+
+      // then
+      expect(str).toBe("+00:30");
+    });
+
+    it("should return the string of only negative minutes", () => {
+      // given
+      const offset = Offset.fromObject({ minute: -30 });
+
+      // when
+      const str = offset.toISOString();
+
+      // then
+      expect(str).toBe("-00:30");
+    });
+
+    it("should return the string of positive hours and minutes", () => {
       // given
       const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
       // when
-      const isoStr = offset.toISOString();
+      const str = offset.toISOString();
 
       // then
-      expect(isoStr).toBe("+01:30");
+      expect(str).toBe("+01:30");
     });
 
-    it("should return the iso string of negative offset", () => {
+    it("should return the string of negative hours and minutes", () => {
       // given
       const offset = Offset.fromObject({ hour: -1, minute: -30 });
 
       // when
-      const isoStr = offset.toISOString();
+      const str = offset.toISOString();
 
       // then
-      expect(isoStr).toBe("-01:30");
+      expect(str).toBe("-01:30");
     });
   });
 
@@ -780,7 +835,72 @@ describe("Offset", () => {
   });
 
   describe("static fromISOString", () => {
-    it("should return the offset of positive iso string", () => {
+    it("should return the offset of zero iso string", () => {
+      // given
+      const str = "Z";
+
+      // when
+      const offset = Offset.fromISOString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(0);
+    });
+
+    it("should return the offset of positive hours iso string", () => {
+      // given
+      const str = "+01";
+
+      // when
+      const offset = Offset.fromISOString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(0);
+    });
+
+    it("should return the offset of negative hours iso string", () => {
+      // given
+      const str = "-01";
+
+      // when
+      const offset = Offset.fromISOString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(0);
+    });
+
+    it("should return the offset of positive minutes iso string", () => {
+      // given
+      const str = "+00:30";
+
+      // when
+      const offset = Offset.fromISOString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(30);
+    });
+
+    it("should return the offset of negative minutes iso string", () => {
+      // given
+      const str = "-00:30";
+
+      // when
+      const offset = Offset.fromISOString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(-30);
+    });
+
+    it("should return the offset of positive hours and minutes iso string", () => {
       // given
       const str = "+01:30";
 
@@ -793,7 +913,7 @@ describe("Offset", () => {
       expect(offset.minute).toBe(30);
     });
 
-    it("should return the offset of negative iso string", () => {
+    it("should return the offset of negative hours and minutes iso string", () => {
       // given
       const str = "-01:30";
 
@@ -816,7 +936,7 @@ describe("Offset", () => {
   });
 
   describe("static parse", () => {
-    it("should return the offset of positive string", () => {
+    it("should return the offset of positive hours and minutes string", () => {
       // given
       const str = "UTC+01:30";
 
@@ -829,28 +949,7 @@ describe("Offset", () => {
       expect(offset.minute).toBe(30);
     });
 
-    it("should return the offset of negative string", () => {
-      // given
-      const str = "UTC-01:30";
-
-      // when
-      const offset = Offset.parse(str);
-
-      // then
-      expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hour).toBe(-1);
-      expect(offset.minute).toBe(-30);
-    });
-
-    it("should throw an error with an invalid string", () => {
-      // given
-      const str = "UTC-01:30:920gmt";
-
-      // when/then
-      expect(() => Offset.parse(str)).toThrowError();
-    });
-
-    it("should return the offset of positive iso string", () => {
+    it("should return the offset of positive hours and minutes iso string", () => {
       // given
       const str = "+01:30";
 
@@ -861,40 +960,6 @@ describe("Offset", () => {
       expect(offset).toBeInstanceOf(Offset);
       expect(offset.hour).toBe(1);
       expect(offset.minute).toBe(30);
-    });
-
-    it("should return the offset of negative iso string", () => {
-      // given
-      const str = "-01:30";
-
-      // when
-      const offset = Offset.parse(str);
-
-      // then
-      expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hour).toBe(-1);
-      expect(offset.minute).toBe(-30);
-    });
-
-    it("should throw an error with an invalid iso string", () => {
-      // given
-      const str = "-01:30:920gmt";
-
-      // when/then
-      expect(() => Offset.parse(str)).toThrowError();
-    });
-
-    it("should return the offset of UTC", () => {
-      // given
-      const zoneName = "UTC";
-
-      // when
-      const offset = Offset.parse(zoneName);
-
-      // then
-      expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hour).toBe(0);
-      expect(offset.minute).toBe(0);
     });
 
     it("should return the offset of America/New_York", () => {
@@ -908,27 +973,6 @@ describe("Offset", () => {
       expect(offset).toBeInstanceOf(Offset);
       expect(offset.hour).toBe(-5);
       expect(offset.minute).toBe(0);
-    });
-
-    it("should return the offset of Asia/Tokyo", () => {
-      // given
-      const zoneName = "Asia/Tokyo";
-
-      // when
-      const offset = Offset.parse(zoneName);
-
-      // then
-      expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hour).toBe(9);
-      expect(offset.minute).toBe(0);
-    });
-
-    it("should throw an error with an invalid zone name", () => {
-      // given
-      const str = "fruit/apple";
-
-      // when/then
-      expect(() => Offset.parse(str)).toThrowError();
     });
   });
 

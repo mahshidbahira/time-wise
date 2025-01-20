@@ -71,6 +71,10 @@ class Offset {
   }
 
   toISOString(): string {
+    if (this.inMinutes === 0) {
+      return "Z";
+    }
+
     const signStr = this.inMinutes < 0 ? "-" : "+";
     const absoluteOffset = this.absolute();
     const hourStr = absoluteOffset.hour.toString().padStart(2, "0");
@@ -178,16 +182,20 @@ class Offset {
   }
 
   static fromISOString(str: string): Offset {
-    const regexp = /^(-|\+)(\d{2})(:(\d{2}))?$/;
+    const regexp = /^(Z)|(([+-])(\d{2})(:(\d{2}))?)$/;
     const result = regexp.exec(str);
 
     if (!result) {
       throw new Error(`offset iso string is invalid: ${str}`);
     }
 
-    const sign = result[1] === "-" ? -1 : 1;
-    const hour = result[2] ? parseInt(result[2]) : 0;
-    const minute = result[4] ? parseInt(result[4]) : 0;
+    if (result[1] === "Z") {
+      return Offset.UTC;
+    }
+
+    const sign = result[3] === "-" ? -1 : 1;
+    const hour = result[4] ? parseInt(result[4]) : 0;
+    const minute = result[6] ? parseInt(result[6]) : 0;
 
     return Offset.fromObject({ hour: sign * hour, minute: sign * minute });
   }

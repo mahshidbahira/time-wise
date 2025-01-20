@@ -401,7 +401,7 @@ class DateTime {
 
   static fromString(str: string): DateTime {
     const regexp =
-      /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})\.(\d{3}) (UTC[+-]\d{2}:\d{2})$/;
+      /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})\.(\d{3}) (UTC(([+-])(\d{2})(:(\d{2}))?)?)$/;
     const result = regexp.exec(str);
 
     if (!result) {

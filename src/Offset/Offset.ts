@@ -163,7 +163,7 @@ class Offset {
   }
 
   static fromString(str: string): Offset {
-    const regexp = /^UTC((-|\+)(\d{2})(:(\d{2}))?)?$/;
+    const regexp = /^UTC(([+-])(\d{2})(:(\d{2}))?)?$/;
     const result = regexp.exec(str);
 
     if (!result) {

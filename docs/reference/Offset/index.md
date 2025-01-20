@@ -385,7 +385,7 @@ const offset = Offset.fromObject({
   minute: 30,
 });
 const offsetWithHour = offset.withHour(2);
-console.log(offsetWithHour.toString()); // UTC+02:00
+console.log(offsetWithHour.toString()); // UTC+02:30
 ```
 
 ### `withMinute`

@@ -41,6 +41,10 @@ class Offset {
   }
 
   toString(): string {
+    if (this.inMinutes === 0) {
+      return "UTC";
+    }
+
     const signStr = this.inMinutes < 0 ? "-" : "+";
     const absoluteOffset = this.absolute();
     const hourStr = absoluteOffset.hour.toString().padStart(2, "0");
@@ -159,16 +163,16 @@ class Offset {
   }
 
   static fromString(str: string): Offset {
-    const regexp = /^UTC(-|\+)(\d{2})(:(\d{2}))?$/;
+    const regexp = /^UTC((-|\+)(\d{2})(:(\d{2}))?)?$/;
     const result = regexp.exec(str);
 
     if (!result) {
       throw new Error(`offset string is invalid: ${str}`);
     }
 
-    const sign = result[1] === "-" ? -1 : 1;
-    const hour = result[2] ? parseInt(result[2]) : 0;
-    const minute = result[4] ? parseInt(result[4]) : 0;
+    const sign = result[2] === "-" ? -1 : 1;
+    const hour = result[3] ? parseInt(result[3]) : 0;
+    const minute = result[5] ? parseInt(result[5]) : 0;
 
     return Offset.fromObject({ hour: sign * hour, minute: sign * minute });
   }

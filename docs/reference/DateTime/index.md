@@ -1032,7 +1032,7 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 const datetimeInOffset = datetime.inOffset(Offset.UTC);
-console.log(datetimeInOffset.toString()); // 2024-12-07 12:56:19.920 UTC+00:00
+console.log(datetimeInOffset.toString()); // 2024-12-07 12:56:19.920 UTC
 ```
 
 ### `inZone`
@@ -1068,7 +1068,7 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 const datetimeInZone = datetime.inZone("UTC");
-console.log(datetimeInZone.toString()); // 2024-12-07 12:56:19.920 UTC+00:00
+console.log(datetimeInZone.toString()); // 2024-12-07 12:56:19.920 UTC
 ```
 
 ### `inUTC`
@@ -1101,7 +1101,7 @@ const datetime = DateTime.fromObject({
   offset: { hour: 1 },
 });
 const datetimeInUTC = datetime.inUTC();
-console.log(datetimeInUTC.toString()); // 2024-12-07 12:56:19.920 UTC+00:00
+console.log(datetimeInUTC.toString()); // 2024-12-07 12:56:19.920 UTC
 ```
 
 ### `plus`
@@ -1201,7 +1201,7 @@ DateTime.fromDaysSinceEpoch(daysSinceEpoch: number): DateTime
 
 ```typescript
 const datetime = DateTime.fromDaysSinceEpoch(20064.539119444446);
-console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC+00:00 - local timezone is assumed to be UTC in this case
+console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC - local timezone is assumed to be UTC in this case
 ```
 
 ### `fromHoursSinceEpoch`
@@ -1227,7 +1227,7 @@ DateTime.fromHoursSinceEpoch(hoursSinceEpoch: number): DateTime
 
 ```typescript
 const datetime = DateTime.fromHoursSinceEpoch(481548.9388666667);
-console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC+00:00 - local timezone is assumed to be UTC in this case
+console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC - local timezone is assumed to be UTC in this case
 ```
 
 ### `fromMinutesSinceEpoch`
@@ -1253,7 +1253,7 @@ DateTime.fromMinutesSinceEpoch(minutesSinceEpoch: number): DateTime
 
 ```typescript
 const datetime = DateTime.fromMinutesSinceEpoch(28892936.332);
-console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC+00:00 - local timezone is assumed to be UTC in this case
+console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC - local timezone is assumed to be UTC in this case
 ```
 
 ### `fromSecondsSinceEpoch`
@@ -1279,7 +1279,7 @@ DateTime.fromSecondsSinceEpoch(secondsSinceEpoch: number): DateTime
 
 ```typescript
 const datetime = DateTime.fromSecondsSinceEpoch(1733576179.92);
-console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC+00:00 - local timezone is assumed to be UTC in this case
+console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC - local timezone is assumed to be UTC in this case
 ```
 
 ### `fromMillisecondsSinceEpoch`
@@ -1305,7 +1305,7 @@ DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch: number): DateTime
 
 ```typescript
 const datetime = DateTime.fromMillisecondsSinceEpoch(1733576179920);
-console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC+00:00 - local timezone is assumed to be UTC in this case
+console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC - local timezone is assumed to be UTC in this case
 ```
 
 ### `fromDurationSinceEpoch`
@@ -1338,7 +1338,7 @@ const durationSinceEpoch = Duration.fromObject({
   millisecond: 920,
 });
 const datetime = DateTime.fromDurationSinceEpoch(durationSinceEpoch);
-console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC+00:00 - local timezone is assumed to be UTC in this case
+console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC - local timezone is assumed to be UTC in this case
 ```
 
 ### `fromObject`
@@ -1463,7 +1463,7 @@ DateTime.fromJSDate(date: Date): DateTime
 ```typescript
 const jsDate = new Date(Date.UTC(2024, 11, 7, 12, 56, 19, 920));
 const datetime = DateTime.fromJSDate(jsDate);
-console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC+00:00 - local timezone is assumed to be UTC in this case
+console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC - local timezone is assumed to be UTC in this case
 ```
 
 ### `now`
@@ -1482,7 +1482,7 @@ DateTime.now(): DateTime
 
 ```typescript
 const datetime = DateTime.now();
-console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC+00:00 - local timezone is assumed to be UTC in this case
+console.log(datetime.toString()); // 2024-12-07 12:56:19.920 UTC - local timezone is assumed to be UTC in this case
 ```
 
 ### `compare`

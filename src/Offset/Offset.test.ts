@@ -87,7 +87,62 @@ describe("Offset", () => {
   });
 
   describe("toString", () => {
-    it("should return the string of positive offset", () => {
+    it("should return the string of zero", () => {
+      // given
+      const offset = Offset.UTC;
+
+      // when
+      const str = offset.toString();
+
+      // then
+      expect(str).toBe("UTC");
+    });
+
+    it("should return the string of only positive hours", () => {
+      // given
+      const offset = Offset.fromObject({ hour: 1 });
+
+      // when
+      const str = offset.toString();
+
+      // then
+      expect(str).toBe("UTC+01:00");
+    });
+
+    it("should return the string of only negative hours", () => {
+      // given
+      const offset = Offset.fromObject({ hour: -1 });
+
+      // when
+      const str = offset.toString();
+
+      // then
+      expect(str).toBe("UTC-01:00");
+    });
+
+    it("should return the string of only positive minutes", () => {
+      // given
+      const offset = Offset.fromObject({ minute: 30 });
+
+      // when
+      const str = offset.toString();
+
+      // then
+      expect(str).toBe("UTC+00:30");
+    });
+
+    it("should return the string of only negative minutes", () => {
+      // given
+      const offset = Offset.fromObject({ minute: -30 });
+
+      // when
+      const str = offset.toString();
+
+      // then
+      expect(str).toBe("UTC-00:30");
+    });
+
+    it("should return the string of positive hours and minutes", () => {
       // given
       const offset = Offset.fromObject({ hour: 1, minute: 30 });
 
@@ -98,7 +153,7 @@ describe("Offset", () => {
       expect(str).toBe("UTC+01:30");
     });
 
-    it("should return the string of negative offset", () => {
+    it("should return the string of negative hours and minutes", () => {
       // given
       const offset = Offset.fromObject({ hour: -1, minute: -30 });
 
@@ -624,7 +679,72 @@ describe("Offset", () => {
   });
 
   describe("static fromString", () => {
-    it("should return the offset of positive string", () => {
+    it("should return the offset of zero string", () => {
+      // given
+      const str = "UTC";
+
+      // when
+      const offset = Offset.fromString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(0);
+    });
+
+    it("should return the offset of positive hours string", () => {
+      // given
+      const str = "UTC+01";
+
+      // when
+      const offset = Offset.fromString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(1);
+      expect(offset.minute).toBe(0);
+    });
+
+    it("should return the offset of negative hours string", () => {
+      // given
+      const str = "UTC-01";
+
+      // when
+      const offset = Offset.fromString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(-1);
+      expect(offset.minute).toBe(0);
+    });
+
+    it("should return the offset of positive minutes string", () => {
+      // given
+      const str = "UTC+00:30";
+
+      // when
+      const offset = Offset.fromString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(30);
+    });
+
+    it("should return the offset of negative minutes string", () => {
+      // given
+      const str = "UTC-00:30";
+
+      // when
+      const offset = Offset.fromString(str);
+
+      // then
+      expect(offset).toBeInstanceOf(Offset);
+      expect(offset.hour).toBe(0);
+      expect(offset.minute).toBe(-30);
+    });
+
+    it("should return the offset of positive hours and minutes string", () => {
       // given
       const str = "UTC+01:30";
 
@@ -637,7 +757,7 @@ describe("Offset", () => {
       expect(offset.minute).toBe(30);
     });
 
-    it("should return the offset of negative string", () => {
+    it("should return the offset of negative hours and minutes string", () => {
       // given
       const str = "UTC-01:30";
 

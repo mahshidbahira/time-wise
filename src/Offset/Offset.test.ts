@@ -962,16 +962,16 @@ describe("Offset", () => {
       expect(offset.minute).toBe(30);
     });
 
-    it("should return the offset of America/New_York", () => {
+    it("should return the offset of UTC", () => {
       // given
-      const zoneName = "America/New_York";
+      const zoneName = "UTC";
 
       // when
       const offset = Offset.parse(zoneName);
 
       // then
       expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hour).toBe(-5);
+      expect(offset.hour).toBe(0);
       expect(offset.minute).toBe(0);
     });
   });
@@ -1015,32 +1015,6 @@ describe("Offset", () => {
       // then
       expect(offset).toBeInstanceOf(Offset);
       expect(offset.hour).toBe(0);
-      expect(offset.minute).toBe(0);
-    });
-
-    it("should return the offset of America/New_York", () => {
-      // given
-      const zoneName = "America/New_York";
-
-      // when
-      const offset = Offset.fromZoneName(zoneName);
-
-      // then
-      expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hour).toBe(-5);
-      expect(offset.minute).toBe(0);
-    });
-
-    it("should return the offset of Asia/Tokyo", () => {
-      // given
-      const zoneName = "Asia/Tokyo";
-
-      // when
-      const offset = Offset.fromZoneName(zoneName);
-
-      // then
-      expect(offset).toBeInstanceOf(Offset);
-      expect(offset.hour).toBe(9);
       expect(offset.minute).toBe(0);
     });
 

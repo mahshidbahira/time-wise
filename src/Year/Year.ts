@@ -1,6 +1,6 @@
 import YearObjectLiteral from "./YearObjectLiteral";
 
-const MINIMUM_YEAR: number = 1969;
+const MINIMUM_YEAR: number = 1;
 
 class Year {
   readonly value: number;
@@ -32,7 +32,7 @@ class Year {
   }
 
   toString(): string {
-    return this.value.toString().padStart(4, "0");
+    return this.value.toString();
   }
 
   [Symbol.toPrimitive](hint: string): number | string {
@@ -51,7 +51,7 @@ class Year {
   }
 
   toISOString(): string {
-    return this.toString();
+    return this.value.toString().padStart(4, "0");
   }
 
   toObject(): YearObjectLiteral {
@@ -81,6 +81,19 @@ class Year {
   }
 
   static fromString(str: string): Year {
+    const regexp = /^\d{1,4}$/;
+    const result = regexp.test(str);
+
+    if (!result) {
+      throw new Error(`year string format must be 1 to 4 consecutive digits`);
+    }
+
+    const value = parseInt(str, 10);
+
+    return Year.fromObject({ value });
+  }
+
+  static fromISOString(str: string): Year {
     const regexp = /^\d{4}$/;
     const result = regexp.test(str);
 
@@ -91,10 +104,6 @@ class Year {
     const value = parseInt(str, 10);
 
     return Year.fromObject({ value });
-  }
-
-  static fromISOString(str: string): Year {
-    return Year.fromString(str);
   }
 
   static parse(str: string): Year {

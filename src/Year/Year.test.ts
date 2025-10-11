@@ -57,7 +57,7 @@ describe("Year", () => {
 
     it("should throw an error with invalid lower range value", () => {
       // given
-      const value = 1968;
+      const value = 0;
 
       // when/then
       expect(() => new Year(value)).toThrowError();
@@ -78,7 +78,40 @@ describe("Year", () => {
   });
 
   describe("toString", () => {
-    it("should return the string of the year", () => {
+    it("should return the 1-digit string of the year", () => {
+      // given
+      const year = Year.fromObject({ value: 1 });
+
+      // when
+      const str = year.toString();
+
+      // then
+      expect(str).toBe("1");
+    });
+
+    it("should return the 2-digit string of the year", () => {
+      // given
+      const year = Year.fromObject({ value: 12 });
+
+      // when
+      const str = year.toString();
+
+      // then
+      expect(str).toBe("12");
+    });
+
+    it("should return the 3-digit string of the year", () => {
+      // given
+      const year = Year.fromObject({ value: 123 });
+
+      // when
+      const str = year.toString();
+
+      // then
+      expect(str).toBe("123");
+    });
+
+    it("should return the 4-digit string of the year", () => {
       // given
       const year = Year.fromObject({ value: 2025 });
 
@@ -128,7 +161,40 @@ describe("Year", () => {
   });
 
   describe("toISOString", () => {
-    it("should return the iso string of the year", () => {
+    it("should return the padded 1-digit iso string of the year", () => {
+      // given
+      const year = Year.fromObject({ value: 1 });
+
+      // when
+      const isoStr = year.toISOString();
+
+      // then
+      expect(isoStr).toBe("0001");
+    });
+
+    it("should return the padded 2-digit iso string of the year", () => {
+      // given
+      const year = Year.fromObject({ value: 12 });
+
+      // when
+      const isoStr = year.toISOString();
+
+      // then
+      expect(isoStr).toBe("0012");
+    });
+
+    it("should return the padded 3-digit iso string of the year", () => {
+      // given
+      const year = Year.fromObject({ value: 123 });
+
+      // when
+      const isoStr = year.toISOString();
+
+      // then
+      expect(isoStr).toBe("0123");
+    });
+
+    it("should return the 4-digit iso string of the year", () => {
       // given
       const year = Year.fromObject({ value: 2025 });
 
@@ -284,7 +350,43 @@ describe("Year", () => {
   });
 
   describe("static fromString", () => {
-    it("should return the year from a string", () => {
+    it("should return the year from a 1-digit string", () => {
+      // given
+      const str = "1";
+
+      // when
+      const year = Year.fromString(str);
+
+      // then
+      expect(year).toBeInstanceOf(Year);
+      expect(year.value).toBe(1);
+    });
+
+    it("should return the year from a 2-digit string", () => {
+      // given
+      const str = "12";
+
+      // when
+      const year = Year.fromString(str);
+
+      // then
+      expect(year).toBeInstanceOf(Year);
+      expect(year.value).toBe(12);
+    });
+
+    it("should return the year from a 3-digit string", () => {
+      // given
+      const str = "123";
+
+      // when
+      const year = Year.fromString(str);
+
+      // then
+      expect(year).toBeInstanceOf(Year);
+      expect(year.value).toBe(123);
+    });
+
+    it("should return the year from a 4-digit string", () => {
       // given
       const str = "2025";
 
@@ -294,6 +396,18 @@ describe("Year", () => {
       // then
       expect(year).toBeInstanceOf(Year);
       expect(year.value).toBe(2025);
+    });
+
+    it("should return the year from a padded 1-digit string", () => {
+      // given
+      const str = "0001";
+
+      // when
+      const year = Year.fromString(str);
+
+      // then
+      expect(year).toBeInstanceOf(Year);
+      expect(year.value).toBe(1);
     });
 
     it("should throw an error with an invalid 5-digit string", () => {
@@ -314,7 +428,43 @@ describe("Year", () => {
   });
 
   describe("static fromISOString", () => {
-    it("should return the year from an iso string", () => {
+    it("should return the year from a padded 1-digit iso string", () => {
+      // given
+      const str = "0001";
+
+      // when
+      const year = Year.fromISOString(str);
+
+      // then
+      expect(year).toBeInstanceOf(Year);
+      expect(year.value).toBe(1);
+    });
+
+    it("should return the year from a padded 2-digit iso string", () => {
+      // given
+      const str = "0012";
+
+      // when
+      const year = Year.fromISOString(str);
+
+      // then
+      expect(year).toBeInstanceOf(Year);
+      expect(year.value).toBe(12);
+    });
+
+    it("should return the year from a padded 3-digit iso string", () => {
+      // given
+      const str = "0123";
+
+      // when
+      const year = Year.fromISOString(str);
+
+      // then
+      expect(year).toBeInstanceOf(Year);
+      expect(year.value).toBe(123);
+    });
+
+    it("should return the year from a 4-digit iso string", () => {
       // given
       const str = "2025";
 
@@ -324,6 +474,14 @@ describe("Year", () => {
       // then
       expect(year).toBeInstanceOf(Year);
       expect(year.value).toBe(2025);
+    });
+
+    it("should throw an error with an invalid 1-digit iso string", () => {
+      // given
+      const str = "1";
+
+      // when/then
+      expect(() => Year.fromISOString(str)).toThrowError();
     });
 
     it("should throw an error with an invalid 5-digit iso string", () => {
@@ -354,6 +512,18 @@ describe("Year", () => {
       // then
       expect(year).toBeInstanceOf(Year);
       expect(year.value).toBe(2025);
+    });
+
+    it("should return the year from a iso string", () => {
+      // given
+      const str = "0012";
+
+      // when
+      const year = Year.parse(str);
+
+      // then
+      expect(year).toBeInstanceOf(Year);
+      expect(year.value).toBe(12);
     });
 
     it("should throw an error with an invalid 5-digit string", () => {

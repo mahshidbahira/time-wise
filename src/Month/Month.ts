@@ -103,7 +103,7 @@ class Month {
     const result = regexp.test(str);
 
     if (!result) {
-      throw new Error(`month string format must be 2 consecutive digits`);
+      throw new Error(`month iso string format must be 2 consecutive digits`);
     }
 
     const value = parseInt(str, 10);

@@ -326,18 +326,6 @@ describe("Month", () => {
       expect(month.value).toBe(3);
     });
 
-    it("should return the month from a padded 1-digit string", () => {
-      // given
-      const str = "03";
-
-      // when
-      const month = Month.fromString(str);
-
-      // then
-      expect(month).toBeInstanceOf(Month);
-      expect(month.value).toBe(3);
-    });
-
     it("should return the month from a 2-digit string", () => {
       // given
       const str = "12";
@@ -350,6 +338,18 @@ describe("Month", () => {
       expect(month.value).toBe(12);
     });
 
+    it("should return the month from a padded 1-digit string", () => {
+      // given
+      const str = "03";
+
+      // when
+      const month = Month.fromString(str);
+
+      // then
+      expect(month).toBeInstanceOf(Month);
+      expect(month.value).toBe(3);
+    });
+
     it("should throw an error with an invalid 3-digit string", () => {
       // given
       const str = "114";
@@ -360,7 +360,7 @@ describe("Month", () => {
 
     it("should throw an error with an invalid alphanumeric string", () => {
       // given
-      const str = "2b3h";
+      const str = "2b";
 
       // when/then
       expect(() => Month.fromString(str)).toThrowError();
@@ -368,7 +368,19 @@ describe("Month", () => {
   });
 
   describe("static fromISOString", () => {
-    it("should return the month from an iso string", () => {
+    it("should return the month from a padded 1-digit iso string", () => {
+      // given
+      const str = "03";
+
+      // when
+      const month = Month.fromISOString(str);
+
+      // then
+      expect(month).toBeInstanceOf(Month);
+      expect(month.value).toBe(3);
+    });
+
+    it("should return the month from a 2-digit iso string", () => {
       // given
       const str = "12";
 
@@ -380,20 +392,28 @@ describe("Month", () => {
       expect(month.value).toBe(12);
     });
 
+    it("should throw an error with an invalid 1-digit iso string", () => {
+      // given
+      const str = "3";
+
+      // when/then
+      expect(() => Month.fromISOString(str)).toThrowError();
+    });
+
     it("should throw an error with an invalid 3-digit iso string", () => {
       // given
       const str = "114";
 
       // when/then
-      expect(() => Month.fromString(str)).toThrowError();
+      expect(() => Month.fromISOString(str)).toThrowError();
     });
 
     it("should throw an error with an invalid alphanumeric iso string", () => {
       // given
-      const str = "2b3h";
+      const str = "2b";
 
       // when/then
-      expect(() => Month.fromString(str)).toThrowError();
+      expect(() => Month.fromISOString(str)).toThrowError();
     });
   });
 
@@ -432,7 +452,7 @@ describe("Month", () => {
 
     it("should throw an error with an invalid alphanumeric string", () => {
       // given
-      const str = "2b3h";
+      const str = "2b";
 
       // when/then
       expect(() => Month.fromString(str)).toThrowError();

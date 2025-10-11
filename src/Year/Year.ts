@@ -81,13 +81,11 @@ class Year {
   }
 
   static fromString(str: string): Year {
-    const regexp = /^(\d{4})$/;
+    const regexp = /^\d{4}$/;
     const result = regexp.test(str);
 
     if (!result) {
-      throw new Error(
-        `year string format must be 4 consecutive digits (e.g. "2024")`
-      );
+      throw new Error(`year string format must be 4 consecutive digits`);
     }
 
     const value = parseInt(str, 10);

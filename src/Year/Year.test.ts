@@ -371,6 +371,14 @@ describe("Year", () => {
       // when/then
       expect(() => Year.parse(str)).toThrowError();
     });
+
+    it("should throw an error with an invalid empty string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Year.parse(str)).toThrowError();
+    });
   });
 
   describe("static compare", () => {

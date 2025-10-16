@@ -17,7 +17,7 @@ describe("Month", () => {
 
     it("should throw an error with invalid value type", () => {
       // given
-      const value: any = "3";
+      const value: any = "3"; // eslint-disable-line @typescript-eslint/no-explicit-any
 
       // when/then
       expect(() => new Month(value)).toThrowError();
@@ -25,7 +25,7 @@ describe("Month", () => {
 
     it("should throw an error with undefined", () => {
       // given
-      const value: any = undefined;
+      const value: any = undefined; // eslint-disable-line @typescript-eslint/no-explicit-any
 
       // when/then
       expect(() => new Month(value)).toThrowError();
@@ -33,7 +33,7 @@ describe("Month", () => {
 
     it("should throw an error with null", () => {
       // given
-      const value: any = null;
+      const value: any = null; // eslint-disable-line @typescript-eslint/no-explicit-any
 
       // when/then
       expect(() => new Month(value)).toThrowError();
@@ -350,6 +350,14 @@ describe("Month", () => {
       expect(month.value).toBe(3);
     });
 
+    it("should throw an error with an invalid empty string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Month.fromString(str)).toThrowError();
+    });
+
     it("should throw an error with an invalid 3-digit string", () => {
       // given
       const str = "114";
@@ -390,6 +398,14 @@ describe("Month", () => {
       // then
       expect(month).toBeInstanceOf(Month);
       expect(month.value).toBe(12);
+    });
+
+    it("should throw an error with an invalid empty iso string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Month.fromISOString(str)).toThrowError();
     });
 
     it("should throw an error with an invalid 1-digit iso string", () => {
@@ -442,25 +458,25 @@ describe("Month", () => {
       expect(month.value).toBe(12);
     });
 
+    it("should throw an error with an invalid empty string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Month.parse(str)).toThrowError();
+    });
+
     it("should throw an error with an invalid 3-digit string", () => {
       // given
       const str = "114";
 
       // when/then
-      expect(() => Month.fromString(str)).toThrowError();
+      expect(() => Month.parse(str)).toThrowError();
     });
 
     it("should throw an error with an invalid alphanumeric string", () => {
       // given
       const str = "2b";
-
-      // when/then
-      expect(() => Month.fromString(str)).toThrowError();
-    });
-
-    it("should throw an error with an invalid empty string", () => {
-      // given
-      const str = "";
 
       // when/then
       expect(() => Month.parse(str)).toThrowError();

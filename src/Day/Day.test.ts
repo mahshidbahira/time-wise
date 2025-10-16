@@ -17,7 +17,7 @@ describe("Day", () => {
 
     it("should throw an error with invalid value type", () => {
       // given
-      const value: any = "31";
+      const value: any = "31"; // eslint-disable-line @typescript-eslint/no-explicit-any
 
       // when/then
       expect(() => new Day(value)).toThrowError();
@@ -25,7 +25,7 @@ describe("Day", () => {
 
     it("should throw an error with undefined", () => {
       // given
-      const value: any = undefined;
+      const value: any = undefined; // eslint-disable-line @typescript-eslint/no-explicit-any
 
       // when/then
       expect(() => new Day(value)).toThrowError();
@@ -33,7 +33,7 @@ describe("Day", () => {
 
     it("should throw an error with null", () => {
       // given
-      const value: any = null;
+      const value: any = null; // eslint-disable-line @typescript-eslint/no-explicit-any
 
       // when/then
       expect(() => new Day(value)).toThrowError();
@@ -350,6 +350,14 @@ describe("Day", () => {
       expect(day.value).toBe(7);
     });
 
+    it("should throw an error with an invalid empty string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Day.fromString(str)).toThrowError();
+    });
+
     it("should throw an error with an invalid 3-digit string", () => {
       // given
       const str = "202";
@@ -390,6 +398,14 @@ describe("Day", () => {
       // then
       expect(day).toBeInstanceOf(Day);
       expect(day.value).toBe(29);
+    });
+
+    it("should throw an error with an invalid empty iso string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Day.fromISOString(str)).toThrowError();
     });
 
     it("should throw an error with an invalid 1-digit iso string", () => {
@@ -442,25 +458,25 @@ describe("Day", () => {
       expect(day.value).toBe(29);
     });
 
+    it("should throw an error with an invalid empty string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Day.parse(str)).toThrowError();
+    });
+
     it("should throw an error with an invalid 3-digit string", () => {
       // given
       const str = "202";
 
       // when/then
-      expect(() => Day.fromString(str)).toThrowError();
+      expect(() => Day.parse(str)).toThrowError();
     });
 
     it("should throw an error with an invalid alphanumeric string", () => {
       // given
       const str = "2b";
-
-      // when/then
-      expect(() => Day.fromString(str)).toThrowError();
-    });
-
-    it("should throw an error with an invalid empty string", () => {
-      // given
-      const str = "";
 
       // when/then
       expect(() => Day.parse(str)).toThrowError();

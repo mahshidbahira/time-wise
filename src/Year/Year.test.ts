@@ -410,6 +410,14 @@ describe("Year", () => {
       expect(year.value).toBe(1);
     });
 
+    it("should throw an error with an invalid empty string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Year.fromString(str)).toThrowError();
+    });
+
     it("should throw an error with an invalid 5-digit string", () => {
       // given
       const str = "20256";
@@ -474,6 +482,14 @@ describe("Year", () => {
       // then
       expect(year).toBeInstanceOf(Year);
       expect(year.value).toBe(2025);
+    });
+
+    it("should throw an error with an invalid empty iso string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Year.fromISOString(str)).toThrowError();
     });
 
     it("should throw an error with an invalid 1-digit iso string", () => {

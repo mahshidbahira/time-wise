@@ -103,7 +103,7 @@ class Day {
     const result = regexp.test(str);
 
     if (!result) {
-      throw new Error(`day string format must be 2 consecutive digits`);
+      throw new Error(`day iso string format must be 2 consecutive digits`);
     }
 
     const value = parseInt(str, 10);

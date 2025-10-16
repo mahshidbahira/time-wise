@@ -17,7 +17,7 @@ describe("Year", () => {
 
     it("should throw an error with invalid value type", () => {
       // given
-      const value: any = "2025";
+      const value: any = "2025"; // eslint-disable-line @typescript-eslint/no-explicit-any
 
       // when/then
       expect(() => new Year(value)).toThrowError();
@@ -25,7 +25,7 @@ describe("Year", () => {
 
     it("should throw an error with undefined", () => {
       // given
-      const value: any = undefined;
+      const value: any = undefined; // eslint-disable-line @typescript-eslint/no-explicit-any
 
       // when/then
       expect(() => new Year(value)).toThrowError();
@@ -33,7 +33,7 @@ describe("Year", () => {
 
     it("should throw an error with null", () => {
       // given
-      const value: any = null;
+      const value: any = null; // eslint-disable-line @typescript-eslint/no-explicit-any
 
       // when/then
       expect(() => new Year(value)).toThrowError();
@@ -526,6 +526,14 @@ describe("Year", () => {
       expect(year.value).toBe(12);
     });
 
+    it("should throw an error with an invalid empty string", () => {
+      // given
+      const str = "";
+
+      // when/then
+      expect(() => Year.parse(str)).toThrowError();
+    });
+
     it("should throw an error with an invalid 5-digit string", () => {
       // given
       const str = "20256";
@@ -537,14 +545,6 @@ describe("Year", () => {
     it("should throw an error with an invalid alphanumeric string", () => {
       // given
       const str = "2b3h";
-
-      // when/then
-      expect(() => Year.parse(str)).toThrowError();
-    });
-
-    it("should throw an error with an invalid empty string", () => {
-      // given
-      const str = "";
 
       // when/then
       expect(() => Year.parse(str)).toThrowError();

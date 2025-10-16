@@ -115,7 +115,7 @@ class Year {
     for (const parseFn of parsers) {
       try {
         return parseFn(str);
-      } catch {}
+      } catch {} // eslint-disable-line no-empty
     }
 
     throw new Error(`year parse failed`);

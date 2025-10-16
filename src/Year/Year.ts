@@ -98,7 +98,7 @@ class Year {
     const result = regexp.test(str);
 
     if (!result) {
-      throw new Error(`year string format must be 4 consecutive digits`);
+      throw new Error(`year iso string format must be 4 consecutive digits`);
     }
 
     const value = parseInt(str, 10);

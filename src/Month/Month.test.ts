@@ -110,7 +110,7 @@ describe("Month", () => {
   });
 
   describe("toPrimitive", () => {
-    it("should return a number when a number is expected of the month", () => {
+    it("should return the number value when a number is expected of the month", () => {
       // given
       const month = Month.fromObject({ value: 12 });
 
@@ -121,7 +121,7 @@ describe("Month", () => {
       expect(primitive).toBe(12);
     });
 
-    it("should return a string when a string is expected of the month", () => {
+    it("should return the string value when a string is expected of the month", () => {
       // given
       const month = Month.fromObject({ value: 12 });
 
@@ -286,7 +286,7 @@ describe("Month", () => {
   });
 
   describe("withValue", () => {
-    it("should return a month", () => {
+    it("should return the new adjusted month", () => {
       // given
       const month = Month.fromObject({ value: 3 });
 
@@ -300,7 +300,7 @@ describe("Month", () => {
   });
 
   describe("static fromObject", () => {
-    it("should return a month from an object", () => {
+    it("should return the month from an object", () => {
       // given
       const objectLiteral = { value: 12 };
 

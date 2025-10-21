@@ -55,7 +55,7 @@ describe("Millisecond", () => {
       expect(() => new Millisecond(value)).toThrowError();
     });
 
-    it("should throw an error with invalid lower range", () => {
+    it("should throw an error with invalid lower range value", () => {
       // given
       const value = -1;
 
@@ -63,7 +63,7 @@ describe("Millisecond", () => {
       expect(() => new Millisecond(value)).toThrowError();
     });
 
-    it("should throw an error with invalid upper range", () => {
+    it("should throw an error with invalid upper range value", () => {
       // given
       const value = 1000;
 
@@ -121,7 +121,7 @@ describe("Millisecond", () => {
   });
 
   describe("toPrimitive", () => {
-    it("should return a number when a number is expected of the millisecond", () => {
+    it("should return the number value when a number is expected of the millisecond", () => {
       // given
       const millisecond = Millisecond.fromObject({ value: 999 });
 
@@ -132,7 +132,7 @@ describe("Millisecond", () => {
       expect(primitive).toBe(999);
     });
 
-    it("should return a string when a string is expected of the millisecond", () => {
+    it("should return the string value when a string is expected of the millisecond", () => {
       // given
       const millisecond = Millisecond.fromObject({ value: 999 });
 
@@ -308,7 +308,7 @@ describe("Millisecond", () => {
   });
 
   describe("withValue", () => {
-    it("should return a millisecond", () => {
+    it("should return the new adjusted millisecond", () => {
       // given
       const millisecond = Millisecond.fromObject({ value: 2 });
 
@@ -322,7 +322,7 @@ describe("Millisecond", () => {
   });
 
   describe("static fromObject", () => {
-    it("should return a millisecond from an object", () => {
+    it("should return the millisecond from an object", () => {
       // given
       const objectLiteral = { value: 999 };
 

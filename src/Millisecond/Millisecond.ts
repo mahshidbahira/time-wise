@@ -88,9 +88,7 @@ class Millisecond {
     const result = regexp.test(str);
 
     if (!result) {
-      throw new Error(
-        `millisecond string format must be 1 digit or 2 or 3 consecutive digits`
-      );
+      throw new Error(`millisecond string format must be 1 to 3 digits`);
     }
 
     const value = parseInt(str, 10);
@@ -103,9 +101,7 @@ class Millisecond {
     const result = regexp.test(str);
 
     if (!result) {
-      throw new Error(
-        `millisecond iso string format must be 3 consecutive digits`
-      );
+      throw new Error(`millisecond iso string format must be 3 digits`);
     }
 
     const value = parseInt(str, 10);

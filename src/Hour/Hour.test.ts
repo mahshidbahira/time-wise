@@ -110,7 +110,7 @@ describe("Hour", () => {
   });
 
   describe("toPrimitive", () => {
-    it("should return a number when a number is expected of the hour", () => {
+    it("should return the number value when a number is expected of the hour", () => {
       // given
       const hour = Hour.fromObject({ value: 12 });
 
@@ -121,7 +121,7 @@ describe("Hour", () => {
       expect(primitive).toBe(12);
     });
 
-    it("should return a string when a string is expected of the hour", () => {
+    it("should return the string value when a string is expected of the hour", () => {
       // given
       const hour = Hour.fromObject({ value: 12 });
 
@@ -158,7 +158,7 @@ describe("Hour", () => {
       expect(isoStr).toBe("09");
     });
 
-    it("should return the 2-digit iso string of an hour", () => {
+    it("should return the 2-digit iso string of the hour", () => {
       // given
       const hour = Hour.fromObject({ value: 12 });
 
@@ -286,7 +286,7 @@ describe("Hour", () => {
   });
 
   describe("withValue", () => {
-    it("should return an hour", () => {
+    it("should return the new adjusted hour", () => {
       // given
       const hour = Hour.fromObject({ value: 9 });
 
@@ -300,7 +300,7 @@ describe("Hour", () => {
   });
 
   describe("static fromObject", () => {
-    it("should return an hour from an object", () => {
+    it("should return the hour from an object", () => {
       // given
       const objectLiteral = { value: 12 };
 

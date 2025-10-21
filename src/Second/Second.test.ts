@@ -86,7 +86,7 @@ describe("Second", () => {
   });
 
   describe("toString", () => {
-    it("should return the padded string of the second", () => {
+    it("should return the 1-digit string of the second", () => {
       // given
       const second = Second.fromObject({ value: 9 });
 
@@ -97,7 +97,7 @@ describe("Second", () => {
       expect(str).toBe("9");
     });
 
-    it("should return the string of the second", () => {
+    it("should return the 2-digit string of the second", () => {
       // given
       const second = Second.fromObject({ value: 45 });
 
@@ -110,7 +110,7 @@ describe("Second", () => {
   });
 
   describe("toPrimitive", () => {
-    it("should return a number when a number is expected of the second", () => {
+    it("should return the number value when a number is expected of the second", () => {
       // given
       const second = Second.fromObject({ value: 45 });
 
@@ -121,7 +121,7 @@ describe("Second", () => {
       expect(primitive).toBe(45);
     });
 
-    it("should return a string when a string is expected of the second", () => {
+    it("should return the string value when a string is expected of the second", () => {
       // given
       const second = Second.fromObject({ value: 45 });
 
@@ -147,7 +147,7 @@ describe("Second", () => {
   });
 
   describe("toISOString", () => {
-    it("should return the padded iso string of the second", () => {
+    it("should return the padded 1-digit iso string of the second", () => {
       // given
       const second = Second.fromObject({ value: 9 });
 
@@ -158,7 +158,7 @@ describe("Second", () => {
       expect(isoStr).toBe("09");
     });
 
-    it("should return the iso string of the second", () => {
+    it("should return the 2-digit iso string of the second", () => {
       // given
       const second = Second.fromObject({ value: 45 });
 
@@ -286,7 +286,7 @@ describe("Second", () => {
   });
 
   describe("withValue", () => {
-    it("should return a second", () => {
+    it("should return the new adjusted second", () => {
       // given
       const second = Second.fromObject({ value: 9 });
 
@@ -300,7 +300,7 @@ describe("Second", () => {
   });
 
   describe("static fromObject", () => {
-    it("should return a second from an object", () => {
+    it("should return the second from an object", () => {
       // given
       const objectLiteral = { value: 45 };
 

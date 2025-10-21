@@ -124,7 +124,7 @@ describe("Year", () => {
   });
 
   describe("toPrimitive", () => {
-    it("should return a number when a number is expected of the year", () => {
+    it("should return the number value when a number is expected of the year", () => {
       // given
       const year = Year.fromObject({ value: 2025 });
 
@@ -135,7 +135,7 @@ describe("Year", () => {
       expect(primitive).toBe(2025);
     });
 
-    it("should return a string when a string is expected of the year", () => {
+    it("should return the string value when a string is expected of the year", () => {
       // given
       const year = Year.fromObject({ value: 2025 });
 
@@ -322,7 +322,7 @@ describe("Year", () => {
   });
 
   describe("withValue", () => {
-    it("should return a year", () => {
+    it("should return the new adjusted year", () => {
       // given
       const year = Year.fromObject({ value: 2025 });
 
@@ -336,7 +336,7 @@ describe("Year", () => {
   });
 
   describe("static fromObject", () => {
-    it("should return a year from an object", () => {
+    it("should return the year from an object", () => {
       // given
       const objectLiteral = { value: 2025 };
 
@@ -530,7 +530,7 @@ describe("Year", () => {
       expect(year.value).toBe(2025);
     });
 
-    it("should return the year from a iso string", () => {
+    it("should return the year from an iso string", () => {
       // given
       const str = "0012";
 

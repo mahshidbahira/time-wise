@@ -110,7 +110,7 @@ describe("Minute", () => {
   });
 
   describe("toPrimitive", () => {
-    it("should return a number when a number is expected of the minute", () => {
+    it("should return the number value when a number is expected of the minute", () => {
       // given
       const minute = Minute.fromObject({ value: 30 });
 
@@ -121,7 +121,7 @@ describe("Minute", () => {
       expect(primitive).toBe(30);
     });
 
-    it("should return a string when a string is expected of the minute", () => {
+    it("should return the string value when a string is expected of the minute", () => {
       // given
       const minute = Minute.fromObject({ value: 30 });
 
@@ -286,7 +286,7 @@ describe("Minute", () => {
   });
 
   describe("withValue", () => {
-    it("should return a minute", () => {
+    it("should return the new adjusted minute", () => {
       // given
       const minute = Minute.fromObject({ value: 3 });
 
@@ -300,7 +300,7 @@ describe("Minute", () => {
   });
 
   describe("static fromObject", () => {
-    it("should return a minute from an object", () => {
+    it("should return the minute from an object", () => {
       // given
       const objectLiteral = { value: 30 };
 
@@ -314,7 +314,7 @@ describe("Minute", () => {
   });
 
   describe("static fromString", () => {
-    it("should return the minute from 1-digit string", () => {
+    it("should return the minute from a 1-digit string", () => {
       // given
       const str = "3";
 

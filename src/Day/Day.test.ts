@@ -110,7 +110,7 @@ describe("Day", () => {
   });
 
   describe("toPrimitive", () => {
-    it("should return a number when a number is expected of the day", () => {
+    it("should return the number value when a number is expected of the day", () => {
       // given
       const day = Day.fromObject({ value: 29 });
 
@@ -121,7 +121,7 @@ describe("Day", () => {
       expect(primitive).toBe(29);
     });
 
-    it("should return a string when a string is expected of the day", () => {
+    it("should return the string value when a string is expected of the day", () => {
       // given
       const day = Day.fromObject({ value: 29 });
 
@@ -147,7 +147,7 @@ describe("Day", () => {
   });
 
   describe("toISOString", () => {
-    it("should return the padded 1-digit iso string of a day", () => {
+    it("should return the padded 1-digit iso string of the day", () => {
       // given
       const day = Day.fromObject({ value: 7 });
 
@@ -158,7 +158,7 @@ describe("Day", () => {
       expect(isoStr).toBe("07");
     });
 
-    it("should return the 2-digit iso string of a day", () => {
+    it("should return the 2-digit iso string of the day", () => {
       // given
       const day = Day.fromObject({ value: 29 });
 
@@ -286,7 +286,7 @@ describe("Day", () => {
   });
 
   describe("withValue", () => {
-    it("should return a day", () => {
+    it("should return the new adjusted day", () => {
       // given
       const day = Day.fromObject({ value: 7 });
 
@@ -300,7 +300,7 @@ describe("Day", () => {
   });
 
   describe("static fromObject", () => {
-    it("should return a day from an object", () => {
+    it("should return the day from an object", () => {
       // given
       const objectLiteral = { value: 29 };
 

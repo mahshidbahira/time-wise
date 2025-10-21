@@ -88,9 +88,7 @@ class Second {
     const result = regexp.test(str);
 
     if (!result) {
-      throw new Error(
-        `second string format must be 1 digit or 2 consecutive digits`
-      );
+      throw new Error(`second string format must be 1 or 2 digits`);
     }
 
     const value = parseInt(str, 10);
@@ -103,7 +101,7 @@ class Second {
     const result = regexp.test(str);
 
     if (!result) {
-      throw new Error(`second iso string format must be 2 consecutive digits`);
+      throw new Error(`second iso string format must be 2 digits`);
     }
 
     const value = parseInt(str, 10);

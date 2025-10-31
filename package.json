@@ -43,7 +43,7 @@
     }
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint .",
     "test": "TZ=UTC vitest run",

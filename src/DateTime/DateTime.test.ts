@@ -1063,7 +1063,7 @@ describe("DateTime", () => {
 
       // when
       const datetimeWithOffset = datetime.withOffset(
-        Offset.fromObject({ hour: -1 })
+        Offset.fromObject({ isPositive: false, hour: 1 })
       );
 
       // then

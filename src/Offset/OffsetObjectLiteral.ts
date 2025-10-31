@@ -1,4 +1,5 @@
 interface OffsetObjectLiteral {
+  isPositive?: boolean;
   hour?: number;
   minute?: number;
 }

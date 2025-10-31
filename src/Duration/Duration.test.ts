@@ -15,6 +15,7 @@ describe("Duration", () => {
   describe("constructor", () => {
     it("should return a duration", () => {
       // given
+      const isPositive = true;
       const day = 6;
       const hour = 12;
       const minute = 30;
@@ -22,10 +23,18 @@ describe("Duration", () => {
       const millisecond = 2;
 
       // when
-      const duration = new Duration(day, hour, minute, second, millisecond);
+      const duration = new Duration(
+        isPositive,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond
+      );
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -33,8 +42,40 @@ describe("Duration", () => {
       expect(duration.millisecond).toBe(2);
     });
 
+    // it("should throw an error with invalid isPositive value", () => {
+    //   // given
+    //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //   const isPositive: any = undefined;
+    //   const day = 6;
+    //   const hour = 12;
+    //   const minute = 30;
+    //   const second = 45;
+    //   const millisecond = 2;
+
+    //   // when/then
+    //   expect(
+    //     () => new Duration(isPositive, day, hour, minute, second, millisecond)
+    //   ).toThrowError();
+    // });
+
+    // it("should throw an error with invalid day", () => {
+    //   // given
+    //   const isPositive = true;
+    //   const day = -1;
+    //   const hour = 12;
+    //   const minute = 30;
+    //   const second = 45;
+    //   const millisecond = 2;
+
+    //   // when/then
+    //   expect(
+    //     () => new Duration(isPositive, day, hour, minute, second, millisecond)
+    //   ).toThrowError();
+    // });
+
     it("should throw an error with invalid hour", () => {
       // given
+      const isPositive = true;
       const day = 6;
       const hour = 24;
       const minute = 30;
@@ -43,12 +84,13 @@ describe("Duration", () => {
 
       // when/then
       expect(
-        () => new Duration(day, hour, minute, second, millisecond)
+        () => new Duration(isPositive, day, hour, minute, second, millisecond)
       ).toThrowError();
     });
 
     it("should throw an error with invalid minute", () => {
       // given
+      const isPositive = true;
       const day = 6;
       const hour = 12;
       const minute = 60;
@@ -57,12 +99,13 @@ describe("Duration", () => {
 
       // when/then
       expect(
-        () => new Duration(day, hour, minute, second, millisecond)
+        () => new Duration(isPositive, day, hour, minute, second, millisecond)
       ).toThrowError();
     });
 
     it("should throw an error with invalid second", () => {
       // given
+      const isPositive = true;
       const day = 6;
       const hour = 12;
       const minute = 30;
@@ -71,12 +114,13 @@ describe("Duration", () => {
 
       // when/then
       expect(
-        () => new Duration(day, hour, minute, second, millisecond)
+        () => new Duration(isPositive, day, hour, minute, second, millisecond)
       ).toThrowError();
     });
 
     it("should throw an error with invalid millisecond", () => {
       // given
+      const isPositive = true;
       const day = 6;
       const hour = 12;
       const minute = 30;
@@ -85,7 +129,7 @@ describe("Duration", () => {
 
       // when/then
       expect(
-        () => new Duration(day, hour, minute, second, millisecond)
+        () => new Duration(isPositive, day, hour, minute, second, millisecond)
       ).toThrowError();
     });
   });
@@ -545,7 +589,6 @@ describe("Duration", () => {
       const duration = Duration.fromObject({
         hour: 12,
         minute: 30,
-
         millisecond: 2,
       });
 
@@ -560,7 +603,6 @@ describe("Duration", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
-
         second: 45,
         millisecond: 2,
       });
@@ -609,7 +651,6 @@ describe("Duration", () => {
         day: 6,
         hour: 12,
         minute: 30,
-
         millisecond: 2,
       });
 
@@ -656,11 +697,12 @@ describe("Duration", () => {
     it("should return the string of negative day, hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
-        day: -6,
-        hour: -12,
-        minute: -30,
-        second: -45,
-        millisecond: -2,
+        isPositive: false,
+        day: 6,
+        hour: 12,
+        minute: 30,
+        second: 45,
+        millisecond: 2,
       });
 
       // when
@@ -1170,11 +1212,12 @@ describe("Duration", () => {
     it("should return the ISO-8601 string of negative day, hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
-        day: -6,
-        hour: -12,
-        minute: -30,
-        second: -45,
-        millisecond: -2,
+        isPositive: false,
+        day: 6,
+        hour: 12,
+        minute: 30,
+        second: 45,
+        millisecond: 2,
       });
 
       // when
@@ -1459,7 +1502,6 @@ describe("Duration", () => {
       const duration = Duration.fromObject({
         day: 6,
         hour: 12,
-
         second: 45,
       });
 
@@ -1479,7 +1521,6 @@ describe("Duration", () => {
       const duration = Duration.fromObject({
         day: 6,
         hour: 12,
-
         millisecond: 2,
       });
 
@@ -1498,7 +1539,6 @@ describe("Duration", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
-
         minute: 30,
         second: 45,
       });
@@ -1518,9 +1558,7 @@ describe("Duration", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
-
         minute: 30,
-
         millisecond: 2,
       });
 
@@ -1539,7 +1577,6 @@ describe("Duration", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
-
         second: 45,
         millisecond: 2,
       });
@@ -1579,7 +1616,6 @@ describe("Duration", () => {
       const duration = Duration.fromObject({
         hour: 12,
         minute: 30,
-
         millisecond: 2,
       });
 
@@ -1598,7 +1634,6 @@ describe("Duration", () => {
       // given
       const duration = Duration.fromObject({
         hour: 12,
-
         second: 45,
         millisecond: 2,
       });
@@ -1660,7 +1695,6 @@ describe("Duration", () => {
         day: 6,
         hour: 12,
         minute: 30,
-
         millisecond: 2,
       });
 
@@ -1723,11 +1757,12 @@ describe("Duration", () => {
     it("should return the object of negative day, hour, minute, second and millisecond", () => {
       // given
       const duration = Duration.fromObject({
-        day: -6,
-        hour: -12,
-        minute: -30,
-        second: -45,
-        millisecond: -2,
+        isPositive: false,
+        day: 6,
+        hour: 12,
+        minute: 30,
+        second: 45,
+        millisecond: 2,
       });
 
       // when
@@ -1735,11 +1770,12 @@ describe("Duration", () => {
 
       // then
       expect(objectLiteral).toEqual({
-        day: -6,
-        hour: -12,
-        minute: -30,
-        second: -45,
-        millisecond: -2,
+        isPositive: false,
+        day: 6,
+        hour: 12,
+        minute: 30,
+        second: 45,
+        millisecond: 2,
       });
     });
   });
@@ -1878,8 +1914,33 @@ describe("Duration", () => {
     });
   });
 
+  describe("withIsPositive", () => {
+    it("should return a duration with replaced isPositive", () => {
+      // given
+      const duration = Duration.fromObject({
+        day: 6,
+        hour: 12,
+        minute: 30,
+        second: 45,
+        millisecond: 2,
+      });
+
+      // when
+      const durationWithIsPositive = duration.withIsPositive(false);
+
+      // then
+      expect(durationWithIsPositive).toBeInstanceOf(Duration);
+      expect(durationWithIsPositive.isPositive).toBe(false);
+      expect(durationWithIsPositive.day).toBe(6);
+      expect(durationWithIsPositive.hour).toBe(12);
+      expect(durationWithIsPositive.minute).toBe(30);
+      expect(durationWithIsPositive.second).toBe(45);
+      expect(durationWithIsPositive.millisecond).toBe(2);
+    });
+  });
+
   describe("withDay", () => {
-    it("should return a duration", () => {
+    it("should return a duration with replaced day", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1894,6 +1955,7 @@ describe("Duration", () => {
 
       // then
       expect(durationWithDays).toBeInstanceOf(Duration);
+      expect(durationWithDays.isPositive).toBe(true);
       expect(durationWithDays.day).toBe(3);
       expect(durationWithDays.hour).toBe(12);
       expect(durationWithDays.minute).toBe(30);
@@ -1903,7 +1965,7 @@ describe("Duration", () => {
   });
 
   describe("withHour", () => {
-    it("should return a duration", () => {
+    it("should return a duration with replaced hour", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1918,6 +1980,7 @@ describe("Duration", () => {
 
       // then
       expect(durationWithHours).toBeInstanceOf(Duration);
+      expect(durationWithHours.isPositive).toBe(true);
       expect(durationWithHours.day).toBe(6);
       expect(durationWithHours.hour).toBe(23);
       expect(durationWithHours.minute).toBe(30);
@@ -1927,7 +1990,7 @@ describe("Duration", () => {
   });
 
   describe("withMinute", () => {
-    it("should return a duration", () => {
+    it("should return a duration with replaced minute", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1942,6 +2005,7 @@ describe("Duration", () => {
 
       // then
       expect(durationWithMinutes).toBeInstanceOf(Duration);
+      expect(durationWithMinutes.isPositive).toBe(true);
       expect(durationWithMinutes.day).toBe(6);
       expect(durationWithMinutes.hour).toBe(12);
       expect(durationWithMinutes.minute).toBe(59);
@@ -1951,7 +2015,7 @@ describe("Duration", () => {
   });
 
   describe("withSecond", () => {
-    it("should return a duration", () => {
+    it("should return a duration with replaced second", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1966,6 +2030,7 @@ describe("Duration", () => {
 
       // then
       expect(durationWithSeconds).toBeInstanceOf(Duration);
+      expect(durationWithSeconds.isPositive).toBe(true);
       expect(durationWithSeconds.day).toBe(6);
       expect(durationWithSeconds.hour).toBe(12);
       expect(durationWithSeconds.minute).toBe(30);
@@ -1975,7 +2040,7 @@ describe("Duration", () => {
   });
 
   describe("withMillisecond", () => {
-    it("should return a duration", () => {
+    it("should return a duration with replaced millisecond", () => {
       // given
       const duration = Duration.fromObject({
         day: 6,
@@ -1990,6 +2055,7 @@ describe("Duration", () => {
 
       // then
       expect(durationWithMilliseconds).toBeInstanceOf(Duration);
+      expect(durationWithMilliseconds.isPositive).toBe(true);
       expect(durationWithMilliseconds.day).toBe(6);
       expect(durationWithMilliseconds.hour).toBe(12);
       expect(durationWithMilliseconds.minute).toBe(30);
@@ -2013,6 +2079,7 @@ describe("Duration", () => {
 
       // then
       expect(sum).toBeInstanceOf(Duration);
+      expect(sum.isPositive).toBe(true);
       expect(sum.day).toBe(8);
       expect(sum.hour).toBe(0);
       expect(sum.minute).toBe(0);
@@ -2036,6 +2103,7 @@ describe("Duration", () => {
 
       // then
       expect(diff).toBeInstanceOf(Duration);
+      expect(diff.isPositive).toBe(true);
       expect(diff.day).toBe(4);
       expect(diff.hour).toBe(0);
       expect(diff.minute).toBe(0);
@@ -2056,6 +2124,7 @@ describe("Duration", () => {
 
       // then
       expect(product).toBeInstanceOf(Duration);
+      expect(product.isPositive).toBe(true);
       expect(product.day).toBe(12);
       expect(product.hour).toBe(0);
       expect(product.minute).toBe(0);
@@ -2076,6 +2145,7 @@ describe("Duration", () => {
 
       // then
       expect(quotient).toBeInstanceOf(Duration);
+      expect(quotient.isPositive).toBe(true);
       expect(quotient.day).toBe(3);
       expect(quotient.hour).toBe(0);
       expect(quotient.minute).toBe(0);
@@ -2096,7 +2166,8 @@ describe("Duration", () => {
 
       // then
       expect(negated).toBeInstanceOf(Duration);
-      expect(negated.day).toBe(-6);
+      expect(negated.isPositive).toBe(false);
+      expect(negated.day).toBe(6);
       expect(negated.hour).toBe(0);
       expect(negated.minute).toBe(0);
       expect(negated.second).toBe(0);
@@ -2106,7 +2177,8 @@ describe("Duration", () => {
     it("should return the positive duration of a negative duration", () => {
       // given
       const duration = Duration.fromObject({
-        day: -6,
+        isPositive: false,
+        day: 6,
       });
 
       // when
@@ -2114,6 +2186,7 @@ describe("Duration", () => {
 
       // then
       expect(negated).toBeInstanceOf(Duration);
+      expect(negated.isPositive).toBe(true);
       expect(negated.day).toBe(6);
       expect(negated.hour).toBe(0);
       expect(negated.minute).toBe(0);
@@ -2126,7 +2199,8 @@ describe("Duration", () => {
     it("should return the absolute of a negative duration", () => {
       // given
       const duration = Duration.fromObject({
-        day: -6,
+        isPositive: false,
+        day: 6,
       });
 
       // when
@@ -2134,6 +2208,7 @@ describe("Duration", () => {
 
       // then
       expect(abs).toBeInstanceOf(Duration);
+      expect(abs.isPositive).toBe(true);
       expect(abs.day).toBe(6);
       expect(abs.hour).toBe(0);
       expect(abs.minute).toBe(0);
@@ -2152,6 +2227,7 @@ describe("Duration", () => {
 
       // then
       expect(abs).toBeInstanceOf(Duration);
+      expect(abs.isPositive).toBe(true);
       expect(abs.day).toBe(6);
       expect(abs.hour).toBe(0);
       expect(abs.minute).toBe(0);
@@ -2170,6 +2246,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2188,6 +2265,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2206,6 +2284,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2224,6 +2303,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2233,7 +2313,7 @@ describe("Duration", () => {
   });
 
   describe("static fromMilliseconds", () => {
-    it("should return a duration", () => {
+    it("should return a positive duration", () => {
       // given
       const inMilliseconds = 563445002;
 
@@ -2242,6 +2322,24 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(2);
+    });
+
+    it("should return a negative duration", () => {
+      // given
+      const inMilliseconds = -563445002;
+
+      // when
+      const duration = Duration.fromMilliseconds(inMilliseconds);
+
+      // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(false);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2260,6 +2358,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2278,6 +2377,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2296,6 +2396,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -2314,6 +2415,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -2332,6 +2434,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2350,6 +2453,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2369,6 +2473,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -2388,6 +2493,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -2407,6 +2513,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2426,6 +2533,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2445,6 +2553,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2464,6 +2573,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -2483,6 +2593,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -2502,6 +2613,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -2521,6 +2633,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -2540,6 +2653,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2560,6 +2674,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2580,6 +2695,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -2600,6 +2716,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -2620,6 +2737,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -2640,6 +2758,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -2660,6 +2779,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2680,6 +2800,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2700,6 +2821,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2720,6 +2842,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -2740,6 +2863,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -2761,6 +2885,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2782,6 +2907,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2803,6 +2929,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2825,6 +2952,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -2835,11 +2963,12 @@ describe("Duration", () => {
     it("should return the duration of negative day, hour, minute, second and millisecond from an object", () => {
       // given
       const objectLiteral = {
-        day: -6,
-        hour: -12,
-        minute: -30,
-        second: -45,
-        millisecond: -2,
+        isPositive: false,
+        day: 6,
+        hour: 12,
+        minute: 30,
+        second: 45,
+        millisecond: 2,
       };
 
       // when
@@ -2847,11 +2976,12 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(-6);
-      expect(duration.hour).toBe(-12);
-      expect(duration.minute).toBe(-30);
-      expect(duration.second).toBe(-45);
-      expect(duration.millisecond).toBe(-2);
+      expect(duration.isPositive).toBe(false);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(2);
     });
   });
 
@@ -2865,6 +2995,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2881,6 +3012,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -2897,6 +3029,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -2913,6 +3046,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2929,6 +3063,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2945,6 +3080,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -2960,6 +3096,8 @@ describe("Duration", () => {
       const duration = Duration.fromString(str);
 
       // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -2976,6 +3114,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -2992,6 +3131,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3008,6 +3148,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3024,6 +3165,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3040,6 +3182,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3056,6 +3199,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3072,6 +3216,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3088,6 +3233,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3104,6 +3250,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3120,6 +3267,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3136,6 +3284,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3152,6 +3301,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3168,6 +3318,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3184,6 +3335,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3200,6 +3352,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3216,6 +3369,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3232,6 +3386,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3248,6 +3403,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3264,6 +3420,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3280,6 +3437,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3296,6 +3454,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3312,6 +3471,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3328,6 +3488,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3344,11 +3505,12 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(-6);
-      expect(duration.hour).toBe(-12);
-      expect(duration.minute).toBe(-30);
-      expect(duration.second).toBe(-45);
-      expect(duration.millisecond).toBe(-2);
+      expect(duration.isPositive).toBe(false);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(2);
     });
 
     it("should return null from an invalid string", () => {
@@ -3370,6 +3532,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3386,6 +3549,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3402,6 +3566,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3418,6 +3583,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3434,6 +3600,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3450,6 +3617,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3465,6 +3633,8 @@ describe("Duration", () => {
       const duration = Duration.fromISOString(str);
 
       // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3481,6 +3651,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3497,6 +3668,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3513,6 +3685,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3529,6 +3702,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3545,6 +3719,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3561,6 +3736,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3577,6 +3753,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3593,6 +3770,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3609,6 +3787,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3625,6 +3804,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3641,6 +3821,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3657,6 +3838,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3673,6 +3855,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3689,6 +3872,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3705,6 +3889,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3721,6 +3906,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3737,6 +3923,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3753,6 +3940,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3769,6 +3957,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3785,6 +3974,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3801,6 +3991,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3817,6 +4008,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3833,6 +4025,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -3849,11 +4042,12 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(-6);
-      expect(duration.hour).toBe(-12);
-      expect(duration.minute).toBe(-30);
-      expect(duration.second).toBe(-45);
-      expect(duration.millisecond).toBe(-2);
+      expect(duration.isPositive).toBe(false);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(2);
     });
 
     it("should return null from an invalid string", () => {
@@ -3875,6 +4069,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3891,6 +4086,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3907,6 +4103,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -3923,6 +4120,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3939,6 +4137,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3955,6 +4154,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -3970,6 +4170,8 @@ describe("Duration", () => {
       const duration = Duration.parse(str);
 
       // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -3986,6 +4188,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4002,6 +4205,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4018,6 +4222,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4034,6 +4239,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4050,6 +4256,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4066,6 +4273,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4082,6 +4290,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4098,6 +4307,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4114,6 +4324,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4130,6 +4341,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4146,6 +4358,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4162,6 +4375,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4178,6 +4392,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4194,6 +4409,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4210,6 +4426,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4226,6 +4443,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4242,6 +4460,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4258,6 +4477,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4274,6 +4494,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4290,6 +4511,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4306,6 +4528,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4322,6 +4545,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4338,6 +4562,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4354,11 +4579,12 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(-6);
-      expect(duration.hour).toBe(-12);
-      expect(duration.minute).toBe(-30);
-      expect(duration.second).toBe(-45);
-      expect(duration.millisecond).toBe(-2);
+      expect(duration.isPositive).toBe(false);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(2);
     });
 
     it("should return null from an invalid string", () => {
@@ -4378,6 +4604,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4394,6 +4621,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4410,6 +4638,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4426,6 +4655,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4442,6 +4672,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4458,6 +4689,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4473,6 +4705,8 @@ describe("Duration", () => {
       const duration = Duration.parse(str);
 
       // then
+      expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4489,6 +4723,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4505,6 +4740,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4521,6 +4757,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4537,6 +4774,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4553,6 +4791,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4569,6 +4808,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4585,6 +4825,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4601,6 +4842,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4617,6 +4859,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4633,6 +4876,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4649,6 +4893,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4665,6 +4910,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4681,6 +4927,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4697,6 +4944,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4713,6 +4961,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(0);
@@ -4729,6 +4978,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4745,6 +4995,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4761,6 +5012,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(0);
@@ -4777,6 +5029,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(0);
       expect(duration.minute).toBe(30);
@@ -4793,6 +5046,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4809,6 +5063,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4825,6 +5080,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(0);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4841,6 +5097,7 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
+      expect(duration.isPositive).toBe(true);
       expect(duration.day).toBe(6);
       expect(duration.hour).toBe(12);
       expect(duration.minute).toBe(30);
@@ -4857,11 +5114,12 @@ describe("Duration", () => {
 
       // then
       expect(duration).toBeInstanceOf(Duration);
-      expect(duration.day).toBe(-6);
-      expect(duration.hour).toBe(-12);
-      expect(duration.minute).toBe(-30);
-      expect(duration.second).toBe(-45);
-      expect(duration.millisecond).toBe(-2);
+      expect(duration.isPositive).toBe(false);
+      expect(duration.day).toBe(6);
+      expect(duration.hour).toBe(12);
+      expect(duration.minute).toBe(30);
+      expect(duration.second).toBe(45);
+      expect(duration.millisecond).toBe(2);
     });
 
     it("should return null from an invalid string", () => {

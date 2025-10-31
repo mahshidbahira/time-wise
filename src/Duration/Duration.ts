@@ -1,3 +1,7 @@
+import Hour from "../Hour/Hour";
+import Millisecond from "../Millisecond/Millisecond";
+import Minute from "../Minute/Minute";
+import Second from "../Second/Second";
 import DurationObjectLiteral from "./DurationObjectLiteral";
 
 const MILLISECONDS_IN_A_SECOND: number = 1000;
@@ -9,6 +13,7 @@ const MINUTES_IN_AN_HOUR: number = 60;
 const HOURS_IN_A_DAY: number = 24;
 
 class Duration {
+  readonly isPositive: boolean;
   readonly day: number;
   readonly hour: number;
   readonly minute: number;
@@ -32,57 +37,35 @@ class Duration {
   }
 
   get inMilliseconds(): number {
+    const sign = this.isPositive ? 1 : -1;
+    const dayInMilliseconds = this.day * MILLISECONDS_IN_A_DAY;
+    const hourInMilliseconds = this.hour * MILLISECONDS_IN_AN_HOUR;
+    const minuteInMilliseconds = this.minute * MILLISECONDS_IN_A_MINUTE;
+    const secondInMilliseconds = this.second * MILLISECONDS_IN_A_SECOND;
     return (
-      this.day * MILLISECONDS_IN_A_DAY +
-      this.hour * MILLISECONDS_IN_AN_HOUR +
-      this.minute * MILLISECONDS_IN_A_MINUTE +
-      this.second * MILLISECONDS_IN_A_SECOND +
-      this.millisecond
+      sign *
+      (dayInMilliseconds +
+        hourInMilliseconds +
+        minuteInMilliseconds +
+        secondInMilliseconds +
+        this.millisecond)
     );
   }
 
   constructor(
+    isPositive: boolean,
     day: number,
     hour: number,
     minute: number,
     second: number,
     millisecond: number
   ) {
-    if (hour < -23 || hour > 23) {
-      throw new Error(`duration hour is invalid: ${hour}`);
-    }
-    if (minute < -59 || minute > 59) {
-      throw new Error(`duration minute is invalid: ${minute}`);
-    }
-    if (second < -59 || second > 59) {
-      throw new Error(`duration second is invalid: ${second}`);
-    }
-    if (millisecond < -999 || millisecond > 999) {
-      throw new Error(`duration millisecond is invalid: ${millisecond}`);
-    }
-
-    if (Object.is(day, -0)) {
-      day = 0;
-    }
-    if (Object.is(hour, -0)) {
-      hour = 0;
-    }
-    if (Object.is(minute, -0)) {
-      minute = 0;
-    }
-    if (Object.is(second, -0)) {
-      second = 0;
-    }
-    if (Object.is(millisecond, -0)) {
-      millisecond = 0;
-    }
-
-    this.day = day;
-    this.hour = hour;
-    this.minute = minute;
-    this.second = second;
-    this.millisecond = millisecond;
-
+    this.isPositive = isPositive; // TODO: make sure this throws an error
+    this.day = day; // TODO: make sure this is positive and throws an error
+    this.hour = new Hour(hour).value;
+    this.minute = new Minute(minute).value;
+    this.second = new Second(second).value;
+    this.millisecond = new Millisecond(millisecond).value;
     Object.freeze(this);
   }
 
@@ -91,22 +74,21 @@ class Duration {
   }
 
   toString(): string {
-    const signStr = this.inMilliseconds < 0 ? "-" : "";
-    const absoluteDuration = this.absolute();
+    const signStr = this.isPositive ? "" : "-";
     const dayStr =
-      (absoluteDuration.day > 1 && `${absoluteDuration.day} days `) ||
-      (absoluteDuration.day === 1 && `${absoluteDuration.day} day `) ||
+      (this.day > 1 && `${this.day} days `) ||
+      (this.day === 1 && `${this.day} day `) ||
       "";
-    const hourStr = absoluteDuration.hour.toString().padStart(2, "0");
-    const minuteStr = absoluteDuration.minute.toString().padStart(2, "0");
-    const secondStr = absoluteDuration.second.toString().padStart(2, "0");
+    const hourStr = this.hour.toString().padStart(2, "0");
+    const minuteStr = this.minute.toString().padStart(2, "0");
+    const secondStr = this.second.toString().padStart(2, "0");
+    const dotStr = this.millisecond !== 0 ? "." : "";
     const millisecondStr =
-      absoluteDuration.millisecond !== 0
-        ? `.${absoluteDuration.millisecond.toString().padStart(3, "0")}`
+      this.millisecond !== 0
+        ? this.millisecond.toString().padStart(3, "0")
         : "";
 
-    const str = `${signStr}${dayStr}${hourStr}:${minuteStr}:${secondStr}${millisecondStr}`;
-
+    const str = `${signStr}${dayStr}${hourStr}:${minuteStr}:${secondStr}${dotStr}${millisecondStr}`;
     return str;
   }
 
@@ -126,47 +108,52 @@ class Duration {
   }
 
   toISOString(): string {
-    const signStr = this.inMilliseconds < 0 ? "-" : "";
-    const absoluteDuration = this.absolute();
-    const dayStr = absoluteDuration.day !== 0 ? `${absoluteDuration.day}D` : "";
-    const hourStr =
-      absoluteDuration.hour !== 0 ? `${absoluteDuration.hour}H` : "";
-    const minuteStr =
-      absoluteDuration.minute !== 0 ? `${absoluteDuration.minute}M` : "";
-    const millisecondStr =
-      absoluteDuration.millisecond !== 0
-        ? `${(absoluteDuration.millisecond / 1000).toString().slice(1)}`
+    const signStr = this.isPositive ? "" : "-";
+    const dayStr = this.day !== 0 ? `${this.day.toString()}D` : "";
+    const timeStr =
+      this.hour !== 0 ||
+      this.minute !== 0 ||
+      this.second !== 0 ||
+      this.millisecond !== 0
+        ? "T"
         : "";
+    const hourStr = this.hour !== 0 ? `${this.hour.toString()}H` : "";
+    const minuteStr = this.minute !== 0 ? `${this.minute.toString()}M` : "";
     const secondStr =
-      absoluteDuration.second !== 0 || absoluteDuration.millisecond !== 0
-        ? `${absoluteDuration.second.toString()}${millisecondStr}S`
+      this.second !== 0 || this.millisecond !== 0
+        ? `${this.second.toString()}`
         : "";
+    const dotStr = this.millisecond !== 0 ? "." : "";
+    const millisecondStr =
+      this.millisecond !== 0
+        ? (this.millisecond / 1000).toString().slice(2)
+        : "";
+    const unitStr = this.second !== 0 || this.millisecond !== 0 ? "S" : "";
 
-    const tStr = hourStr || minuteStr || secondStr ? `T` : "";
-    const isoStr = `${signStr}P${dayStr}${tStr}${hourStr}${minuteStr}${secondStr}`;
-
+    const isoStr = `${signStr}P${dayStr}${timeStr}${hourStr}${minuteStr}${secondStr}${dotStr}${millisecondStr}${unitStr}`;
     return isoStr;
   }
 
   toObject(): DurationObjectLiteral {
     const object: DurationObjectLiteral = {};
-
-    if (this.day) {
+    if (!this.isPositive) {
+      object.isPositive = false;
+    }
+    if (this.day !== 0) {
       object.day = this.day;
     }
-    if (this.hour) {
+    if (this.hour !== 0) {
       object.hour = this.hour;
     }
-    if (this.minute) {
+    if (this.minute !== 0) {
       object.minute = this.minute;
     }
-    if (this.second) {
+    if (this.second !== 0) {
       object.second = this.second;
     }
-    if (this.millisecond) {
+    if (this.millisecond !== 0) {
       object.millisecond = this.millisecond;
     }
-
     return object;
   }
 
@@ -182,8 +169,21 @@ class Duration {
     return this.inMilliseconds < other.inMilliseconds;
   }
 
+  // TODO: write test for this
+  withIsPositive(isPositive: boolean): Duration {
+    return Duration.fromObject({
+      isPositive: isPositive,
+      day: this.day,
+      hour: this.hour,
+      minute: this.minute,
+      second: this.second,
+      millisecond: this.millisecond,
+    });
+  }
+
   withDay(day: number): Duration {
     return Duration.fromObject({
+      isPositive: this.isPositive,
       day: day,
       hour: this.hour,
       minute: this.minute,
@@ -194,6 +194,7 @@ class Duration {
 
   withHour(hour: number): Duration {
     return Duration.fromObject({
+      isPositive: this.isPositive,
       day: this.day,
       hour: hour,
       minute: this.minute,
@@ -204,6 +205,7 @@ class Duration {
 
   withMinute(minute: number): Duration {
     return Duration.fromObject({
+      isPositive: this.isPositive,
       day: this.day,
       hour: this.hour,
       minute: minute,
@@ -214,6 +216,7 @@ class Duration {
 
   withSecond(second: number): Duration {
     return Duration.fromObject({
+      isPositive: this.isPositive,
       day: this.day,
       hour: this.hour,
       minute: this.minute,
@@ -224,6 +227,7 @@ class Duration {
 
   withMillisecond(millisecond: number): Duration {
     return Duration.fromObject({
+      isPositive: this.isPositive,
       day: this.day,
       hour: this.hour,
       minute: this.minute,
@@ -277,17 +281,22 @@ class Duration {
   }
 
   static fromMilliseconds(inMilliseconds: number): Duration {
-    const fn = inMilliseconds < 0 ? Math.ceil : Math.floor;
-
-    const day = fn(inMilliseconds / MILLISECONDS_IN_A_DAY);
-    const hour = fn(inMilliseconds / MILLISECONDS_IN_AN_HOUR) % HOURS_IN_A_DAY;
+    const absInMilliseconds = Math.abs(inMilliseconds);
+    const isPositive = inMilliseconds >= 0;
+    const day = Math.floor(absInMilliseconds / MILLISECONDS_IN_A_DAY);
+    const hour =
+      Math.floor(absInMilliseconds / MILLISECONDS_IN_AN_HOUR) % HOURS_IN_A_DAY;
     const minute =
-      fn(inMilliseconds / MILLISECONDS_IN_A_MINUTE) % MINUTES_IN_AN_HOUR;
+      Math.floor(absInMilliseconds / MILLISECONDS_IN_A_MINUTE) %
+      MINUTES_IN_AN_HOUR;
     const second =
-      fn(inMilliseconds / MILLISECONDS_IN_A_SECOND) % SECONDS_IN_A_MINUTE;
-    const millisecond = fn(inMilliseconds) % MILLISECONDS_IN_A_SECOND;
+      Math.floor(absInMilliseconds / MILLISECONDS_IN_A_SECOND) %
+      SECONDS_IN_A_MINUTE;
+    const millisecond =
+      Math.floor(absInMilliseconds) % MILLISECONDS_IN_A_SECOND;
 
     return Duration.fromObject({
+      isPositive,
       day,
       hour,
       minute,
@@ -297,13 +306,14 @@ class Duration {
   }
 
   static fromObject(object: DurationObjectLiteral): Duration {
+    const isPositive = object.isPositive ?? true;
     const day = object.day ? object.day : 0;
     const hour = object.hour ? object.hour : 0;
     const minute = object.minute ? object.minute : 0;
     const second = object.second ? object.second : 0;
     const millisecond = object.millisecond ? object.millisecond : 0;
 
-    return new Duration(day, hour, minute, second, millisecond);
+    return new Duration(isPositive, day, hour, minute, second, millisecond);
   }
 
   static fromString(str: string): Duration {
@@ -314,7 +324,7 @@ class Duration {
       throw new Error(`duration string is invalid: ${str}`);
     }
 
-    const sign = result[1] ? -1 : 1;
+    const isPositive = result[1] ? false : true;
     const day = result[3] ? parseInt(result[3]) : 0;
     const hour = result[4] ? parseInt(result[4]) : 0;
     const minute = result[5] ? parseInt(result[5]) : 0;
@@ -322,11 +332,12 @@ class Duration {
     const millisecond = result[8] ? parseInt(result[8]) : 0;
 
     return Duration.fromObject({
-      day: sign * day,
-      hour: sign * hour,
-      minute: sign * minute,
-      second: sign * second,
-      millisecond: sign * millisecond,
+      isPositive: isPositive,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
     });
   }
 
@@ -339,7 +350,7 @@ class Duration {
       throw new Error(`duration iso string is invalid: ${str}`);
     }
 
-    const sign = result[1] ? -1 : 1;
+    const isPositive = result[1] ? false : true;
     const day = result[3] ? parseInt(result[3]) : 0;
     const hour = result[6] ? parseInt(result[6]) : 0;
     const minute = result[8] ? parseInt(result[8]) : 0;
@@ -347,24 +358,28 @@ class Duration {
     const millisecond = result[12] ? parseInt(result[12].padEnd(3, "0")) : 0;
 
     return Duration.fromObject({
-      day: sign * day,
-      hour: sign * hour,
-      minute: sign * minute,
-      second: sign * second,
-      millisecond: sign * millisecond,
+      isPositive: isPositive,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
     });
   }
 
   static parse(str: string): Duration {
-    try {
-      return Duration.fromString(str);
-    } catch {
+    const parsers: Array<(s: string) => Duration> = [
+      Duration.fromString,
+      Duration.fromISOString,
+    ];
+
+    for (const parse of parsers) {
       try {
-        return Duration.fromISOString(str);
-      } catch {
-        throw new Error(`duration parse failed: ${str}`);
-      }
+        return parse(str);
+      } catch {} // eslint-disable-line no-empty
     }
+
+    throw new Error(`duration parse failed`);
   }
 
   static compare(duration1: Duration, duration2: Duration): number {

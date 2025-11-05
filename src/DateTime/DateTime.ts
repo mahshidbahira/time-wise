@@ -1,5 +1,12 @@
+import Day from "../Day/Day";
 import Duration from "../Duration/Duration";
+import Hour from "../Hour/Hour";
+import Millisecond from "../Millisecond/Millisecond";
+import Minute from "../Minute/Minute";
+import Month from "../Month/Month";
 import Offset from "../Offset/Offset";
+import Second from "../Second/Second";
+import Year from "../Year/Year";
 import DateTimeObjectLiteral from "./DateTimeObjectLiteral";
 
 class DateTime {
@@ -10,7 +17,7 @@ class DateTime {
   readonly minute: number;
   readonly second: number;
   readonly millisecond: number;
-  readonly offset: Offset;
+  readonly offset: Offset; // TODO: change this object to a number of minutes
 
   get daysSinceEpoch(): number {
     return this.durationSinceEpoch.inDays;
@@ -59,59 +66,14 @@ class DateTime {
     millisecond: number,
     offset: Offset
   ) {
-    if (year < 1969) {
-      throw new Error(`date time year is invalid: ${year}`);
-    }
-    if (month < 1 || month > 12) {
-      throw new Error(`date time month is invalid: ${month}`);
-    }
-    if (day < 1 || day > 31) {
-      throw new Error(`date time day is invalid: ${day}`);
-    }
-    if (hour < 0 || hour > 23) {
-      throw new Error(`date time hour is invalid: ${hour}`);
-    }
-    if (minute < 0 || minute > 59) {
-      throw new Error(`date time minute is invalid: ${minute}`);
-    }
-    if (second < 0 || second > 59) {
-      throw new Error(`date time second is invalid: ${second}`);
-    }
-    if (millisecond < 0 || millisecond > 999) {
-      throw new Error(`date time millisecond is invalid: ${millisecond}`);
-    }
-
-    if (Object.is(year, -0)) {
-      year = 0;
-    }
-    if (Object.is(month, -0)) {
-      month = 0;
-    }
-    if (Object.is(day, -0)) {
-      day = 0;
-    }
-    if (Object.is(hour, -0)) {
-      hour = 0;
-    }
-    if (Object.is(minute, -0)) {
-      minute = 0;
-    }
-    if (Object.is(second, -0)) {
-      second = 0;
-    }
-    if (Object.is(millisecond, -0)) {
-      millisecond = 0;
-    }
-
-    this.year = year;
-    this.month = month;
-    this.day = day;
-    this.hour = hour;
-    this.minute = minute;
-    this.second = second;
-    this.millisecond = millisecond;
+    this.year = new Year(year).value;
+    this.month = new Month(month).value;
+    this.day = new Day(day).value;
+    this.hour = new Hour(hour).value;
+    this.minute = new Minute(minute).value;
+    this.second = new Second(second).value;
+    this.millisecond = new Millisecond(millisecond).value;
     this.offset = offset;
-
     Object.freeze(this);
   }
 

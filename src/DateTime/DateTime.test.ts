@@ -52,7 +52,7 @@ describe("DateTime", () => {
 
     it("should throw an error with invalid year", () => {
       // given
-      const year = 1968;
+      const year = -1;
       const month = 12;
       const day = 7;
       const hour = 13;

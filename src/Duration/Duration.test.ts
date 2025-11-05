@@ -58,20 +58,20 @@ describe("Duration", () => {
     //   ).toThrowError();
     // });
 
-    // it("should throw an error with invalid day", () => {
-    //   // given
-    //   const isPositive = true;
-    //   const day = -1;
-    //   const hour = 12;
-    //   const minute = 30;
-    //   const second = 45;
-    //   const millisecond = 2;
+    it("should throw an error with invalid day", () => {
+      // given
+      const isPositive = true;
+      const day = -1;
+      const hour = 12;
+      const minute = 30;
+      const second = 45;
+      const millisecond = 2;
 
-    //   // when/then
-    //   expect(
-    //     () => new Duration(isPositive, day, hour, minute, second, millisecond)
-    //   ).toThrowError();
-    // });
+      // when/then
+      expect(
+        () => new Duration(isPositive, day, hour, minute, second, millisecond)
+      ).toThrowError();
+    });
 
     it("should throw an error with invalid hour", () => {
       // given

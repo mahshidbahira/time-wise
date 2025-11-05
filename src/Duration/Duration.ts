@@ -1,3 +1,4 @@
+import DurationDay from "../DurationDay/DurationDay";
 import Hour from "../Hour/Hour";
 import Millisecond from "../Millisecond/Millisecond";
 import Minute from "../Minute/Minute";
@@ -61,7 +62,7 @@ class Duration {
     millisecond: number
   ) {
     this.isPositive = isPositive; // TODO: make sure this throws an error
-    this.day = day; // TODO: make sure this is positive and throws an error
+    this.day = new DurationDay(day).value;
     this.hour = new Hour(hour).value;
     this.minute = new Minute(minute).value;
     this.second = new Second(second).value;

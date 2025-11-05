@@ -19,7 +19,9 @@ class Year {
     }
 
     if (value < MINIMUM_YEAR) {
-      throw new Error(`year value range must be more than ${MINIMUM_YEAR}`);
+      throw new Error(
+        `year value range must be equal or greater than ${MINIMUM_YEAR}`
+      );
     }
 
     this.value = value;

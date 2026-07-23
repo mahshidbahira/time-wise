@@ -88,7 +88,7 @@ class DateTime {
     const hour = this.hour.toString().padStart(2, "0");
     const minute = this.minute.toString().padStart(2, "0");
     const second = this.second.toString().padStart(2, "0");
-    const millisecond = this.millisecond.toString().padStart(2, "0");
+    const millisecond = this.millisecond.toString().padStart(3, "0");
     const offset = this.offset.toString();
 
     return `${year}-${month}-${day} ${hour}:${minute}:${second}.${millisecond} ${offset}`;
@@ -116,7 +116,7 @@ class DateTime {
     const hour = this.hour.toString().padStart(2, "0");
     const minute = this.minute.toString().padStart(2, "0");
     const second = this.second.toString().padStart(2, "0");
-    const millisecond = this.millisecond.toString().padStart(2, "0");
+    const millisecond = this.millisecond.toString().padStart(3, "0");
     const offset = this.offset.toISOString();
 
     return `${year}-${month}-${day}T${hour}:${minute}:${second}.${millisecond}${offset}`;

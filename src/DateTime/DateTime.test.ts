@@ -419,6 +419,46 @@ describe("DateTime", () => {
       // then
       expect(str).toBe("2024-12-07 13:56:19.920 UTC+01:00");
     });
+
+    it("should pad a millisecond below 100 to three digits", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 13,
+        minute: 56,
+        second: 19,
+        millisecond: 20,
+        offset: { hour: 1 },
+      });
+
+      // when
+      const str = datetime.toString();
+
+      // then
+      expect(str).toBe("2024-12-07 13:56:19.020 UTC+01:00");
+    });
+
+    it("should pad a millisecond below 10 to three digits", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 13,
+        minute: 56,
+        second: 19,
+        millisecond: 5,
+        offset: { hour: 1 },
+      });
+
+      // when
+      const str = datetime.toString();
+
+      // then
+      expect(str).toBe("2024-12-07 13:56:19.005 UTC+01:00");
+    });
   });
 
   describe("toPrimitive", () => {
@@ -504,6 +544,46 @@ describe("DateTime", () => {
 
       // then
       expect(isoStr).toBe("2024-12-07T13:56:19.920+01:00");
+    });
+
+    it("should pad a millisecond below 100 to three digits", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 13,
+        minute: 56,
+        second: 19,
+        millisecond: 20,
+        offset: { hour: 1 },
+      });
+
+      // when
+      const isoStr = datetime.toISOString();
+
+      // then
+      expect(isoStr).toBe("2024-12-07T13:56:19.020+01:00");
+    });
+
+    it("should pad a millisecond below 10 to three digits", () => {
+      // given
+      const datetime = DateTime.fromObject({
+        year: 2024,
+        month: 12,
+        day: 7,
+        hour: 13,
+        minute: 56,
+        second: 19,
+        millisecond: 5,
+        offset: { hour: 1 },
+      });
+
+      // when
+      const isoStr = datetime.toISOString();
+
+      // then
+      expect(isoStr).toBe("2024-12-07T13:56:19.005+01:00");
     });
   });
 
@@ -1474,6 +1554,25 @@ describe("DateTime", () => {
       expect(datetime.offset.inMinutes).toBe(90);
     });
 
+    it("should return the date time from a leading zero millisecond string", () => {
+      // given
+      const str = "2024-12-07 13:56:19.005 UTC+01:30";
+
+      // when
+      const datetime = DateTime.fromString(str);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(13);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(5);
+      expect(datetime.offset.inMinutes).toBe(90);
+    });
+
     it("should throw an error with an invalid string", () => {
       // given
       const str = "2024-12-07 wwww 13:56:19.920 UTC+01:00";
@@ -1560,6 +1659,25 @@ describe("DateTime", () => {
       expect(datetime.offset.inMinutes).toBe(90);
     });
 
+    it("should return the date time from a leading zero millisecond iso string", () => {
+      // given
+      const str = "2024-12-07T13:56:19.005+01:30";
+
+      // when
+      const datetime = DateTime.fromISOString(str);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(13);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(5);
+      expect(datetime.offset.inMinutes).toBe(90);
+    });
+
     it("should throw an error with an invalid iso string", () => {
       // given
       const str = "2024-12-07-13:56:19.920Z";
@@ -1625,6 +1743,44 @@ describe("DateTime", () => {
       expect(datetime.second).toBe(19);
       expect(datetime.millisecond).toBe(920);
       expect(datetime.offset.inMinutes).toBe(0);
+    });
+
+    it("should return the date time from a leading zero millisecond string", () => {
+      // given
+      const str = "2024-12-07 13:56:19.005 UTC+01:30";
+
+      // when
+      const datetime = DateTime.parse(str);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(13);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(5);
+      expect(datetime.offset.inMinutes).toBe(90);
+    });
+
+    it("should return the date time from a leading zero millisecond iso string", () => {
+      // given
+      const str = "2024-12-07T13:56:19.005+01:30";
+
+      // when
+      const datetime = DateTime.parse(str);
+
+      // then
+      expect(datetime).toBeInstanceOf(DateTime);
+      expect(datetime.year).toBe(2024);
+      expect(datetime.month).toBe(12);
+      expect(datetime.day).toBe(7);
+      expect(datetime.hour).toBe(13);
+      expect(datetime.minute).toBe(56);
+      expect(datetime.second).toBe(19);
+      expect(datetime.millisecond).toBe(5);
+      expect(datetime.offset.inMinutes).toBe(90);
     });
 
     it("should throw an error with an invalid string", () => {
